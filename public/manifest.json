@@ -1,0 +1,14 @@
+{
+  "name": "Aventurischer Heldenbogen",
+  "version": "0.1.0",
+  "manifest_version": 1,
+  "description": "Interaktiver DSA-5-Heldenbogen mit Optolith-JSON-Import",
+  "author": "Alexander Hoffmann",
+  "action": {
+    "title": "Heldenbogen",
+    "icon": "/icon.svg",
+    "popover": "/",
+    "height": 760,
+    "width": 680
+  }
+}

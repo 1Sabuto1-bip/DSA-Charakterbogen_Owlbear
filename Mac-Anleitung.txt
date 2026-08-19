@@ -1,0 +1,37 @@
+AVENTURISCHER HELDENBOGEN – START AUF DEM MAC
+================================================
+
+Für diese Variante brauchst du npm nicht.
+
+1. Entpacke die ZIP-Datei vollständig.
+2. Öffne den entpackten Ordner.
+3. Klicke doppelt auf „Start auf Mac.command“.
+4. Falls macOS die Datei zunächst blockiert:
+   - Klicke mit der rechten Maustaste auf „Start auf Mac.command“.
+   - Wähle „Öffnen“.
+   - Bestätige noch einmal mit „Öffnen“.
+5. Dein Browser öffnet den Heldenbogen automatisch.
+6. Lass das geöffnete Terminalfenster während des Spiels geöffnet.
+
+IN OWLBEAR RODEO EINRICHTEN
+---------------------------
+
+1. Öffne dein Owlbear-Rodeo-Profil.
+2. Öffne „Extensions“ und dann „Add Extension“.
+3. Trage diesen Installationslink ein:
+
+   http://localhost:5173/manifest.json
+
+4. Aktiviere „Aventurischer Heldenbogen“ in deinem Spielraum.
+5. Öffne den Heldenbogen und importiere Isil.json.
+
+BEENDEN
+-------
+
+Schließe das Terminalfenster oder drücke dort Strg+C.
+
+WICHTIG
+-------
+
+Der Heldenbogen läuft nur, solange das Terminalfenster geöffnet ist. Die
+Heldenwerte bleiben trotzdem im Browser gespeichert.
