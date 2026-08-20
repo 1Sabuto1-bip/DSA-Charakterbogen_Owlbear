@@ -6,6 +6,7 @@ import {
   SPECIES_BY_KEY,
   TALENTS,
 } from "./data";
+import { createDarkAidState, isDarkAidHero } from "./darkaid-importer";
 import type {
   AttributeCode,
   CharacterSheetState,
@@ -90,6 +91,12 @@ export const createRuntimeState = (hero: OptolithHero): RuntimeState => ({
   },
   notes: "",
   favoriteTalentIds: [],
+  advancement: {
+    availableAp: 0,
+    spentAp: 0,
+    ignoreLimits: false,
+    history: [],
+  },
 });
 
 export interface ManualStateOptions {
@@ -181,7 +188,7 @@ const validateHero = (value: unknown): OptolithHero => {
     throw new HeroImportError("Im Export fehlt der Name des Helden.");
   }
   if (typeof value.clientVersion !== "string") {
-    throw new HeroImportError("Die Datei ist kein erkennbarer Optolith-Export.");
+    throw new HeroImportError("Die Datei ist weder ein erkennbarer Optolith-Export noch eine DarkAid-TDC-Datei.");
   }
   if (!isObject(value.attr) || !Array.isArray(value.attr.values)) {
     throw new HeroImportError("Im Optolith-Export fehlen die Eigenschaftswerte.");
@@ -215,7 +222,10 @@ const validateHero = (value: unknown): OptolithHero => {
 };
 
 const validateBackup = (value: Record<string, unknown>): CharacterSheetState | null => {
-  if (value.schemaVersion !== 1 || (value.source !== "optolith" && value.source !== "manual")) return null;
+  if (
+    value.schemaVersion !== 1
+    || (value.source !== "optolith" && value.source !== "darkaid" && value.source !== "manual")
+  ) return null;
   const source = value.source;
   const hero = validateHero(value.hero);
   if (source === "manual" && !hero.manual) {
@@ -231,6 +241,7 @@ const validateBackup = (value: Record<string, unknown>): CharacterSheetState | n
   if (!isObject(value.runtime)) throw new HeroImportError("Der Owlbear-Spielstand ist beschädigt.");
   const fallback = createRuntimeState(hero);
   const runtime = value.runtime as unknown as Partial<RuntimeState>;
+  const advancement = runtime.advancement;
   return {
     schemaVersion: 1,
     source,
@@ -247,7 +258,18 @@ const validateBackup = (value: Record<string, unknown>): CharacterSheetState | n
         ? runtime.favoriteTalentIds.filter((id): id is string => typeof id === "string")
         : [],
       notes: typeof runtime.notes === "string" ? runtime.notes : "",
+      advancement: {
+        ...fallback.advancement,
+        ...(advancement ?? {}),
+        availableAp: Math.max(0, asFiniteNumber(advancement?.availableAp)),
+        spentAp: Math.max(0, asFiniteNumber(advancement?.spentAp)),
+        ignoreLimits: advancement?.ignoreLimits === true,
+        history: Array.isArray(advancement?.history)
+          ? advancement.history.filter((entry) => isObject(entry))
+          : [],
+      },
     },
+    originalData: isObject(value.originalData) ? value.originalData : undefined,
   };
 };
 
@@ -263,6 +285,8 @@ export const importHeroJson = (json: string): CharacterSheetState => {
     const backup = validateBackup(parsed);
     if (backup) return backup;
   }
+
+  if (isDarkAidHero(parsed)) return createDarkAidState(parsed, createRuntimeState);
 
   const hero = validateHero(parsed);
   return {

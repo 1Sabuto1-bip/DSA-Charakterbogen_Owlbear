@@ -5,6 +5,8 @@ import type {
   TalentCategory,
   TalentDefinition,
   SpeciesDefinition,
+  ImprovementCost,
+  CombatTechniqueDefinition,
 } from "./types";
 
 export const SPECIES: SpeciesDefinition[] = [
@@ -45,7 +47,17 @@ const talent = (
   name,
   check: check.split("/") as [AttributeCode, AttributeCode, AttributeCode],
   category,
+  improvementCost: TALENT_IMPROVEMENT_COSTS[id - 1],
 });
+
+const TALENT_IMPROVEMENT_COSTS: ImprovementCost[] = [
+  "B", "A", "B", "D", "B", "B", "B", "D", "A", "D",
+  "A", "B", "C", "A", "B", "B", "B", "B", "C", "C",
+  "C", "B", "D", "C", "A", "A", "B", "C", "C", "C",
+  "A", "B", "B", "B", "B", "C", "B", "A", "A", "B",
+  "B", "A", "C", "B", "A", "B", "B", "B", "B", "D",
+  "B", "A", "B", "A", "C", "A", "C", "A", "A",
+];
 
 export const TALENTS: TalentDefinition[] = [
   talent(1, "Fliegen", "MU/IN/GE", "Körper"),
@@ -133,6 +145,30 @@ export const COMBAT_TECHNIQUES: Record<string, string> = {
   CT_19: "Diskusse",
   CT_20: "Fächer",
   CT_21: "Spießwaffen",
+};
+
+export const COMBAT_TECHNIQUE_RULES: Record<string, CombatTechniqueDefinition> = {
+  CT_1: { id: "CT_1", name: "Armbrüste", improvementCost: "B", primaryAttributes: ["FF"], range: "ranged" },
+  CT_2: { id: "CT_2", name: "Bögen", improvementCost: "C", primaryAttributes: ["FF"], range: "ranged" },
+  CT_3: { id: "CT_3", name: "Dolche", improvementCost: "B", primaryAttributes: ["GE"], range: "melee" },
+  CT_4: { id: "CT_4", name: "Fechtwaffen", improvementCost: "C", primaryAttributes: ["GE"], range: "melee" },
+  CT_5: { id: "CT_5", name: "Hiebwaffen", improvementCost: "C", primaryAttributes: ["KK"], range: "melee" },
+  CT_6: { id: "CT_6", name: "Kettenwaffen", improvementCost: "C", primaryAttributes: ["KK"], range: "melee" },
+  CT_7: { id: "CT_7", name: "Lanzen", improvementCost: "B", primaryAttributes: ["KK"], range: "melee" },
+  CT_8: { id: "CT_8", name: "Peitschen", improvementCost: "B", primaryAttributes: ["FF"], range: "melee" },
+  CT_9: { id: "CT_9", name: "Raufen", improvementCost: "B", primaryAttributes: ["GE", "KK"], range: "melee" },
+  CT_10: { id: "CT_10", name: "Schilde", improvementCost: "C", primaryAttributes: ["KK"], range: "melee" },
+  CT_11: { id: "CT_11", name: "Schleudern", improvementCost: "B", primaryAttributes: ["FF"], range: "ranged" },
+  CT_12: { id: "CT_12", name: "Schwerter", improvementCost: "C", primaryAttributes: ["GE", "KK"], range: "melee" },
+  CT_13: { id: "CT_13", name: "Stangenwaffen", improvementCost: "C", primaryAttributes: ["GE", "KK"], range: "melee" },
+  CT_14: { id: "CT_14", name: "Wurfwaffen", improvementCost: "B", primaryAttributes: ["FF"], range: "ranged" },
+  CT_15: { id: "CT_15", name: "Zweihandhiebwaffen", improvementCost: "C", primaryAttributes: ["KK"], range: "melee" },
+  CT_16: { id: "CT_16", name: "Zweihandschwerter", improvementCost: "C", primaryAttributes: ["KK"], range: "melee" },
+  CT_17: { id: "CT_17", name: "Feuerspeien", improvementCost: "B", primaryAttributes: ["FF"], range: "ranged" },
+  CT_18: { id: "CT_18", name: "Blasrohre", improvementCost: "B", primaryAttributes: ["FF"], range: "ranged" },
+  CT_19: { id: "CT_19", name: "Diskusse", improvementCost: "C", primaryAttributes: ["FF"], range: "ranged" },
+  CT_20: { id: "CT_20", name: "Fächer", improvementCost: "C", primaryAttributes: ["GE"], range: "melee" },
+  CT_21: { id: "CT_21", name: "Spießwaffen", improvementCost: "C", primaryAttributes: ["KK"], range: "melee" },
 };
 
 export const ITEM_GROUPS: Record<number, string> = {

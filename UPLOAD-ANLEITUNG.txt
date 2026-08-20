@@ -1,20 +1,22 @@
-DSA-CHARAKTERBOGEN – GITHUB-UPDATE 0.4.0
+DSA-CHARAKTERBOGEN – GITHUB-UPDATE 0.6.0
 =========================================
 
 Neu in dieser Version:
-- neuer Reiter "Zauber" für magisch begabte Figuren
-- 330 Optolith-kompatible Zauber mit deutschen Namen und Eigenschaftsproben
-- 97 Zaubertricks mit deutschen Namen
-- Zauber suchen und mit 3W20 würfeln
-- im manuellen Bogen Zauber und Zaubertricks hinzufügen, bearbeiten und entfernen
-- Spezies Mensch, Elf oder Zwerg auswählen
-- Elfen sind automatisch magisch begabt; Menschen und Zwerge können Magie aktivieren
-- Spezies-Grundwerte werden bei den Lebenspunkten berücksichtigt
+- Waffen, Schilde und Rüstungen hinzufügen, bearbeiten und löschen
+- Vorlagen aus dem integrierten DarkAid-Ausrüstungskatalog übernehmen
+- Nahkampfwerte, Fernkampfwerte und vollständige Rüstungswerte bearbeiten
+- neuer Reiter "Steigern" für Eigenschaften, Talente, Kampftechniken,
+  bekannte Zauber sowie LeP, AsP und KaP
+- AP-Guthaben und neu erhaltene Abenteuerpunkte verwalten
+- automatische AP-Kosten nach den DSA-5-Steigerungsspalten A bis E
+- regeltechnische Maximalwerte prüfen
+- letzte Steigerung zurücknehmen und AP erstatten
+- ältere gespeicherte Heldenbögen automatisch auf die neue Version umstellen
 
 UPLOAD
 ------
 1. Diese ZIP-Datei auf dem Mac doppelt anklicken.
-2. Den entpackten Ordner "github-update-v0.4.0" öffnen.
+2. Den entpackten Ordner "github-update-v0.6.0" öffnen.
 3. Im GitHub-Repository auf "Add file" und "Upload files" klicken:
    https://github.com/1Sabuto1-bip/DSA-Charakterbogen_Owlbear
 4. ALLE Inhalte des geöffneten Ordners in das Upload-Fenster ziehen.
@@ -35,5 +37,17 @@ https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/manifest.json
 
 Nach dem Upload Owlbear vollständig neu laden. Falls die alte Version im Cache
 bleibt, die Erweiterung im Profil entfernen und mit folgender Adresse neu anlegen:
-https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/manifest.json?v=040
+https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/manifest.json?v=060
 
+AP-GUTHABEN
+-----------
+Bei importierten Helden ist das vorhandene AP-Guthaben nicht immer Teil der
+Quelldatei. Im Reiter "Steigern" kann es deshalb einmalig gesetzt werden.
+Später erhaltene AP werden über "AP hinzufügen" zugleich dem Guthaben und den
+Gesamt-AP des Helden gutgeschrieben.
+
+REGELGRENZEN
+------------
+Der Bogen prüft die üblichen Maximalwerte. Für Sonderfälle, Merkmalskenntnis
+oder Hausregeln kann die Spielleiter-Freigabe aktiviert werden. Die AP-Kosten
+werden dabei weiterhin berechnet.

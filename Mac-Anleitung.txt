@@ -23,7 +23,7 @@ IN OWLBEAR RODEO EINRICHTEN
    http://localhost:5173/manifest.json
 
 4. Aktiviere „Aventurischer Heldenbogen“ in deinem Spielraum.
-5. Öffne den Heldenbogen und importiere Isil.json.
+5. Öffne den Heldenbogen und importiere eine Optolith-JSON oder DarkAid-TDC.
 
 BEENDEN
 -------

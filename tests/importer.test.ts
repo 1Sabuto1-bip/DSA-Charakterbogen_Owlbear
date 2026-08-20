@@ -1,4 +1,5 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import {
   createManualState,
@@ -9,6 +10,7 @@ import {
   updateManualSpecies,
 } from "../src/importer";
 import { CANTRIPS, SPELLS, SPELL_BY_ID } from "../src/magic-data";
+import { DARKAID_ITEM_DATA, DARKAID_MAGIC_BY_ID } from "../src/darkaid-data";
 
 const minimalHero = JSON.stringify({
   clientVersion: "1.5.2",
@@ -36,6 +38,54 @@ const minimalHero = JSON.stringify({
   belongings: { items: {}, purse: {} },
 });
 
+const darkAidHero = JSON.stringify({
+  version: 7,
+  name: "Irinja",
+  race: "mittellaender",
+  culture: "bornlaender",
+  profession: "katzenhexe",
+  professionname: "Katzenhexe (Schöne der Nacht)",
+  purse: "-73100",
+  xp: { startinglevel: "erfahren" },
+  attributes: [
+    { id: "mut", level: 14 },
+    { id: "klugheit", level: 10 },
+    { id: "intuition", level: 14 },
+    { id: "charisma", level: 15 },
+    { id: "fingerfertigkeit", level: 12 },
+    { id: "gewandtheit", level: 13 },
+    { id: "konstitution", level: 13 },
+    { id: "koerperkraft", level: 9 },
+  ],
+  basevalues: [
+    { id: "lebensenergie" },
+    { id: "astralenergie", bought: 2, losses: [{ source: "bindungdesstabes" }] },
+  ],
+  skills: [
+    { id: "fliegen", level: 7 },
+    { id: "brettgluecksspiel", level: 0 },
+  ],
+  combattechniques: [
+    { id: "dolche", level: 10 },
+    { id: "raufen", level: 8 },
+  ],
+  spells: [
+    { id: "balsamsalabunde", level: 8 },
+    { id: "freundschaftslied", level: 4 },
+    { id: "duft" },
+  ],
+  disadvantages: [{ id: "zauberer" }],
+  otherobjects: [
+    { amount: 1, ruleelement: { id: "becher", type: "equipment" } },
+  ],
+  meleeweapons: [
+    { amount: 1, ruleelement: { id: "dolch", type: "meleeweapon" } },
+  ],
+  armor: [],
+  rangedweapons: [],
+  shields: [],
+});
+
 describe("Optolith import", () => {
   it("imports base values and derives human life points", () => {
     const state = importHeroJson(minimalHero);
@@ -52,6 +102,18 @@ describe("Optolith import", () => {
     original.runtime.notes = "Testnotiz";
     const restored = importHeroJson(JSON.stringify(original));
     expect(restored.runtime.notes).toBe("Testnotiz");
+  });
+
+  it("migrates backups from before the advancement feature", () => {
+    const original = importHeroJson(minimalHero);
+    delete (original.runtime as Partial<typeof original.runtime>).advancement;
+    const restored = importHeroJson(JSON.stringify(original));
+    expect(restored.runtime.advancement).toEqual({
+      availableAp: 0,
+      spentAp: 0,
+      ignoreLimits: false,
+      history: [],
+    });
   });
 
   it("creates and restores a complete manual character sheet", () => {
@@ -125,5 +187,92 @@ describe("Optolith import", () => {
 
   it("rejects unrelated JSON", () => {
     expect(() => importHeroJson('{"hello":"world"}')).toThrow(/Name|Optolith/);
+  });
+});
+
+describe("DarkAid import", () => {
+  it("imports a TDC hero with all base talents and resources", () => {
+    const state = importHeroJson(darkAidHero);
+    expect(state.source).toBe("darkaid");
+    expect(state.hero.name).toBe("Irinja");
+    expect(state.hero.r).toBe("R_1");
+    expect(state.hero.ap?.total).toBe(1100);
+    expect(getAttributeValues(state.hero)).toMatchObject({ MU: 14, CH: 15, KO: 13 });
+    expect(Object.keys(state.hero.talents)).toHaveLength(59);
+    expect(state.hero.talents.TAL_1).toBe(7);
+    expect(state.hero.talents.TAL_31).toBe(0);
+    expect(state.hero.ct).toMatchObject({ CT_3: 10, CT_9: 8 });
+    expect(state.runtime.resources.lp).toEqual({ current: 31, max: 31 });
+    expect(state.runtime.resources.ae).toEqual({ current: 36, max: 36 });
+    expect(state.hero.belongings?.purse).toEqual({ d: "1", s: "9", h: "0", k: "0" });
+  });
+
+  it("maps known and DarkAid-specific magic and readable equipment", () => {
+    const state = importHeroJson(darkAidHero);
+    expect(state.hero.spells?.SPELL_5).toBe(8);
+    expect(state.hero.spells?.DARKAID_SPELL_freundschaftslied).toBe(4);
+    expect(DARKAID_MAGIC_BY_ID.DARKAID_SPELL_freundschaftslied).toMatchObject({
+      name: "Freundschaftslied",
+      check: ["IN", "CH", "CH"],
+    });
+    expect(state.hero.cantrips).toContain("CANTRIP_3");
+    expect(Object.values(state.hero.belongings?.items ?? {}).map((item) => item.name)).toEqual(
+      expect.arrayContaining(["Becher", "Dolch"]),
+    );
+    expect(Object.values(state.hero.belongings?.items ?? {}).find((item) => item.name === "Dolch")?.itemKind).toBe("melee");
+  });
+
+  it("includes complete editable combat values in the equipment catalogue", () => {
+    expect(DARKAID_ITEM_DATA["meleeweapon:dolch"]).toMatchObject({
+      damageDiceNumber: 1,
+      damageDiceSides: 6,
+      damageFlat: 1,
+      damageThreshold: 14,
+      combatTechnique: "CT_3",
+    });
+    expect(DARKAID_ITEM_DATA["rangedweapon:handarmbrust"]).toMatchObject({
+      reloadTime: 3,
+      rangeShort: 5,
+      rangeMedium: 25,
+      rangeLong: 40,
+      ammunition: "bolzen",
+    });
+    expect(DARKAID_ITEM_DATA["armor:schwerekleidung"]).toMatchObject({
+      pro: 1,
+      enc: 0,
+      movementPenalty: -1,
+      initiativePenalty: -1,
+    });
+  });
+
+  it("imports every available public DarkAid sample hero", () => {
+    const sampleRoot = fileURLToPath(new URL("../../darkaid-source/samplecharacters", import.meta.url));
+    if (!existsSync(sampleRoot)) return;
+    const files = readdirSync(sampleRoot, { recursive: true, withFileTypes: true })
+      .filter((entry) => entry.isFile() && entry.name.endsWith(".tdc"))
+      .map((entry) => `${entry.parentPath}/${entry.name}`);
+    expect(files.length).toBeGreaterThan(50);
+    for (const file of files) {
+      const state = importHeroJson(readFileSync(file, "utf8"));
+      expect(state.source, file).toBe("darkaid");
+      expect(state.hero.name.length, file).toBeGreaterThan(0);
+    }
+  });
+
+  it("preserves the original TDC inside an Owlbear backup", () => {
+    const state = importHeroJson(darkAidHero);
+    expect(state.originalData?.version).toBe(7);
+    const restored = importHeroJson(JSON.stringify(state));
+    expect(restored.source).toBe("darkaid");
+    expect(restored.originalData?.profession).toBe("katzenhexe");
+  });
+
+  it("imports a real DarkAid fixture when configured", () => {
+    const path = process.env.TEST_DARKAID_TDC;
+    if (!path) return;
+    const state = importHeroJson(readFileSync(path, "utf8"));
+    expect(state.source).toBe("darkaid");
+    expect(Object.keys(state.hero.talents)).toHaveLength(59);
+    expect(state.hero.name.length).toBeGreaterThan(0);
   });
 });

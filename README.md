@@ -1,11 +1,12 @@
 # Aventurischer Heldenbogen für Owlbear Rodeo
 
 Ein eigenständig gestalteter, interaktiver DSA-5-Heldenbogen als Owlbear-Rodeo-Erweiterung.
-Der aktuelle Prototyp importiert Optolith-JSON-Dateien der Version 1.5.x.
+Der aktuelle Prototyp importiert Optolith-JSON-Dateien der Version 1.5.x und TDC-Helden aus The Dark Aid X.
 
 ## Enthaltene Funktionen
 
-- Optolith-JSON und eigene Owlbear-Sicherungen importieren
+- Optolith-JSON, DarkAid-TDC und eigene Owlbear-Sicherungen importieren
+- DarkAid-Eigenschaften, Fertigkeiten, Kampftechniken, Zauber, Zaubertricks, Ausrüstung und Geld übernehmen
 - alternativ einen leeren Heldenbogen ohne digitale Vorlage anlegen
 - Mensch, Elf oder Zwerg als Spezies wählen; Elfen werden automatisch als magisch begabt angelegt
 - Name, Eigenschaften, Abenteuerpunkte, Talente und Kampftechniken im manuellen Modus eintragen
@@ -18,11 +19,17 @@ Der aktuelle Prototyp importiert Optolith-JSON-Dateien der Version 1.5.x.
 - Zauberproben mit den passenden drei Eigenschaften würfeln
 - im manuellen Modus Zauber aus 330 Optolith-kompatiblen Zaubern und 97 Zaubertricks hinzufügen, bearbeiten und entfernen
 - Kampftechniken, Waffen und Rüstungen anzeigen
+- Waffen und Rüstungen aus dem integrierten DarkAid-Regelkatalog übernehmen oder frei anlegen
+- Nahkampfwerte (TP, AT/PA, Reichweite, TP-Schwelle), Fernkampfwerte (TP, Ladezeit, Reichweiten, Munition) sowie RS, BE, GS-/INI-Abzüge bearbeiten
+- Waffen, Schilde und Rüstungen für Optolith-, DarkAid- und manuelle Helden hinzufügen, ändern und löschen
 - Inventar und Geldbörse bearbeiten; Gegenstände hinzufügen und löschen
+- eigener Reiter **Steigern** mit AP-Guthaben, automatischen Kosten nach den Spalten A–E und Steigerungsprotokoll
+- Eigenschaften, Talente, Kampftechniken, bekannte Zauber sowie LeP, AsP und KaP mit AP steigern
+- regeltechnische Maximalwerte prüfen, mit gekennzeichneter Spielleiter-/Hausregeloption übergehen und die letzte Steigerung zurücknehmen
 - Talente als Favoriten markieren und durchsuchen
 - private Notizen speichern
 - einen kompakten Ressourcenstand mit einem Owlbear-Charaktertoken verknüpfen
-- Spielstand oder unveränderten Optolith-Export als JSON sichern
+- Spielstand oder die ursprünglichen Optolith-/DarkAid-Daten wieder exportieren
 
 Der vollständige Bogen wird im lokalen Browserspeicher abgelegt. Am verknüpften Token werden nur
 eine kleine Zusammenfassung und die aktuellen Ressourcen gespeichert.
@@ -47,7 +54,7 @@ npm install
 npm run dev
 ```
 
-Danach `http://localhost:5173` im Browser öffnen und eine Optolith-JSON importieren. Dieser Abschnitt
+Danach `http://localhost:5173` im Browser öffnen und eine Optolith-JSON oder DarkAid-TDC importieren. Dieser Abschnitt
 ist nur nötig, wenn der Quellcode verändert werden soll.
 
 ## In Owlbear Rodeo testen
@@ -56,7 +63,7 @@ ist nur nötig, wenn der Quellcode verändert werden soll.
 2. Im Owlbear-Rodeo-Profil **Add Extension** auswählen.
 3. Als Installationslink `http://localhost:5173/manifest.json` eintragen.
 4. Die Erweiterung im gewünschten Raum aktivieren.
-5. Im Raum oben links **Heldenbogen** öffnen und die JSON importieren.
+5. Im Raum oben links **Heldenbogen** öffnen und die JSON- oder TDC-Datei importieren.
 
 Hinweis: Je nach Browser müssen Owlbear Rodeo und der lokale Entwicklungsserver beide über einen
 zugelassenen sicheren Ursprung erreichbar sein. Für einen dauerhaften Einsatz empfiehlt sich die
@@ -83,19 +90,30 @@ Ein konkreter Optolith-Export kann zusätzlich als Integrationstest verwendet we
 TEST_HERO_JSON=/pfad/zum/helden.json npm test
 ```
 
+Ein DarkAid-Export kann auf die gleiche Weise geprüft werden:
+
+```bash
+TEST_DARKAID_TDC=/pfad/zum/helden.tdc npm test
+```
+
 ## Aktuelle Grenzen
 
-- Kultur, Profession, Vor- und Nachteile sowie Sonderfertigkeiten liegen im Export nur als
-  Optolith-Kennungen vor. Sie werden im Prototyp noch nicht in lesbare Namen aufgelöst.
+- Kultur, Profession, Vor- und Nachteile sowie Sonderfertigkeiten werden noch nicht vollständig
+  in eine gemeinsame Darstellung für beide Importformate überführt.
 - Die Astralenergie magischer Figuren wird als Startwert aus 20 plus der höchsten geistigen
   Eigenschaft sowie den importierten Korrekturwerten vorgeschlagen. Da das genaue Leitattribut von
   der Tradition abhängt, bleibt der Wert direkt editierbar. Karmale Maximalwerte werden weiterhin
   nicht automatisch aus Traditionen errechnet.
+- Beim Zukauf von AsP und KaP nutzt der Steigerungsreiter mangels vollständig aufgelöster
+  Tradition zunächst die höchste Eigenschaft als Obergrenze und weist auf die manuelle Prüfung
+  der tatsächlichen Leiteigenschaft hin.
+- Sonderfertigkeiten, Vorteile und der Abbau von Nachteilen sind noch nicht Teil des
+  Steigerungsreiters.
 - Der vollständige Bogen wird noch nicht zwischen verschiedenen Geräten synchronisiert.
 - Die Token-Verknüpfung überträgt bewusst nur eine kompakte Zusammenfassung.
 
 ## Rechtlicher Hinweis
 
-Dies ist ein inoffizielles Fanprojekt und kein Produkt von Ulisses Spiele, Optolith oder Owlbear
+Dies ist ein inoffizielles Fanprojekt und kein Produkt von Ulisses Spiele, Optolith, The Dark Aid oder Owlbear
 Rodeo. Es enthält keine Regeltexte oder geschützten Grafiken. „Das Schwarze Auge“ und zugehörige
 Bezeichnungen sind Marken ihrer jeweiligen Rechteinhaber.

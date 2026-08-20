@@ -3,6 +3,7 @@ import "./styles.css";
 import {
   ATTRIBUTES,
   COMBAT_TECHNIQUES,
+  COMBAT_TECHNIQUE_RULES,
   ITEM_GROUPS,
   SPECIES,
   SPECIES_BY_ID,
@@ -10,6 +11,12 @@ import {
   TALENT_BY_ID,
 } from "./data";
 import { CANTRIPS, SPELLS, SPELL_BY_ID } from "./magic-data";
+import { DARKAID_ITEM_DATA, DARKAID_MAGIC_BY_ID, DARKAID_MAGIC_BY_SOURCE_ID } from "./darkaid-data";
+import {
+  combatTechniqueMaximum,
+  improvementCostForTarget,
+  talentMaximum,
+} from "./advancement";
 import {
   HeroImportError,
   calculateInitiative,
@@ -26,15 +33,21 @@ import { rollTalent } from "./roll";
 import { clearState, loadState, saveState } from "./storage";
 import type {
   CharacterSheetState,
+  AdvancementHistoryEntry,
   AttributeCode,
+  CombatItemKind,
+  ImprovementCost,
   ManualSpecies,
+  OptolithItem,
   ResourceValue,
   SpellDefinition,
   TalentDefinition,
   TalentRollResult,
 } from "./types";
 
-type TabId = "overview" | "talents" | "spells" | "combat" | "inventory" | "source";
+type TabId = "overview" | "talents" | "spells" | "combat" | "inventory" | "advance" | "source";
+
+type AdvancementSection = "attributes" | "talents" | "combat" | "spells" | "resources";
 
 interface RollDialogState {
   kind: "talent" | "spell";
@@ -51,6 +64,8 @@ let state: CharacterSheetState | null = loadState();
 let activeTab: TabId = "overview";
 let talentSearch = "";
 let spellSearch = "";
+let advancementSearch = "";
+let advancementSection: AdvancementSection = "attributes";
 let rollDialog: RollDialogState | null = null;
 let toastTimer: number | undefined;
 
@@ -70,7 +85,50 @@ const asNumber = (value: string, fallback = 0): number => {
 const formatNumber = (value: number): string =>
   new Intl.NumberFormat("de-DE", { maximumFractionDigits: 2 }).format(value);
 
-const formatSigned = (value = 0): string => (value > 0 ? `+${value}` : String(value));
+const COMBAT_CATALOG = Object.entries(DARKAID_ITEM_DATA)
+  .filter(([id]) => /^(meleeweapon|rangedweapon|shield|armor):/.test(id))
+  .map(([id, item]) => ({ id, item }))
+  .sort((a, b) => (a.item.name ?? a.id).localeCompare(b.item.name ?? b.id, "de"));
+
+const inferItemKind = (item: OptolithItem): CombatItemKind => {
+  if (item.itemKind) return item.itemKind;
+  if (item.gr === 4 || typeof item.pro === "number") return "armor";
+  if (item.combatTechnique === "CT_10") return "shield";
+  if (item.gr === 2 || COMBAT_TECHNIQUE_RULES[item.combatTechnique ?? ""]?.range === "ranged") return "ranged";
+  if (item.damageDiceSides || item.combatTechnique) return "melee";
+  return "equipment";
+};
+
+const combatKindLabel = (kind: CombatItemKind): string => ({
+  melee: "Nahkampfwaffe",
+  ranged: "Fernkampfwaffe",
+  shield: "Schild",
+  armor: "Rüstung",
+  equipment: "Gegenstand",
+})[kind];
+
+const getDarkAidMagicDefinition = (id: string) => {
+  const sourceId = id.startsWith("DARKAID_CANTRIP_")
+    ? id.slice("DARKAID_CANTRIP_".length)
+    : id.startsWith("DARKAID_SPELL_")
+      ? id.slice("DARKAID_SPELL_".length)
+      : "";
+  return DARKAID_MAGIC_BY_ID[id] ?? (sourceId ? DARKAID_MAGIC_BY_SOURCE_ID[sourceId] : undefined);
+};
+
+const getSpellDefinition = (id: string): SpellDefinition | undefined => {
+  const definition = SPELL_BY_ID[id] ?? getDarkAidMagicDefinition(id);
+  return definition?.check ? { ...definition, check: definition.check } : undefined;
+};
+
+const getCantripName = (id: string): string =>
+  CANTRIPS[id] ?? getDarkAidMagicDefinition(id)?.name ?? id;
+
+const sourceName = (sheet: CharacterSheetState): string => {
+  if (sheet.source === "manual") return "Manuell angelegt";
+  if (sheet.source === "darkaid") return sheet.hero.clientVersion;
+  return `Optolith ${sheet.hero.clientVersion}`;
+};
 
 const showToast = (message: string, kind: "success" | "error" = "success"): void => {
   document.querySelector(".toast")?.remove();
@@ -121,13 +179,13 @@ const renderImportScreen = (): string => `
       <p class="eyebrow">Owlbear Rodeo · DSA 5</p>
       <h1>Aventurischer<br />Heldenbogen</h1>
       <p class="welcome-copy">
-        Importiere einen Optolith-Helden als JSON. Der Bogen bleibt in deinem Browser gespeichert
+        Importiere einen Optolith-Helden als JSON oder einen DarkAid-Helden als TDC-Datei. Der Bogen bleibt in deinem Browser gespeichert
         und kann anschließend mit einem Charaktertoken verbunden werden.
       </p>
       <label class="drop-zone" id="drop-zone">
-        <input id="hero-file" type="file" accept="application/json,.json" hidden />
+        <input id="hero-file" type="file" accept="application/json,.json,.tdc" hidden />
         <span class="drop-zone__icon" aria-hidden="true">⇧</span>
-        <strong>JSON-Datei auswählen</strong>
+        <strong>JSON- oder TDC-Datei auswählen</strong>
         <span>oder hierher ziehen</span>
       </label>
       <div class="welcome-divider"><span>oder</span></div>
@@ -147,6 +205,7 @@ const renderImportScreen = (): string => `
       </section>
       <div class="welcome-notes">
         <span>✓ Optolith 1.5.x</span>
+        <span>✓ DarkAid TDC</span>
         <span>✓ lokale Speicherung</span>
         <span>✓ 3W20-Proben</span>
       </div>
@@ -348,7 +407,7 @@ const renderSpellRow = (
   return `
     <div class="talent-row spell-row">
       <span class="spell-sigil" aria-hidden="true">✦</span>
-      <div class="talent-name"><strong>${escapeHtml(name)}</strong><span>${definition ? `${definition.kind} · Steigerungsfaktor ${definition.improvementCost}${definition.checkModifier ? ` · mod. ${definition.checkModifier}` : ""}` : "Unbekannte Optolith-Kennung"}</span></div>
+      <div class="talent-name"><strong>${escapeHtml(name)}</strong><span>${definition ? `${definition.kind} · Steigerungsfaktor ${definition.improvementCost}${definition.checkModifier ? ` · mod. ${definition.checkModifier}` : ""}` : "Unbekannte Zauberkennung"}</span></div>
       <div class="check-badges" aria-label="${definition ? `Probe ${definition.check.join(" ")}` : "Probe unbekannt"}">
         ${definition ? definition.check.map((attribute) => `<span>${attribute}</span>`).join("") : '<span>?</span><span>?</span><span>?</span>'}
       </div>
@@ -365,11 +424,11 @@ const renderSpells = (sheet: CharacterSheetState): string => {
   const query = spellSearch.trim().toLocaleLowerCase("de");
   const learnedSpellIds = Object.keys(sheet.hero.spells ?? {});
   const spellEntries = learnedSpellIds
-    .map((id) => ({ id, definition: SPELL_BY_ID[id], value: sheet.hero.spells?.[id] ?? 0 }))
+    .map((id) => ({ id, definition: getSpellDefinition(id), value: sheet.hero.spells?.[id] ?? 0 }))
     .filter((entry) => !query || (entry.definition?.name ?? entry.id).toLocaleLowerCase("de").includes(query))
     .sort((a, b) => (a.definition?.name ?? a.id).localeCompare(b.definition?.name ?? b.id, "de"));
   const learnedCantrips = (sheet.hero.cantrips ?? [])
-    .map((id) => ({ id, name: CANTRIPS[id] ?? id }))
+    .map((id) => ({ id, name: getCantripName(id) }))
     .filter((entry) => !query || entry.name.toLocaleLowerCase("de").includes(query))
     .sort((a, b) => a.name.localeCompare(b.name, "de"));
   const availableSpells = SPELLS
@@ -390,7 +449,7 @@ const renderSpells = (sheet: CharacterSheetState): string => {
         <input id="spell-search" type="search" value="${escapeHtml(spellSearch)}" placeholder="Zauber oder Zaubertrick suchen …" autocomplete="off" />
       </label>
       ${editable ? `<article class="spell-add-panel">
-        <label><span>Zauber aus dem Optolith-Katalog</span><select id="spell-catalog-select" ${availableSpells.length ? "" : "disabled"}>
+        <label><span>Zauber aus dem Katalog</span><select id="spell-catalog-select" ${availableSpells.length ? "" : "disabled"}>
           ${availableSpells.map((definition) => `<option value="${definition.id}">${escapeHtml(definition.name)} (${definition.kind}, ${definition.check.join("/")})</option>`).join("") || '<option>Alle Zauber hinzugefügt</option>'}
         </select></label>
         <button class="primary-button" id="add-spell" ${availableSpells.length ? "" : "disabled"}>+ Zauber</button>
@@ -416,6 +475,90 @@ const renderSpells = (sheet: CharacterSheetState): string => {
     </section>`;
 };
 
+const combatInput = (
+  key: string,
+  field: string,
+  value: unknown,
+  label: string,
+  options: { min?: number; max?: number; step?: number } = {},
+): string => `<label class="combat-field"><span>${label}</span><input data-combat-key="${escapeHtml(key)}" data-combat-field="${field}" type="number" value="${escapeHtml(value ?? 0)}" min="${options.min ?? 0}" ${options.max === undefined ? "" : `max="${options.max}"`} step="${options.step ?? 1}" /></label>`;
+
+const combatTechniqueOptions = (selected: string | undefined, range?: "melee" | "ranged"): string =>
+  Object.values(COMBAT_TECHNIQUE_RULES)
+    .filter((definition) => !range || definition.range === range)
+    .sort((a, b) => a.name.localeCompare(b.name, "de"))
+    .map((definition) => `<option value="${definition.id}" ${definition.id === selected ? "selected" : ""}>${escapeHtml(definition.name)}</option>`)
+    .join("");
+
+const renderWeaponEditor = (key: string, item: OptolithItem, kind: "melee" | "ranged" | "shield"): string => {
+  const techniqueRange = kind === "ranged" ? "ranged" : "melee";
+  const techniqueOptions = kind === "shield"
+    ? `<option value="CT_10" selected>Schilde</option>`
+    : combatTechniqueOptions(item.combatTechnique, techniqueRange);
+  const kindIcon = kind === "ranged" ? "➶" : kind === "shield" ? "◒" : "⚔";
+  return `<article class="combat-editor combat-editor--${kind}">
+    <div class="combat-editor__header">
+      <span class="weapon-icon">${kindIcon}</span>
+      <label><span>Name</span><input class="combat-name-input" data-combat-key="${escapeHtml(key)}" data-combat-field="name" value="${escapeHtml(item.name)}" /></label>
+      <span class="combat-kind">${combatKindLabel(kind)}</span>
+      <button class="inventory-delete" data-delete-combat="${escapeHtml(key)}" title="${escapeHtml(item.name)} löschen">×</button>
+    </div>
+    <div class="combat-editor__grid">
+      <label class="combat-field combat-field--wide"><span>Kampftechnik</span><select data-combat-key="${escapeHtml(key)}" data-combat-field="combatTechnique">${techniqueOptions}</select></label>
+      <fieldset class="damage-field"><legend>Trefferpunkte</legend>
+        <input data-combat-key="${escapeHtml(key)}" data-combat-field="damageDiceNumber" type="number" min="0" max="9" value="${item.damageDiceNumber ?? 1}" aria-label="Anzahl Schadenswürfel" />
+        <span>W</span>
+        <input data-combat-key="${escapeHtml(key)}" data-combat-field="damageDiceSides" type="number" min="0" max="100" value="${item.damageDiceSides ?? 6}" aria-label="Seiten des Schadenswürfels" />
+        <span>+</span>
+        <input data-combat-key="${escapeHtml(key)}" data-combat-field="damageFlat" type="number" min="-20" max="50" value="${item.damageFlat ?? 0}" aria-label="Fester Schadensbonus" />
+      </fieldset>
+      ${kind === "ranged"
+        ? `${combatInput(key, "reloadTime", item.reloadTime, "Ladezeit", { max: 99 })}
+          ${combatInput(key, "rangeShort", item.rangeShort, "RW kurz", { max: 999 })}
+          ${combatInput(key, "rangeMedium", item.rangeMedium, "RW mittel", { max: 999 })}
+          ${combatInput(key, "rangeLong", item.rangeLong, "RW weit", { max: 999 })}
+          <label class="combat-field"><span>Munition</span><input data-combat-key="${escapeHtml(key)}" data-combat-field="ammunition" value="${escapeHtml(item.ammunition ?? "")}" placeholder="Pfeile, Bolzen …" /></label>`
+        : `${combatInput(key, "at", item.at, "AT-Mod.", { min: -20, max: 20 })}
+          ${combatInput(key, "pa", item.pa, "PA-Mod.", { min: -20, max: 20 })}
+          <label class="combat-field"><span>Reichweite</span><select data-combat-key="${escapeHtml(key)}" data-combat-field="reach">
+            <option value="1" ${(item.reach ?? 2) === 1 ? "selected" : ""}>kurz</option>
+            <option value="2" ${(item.reach ?? 2) === 2 ? "selected" : ""}>mittel</option>
+            <option value="3" ${(item.reach ?? 2) === 3 ? "selected" : ""}>lang</option>
+          </select></label>
+          ${combatInput(key, "damageThreshold", item.damageThreshold, "TP-Schwelle", { max: 30 })}
+          <label class="combat-field"><span>Leiteigenschaft</span><select data-combat-key="${escapeHtml(key)}" data-combat-field="damageBonusAttribute">
+            ${ATTRIBUTES.map((attribute) => `<option value="${attribute.code}" ${(item.damageBonusAttribute ?? "KK") === attribute.code ? "selected" : ""}>${attribute.code}</option>`).join("")}
+          </select></label>`}
+      ${combatInput(key, "amount", item.amount ?? 1, "Anzahl", { max: 999 })}
+      ${combatInput(key, "weight", item.weight, "Gewicht", { max: 999, step: 0.01 })}
+      ${combatInput(key, "price", item.price, "Preis (S)", { max: 999999, step: 0.01 })}
+      ${combatInput(key, "length", item.length, "Länge", { max: 999, step: 0.1 })}
+      <label class="combat-field combat-field--check"><input data-combat-key="${escapeHtml(key)}" data-combat-field="equipped" type="checkbox" ${item.equipped === false ? "" : "checked"} /><span>ausgerüstet</span></label>
+      <label class="combat-field combat-field--notes"><span>Notizen / Besonderheiten</span><textarea data-combat-key="${escapeHtml(key)}" data-combat-field="notes">${escapeHtml(item.notes ?? "")}</textarea></label>
+    </div>
+  </article>`;
+};
+
+const renderArmorEditor = (key: string, item: OptolithItem): string => `<article class="combat-editor combat-editor--armor">
+  <div class="combat-editor__header">
+    <span class="weapon-icon">⬟</span>
+    <label><span>Name</span><input class="combat-name-input" data-combat-key="${escapeHtml(key)}" data-combat-field="name" value="${escapeHtml(item.name)}" /></label>
+    <span class="combat-kind">Rüstung</span>
+    <button class="inventory-delete" data-delete-combat="${escapeHtml(key)}" title="${escapeHtml(item.name)} löschen">×</button>
+  </div>
+  <div class="combat-editor__grid">
+    ${combatInput(key, "pro", item.pro, "Rüstungsschutz", { max: 20 })}
+    ${combatInput(key, "enc", item.enc, "Belastung", { max: 10 })}
+    ${combatInput(key, "movementPenalty", item.movementPenalty, "GS-Abzug", { min: -20, max: 0 })}
+    ${combatInput(key, "initiativePenalty", item.initiativePenalty, "INI-Abzug", { min: -20, max: 0 })}
+    ${combatInput(key, "amount", item.amount ?? 1, "Anzahl", { max: 99 })}
+    ${combatInput(key, "weight", item.weight, "Gewicht", { max: 999, step: 0.01 })}
+    ${combatInput(key, "price", item.price, "Preis (S)", { max: 999999, step: 0.01 })}
+    <label class="combat-field combat-field--check"><input data-combat-key="${escapeHtml(key)}" data-combat-field="equipped" type="checkbox" ${item.equipped === false ? "" : "checked"} /><span>getragen</span></label>
+    <label class="combat-field combat-field--notes"><span>Notizen / Vor- und Nachteile</span><textarea data-combat-key="${escapeHtml(key)}" data-combat-field="notes">${escapeHtml(item.notes ?? "")}</textarea></label>
+  </div>
+</article>`;
+
 const renderCombat = (sheet: CharacterSheetState): string => {
   const isManual = sheet.source === "manual";
   const techniqueIds = isManual ? Object.keys(COMBAT_TECHNIQUES) : Object.keys(sheet.hero.ct ?? {});
@@ -424,53 +567,46 @@ const renderCombat = (sheet: CharacterSheetState): string => {
     .sort((a, b) => isManual
       ? (COMBAT_TECHNIQUES[a[0]] ?? a[0]).localeCompare(COMBAT_TECHNIQUES[b[0]] ?? b[0], "de")
       : b[1] - a[1]);
-  const items = Object.values(sheet.hero.belongings?.items ?? {});
-  const weapons = items.filter((item) => item.damageDiceSides || item.combatTechnique);
-  const armor = items.filter((item) => typeof item.pro === "number");
+  const combatItems = Object.entries(sheet.hero.belongings?.items ?? {})
+    .map(([key, item]) => ({ key, item, kind: inferItemKind(item) }))
+    .filter((entry) => entry.kind !== "equipment")
+    .sort((a, b) => a.item.name.localeCompare(b.item.name, "de"));
+  const weapons = combatItems.filter((entry) => entry.kind !== "armor");
+  const armor = combatItems.filter((entry) => entry.kind === "armor");
 
   return `
     <section class="page page--combat">
-      <div class="section-title"><div><p class="eyebrow">Kampfwerte</p><h2>Kampftechniken</h2></div></div>
+      <div class="section-title"><div><p class="eyebrow">Kampfwerte</p><h2>Kampftechniken</h2></div><span class="section-hint">Steigerungen erfolgen im Reiter „Steigern“</span></div>
       <div class="technique-grid">
-        ${techniques
-          .map(
-            ([id, value]) => `<article class="technique-card">
-              <span>${escapeHtml(COMBAT_TECHNIQUES[id] ?? id)}</span>${isManual ? `<input data-manual-technique="${id}" type="number" min="0" max="30" value="${value}" aria-label="Kampftechnik ${escapeHtml(COMBAT_TECHNIQUES[id] ?? id)}" />` : `<strong>${value}</strong>`}<small>Ktw</small>
-            </article>`,
-          )
-          .join("") || '<div class="empty-state">Keine Kampftechniken importiert.</div>'}
+        ${techniques.map(([id, value]) => `<article class="technique-card">
+          <span>${escapeHtml(COMBAT_TECHNIQUES[id] ?? id)}</span>${isManual ? `<input data-manual-technique="${id}" type="number" min="0" max="30" value="${value}" aria-label="Kampftechnik ${escapeHtml(COMBAT_TECHNIQUES[id] ?? id)}" />` : `<strong>${value}</strong>`}<small>Ktw</small>
+        </article>`).join("") || '<div class="empty-state">Keine Kampftechniken importiert.</div>'}
       </div>
 
-      <div class="section-title section-title--resources"><div><p class="eyebrow">Ausrüstung</p><h2>Waffen</h2></div></div>
+      <div class="section-title section-title--resources">
+        <div><p class="eyebrow">Ausrüstung</p><h2>Waffen & Rüstungen</h2></div>
+        <span class="section-hint">Regelvorlage wählen oder frei anlegen</span>
+      </div>
+      <article class="combat-add-panel">
+        <label><span>Vorlage mit DSA-Werten</span><select id="combat-catalog-select">
+          ${COMBAT_CATALOG.map(({ id, item }) => `<option value="${escapeHtml(id)}">${combatKindLabel(inferItemKind(item as OptolithItem))}: ${escapeHtml(item.name ?? id)}</option>`).join("")}
+        </select></label>
+        <button class="primary-button" id="add-combat-template">+ Vorlage</button>
+        <div class="combat-add-panel__blank">
+          <button class="secondary-button" data-add-combat-kind="melee">+ Nahkampf</button>
+          <button class="secondary-button" data-add-combat-kind="ranged">+ Fernkampf</button>
+          <button class="secondary-button" data-add-combat-kind="shield">+ Schild</button>
+          <button class="secondary-button" data-add-combat-kind="armor">+ Rüstung</button>
+        </div>
+      </article>
+
       <div class="weapon-list">
-        ${weapons
-          .map((weapon) => {
-            const damage = weapon.damageDiceSides
-              ? `${weapon.damageDiceNumber ?? 1}W${weapon.damageDiceSides}${weapon.damageFlat ? formatSigned(weapon.damageFlat) : ""}`
-              : "—";
-            return `<article class="weapon-card">
-              <div class="weapon-card__name"><span class="weapon-icon">⚔</span><div><strong>${escapeHtml(weapon.name)}</strong><span>${escapeHtml(COMBAT_TECHNIQUES[weapon.combatTechnique ?? ""] ?? weapon.combatTechnique ?? "Waffe")}</span></div></div>
-              <dl>
-                <div><dt>TP</dt><dd>${damage}</dd></div>
-                <div><dt>AT</dt><dd>${formatSigned(weapon.at)}</dd></div>
-                <div><dt>PA</dt><dd>${formatSigned(weapon.pa)}</dd></div>
-                <div><dt>RW</dt><dd>${weapon.reach ?? "—"}</dd></div>
-              </dl>
-            </article>`;
-          })
-          .join("") || '<div class="empty-state">Keine Waffen importiert.</div>'}
+        ${weapons.map(({ key, item, kind }) => renderWeaponEditor(key, item, kind as "melee" | "ranged" | "shield")).join("") || '<div class="empty-state">Noch keine Waffen oder Schilde eingetragen.</div>'}
       </div>
-
-      ${
-        armor.length
-          ? `<div class="section-title section-title--resources"><div><p class="eyebrow">Schutz</p><h2>Rüstungen</h2></div></div>
-            <div class="armor-list">${armor
-              .map(
-                (item) => `<article class="armor-card"><strong>${escapeHtml(item.name)}</strong><span>RS ${item.pro ?? 0}</span><span>BE ${item.enc ?? 0}</span></article>`,
-              )
-              .join("")}</div>`
-          : ""
-      }
+      <div class="section-title section-title--resources"><div><p class="eyebrow">Schutz</p><h2>Rüstungen</h2></div></div>
+      <div class="armor-editor-list">
+        ${armor.map(({ key, item }) => renderArmorEditor(key, item)).join("") || '<div class="empty-state">Noch keine Rüstung eingetragen.</div>'}
+      </div>
     </section>
   `;
 };
@@ -528,14 +664,170 @@ const renderInventory = (sheet: CharacterSheetState): string => {
   `;
 };
 
+const advancementRow = (options: {
+  kind: "attribute" | "talent" | "combatTechnique" | "spell" | "resource";
+  id: string;
+  label: string;
+  detail: string;
+  current: number;
+  cost?: number;
+  maximum?: number;
+  disabledReason?: string;
+  availableAp: number;
+  ignoreLimits: boolean;
+}): string => {
+  const atMaximum = options.maximum !== undefined && options.current >= options.maximum && !options.ignoreLimits;
+  const reason = options.disabledReason
+    ?? (atMaximum ? `Maximum ${options.maximum}` : undefined)
+    ?? (options.cost !== undefined && options.cost > options.availableAp ? "Nicht genügend AP" : undefined);
+  return `<div class="advance-row">
+    <div class="advance-row__name"><strong>${escapeHtml(options.label)}</strong><span>${escapeHtml(options.detail)}</span></div>
+    <span class="advance-row__value">${options.current} <i>→</i> ${options.current + 1}</span>
+    <span class="advance-row__cost">${options.cost === undefined ? "—" : `${options.cost} AP`}</span>
+    <button class="advance-button" data-advance-kind="${options.kind}" data-advance-id="${escapeHtml(options.id)}" ${reason ? "disabled" : ""} title="${escapeHtml(reason ?? `${options.label} steigern`)}">+1</button>
+    ${reason ? `<small class="advance-row__reason">${escapeHtml(reason)}</small>` : ""}
+  </div>`;
+};
+
+const renderAdvance = (sheet: CharacterSheetState): string => {
+  const advancement = sheet.runtime.advancement;
+  const attributes = getAttributeValues(sheet.hero);
+  const query = advancementSearch.trim().toLocaleLowerCase("de");
+  const filterName = (name: string): boolean => !query || name.toLocaleLowerCase("de").includes(query);
+  const sections: Array<{ id: AdvancementSection; label: string; icon: string }> = [
+    { id: "attributes", label: "Eigenschaften", icon: "◆" },
+    { id: "talents", label: "Talente", icon: "◈" },
+    { id: "combat", label: "Kampf", icon: "⚔" },
+    { id: "spells", label: "Zauber", icon: "✦" },
+    { id: "resources", label: "Energien", icon: "♥" },
+  ];
+
+  let rows = "";
+  if (advancementSection === "attributes") {
+    rows = ATTRIBUTES.filter((definition) => filterName(definition.name)).map((definition) => {
+      const current = attributes[definition.code];
+      return advancementRow({
+        kind: "attribute",
+        id: definition.id,
+        label: definition.name,
+        detail: `${definition.code} · Steigerungsfaktor E`,
+        current,
+        cost: improvementCostForTarget("E", current + 1),
+        maximum: 25,
+        availableAp: advancement.availableAp,
+        ignoreLimits: advancement.ignoreLimits,
+      });
+    }).join("");
+  } else if (advancementSection === "talents") {
+    rows = TALENTS.filter((definition) => filterName(definition.name)).map((definition) => {
+      const current = sheet.hero.talents[definition.id] ?? 0;
+      return advancementRow({
+        kind: "talent",
+        id: definition.id,
+        label: definition.name,
+        detail: `${definition.check.join("/")} · Faktor ${definition.improvementCost}`,
+        current,
+        cost: improvementCostForTarget(definition.improvementCost, current + 1),
+        maximum: talentMaximum(definition, attributes),
+        availableAp: advancement.availableAp,
+        ignoreLimits: advancement.ignoreLimits,
+      });
+    }).join("");
+  } else if (advancementSection === "combat") {
+    rows = Object.values(COMBAT_TECHNIQUE_RULES).filter((definition) => filterName(definition.name)).sort((a, b) => a.name.localeCompare(b.name, "de")).map((definition) => {
+      const current = sheet.hero.ct?.[definition.id] ?? 6;
+      return advancementRow({
+        kind: "combatTechnique",
+        id: definition.id,
+        label: definition.name,
+        detail: `${definition.primaryAttributes.join("/")} · Faktor ${definition.improvementCost}`,
+        current,
+        cost: improvementCostForTarget(definition.improvementCost, current + 1),
+        maximum: combatTechniqueMaximum(definition, attributes),
+        availableAp: advancement.availableAp,
+        ignoreLimits: advancement.ignoreLimits,
+      });
+    }).join("");
+  } else if (advancementSection === "spells") {
+    const spells = Object.entries(sheet.hero.spells ?? {})
+      .map(([id, current]) => ({ id, current, definition: getSpellDefinition(id) }))
+      .filter((entry) => filterName(entry.definition?.name ?? entry.id))
+      .sort((a, b) => (a.definition?.name ?? a.id).localeCompare(b.definition?.name ?? b.id, "de"));
+    rows = spells.map(({ id, current, definition }) => {
+      const column = definition?.improvementCost as ImprovementCost | undefined;
+      const validColumn = column && ["A", "B", "C", "D"].includes(column);
+      return advancementRow({
+        kind: "spell",
+        id,
+        label: definition?.name ?? id,
+        detail: definition ? `${definition.kind} · Faktor ${definition.improvementCost}` : "Unbekannter Zauber",
+        current,
+        cost: validColumn ? improvementCostForTarget(column, current + 1) : undefined,
+        maximum: 14,
+        disabledReason: validColumn ? undefined : "Steigerungsfaktor unbekannt",
+        availableAp: advancement.availableAp,
+        ignoreLimits: advancement.ignoreLimits,
+      });
+    }).join("");
+  } else {
+    const maximumAttribute = Math.max(...Object.values(attributes));
+    const energyRows = [
+      { id: "lp", label: "Lebensenergie", short: "LeP", purchased: Number(sheet.hero.attr.lp ?? 0), maximum: attributes.KO },
+      ...(isMagicallyGifted(sheet) ? [{ id: "ae", label: "Astralenergie", short: "AsP", purchased: Number(sheet.hero.attr.ae ?? 0), maximum: maximumAttribute }] : []),
+      ...(sheet.runtime.resources.kp.max > 0 ? [{ id: "kp", label: "Karmaenergie", short: "KaP", purchased: Number(sheet.hero.attr.kp ?? 0), maximum: maximumAttribute }] : []),
+    ];
+    rows = energyRows.filter((entry) => filterName(entry.label)).map((entry) => advancementRow({
+      kind: "resource",
+      id: entry.id,
+      label: entry.label,
+      detail: `${entry.short} · Zukauf ${entry.purchased}/${entry.maximum} · Faktor D`,
+      current: sheet.runtime.resources[entry.id as "lp" | "ae" | "kp"].max,
+      cost: improvementCostForTarget("D", entry.purchased + 1),
+      maximum: sheet.runtime.resources[entry.id as "lp" | "ae" | "kp"].max + Math.max(0, entry.maximum - entry.purchased),
+      availableAp: advancement.availableAp,
+      ignoreLimits: advancement.ignoreLimits,
+    })).join("");
+  }
+
+  const history = [...advancement.history].reverse().slice(0, 8);
+  return `<section class="page page--advance">
+    <div class="section-title"><div><p class="eyebrow">Abenteuerpunkte</p><h2>Helden steigern</h2></div><span class="section-hint">Kosten und Grenzwerte werden automatisch geprüft</span></div>
+    <div class="ap-dashboard">
+      <article><span>AP-Guthaben</span><strong>${advancement.availableAp}</strong><small>verfügbar</small></article>
+      <article><span>Ausgegeben</span><strong>${advancement.spentAp}</strong><small>in diesem Bogen</small></article>
+      <article><span>Gesamt-AP</span><strong>${sheet.hero.ap?.total ?? 0}</strong><small>Heldenwert</small></article>
+      <div class="ap-controls">
+        <label><span>Vorhandenes Guthaben setzen</span><input id="ap-balance-input" type="number" min="0" value="${advancement.availableAp}" /></label>
+        <button class="secondary-button" id="set-ap-balance">Übernehmen</button>
+        <label><span>Neue AP erhalten</span><input id="ap-award-input" type="number" min="1" value="5" /></label>
+        <button class="primary-button" id="award-ap">AP hinzufügen</button>
+      </div>
+    </div>
+    <label class="limit-toggle"><input id="ignore-advancement-limits" type="checkbox" ${advancement.ignoreLimits ? "checked" : ""} /><span><strong>Spielleiter-Freigabe / Hausregel</strong> Grenzwerte übergehen; AP-Kosten bleiben aktiv.</span></label>
+
+    <div class="advance-section-tabs">
+      ${sections.map((section) => `<button class="${section.id === advancementSection ? "active" : ""}" data-advance-section="${section.id}"><span>${section.icon}</span>${section.label}</button>`).join("")}
+    </div>
+    <label class="search-box"><span aria-hidden="true">⌕</span><input id="advancement-search" type="search" value="${escapeHtml(advancementSearch)}" placeholder="In diesem Bereich suchen …" autocomplete="off" /></label>
+    ${advancementSection === "resources" ? '<aside class="info-callout compact"><strong>Hinweis zu Leiteigenschaften</strong><p>Bei AsP und KaP verwendet der Bogen die höchste Eigenschaft als vorläufige Obergrenze. Prüfe die tatsächliche Leiteigenschaft der Tradition.</p></aside>' : ""}
+    <div class="advance-list">${rows || '<div class="empty-state">Keine passenden Werte gefunden.</div>'}</div>
+
+    <div class="section-title section-title--resources"><div><p class="eyebrow">Protokoll</p><h2>Letzte Steigerungen</h2></div>${history.length ? '<button class="text-button" id="undo-advancement">Letzte zurücknehmen</button>' : ""}</div>
+    <div class="advance-history">
+      ${history.map((entry) => `<div><span>${new Date(entry.timestamp).toLocaleString("de-DE", { dateStyle: "short", timeStyle: "short" })}</span><strong>${escapeHtml(entry.label)}</strong><em>${entry.from} → ${entry.to}</em><b>−${entry.cost} AP</b></div>`).join("") || '<div class="empty-state">Noch keine Steigerung in diesem Bogen vorgenommen.</div>'}
+    </div>
+  </section>`;
+};
+
 const renderSource = (sheet: CharacterSheetState): string => {
   const isManual = sheet.source === "manual";
+  const isDarkAid = sheet.source === "darkaid";
   return `
   <section class="page page--source">
     <div class="section-title"><div><p class="eyebrow">Import & Sicherung</p><h2>Quelldaten</h2></div></div>
     <article class="panel source-card">
-      <div class="source-logo">${isManual ? "M" : "O"}</div>
-      <div><h3>${isManual ? "Manuell ausgefüllter Bogen" : `Optolith ${escapeHtml(sheet.hero.clientVersion)}`}</h3><p>${isManual ? "Angelegt" : "Importiert"} am ${new Date(sheet.importedAt).toLocaleString("de-DE")}</p></div>
+      <div class="source-logo">${isManual ? "M" : isDarkAid ? "D" : "O"}</div>
+      <div><h3>${isManual ? "Manuell ausgefüllter Bogen" : escapeHtml(sourceName(sheet))}</h3><p>${isManual ? "Angelegt" : "Importiert"} am ${new Date(sheet.importedAt).toLocaleString("de-DE")}</p></div>
       <span class="status-pill">${isManual ? "manuell" : "erkannt"}</span>
     </article>
     <article class="panel">
@@ -549,7 +841,7 @@ const renderSource = (sheet: CharacterSheetState): string => {
     </article>
     <article class="panel">
       <div class="panel__header"><h3>Spielstand sichern</h3></div>
-      <p class="panel-copy">Die Sicherung enthält alle Werte, Ressourcen, Talente, Gegenstände, Notizen und die Token-Verknüpfung.</p>
+      <p class="panel-copy">Die Sicherung enthält alle Werte, Ressourcen, Talente, Waffen, Rüstungen, AP-Guthaben, Steigerungsprotokoll, Notizen und die Token-Verknüpfung.</p>
       <div class="button-row">
         <button class="primary-button" id="export-backup">Owlbear-JSON sichern</button>
         ${isManual ? "" : '<button class="secondary-button" id="export-original">Original exportieren</button>'}
@@ -557,7 +849,11 @@ const renderSource = (sheet: CharacterSheetState): string => {
     </article>
     <aside class="info-callout">
       <strong>Stand dieses Prototyps</strong>
-      <p>${isManual ? "Name, Spezies, magische Begabung, Eigenschaften, alle 59 Basistalente, Zauber, Kampftechniken, Ressourcen, Inventar und Geldbörse können direkt bearbeitet werden." : "Alle 59 Basistalente sowie vorhandene Zauber, Zaubertricks, Kampftechniken und Gegenstände aus Optolith 1.5.x werden eingelesen. Das Inventar und die Geldbörse können direkt bearbeitet werden."}</p>
+      <p>${isManual
+        ? "Name, Spezies, magische Begabung, Eigenschaften, alle 59 Basistalente, Zauber, Kampftechniken, Ressourcen, Waffen, Rüstungen, Inventar und Geldbörse können bearbeitet und regelgerecht mit AP gesteigert werden."
+        : isDarkAid
+          ? "DarkAid-Eigenschaften, alle 59 Basistalente, Kampftechniken, Zauber, Zaubertricks, Ausrüstung und Geldbörse wurden aus der TDC-Datei übernommen. Waffen und Rüstungen können bearbeitet oder ergänzt und alle Kernwerte mit AP gesteigert werden."
+          : "Alle 59 Basistalente sowie vorhandene Zauber, Zaubertricks, Kampftechniken und Gegenstände aus Optolith 1.5.x werden eingelesen. Waffen und Rüstungen können bearbeitet oder ergänzt und alle Kernwerte mit AP gesteigert werden."}</p>
     </aside>
   </section>
   `;
@@ -567,7 +863,7 @@ const renderRollDialog = (sheet: CharacterSheetState): string => {
   if (!rollDialog) return "";
   const definition = rollDialog.kind === "talent"
     ? TALENT_BY_ID[rollDialog.entryId]
-    : SPELL_BY_ID[rollDialog.entryId];
+    : getSpellDefinition(rollDialog.entryId);
   if (!definition) return "";
   const attributes = getAttributeValues(sheet.hero);
   const values = definition.check.map((code: AttributeCode) => attributes[code]) as [number, number, number];
@@ -639,6 +935,7 @@ const renderSheet = (sheet: CharacterSheetState): string => {
     spells: renderSpells,
     combat: renderCombat,
     inventory: renderInventory,
+    advance: renderAdvance,
     source: renderSource,
   }[activeTab](sheet);
 
@@ -651,22 +948,23 @@ const renderSheet = (sheet: CharacterSheetState): string => {
         </div>
         <div class="hero-meta">
           <span>${sheet.hero.ap?.total ?? "—"} AP</span>
-          <span>${sheet.source === "manual" ? "Manuell angelegt" : `Optolith ${escapeHtml(sheet.hero.clientVersion)}`}</span>
+          <span>${escapeHtml(sourceName(sheet))}</span>
         </div>
         <div class="header-actions">
           <label class="icon-button" title="Anderen Helden importieren">
-            <input id="replace-hero-file" type="file" accept="application/json,.json" hidden />
+            <input id="replace-hero-file" type="file" accept="application/json,.json,.tdc" hidden />
             ⇧
           </label>
           <button class="icon-button" id="export-quick" title="Spielstand sichern">↓</button>
         </div>
       </header>
-      <nav class="main-nav" aria-label="Heldenbogen-Bereiche" style="grid-template-columns: repeat(${hasMagic ? 6 : 5}, 1fr)">
+      <nav class="main-nav" aria-label="Heldenbogen-Bereiche" style="grid-template-columns: repeat(${hasMagic ? 7 : 6}, 1fr)">
         ${tabLabel("overview", "Übersicht", "◆")}
         ${tabLabel("talents", "Talente", "◈")}
         ${hasMagic ? tabLabel("spells", "Zauber", "✦") : ""}
         ${tabLabel("combat", "Kampf", "⚔")}
         ${tabLabel("inventory", "Inventar", "▣")}
+        ${tabLabel("advance", "Steigern", "↑")}
         ${tabLabel("source", "Daten", "⋯")}
       </nav>
       <main class="content">${content}</main>
@@ -871,7 +1169,12 @@ const attachSheetListeners = (): void => {
   document.querySelector("#export-quick")?.addEventListener("click", backup);
   document.querySelector("#export-backup")?.addEventListener("click", backup);
   document.querySelector("#export-original")?.addEventListener("click", () => {
-    if (state) downloadJson(`${state.hero.name}-optolith.json`, state.hero);
+    if (!state) return;
+    if (state.source === "darkaid") {
+      downloadJson(`${state.hero.name}.tdc`, state.originalData ?? state.hero);
+    } else {
+      downloadJson(`${state.hero.name}-optolith.json`, state.hero);
+    }
   });
 
   document.querySelector("#remove-hero")?.addEventListener("click", () => {
@@ -932,6 +1235,268 @@ const attachSheetListeners = (): void => {
     if (!state) return;
     state.runtime.notes = notes.value;
     persist(false);
+  });
+
+  const addCombatItem = (kind: CombatItemKind, template: Partial<OptolithItem> = {}): void => {
+    if (!state) return;
+    state.hero.belongings ??= {};
+    state.hero.belongings.items ??= {};
+    let id = `ITEM_COMBAT_${kind.toUpperCase()}_${Date.now().toString(36)}`;
+    while (state.hero.belongings.items[id]) id += "_1";
+    const defaults: Record<CombatItemKind, Partial<OptolithItem>> = {
+      melee: { name: "Neue Nahkampfwaffe", gr: 1, combatTechnique: "CT_12", damageDiceNumber: 1, damageDiceSides: 6, damageFlat: 3, at: 0, pa: 0, reach: 2, damageBonusAttribute: "KK", damageThreshold: 14 },
+      ranged: { name: "Neue Fernkampfwaffe", gr: 2, combatTechnique: "CT_2", damageDiceNumber: 1, damageDiceSides: 6, damageFlat: 4, reloadTime: 1, rangeShort: 10, rangeMedium: 50, rangeLong: 100, ammunition: "" },
+      shield: { name: "Neuer Schild", gr: 1, combatTechnique: "CT_10", damageDiceNumber: 1, damageDiceSides: 6, damageFlat: 0, at: -4, pa: 1, reach: 1 },
+      armor: { name: "Neue Rüstung", gr: 4, pro: 2, enc: 1, movementPenalty: 0, initiativePenalty: 0 },
+      equipment: { name: "Neuer Gegenstand", gr: 7 },
+    };
+    const createdItem: OptolithItem = {
+      id,
+      amount: 1,
+      weight: 0,
+      price: 0,
+      equipped: true,
+      ...defaults[kind],
+      ...template,
+      itemKind: kind,
+    } as OptolithItem;
+    const primaryAttributes = COMBAT_TECHNIQUE_RULES[createdItem.combatTechnique ?? ""]?.primaryAttributes;
+    if (!template.damageBonusAttribute && primaryAttributes?.length === 1) {
+      createdItem.damageBonusAttribute = primaryAttributes[0];
+    }
+    state.hero.belongings.items[id] = createdItem;
+    persist(false);
+    render();
+    document.querySelector<HTMLInputElement>(`[data-combat-key="${id}"][data-combat-field="name"]`)?.select();
+  };
+
+  document.querySelector("#add-combat-template")?.addEventListener("click", () => {
+    const select = document.querySelector<HTMLSelectElement>("#combat-catalog-select");
+    const catalogId = select?.value;
+    const template = catalogId ? DARKAID_ITEM_DATA[catalogId] : undefined;
+    if (!template) return;
+    const prefix = catalogId?.split(":", 1)[0];
+    const kind: CombatItemKind = prefix === "armor" ? "armor" : prefix === "rangedweapon" ? "ranged" : prefix === "shield" ? "shield" : "melee";
+    addCombatItem(kind, template);
+  });
+
+  document.querySelectorAll<HTMLButtonElement>("[data-add-combat-kind]").forEach((button) => {
+    button.addEventListener("click", () => addCombatItem(button.dataset.addCombatKind as CombatItemKind));
+  });
+
+  document.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>("[data-combat-key][data-combat-field]").forEach((input) => {
+    input.addEventListener("change", () => {
+      if (!state) return;
+      const key = input.dataset.combatKey;
+      const field = input.dataset.combatField;
+      const item = key ? state.hero.belongings?.items?.[key] : undefined;
+      if (!item || !field) return;
+      if (["name", "ammunition", "notes", "combatTechnique", "damageBonusAttribute"].includes(field)) {
+        (item as Record<string, unknown>)[field] = input.value.trim();
+        if (field === "name" && !item.name) item.name = "Unbenannter Kampfgegenstand";
+      } else if (field === "equipped" && input instanceof HTMLInputElement) {
+        item.equipped = input.checked;
+      } else {
+        const allowNegative = ["at", "pa", "damageFlat", "movementPenalty", "initiativePenalty"].includes(field);
+        const numeric = asNumber(input.value, Number((item as Record<string, unknown>)[field] ?? 0));
+        (item as Record<string, unknown>)[field] = allowNegative ? numeric : Math.max(0, numeric);
+      }
+      persist(false);
+      render();
+    });
+  });
+
+  document.querySelectorAll<HTMLButtonElement>("[data-delete-combat]").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (!state) return;
+      const key = button.dataset.deleteCombat;
+      const item = key ? state.hero.belongings?.items?.[key] : undefined;
+      if (!key || !item || !window.confirm(`„${item.name}“ vollständig aus dem Inventar löschen?`)) return;
+      delete state.hero.belongings?.items?.[key];
+      persist(false);
+      render();
+    });
+  });
+
+  document.querySelector("#set-ap-balance")?.addEventListener("click", () => {
+    if (!state) return;
+    const input = document.querySelector<HTMLInputElement>("#ap-balance-input");
+    state.runtime.advancement.availableAp = Math.max(0, Math.round(asNumber(input?.value ?? "0")));
+    persist(false);
+    render();
+  });
+
+  document.querySelector("#award-ap")?.addEventListener("click", () => {
+    if (!state) return;
+    const input = document.querySelector<HTMLInputElement>("#ap-award-input");
+    const amount = Math.max(0, Math.round(asNumber(input?.value ?? "0")));
+    if (!amount) return;
+    state.runtime.advancement.availableAp += amount;
+    state.hero.ap ??= {};
+    state.hero.ap.total = Math.max(0, Number(state.hero.ap.total ?? 0)) + amount;
+    persist(false);
+    render();
+    showToast(`${amount} AP wurden gutgeschrieben.`);
+  });
+
+  document.querySelector<HTMLInputElement>("#ignore-advancement-limits")?.addEventListener("change", (event) => {
+    if (!state) return;
+    state.runtime.advancement.ignoreLimits = (event.target as HTMLInputElement).checked;
+    persist(false);
+    render();
+  });
+
+  document.querySelectorAll<HTMLButtonElement>("[data-advance-section]").forEach((button) => {
+    button.addEventListener("click", () => {
+      advancementSection = button.dataset.advanceSection as AdvancementSection;
+      advancementSearch = "";
+      render();
+    });
+  });
+
+  const advancementSearchInput = document.querySelector<HTMLInputElement>("#advancement-search");
+  advancementSearchInput?.addEventListener("input", () => {
+    advancementSearch = advancementSearchInput.value;
+    render();
+    const refreshed = document.querySelector<HTMLInputElement>("#advancement-search");
+    refreshed?.focus();
+    refreshed?.setSelectionRange(advancementSearch.length, advancementSearch.length);
+  });
+
+  document.querySelectorAll<HTMLButtonElement>("[data-advance-kind][data-advance-id]").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (!state) return;
+      const kind = button.dataset.advanceKind as AdvancementHistoryEntry["kind"];
+      const targetId = button.dataset.advanceId;
+      if (!targetId) return;
+      const advancement = state.runtime.advancement;
+      const attributes = getAttributeValues(state.hero);
+      let label = targetId;
+      let from = 0;
+      let cost = 0;
+      let maximum = Number.POSITIVE_INFINITY;
+
+      if (kind === "attribute") {
+        const definition = ATTRIBUTES.find((entry) => entry.id === targetId);
+        const value = state.hero.attr.values.find((entry) => entry.id === targetId);
+        if (!definition || !value) return;
+        label = definition.name;
+        from = value.value;
+        cost = improvementCostForTarget("E", from + 1);
+        maximum = 25;
+      } else if (kind === "talent") {
+        const definition = TALENT_BY_ID[targetId];
+        if (!definition) return;
+        label = definition.name;
+        from = state.hero.talents[targetId] ?? 0;
+        cost = improvementCostForTarget(definition.improvementCost, from + 1);
+        maximum = talentMaximum(definition, attributes);
+      } else if (kind === "combatTechnique") {
+        const definition = COMBAT_TECHNIQUE_RULES[targetId];
+        if (!definition) return;
+        label = definition.name;
+        from = state.hero.ct?.[targetId] ?? 6;
+        cost = improvementCostForTarget(definition.improvementCost, from + 1);
+        maximum = combatTechniqueMaximum(definition, attributes);
+      } else if (kind === "spell") {
+        const definition = getSpellDefinition(targetId);
+        const column = definition?.improvementCost as ImprovementCost | undefined;
+        if (!definition || !column || !["A", "B", "C", "D"].includes(column)) return;
+        label = definition.name;
+        from = state.hero.spells?.[targetId] ?? 0;
+        cost = improvementCostForTarget(column, from + 1);
+        maximum = 14;
+      } else {
+        const resourceId = targetId as "lp" | "ae" | "kp";
+        const labels = { lp: "Lebensenergie", ae: "Astralenergie", kp: "Karmaenergie" };
+        const attributeField = resourceId === "lp" ? "lp" : resourceId === "ae" ? "ae" : "kp";
+        const purchased = Number(state.hero.attr[attributeField] ?? 0);
+        label = labels[resourceId];
+        from = state.runtime.resources[resourceId].max;
+        cost = improvementCostForTarget("D", purchased + 1);
+        maximum = from + Math.max(0, (resourceId === "lp" ? attributes.KO : Math.max(...Object.values(attributes))) - purchased);
+      }
+
+      if ((!advancement.ignoreLimits && from >= maximum) || advancement.availableAp < cost) {
+        showToast(from >= maximum ? "Der regeltechnische Maximalwert ist erreicht." : "Dafür sind nicht genügend AP vorhanden.", "error");
+        return;
+      }
+
+      if (kind === "attribute") {
+        const value = state.hero.attr.values.find((entry) => entry.id === targetId);
+        if (!value) return;
+        value.value += 1;
+        if (targetId === "ATTR_7") state.runtime.resources.lp.max += 2;
+      } else if (kind === "talent") {
+        state.hero.talents[targetId] = from + 1;
+      } else if (kind === "combatTechnique") {
+        state.hero.ct ??= {};
+        state.hero.ct[targetId] = from + 1;
+      } else if (kind === "spell") {
+        state.hero.spells ??= {};
+        state.hero.spells[targetId] = from + 1;
+      } else {
+        const resourceId = targetId as "lp" | "ae" | "kp";
+        if (resourceId === "lp") state.hero.attr.lp = Number(state.hero.attr.lp ?? 0) + 1;
+        if (resourceId === "ae") state.hero.attr.ae = Number(state.hero.attr.ae ?? 0) + 1;
+        if (resourceId === "kp") state.hero.attr.kp = Number(state.hero.attr.kp ?? 0) + 1;
+        state.runtime.resources[resourceId].max += 1;
+      }
+
+      const historyEntry: AdvancementHistoryEntry = {
+        id: `ADV_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 6)}`,
+        timestamp: new Date().toISOString(),
+        kind,
+        targetId,
+        label,
+        from,
+        to: from + 1,
+        cost,
+      };
+      advancement.availableAp -= cost;
+      advancement.spentAp += cost;
+      advancement.history.push(historyEntry);
+      state.hero.dateModified = historyEntry.timestamp;
+      persist();
+      render();
+      showToast(`${label} wurde auf ${from + 1} gesteigert.`);
+    });
+  });
+
+  document.querySelector("#undo-advancement")?.addEventListener("click", () => {
+    if (!state) return;
+    const advancement = state.runtime.advancement;
+    const entry = advancement.history.at(-1);
+    if (!entry || !window.confirm(`Die Steigerung „${entry.label}“ zurücknehmen und ${entry.cost} AP erstatten?`)) return;
+    if (entry.kind === "attribute") {
+      const value = state.hero.attr.values.find((attribute) => attribute.id === entry.targetId);
+      if (value) value.value = entry.from;
+      if (entry.targetId === "ATTR_7") {
+        state.runtime.resources.lp.max = Math.max(1, state.runtime.resources.lp.max - 2);
+        state.runtime.resources.lp.current = Math.min(state.runtime.resources.lp.current, state.runtime.resources.lp.max);
+      }
+    } else if (entry.kind === "talent") {
+      state.hero.talents[entry.targetId] = entry.from;
+    } else if (entry.kind === "combatTechnique") {
+      state.hero.ct ??= {};
+      state.hero.ct[entry.targetId] = entry.from;
+    } else if (entry.kind === "spell") {
+      state.hero.spells ??= {};
+      state.hero.spells[entry.targetId] = entry.from;
+    } else {
+      const resourceId = entry.targetId as "lp" | "ae" | "kp";
+      if (resourceId === "lp") state.hero.attr.lp = Math.max(0, Number(state.hero.attr.lp ?? 0) - 1);
+      if (resourceId === "ae") state.hero.attr.ae = Math.max(0, Number(state.hero.attr.ae ?? 0) - 1);
+      if (resourceId === "kp") state.hero.attr.kp = Math.max(0, Number(state.hero.attr.kp ?? 0) - 1);
+      state.runtime.resources[resourceId].max = entry.from;
+      state.runtime.resources[resourceId].current = Math.min(state.runtime.resources[resourceId].current, entry.from);
+    }
+    advancement.history.pop();
+    advancement.availableAp += entry.cost;
+    advancement.spentAp = Math.max(0, advancement.spentAp - entry.cost);
+    persist();
+    render();
+    showToast(`${entry.cost} AP wurden erstattet.`);
   });
 
   document.querySelector("#add-inventory-item")?.addEventListener("click", () => {
@@ -1049,7 +1614,7 @@ const attachSheetListeners = (): void => {
   document.querySelectorAll<HTMLButtonElement>("[data-roll-spell]").forEach((button) => {
     button.addEventListener("click", () => {
       const spellId = button.dataset.rollSpell;
-      if (!spellId || !SPELL_BY_ID[spellId]) return;
+      if (!spellId || !getSpellDefinition(spellId)) return;
       rollDialog = { kind: "spell", entryId: spellId, modifier: 0 };
       render();
     });
@@ -1076,7 +1641,7 @@ const attachSheetListeners = (): void => {
     rollDialog.modifier = Math.max(-20, Math.min(20, asNumber(modifierInput?.value ?? "0")));
     const definition = rollDialog.kind === "talent"
       ? TALENT_BY_ID[rollDialog.entryId]
-      : SPELL_BY_ID[rollDialog.entryId];
+      : getSpellDefinition(rollDialog.entryId);
     if (!definition) return;
     const attributes = getAttributeValues(state.hero);
     const values = definition.check.map((code: AttributeCode) => attributes[code]) as [number, number, number];

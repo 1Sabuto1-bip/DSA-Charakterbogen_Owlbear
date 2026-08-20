@@ -10,6 +10,10 @@ export type AttributeId =
 
 export type AttributeCode = "MU" | "KL" | "IN" | "CH" | "FF" | "GE" | "KO" | "KK";
 
+export type ImprovementCost = "A" | "B" | "C" | "D" | "E";
+
+export type CombatItemKind = "melee" | "ranged" | "shield" | "armor" | "equipment";
+
 export type ManualSpecies = "human" | "elf" | "dwarf";
 
 export interface ManualHeroSettings {
@@ -38,6 +42,19 @@ export interface OptolithItem {
   damageFlat?: number;
   combatTechnique?: string;
   reach?: number;
+  itemKind?: CombatItemKind;
+  damageThreshold?: number;
+  damageBonusAttribute?: AttributeCode;
+  reloadTime?: number;
+  rangeShort?: number;
+  rangeMedium?: number;
+  rangeLong?: number;
+  ammunition?: string;
+  length?: number;
+  movementPenalty?: number;
+  initiativePenalty?: number;
+  notes?: string;
+  equipped?: boolean;
   [key: string]: unknown;
 }
 
@@ -100,14 +117,93 @@ export interface RuntimeState {
   favoriteTalentIds: string[];
   linkedTokenId?: string;
   linkedTokenName?: string;
+  advancement: AdvancementState;
+}
+
+export type AdvancementKind = "attribute" | "talent" | "combatTechnique" | "spell" | "resource";
+
+export interface AdvancementHistoryEntry {
+  id: string;
+  timestamp: string;
+  kind: AdvancementKind;
+  targetId: string;
+  label: string;
+  from: number;
+  to: number;
+  cost: number;
+}
+
+export interface AdvancementState {
+  availableAp: number;
+  spentAp: number;
+  ignoreLimits: boolean;
+  history: AdvancementHistoryEntry[];
 }
 
 export interface CharacterSheetState {
   schemaVersion: 1;
-  source: "optolith" | "manual";
+  source: "optolith" | "darkaid" | "manual";
   importedAt: string;
   hero: OptolithHero;
   runtime: RuntimeState;
+  originalData?: Record<string, unknown>;
+}
+
+export interface DarkAidValue {
+  id: string;
+  level?: number;
+  bought?: number;
+  losses?: unknown[];
+  [key: string]: unknown;
+}
+
+export interface DarkAidEquipmentValue {
+  amount?: number;
+  equipped?: boolean;
+  name?: string;
+  type?: string;
+  ruleelement?: {
+    id?: string;
+    type?: string;
+  };
+  [key: string]: unknown;
+}
+
+export interface DarkAidHero {
+  version?: number | string;
+  uuid?: string;
+  name: string;
+  race?: string;
+  culture?: string;
+  profession?: string;
+  professionname?: string;
+  sex?: string;
+  iscreated?: boolean;
+  purse?: string | number;
+  xp?: { startinglevel?: string; [key: string]: unknown };
+  rules?: Record<string, unknown>;
+  attributes: DarkAidValue[];
+  basevalues?: DarkAidValue[];
+  skills?: DarkAidValue[];
+  combattechniques?: DarkAidValue[];
+  spells?: DarkAidValue[];
+  chants?: DarkAidValue[];
+  advantages?: DarkAidValue[];
+  disadvantages?: DarkAidValue[];
+  armor?: DarkAidEquipmentValue[];
+  meleeweapons?: DarkAidEquipmentValue[];
+  rangedweapons?: DarkAidEquipmentValue[];
+  shields?: DarkAidEquipmentValue[];
+  otherobjects?: DarkAidEquipmentValue[];
+  [key: string]: unknown;
+}
+
+export interface DarkAidMagicDefinition {
+  id: string;
+  name: string;
+  check?: [AttributeCode, AttributeCode, AttributeCode];
+  kind: "Zauber" | "Ritual";
+  improvementCost: string;
 }
 
 export interface AttributeDefinition {
@@ -123,6 +219,15 @@ export interface TalentDefinition {
   name: string;
   check: [AttributeCode, AttributeCode, AttributeCode];
   category: TalentCategory;
+  improvementCost: ImprovementCost;
+}
+
+export interface CombatTechniqueDefinition {
+  id: string;
+  name: string;
+  improvementCost: "B" | "C" | "D";
+  primaryAttributes: AttributeCode[];
+  range: "melee" | "ranged";
 }
 
 export interface SpellDefinition {
