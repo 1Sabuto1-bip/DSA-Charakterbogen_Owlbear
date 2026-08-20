@@ -1,0 +1,39 @@
+DSA-CHARAKTERBOGEN – GITHUB-UPDATE 0.4.0
+=========================================
+
+Neu in dieser Version:
+- neuer Reiter "Zauber" für magisch begabte Figuren
+- 330 Optolith-kompatible Zauber mit deutschen Namen und Eigenschaftsproben
+- 97 Zaubertricks mit deutschen Namen
+- Zauber suchen und mit 3W20 würfeln
+- im manuellen Bogen Zauber und Zaubertricks hinzufügen, bearbeiten und entfernen
+- Spezies Mensch, Elf oder Zwerg auswählen
+- Elfen sind automatisch magisch begabt; Menschen und Zwerge können Magie aktivieren
+- Spezies-Grundwerte werden bei den Lebenspunkten berücksichtigt
+
+UPLOAD
+------
+1. Diese ZIP-Datei auf dem Mac doppelt anklicken.
+2. Den entpackten Ordner "github-update-v0.4.0" öffnen.
+3. Im GitHub-Repository auf "Add file" und "Upload files" klicken:
+   https://github.com/1Sabuto1-bip/DSA-Charakterbogen_Owlbear
+4. ALLE Inhalte des geöffneten Ordners in das Upload-Fenster ziehen.
+   Nicht den übergeordneten Ordner selbst hineinziehen.
+5. Unten "Commit changes" anklicken.
+
+GITHUB PAGES
+------------
+Die vorhandene Einstellung bleibt:
+Source: Deploy from a branch
+Branch: main
+Folder: /docs
+
+OWLBEAR
+-------
+Die bereits installierte Erweiterung verwendet weiterhin diese Adresse:
+https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/manifest.json
+
+Nach dem Upload Owlbear vollständig neu laden. Falls die alte Version im Cache
+bleibt, die Erweiterung im Profil entfernen und mit folgender Adresse neu anlegen:
+https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/manifest.json?v=040
+

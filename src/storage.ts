@@ -7,7 +7,7 @@ export const loadState = (): CharacterSheetState | null => {
   if (!value) return null;
   try {
     const parsed = JSON.parse(value) as CharacterSheetState;
-    return parsed.schemaVersion === 1 && parsed.source === "optolith" ? parsed : null;
+    return parsed.schemaVersion === 1 && (parsed.source === "optolith" || parsed.source === "manual") ? parsed : null;
   } catch {
     return null;
   }

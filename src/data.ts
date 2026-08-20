@@ -4,7 +4,17 @@ import type {
   AttributeId,
   TalentCategory,
   TalentDefinition,
+  SpeciesDefinition,
 } from "./types";
+
+export const SPECIES: SpeciesDefinition[] = [
+  { key: "human", id: "R_1", name: "Mensch", lifeBase: 5, automaticallyMagical: false },
+  { key: "elf", id: "R_2", name: "Elf", lifeBase: 2, automaticallyMagical: true },
+  { key: "dwarf", id: "R_4", name: "Zwerg", lifeBase: 8, automaticallyMagical: false },
+];
+
+export const SPECIES_BY_KEY = Object.fromEntries(SPECIES.map((entry) => [entry.key, entry])) as Record<string, SpeciesDefinition>;
+export const SPECIES_BY_ID = Object.fromEntries(SPECIES.map((entry) => [entry.id, entry])) as Record<string, SpeciesDefinition>;
 
 export const ATTRIBUTES: AttributeDefinition[] = [
   { id: "ATTR_1", code: "MU", name: "Mut" },

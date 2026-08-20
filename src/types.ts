@@ -10,6 +10,13 @@ export type AttributeId =
 
 export type AttributeCode = "MU" | "KL" | "IN" | "CH" | "FF" | "GE" | "KO" | "KK";
 
+export type ManualSpecies = "human" | "elf" | "dwarf";
+
+export interface ManualHeroSettings {
+  species: ManualSpecies;
+  magical: boolean;
+}
+
 export interface OptolithAttributeValue {
   id: string;
   value: number;
@@ -68,6 +75,7 @@ export interface OptolithHero {
   cantrips?: string[];
   liturgies?: Record<string, number>;
   blessings?: string[];
+  manual?: ManualHeroSettings;
   belongings?: {
     items?: Record<string, OptolithItem>;
     purse?: Partial<Record<"d" | "s" | "h" | "k", string>>;
@@ -96,7 +104,7 @@ export interface RuntimeState {
 
 export interface CharacterSheetState {
   schemaVersion: 1;
-  source: "optolith";
+  source: "optolith" | "manual";
   importedAt: string;
   hero: OptolithHero;
   runtime: RuntimeState;
@@ -115,6 +123,23 @@ export interface TalentDefinition {
   name: string;
   check: [AttributeCode, AttributeCode, AttributeCode];
   category: TalentCategory;
+}
+
+export interface SpellDefinition {
+  id: string;
+  name: string;
+  check: [AttributeCode, AttributeCode, AttributeCode];
+  kind: "Zauber" | "Ritual";
+  improvementCost: string;
+  checkModifier?: string;
+}
+
+export interface SpeciesDefinition {
+  key: ManualSpecies;
+  id: "R_1" | "R_2" | "R_4";
+  name: "Mensch" | "Elf" | "Zwerg";
+  lifeBase: number;
+  automaticallyMagical: boolean;
 }
 
 export interface TalentRollResult {

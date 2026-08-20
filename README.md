@@ -6,11 +6,19 @@ Der aktuelle Prototyp importiert Optolith-JSON-Dateien der Version 1.5.x.
 ## Enthaltene Funktionen
 
 - Optolith-JSON und eigene Owlbear-Sicherungen importieren
+- alternativ einen leeren Heldenbogen ohne digitale Vorlage anlegen
+- Mensch, Elf oder Zwerg als Spezies wählen; Elfen werden automatisch als magisch begabt angelegt
+- Name, Eigenschaften, Abenteuerpunkte, Talente und Kampftechniken im manuellen Modus eintragen
 - Eigenschaften und Ressourcen anzeigen
 - LeP, AsP, KaP und Schicksalspunkte verwalten
-- Basistalente mit Eigenschaftsproben anzeigen
+- alle 59 Basistalente mit Eigenschaftsproben anzeigen, auch bei Fertigkeitswert 0
 - vollständige 3W20-Proben mit Modifikator, FP und QS würfeln
-- Kampftechniken, Waffen, Rüstungen, Inventar und Geldbörse anzeigen
+- bedingter Reiter **Zauber**, der nur bei magisch begabten Figuren erscheint
+- vorhandene Optolith-Zauber und Zaubertricks mit deutschen Namen anzeigen und durchsuchen
+- Zauberproben mit den passenden drei Eigenschaften würfeln
+- im manuellen Modus Zauber aus 330 Optolith-kompatiblen Zaubern und 97 Zaubertricks hinzufügen, bearbeiten und entfernen
+- Kampftechniken, Waffen und Rüstungen anzeigen
+- Inventar und Geldbörse bearbeiten; Gegenstände hinzufügen und löschen
 - Talente als Favoriten markieren und durchsuchen
 - private Notizen speichern
 - einen kompakten Ressourcenstand mit einem Owlbear-Charaktertoken verknüpfen
@@ -79,8 +87,10 @@ TEST_HERO_JSON=/pfad/zum/helden.json npm test
 
 - Kultur, Profession, Vor- und Nachteile sowie Sonderfertigkeiten liegen im Export nur als
   Optolith-Kennungen vor. Sie werden im Prototyp noch nicht in lesbare Namen aufgelöst.
-- Magische und karmale Maximalwerte werden nicht automatisch aus Traditionen errechnet; sie können
-  im Bogen eingeblendet und eingetragen werden.
+- Die Astralenergie magischer Figuren wird als Startwert aus 20 plus der höchsten geistigen
+  Eigenschaft sowie den importierten Korrekturwerten vorgeschlagen. Da das genaue Leitattribut von
+  der Tradition abhängt, bleibt der Wert direkt editierbar. Karmale Maximalwerte werden weiterhin
+  nicht automatisch aus Traditionen errechnet.
 - Der vollständige Bogen wird noch nicht zwischen verschiedenen Geräten synchronisiert.
 - Die Token-Verknüpfung überträgt bewusst nur eine kompakte Zusammenfassung.
 

@@ -1,26 +1,44 @@
 import "./styles.css";
 
-import { ATTRIBUTES, COMBAT_TECHNIQUES, ITEM_GROUPS, TALENT_BY_ID } from "./data";
+import {
+  ATTRIBUTES,
+  COMBAT_TECHNIQUES,
+  ITEM_GROUPS,
+  SPECIES,
+  SPECIES_BY_ID,
+  TALENTS,
+  TALENT_BY_ID,
+} from "./data";
+import { CANTRIPS, SPELLS, SPELL_BY_ID } from "./magic-data";
 import {
   HeroImportError,
   calculateInitiative,
+  createManualState,
   getAttributeValues,
   importHeroJson,
+  isMagicallyGifted,
+  refreshManualLifePoints,
+  updateManualMagic,
+  updateManualSpecies,
 } from "./importer";
 import { OwlbearBridge } from "./owlbear";
 import { rollTalent } from "./roll";
 import { clearState, loadState, saveState } from "./storage";
 import type {
   CharacterSheetState,
+  AttributeCode,
+  ManualSpecies,
   ResourceValue,
+  SpellDefinition,
   TalentDefinition,
   TalentRollResult,
 } from "./types";
 
-type TabId = "overview" | "talents" | "combat" | "inventory" | "source";
+type TabId = "overview" | "talents" | "spells" | "combat" | "inventory" | "source";
 
 interface RollDialogState {
-  talentId: string;
+  kind: "talent" | "spell";
+  entryId: string;
   modifier: number;
   result?: TalentRollResult;
 }
@@ -32,6 +50,7 @@ const bridge = new OwlbearBridge();
 let state: CharacterSheetState | null = loadState();
 let activeTab: TabId = "overview";
 let talentSearch = "";
+let spellSearch = "";
 let rollDialog: RollDialogState | null = null;
 let toastTimer: number | undefined;
 
@@ -85,6 +104,7 @@ const importFile = async (file?: File): Promise<void> => {
     state = importHeroJson(await file.text());
     activeTab = "overview";
     talentSearch = "";
+    spellSearch = "";
     persist(false);
     render();
     showToast(`${state.hero.name} wurde erfolgreich importiert.`);
@@ -110,6 +130,21 @@ const renderImportScreen = (): string => `
         <strong>JSON-Datei auswählen</strong>
         <span>oder hierher ziehen</span>
       </label>
+      <div class="welcome-divider"><span>oder</span></div>
+      <section class="manual-start" aria-labelledby="manual-start-title">
+        <div>
+          <strong id="manual-start-title">Kein digitaler Heldenbogen?</strong>
+          <span>Lege einen leeren Bogen an und trage alle Werte selbst ein.</span>
+        </div>
+        <div class="manual-start__controls">
+          <input id="manual-hero-name" type="text" maxlength="80" placeholder="Name des Helden" autocomplete="off" />
+          <label class="manual-option"><span>Spezies</span><select id="manual-species">
+            ${SPECIES.map((species) => `<option value="${species.key}">${species.name}</option>`).join("")}
+          </select></label>
+          <label class="manual-magic"><input id="manual-magical" type="checkbox" /><span>magisch begabt</span></label>
+          <button class="primary-button" id="create-manual-hero">Bogen selbst ausfüllen</button>
+        </div>
+      </section>
       <div class="welcome-notes">
         <span>✓ Optolith 1.5.x</span>
         <span>✓ lokale Speicherung</span>
@@ -151,24 +186,30 @@ const resourceCard = (
 };
 
 const renderOverview = (sheet: CharacterSheetState): string => {
+  const isManual = sheet.source === "manual";
   const attributeValues = getAttributeValues(sheet.hero);
   const { resources } = sheet.runtime;
-  const hasArcane = resources.ae.max > 0 || Object.keys(sheet.hero.spells ?? {}).length > 0;
+  const hasArcane = isMagicallyGifted(sheet);
   const hasKarma = resources.kp.max > 0 || Object.keys(sheet.hero.liturgies ?? {}).length > 0;
   const family = typeof sheet.hero.pers?.family === "string" ? sheet.hero.pers.family : "—";
+  const species = SPECIES_BY_ID[sheet.hero.r ?? ""];
+  const manualSpecies = sheet.hero.manual?.species ?? species?.key ?? "human";
+  const magical = isMagicallyGifted(sheet);
 
   return `
     <section class="page page--overview">
       <div class="section-title">
         <div><p class="eyebrow">Grundwerte</p><h2>Eigenschaften</h2></div>
-        <span class="section-hint">Importierte Werte</span>
+        <span class="section-hint">${isManual ? "Werte direkt eintragen" : "Importierte Werte"}</span>
       </div>
       <div class="attribute-grid">
         ${ATTRIBUTES.map(
           (attribute) => `
             <article class="attribute-card">
               <span class="attribute-code">${attribute.code}</span>
-              <strong>${attributeValues[attribute.code]}</strong>
+              ${isManual
+                ? `<input class="attribute-input" data-manual-attribute="${attribute.id}" type="number" min="0" max="30" value="${attributeValues[attribute.code]}" aria-label="${attribute.name}" />`
+                : `<strong>${attributeValues[attribute.code]}</strong>`}
               <span>${attribute.name}</span>
             </article>`,
         ).join("")}
@@ -198,9 +239,15 @@ const renderOverview = (sheet: CharacterSheetState): string => {
           <div class="panel__header"><h3>Auf einen Blick</h3></div>
           <dl class="facts-grid">
             <div><dt>Initiative</dt><dd>${calculateInitiative(sheet.hero)}</dd></div>
-            <div><dt>Abenteuerpunkte</dt><dd>${sheet.hero.ap?.total ?? "—"}</dd></div>
-            <div><dt>Familie</dt><dd>${escapeHtml(family)}</dd></div>
-            <div><dt>Talente</dt><dd>${Object.keys(sheet.hero.talents).length}</dd></div>
+            <div><dt>Abenteuerpunkte</dt><dd>${isManual ? `<input class="fact-input" id="manual-ap" type="number" min="0" value="${sheet.hero.ap?.total ?? 0}" aria-label="Abenteuerpunkte" />` : sheet.hero.ap?.total ?? "—"}</dd></div>
+            <div><dt>Spezies</dt><dd>${isManual
+              ? `<select class="fact-select" id="manual-species-sheet" aria-label="Spezies">${SPECIES.map((entry) => `<option value="${entry.key}" ${entry.key === manualSpecies ? "selected" : ""}>${entry.name}</option>`).join("")}</select>`
+              : escapeHtml(species?.name ?? sheet.hero.r ?? "—")}</dd></div>
+            <div><dt>Magie</dt><dd>${isManual
+              ? `<label class="fact-toggle"><input id="manual-magical-sheet" type="checkbox" ${magical ? "checked" : ""} ${manualSpecies === "elf" ? "disabled" : ""} /><span>${manualSpecies === "elf" ? "automatisch" : "magisch begabt"}</span></label>`
+              : magical ? "magisch begabt" : "nicht magisch"}</dd></div>
+            ${isManual ? `<div><dt>Erstellung</dt><dd>Manuell</dd></div>` : `<div><dt>Familie</dt><dd>${escapeHtml(family)}</dd></div>`}
+            <div><dt>Zauber</dt><dd>${Object.keys(sheet.hero.spells ?? {}).length}</dd></div>
           </dl>
         </article>
         <article class="panel">
@@ -235,6 +282,7 @@ const renderTalentRow = (
   definition: TalentDefinition,
   value: number,
   favorite: boolean,
+  editable: boolean,
 ): string => `
   <div class="talent-row">
     <button class="favorite-button ${favorite ? "favorite-button--active" : ""}" data-favorite="${definition.id}" aria-label="Favorit umschalten">★</button>
@@ -242,7 +290,9 @@ const renderTalentRow = (
     <div class="check-badges" aria-label="Probe ${definition.check.join(" ")}">
       ${definition.check.map((attribute) => `<span>${attribute}</span>`).join("")}
     </div>
-    <span class="talent-value" title="Fertigkeitswert">${value}</span>
+    ${editable
+      ? `<input class="talent-value talent-value-input" data-manual-talent="${definition.id}" type="number" min="0" max="30" value="${value}" aria-label="Fertigkeitswert ${escapeHtml(definition.name)}" />`
+      : `<span class="talent-value" title="Fertigkeitswert">${value}</span>`}
     <button class="roll-button" data-roll-talent="${definition.id}">3W20</button>
   </div>
 `;
@@ -250,9 +300,8 @@ const renderTalentRow = (
 const renderTalents = (sheet: CharacterSheetState): string => {
   const favorites = new Set(sheet.runtime.favoriteTalentIds);
   const query = talentSearch.trim().toLocaleLowerCase("de");
-  const entries = Object.entries(sheet.hero.talents)
-    .map(([id, value]) => ({ definition: TALENT_BY_ID[id], value }))
-    .filter((entry): entry is { definition: TalentDefinition; value: number } => Boolean(entry.definition))
+  const entries = TALENTS
+    .map((definition) => ({ definition, value: sheet.hero.talents[definition.id] ?? 0 }))
     .filter((entry) => !query || entry.definition.name.toLocaleLowerCase("de").includes(query))
     .sort((a, b) => {
       const favoriteDifference = Number(favorites.has(b.definition.id)) - Number(favorites.has(a.definition.id));
@@ -279,7 +328,7 @@ const renderTalents = (sheet: CharacterSheetState): string => {
             return `<section class="talent-group">
               <h3>${category}<span>${categoryEntries.length}</span></h3>
               ${categoryEntries
-                .map((entry) => renderTalentRow(entry.definition, entry.value, favorites.has(entry.definition.id)))
+                .map((entry) => renderTalentRow(entry.definition, entry.value, favorites.has(entry.definition.id), sheet.source === "manual"))
                 .join("")}
             </section>`;
           })
@@ -289,8 +338,92 @@ const renderTalents = (sheet: CharacterSheetState): string => {
   `;
 };
 
+const renderSpellRow = (
+  id: string,
+  definition: SpellDefinition | undefined,
+  value: number,
+  editable: boolean,
+): string => {
+  const name = definition?.name ?? id;
+  return `
+    <div class="talent-row spell-row">
+      <span class="spell-sigil" aria-hidden="true">✦</span>
+      <div class="talent-name"><strong>${escapeHtml(name)}</strong><span>${definition ? `${definition.kind} · Steigerungsfaktor ${definition.improvementCost}${definition.checkModifier ? ` · mod. ${definition.checkModifier}` : ""}` : "Unbekannte Optolith-Kennung"}</span></div>
+      <div class="check-badges" aria-label="${definition ? `Probe ${definition.check.join(" ")}` : "Probe unbekannt"}">
+        ${definition ? definition.check.map((attribute) => `<span>${attribute}</span>`).join("") : '<span>?</span><span>?</span><span>?</span>'}
+      </div>
+      ${editable
+        ? `<input class="talent-value talent-value-input" data-manual-spell="${escapeHtml(id)}" type="number" min="0" max="30" value="${value}" aria-label="Fertigkeitswert ${escapeHtml(name)}" />`
+        : `<span class="talent-value" title="Fertigkeitswert">${value}</span>`}
+      <button class="roll-button" data-roll-spell="${escapeHtml(id)}" ${definition ? "" : "disabled"}>3W20</button>
+      ${editable ? `<button class="spell-delete" data-delete-spell="${escapeHtml(id)}" title="Zauber entfernen" aria-label="${escapeHtml(name)} entfernen">×</button>` : ""}
+    </div>`;
+};
+
+const renderSpells = (sheet: CharacterSheetState): string => {
+  const editable = sheet.source === "manual";
+  const query = spellSearch.trim().toLocaleLowerCase("de");
+  const learnedSpellIds = Object.keys(sheet.hero.spells ?? {});
+  const spellEntries = learnedSpellIds
+    .map((id) => ({ id, definition: SPELL_BY_ID[id], value: sheet.hero.spells?.[id] ?? 0 }))
+    .filter((entry) => !query || (entry.definition?.name ?? entry.id).toLocaleLowerCase("de").includes(query))
+    .sort((a, b) => (a.definition?.name ?? a.id).localeCompare(b.definition?.name ?? b.id, "de"));
+  const learnedCantrips = (sheet.hero.cantrips ?? [])
+    .map((id) => ({ id, name: CANTRIPS[id] ?? id }))
+    .filter((entry) => !query || entry.name.toLocaleLowerCase("de").includes(query))
+    .sort((a, b) => a.name.localeCompare(b.name, "de"));
+  const availableSpells = SPELLS
+    .filter((definition) => !learnedSpellIds.includes(definition.id))
+    .sort((a, b) => a.name.localeCompare(b.name, "de"));
+  const availableCantrips = Object.entries(CANTRIPS)
+    .filter(([id]) => !(sheet.hero.cantrips ?? []).includes(id))
+    .sort((a, b) => a[1].localeCompare(b[1], "de"));
+
+  return `
+    <section class="page page--spells">
+      <div class="section-title">
+        <div><p class="eyebrow">Astrale Künste</p><h2>Zaubersprüche</h2></div>
+        <span class="section-hint">${spellEntries.length} Zauber · ${learnedCantrips.length} Zaubertricks</span>
+      </div>
+      <label class="search-box">
+        <span aria-hidden="true">⌕</span>
+        <input id="spell-search" type="search" value="${escapeHtml(spellSearch)}" placeholder="Zauber oder Zaubertrick suchen …" autocomplete="off" />
+      </label>
+      ${editable ? `<article class="spell-add-panel">
+        <label><span>Zauber aus dem Optolith-Katalog</span><select id="spell-catalog-select" ${availableSpells.length ? "" : "disabled"}>
+          ${availableSpells.map((definition) => `<option value="${definition.id}">${escapeHtml(definition.name)} (${definition.kind}, ${definition.check.join("/")})</option>`).join("") || '<option>Alle Zauber hinzugefügt</option>'}
+        </select></label>
+        <button class="primary-button" id="add-spell" ${availableSpells.length ? "" : "disabled"}>+ Zauber</button>
+      </article>` : ""}
+      <div class="talent-list spell-list">
+        ${(["Zauber", "Ritual"] as const).map((kind) => {
+          const entries = spellEntries.filter((entry) => entry.definition?.kind === kind || (kind === "Zauber" && !entry.definition));
+          if (!entries.length) return "";
+          return `<section class="talent-group"><h3>${kind === "Zauber" ? "Zaubersprüche" : "Rituale"}<span>${entries.length}</span></h3>${entries.map((entry) => renderSpellRow(entry.id, entry.definition, entry.value, editable)).join("")}</section>`;
+        }).join("") || '<div class="empty-state">Noch keine Zaubersprüche eingetragen.</div>'}
+      </div>
+
+      <div class="section-title section-title--resources"><div><p class="eyebrow">Kleine Magie</p><h2>Zaubertricks</h2></div></div>
+      ${editable ? `<article class="spell-add-panel">
+        <label><span>Zaubertrick hinzufügen</span><select id="cantrip-catalog-select" ${availableCantrips.length ? "" : "disabled"}>
+          ${availableCantrips.map(([id, name]) => `<option value="${id}">${escapeHtml(name)}</option>`).join("") || '<option>Alle Zaubertricks hinzugefügt</option>'}
+        </select></label>
+        <button class="secondary-button" id="add-cantrip" ${availableCantrips.length ? "" : "disabled"}>+ Zaubertrick</button>
+      </article>` : ""}
+      <div class="cantrip-list">
+        ${learnedCantrips.map((entry) => `<article class="cantrip-card"><span aria-hidden="true">✧</span><strong>${escapeHtml(entry.name)}</strong>${editable ? `<button class="spell-delete" data-delete-cantrip="${escapeHtml(entry.id)}" title="Zaubertrick entfernen" aria-label="${escapeHtml(entry.name)} entfernen">×</button>` : ""}</article>`).join("") || '<div class="empty-state">Keine Zaubertricks eingetragen.</div>'}
+      </div>
+    </section>`;
+};
+
 const renderCombat = (sheet: CharacterSheetState): string => {
-  const techniques = Object.entries(sheet.hero.ct ?? {}).sort((a, b) => b[1] - a[1]);
+  const isManual = sheet.source === "manual";
+  const techniqueIds = isManual ? Object.keys(COMBAT_TECHNIQUES) : Object.keys(sheet.hero.ct ?? {});
+  const techniques = techniqueIds
+    .map((id) => [id, sheet.hero.ct?.[id] ?? 0] as const)
+    .sort((a, b) => isManual
+      ? (COMBAT_TECHNIQUES[a[0]] ?? a[0]).localeCompare(COMBAT_TECHNIQUES[b[0]] ?? b[0], "de")
+      : b[1] - a[1]);
   const items = Object.values(sheet.hero.belongings?.items ?? {});
   const weapons = items.filter((item) => item.damageDiceSides || item.combatTechnique);
   const armor = items.filter((item) => typeof item.pro === "number");
@@ -302,7 +435,7 @@ const renderCombat = (sheet: CharacterSheetState): string => {
         ${techniques
           .map(
             ([id, value]) => `<article class="technique-card">
-              <span>${escapeHtml(COMBAT_TECHNIQUES[id] ?? id)}</span><strong>${value}</strong><small>Ktw</small>
+              <span>${escapeHtml(COMBAT_TECHNIQUES[id] ?? id)}</span>${isManual ? `<input data-manual-technique="${id}" type="number" min="0" max="30" value="${value}" aria-label="Kampftechnik ${escapeHtml(COMBAT_TECHNIQUES[id] ?? id)}" />` : `<strong>${value}</strong>`}<small>Ktw</small>
             </article>`,
           )
           .join("") || '<div class="empty-state">Keine Kampftechniken importiert.</div>'}
@@ -343,15 +476,17 @@ const renderCombat = (sheet: CharacterSheetState): string => {
 };
 
 const renderInventory = (sheet: CharacterSheetState): string => {
-  const items = Object.values(sheet.hero.belongings?.items ?? {}).sort((a, b) => a.name.localeCompare(b.name, "de"));
+  const items = Object.entries(sheet.hero.belongings?.items ?? {})
+    .map(([key, item]) => ({ key, item }))
+    .sort((a, b) => a.item.name.localeCompare(b.item.name, "de"));
   const purse = sheet.hero.belongings?.purse ?? {};
-  const totalWeight = items.reduce((sum, item) => sum + (item.weight ?? 0) * (item.amount ?? 1), 0);
+  const totalWeight = items.reduce((sum, entry) => sum + (entry.item.weight ?? 0) * (entry.item.amount ?? 1), 0);
 
   return `
     <section class="page page--inventory">
       <div class="section-title">
         <div><p class="eyebrow">Hab und Gut</p><h2>Inventar</h2></div>
-        <span class="section-hint">${formatNumber(totalWeight)} Stein</span>
+        <div class="inventory-heading-actions"><span class="section-hint">${formatNumber(totalWeight)} Stein</span><button class="primary-button inventory-add" id="add-inventory-item">+ Gegenstand</button></div>
       </div>
       <div class="purse" aria-label="Geldbörse">
         ${[
@@ -361,24 +496,31 @@ const renderInventory = (sheet: CharacterSheetState): string => {
           ["k", "K", "Kreuzer"],
         ]
           .map(
-            ([key, short, label]) => `<div title="${label}"><span>${short}</span><strong>${escapeHtml(purse[key as keyof typeof purse] || "0")}</strong></div>`,
+            ([key, short, label]) => `<label title="${label}"><span>${short}</span><input data-purse="${key}" value="${escapeHtml(purse[key as keyof typeof purse] || "0")}" inputmode="decimal" aria-label="${label}" /></label>`,
           )
           .join("")}
       </div>
       <div class="inventory-table-wrap">
         <table class="inventory-table">
-          <thead><tr><th>Gegenstand</th><th>Anzahl</th><th>Gewicht</th><th>Wert</th></tr></thead>
+          <thead><tr><th>Gegenstand</th><th>Anzahl</th><th>Gewicht</th><th>Wert</th><th></th></tr></thead>
           <tbody>
             ${items
               .map(
-                (item) => `<tr>
-                  <td><strong>${escapeHtml(item.name)}</strong><span>${escapeHtml(ITEM_GROUPS[item.gr ?? 0] ?? "Ausrüstung")}</span></td>
-                  <td>${item.amount ?? 1}</td>
-                  <td>${typeof item.weight === "number" ? `${formatNumber(item.weight)} St` : "—"}</td>
-                  <td>${typeof item.price === "number" ? formatNumber(item.price) : "—"}</td>
+                ({ key, item }) => `<tr>
+                  <td class="inventory-item-cell">
+                    <input class="inventory-name-input" data-inventory-key="${escapeHtml(key)}" data-inventory-field="name" value="${escapeHtml(item.name)}" aria-label="Gegenstand" />
+                    <select data-inventory-key="${escapeHtml(key)}" data-inventory-field="gr" aria-label="Kategorie">
+                      ${Object.entries(ITEM_GROUPS).map(([groupId, groupName]) => `<option value="${groupId}" ${Number(groupId) === (item.gr ?? 0) ? "selected" : ""}>${escapeHtml(groupName)}</option>`).join("")}
+                      <option value="0" ${ITEM_GROUPS[item.gr ?? 0] ? "" : "selected"}>Sonstiges</option>
+                    </select>
+                  </td>
+                  <td><input class="inventory-number-input" data-inventory-key="${escapeHtml(key)}" data-inventory-field="amount" type="number" min="0" step="1" value="${item.amount ?? 1}" aria-label="Anzahl" /></td>
+                  <td><input class="inventory-number-input" data-inventory-key="${escapeHtml(key)}" data-inventory-field="weight" type="number" min="0" step="0.01" value="${item.weight ?? 0}" aria-label="Gewicht in Stein" /></td>
+                  <td><input class="inventory-number-input" data-inventory-key="${escapeHtml(key)}" data-inventory-field="price" type="number" min="0" step="0.01" value="${item.price ?? 0}" aria-label="Wert" /></td>
+                  <td><button class="inventory-delete" data-delete-inventory="${escapeHtml(key)}" title="Gegenstand löschen" aria-label="${escapeHtml(item.name)} löschen">×</button></td>
                 </tr>`,
               )
-              .join("") || '<tr><td colspan="4" class="empty-state">Keine Gegenstände importiert.</td></tr>'}
+              .join("") || '<tr><td colspan="5" class="empty-state">Noch keine Gegenstände vorhanden.</td></tr>'}
           </tbody>
         </table>
       </div>
@@ -386,44 +528,52 @@ const renderInventory = (sheet: CharacterSheetState): string => {
   `;
 };
 
-const renderSource = (sheet: CharacterSheetState): string => `
+const renderSource = (sheet: CharacterSheetState): string => {
+  const isManual = sheet.source === "manual";
+  return `
   <section class="page page--source">
     <div class="section-title"><div><p class="eyebrow">Import & Sicherung</p><h2>Quelldaten</h2></div></div>
     <article class="panel source-card">
-      <div class="source-logo">O</div>
-      <div><h3>Optolith ${escapeHtml(sheet.hero.clientVersion)}</h3><p>Importiert am ${new Date(sheet.importedAt).toLocaleString("de-DE")}</p></div>
-      <span class="status-pill">erkannt</span>
+      <div class="source-logo">${isManual ? "M" : "O"}</div>
+      <div><h3>${isManual ? "Manuell ausgefüllter Bogen" : `Optolith ${escapeHtml(sheet.hero.clientVersion)}`}</h3><p>${isManual ? "Angelegt" : "Importiert"} am ${new Date(sheet.importedAt).toLocaleString("de-DE")}</p></div>
+      <span class="status-pill">${isManual ? "manuell" : "erkannt"}</span>
     </article>
     <article class="panel">
       <div class="panel__header"><h3>Technische Kennungen</h3></div>
       <dl class="source-ids">
         <div><dt>Held</dt><dd>${escapeHtml(sheet.hero.id)}</dd></div>
-        <div><dt>Spezies</dt><dd>${escapeHtml(sheet.hero.r ?? "—")}</dd></div>
+        <div><dt>Spezies</dt><dd>${escapeHtml(SPECIES_BY_ID[sheet.hero.r ?? ""]?.name ?? sheet.hero.r ?? "—")}</dd></div>
         <div><dt>Kultur</dt><dd>${escapeHtml(sheet.hero.c ?? "—")}</dd></div>
         <div><dt>Profession</dt><dd>${escapeHtml(sheet.hero.p ?? "—")}</dd></div>
       </dl>
     </article>
     <article class="panel">
       <div class="panel__header"><h3>Spielstand sichern</h3></div>
-      <p class="panel-copy">Die Sicherung enthält den unveränderten Optolith-Export sowie aktuelle Ressourcen, Favoriten, Notizen und die Token-Verknüpfung.</p>
+      <p class="panel-copy">Die Sicherung enthält alle Werte, Ressourcen, Talente, Gegenstände, Notizen und die Token-Verknüpfung.</p>
       <div class="button-row">
         <button class="primary-button" id="export-backup">Owlbear-JSON sichern</button>
-        <button class="secondary-button" id="export-original">Original exportieren</button>
+        ${isManual ? "" : '<button class="secondary-button" id="export-original">Original exportieren</button>'}
       </div>
     </article>
     <aside class="info-callout">
       <strong>Stand dieses Prototyps</strong>
-      <p>Eigenschaften, Basistalente, Kampftechniken und Gegenstände aus Optolith 1.5.x werden eingelesen. Vorteile, Nachteile, Sonderfertigkeiten sowie die Namensauflösung von Kultur und Profession folgen in einer späteren Ausbaustufe.</p>
+      <p>${isManual ? "Name, Spezies, magische Begabung, Eigenschaften, alle 59 Basistalente, Zauber, Kampftechniken, Ressourcen, Inventar und Geldbörse können direkt bearbeitet werden." : "Alle 59 Basistalente sowie vorhandene Zauber, Zaubertricks, Kampftechniken und Gegenstände aus Optolith 1.5.x werden eingelesen. Das Inventar und die Geldbörse können direkt bearbeitet werden."}</p>
     </aside>
   </section>
-`;
+  `;
+};
 
 const renderRollDialog = (sheet: CharacterSheetState): string => {
   if (!rollDialog) return "";
-  const definition = TALENT_BY_ID[rollDialog.talentId];
+  const definition = rollDialog.kind === "talent"
+    ? TALENT_BY_ID[rollDialog.entryId]
+    : SPELL_BY_ID[rollDialog.entryId];
   if (!definition) return "";
   const attributes = getAttributeValues(sheet.hero);
-  const values = definition.check.map((code) => attributes[code]) as [number, number, number];
+  const values = definition.check.map((code: AttributeCode) => attributes[code]) as [number, number, number];
+  const skillValue = rollDialog.kind === "talent"
+    ? sheet.hero.talents[definition.id] ?? 0
+    : sheet.hero.spells?.[definition.id] ?? 0;
   const result = rollDialog.result;
   const outcomeLabels = {
     success: "Gelungen",
@@ -436,7 +586,7 @@ const renderRollDialog = (sheet: CharacterSheetState): string => {
     <div class="modal-backdrop" id="roll-backdrop">
       <section class="roll-dialog" role="dialog" aria-modal="true" aria-labelledby="roll-title">
         <button class="modal-close" id="close-roll" aria-label="Schließen">×</button>
-        <p class="eyebrow">Talentprobe</p>
+        <p class="eyebrow">${rollDialog.kind === "talent" ? "Talentprobe" : "Zauberprobe"}</p>
         <h2 id="roll-title">${escapeHtml(definition.name)}</h2>
         <div class="roll-check">
           ${definition.check
@@ -444,7 +594,7 @@ const renderRollDialog = (sheet: CharacterSheetState): string => {
               (code, index) => `<div><span>${code}</span><strong>${values[index]}</strong></div>`,
             )
             .join("")}
-          <div class="roll-skill"><span>FW</span><strong>${sheet.hero.talents[definition.id]}</strong></div>
+          <div class="roll-skill"><span>FW</span><strong>${skillValue}</strong></div>
         </div>
         <label class="modifier-control">
           <span>Modifikator</span>
@@ -481,9 +631,12 @@ const tabLabel = (id: TabId, label: string, icon: string): string => `
   </button>`;
 
 const renderSheet = (sheet: CharacterSheetState): string => {
+  const hasMagic = isMagicallyGifted(sheet);
+  if (!hasMagic && activeTab === "spells") activeTab = "overview";
   const content = {
     overview: renderOverview,
     talents: renderTalents,
+    spells: renderSpells,
     combat: renderCombat,
     inventory: renderInventory,
     source: renderSource,
@@ -494,11 +647,11 @@ const renderSheet = (sheet: CharacterSheetState): string => {
       <header class="hero-header">
         <div class="hero-header__identity">
           <div class="hero-avatar">${escapeHtml(sheet.hero.name.charAt(0).toUpperCase())}</div>
-          <div><p class="eyebrow">Heldenbogen</p><h1>${escapeHtml(sheet.hero.name)}</h1></div>
+          <div><p class="eyebrow">Heldenbogen</p>${sheet.source === "manual" ? `<input class="manual-name-input" id="manual-name" type="text" maxlength="80" value="${escapeHtml(sheet.hero.name)}" aria-label="Name des Helden" />` : `<h1>${escapeHtml(sheet.hero.name)}</h1>`}</div>
         </div>
         <div class="hero-meta">
           <span>${sheet.hero.ap?.total ?? "—"} AP</span>
-          <span>Optolith ${escapeHtml(sheet.hero.clientVersion)}</span>
+          <span>${sheet.source === "manual" ? "Manuell angelegt" : `Optolith ${escapeHtml(sheet.hero.clientVersion)}`}</span>
         </div>
         <div class="header-actions">
           <label class="icon-button" title="Anderen Helden importieren">
@@ -508,9 +661,10 @@ const renderSheet = (sheet: CharacterSheetState): string => {
           <button class="icon-button" id="export-quick" title="Spielstand sichern">↓</button>
         </div>
       </header>
-      <nav class="main-nav" aria-label="Heldenbogen-Bereiche">
+      <nav class="main-nav" aria-label="Heldenbogen-Bereiche" style="grid-template-columns: repeat(${hasMagic ? 6 : 5}, 1fr)">
         ${tabLabel("overview", "Übersicht", "◆")}
         ${tabLabel("talents", "Talente", "◈")}
+        ${hasMagic ? tabLabel("spells", "Zauber", "✦") : ""}
         ${tabLabel("combat", "Kampf", "⚔")}
         ${tabLabel("inventory", "Inventar", "▣")}
         ${tabLabel("source", "Daten", "⋯")}
@@ -539,6 +693,39 @@ const attachImportListeners = (): void => {
     dropZone.classList.remove("drop-zone--active");
     void importFile(event.dataTransfer?.files[0]);
   });
+  const manualName = document.querySelector<HTMLInputElement>("#manual-hero-name");
+  const manualSpecies = document.querySelector<HTMLSelectElement>("#manual-species");
+  const manualMagical = document.querySelector<HTMLInputElement>("#manual-magical");
+  const syncManualMagicOption = (): void => {
+    if (!manualSpecies || !manualMagical) return;
+    const isElf = manualSpecies.value === "elf";
+    manualMagical.disabled = isElf;
+    if (isElf) manualMagical.checked = true;
+  };
+  manualSpecies?.addEventListener("change", syncManualMagicOption);
+  syncManualMagicOption();
+  const createManualHero = (): void => {
+    const name = manualName?.value.trim() ?? "";
+    if (!name) {
+      showToast("Bitte gib zuerst einen Namen für den Helden ein.", "error");
+      manualName?.focus();
+      return;
+    }
+    state = createManualState(name, {
+      species: (manualSpecies?.value ?? "human") as ManualSpecies,
+      magical: manualMagical?.checked ?? false,
+    });
+    activeTab = "overview";
+    talentSearch = "";
+    spellSearch = "";
+    persist(false);
+    render();
+    showToast(`${name} wurde als leerer Heldenbogen angelegt.`);
+  };
+  document.querySelector("#create-manual-hero")?.addEventListener("click", createManualHero);
+  manualName?.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") createManualHero();
+  });
 };
 
 const attachSheetListeners = (): void => {
@@ -553,6 +740,132 @@ const attachSheetListeners = (): void => {
 
   const replacement = document.querySelector<HTMLInputElement>("#replace-hero-file");
   replacement?.addEventListener("change", () => void importFile(replacement.files?.[0]));
+
+  document.querySelector<HTMLInputElement>("#manual-name")?.addEventListener("change", (event) => {
+    if (!state || state.source !== "manual") return;
+    state.hero.name = (event.target as HTMLInputElement).value.trim() || "Unbenannter Held";
+    state.hero.dateModified = new Date().toISOString();
+    persist();
+    render();
+  });
+
+  document.querySelector<HTMLSelectElement>("#manual-species-sheet")?.addEventListener("change", (event) => {
+    if (!state || state.source !== "manual") return;
+    updateManualSpecies(state, (event.target as HTMLSelectElement).value as ManualSpecies);
+    state.hero.dateModified = new Date().toISOString();
+    persist();
+    render();
+  });
+
+  document.querySelector<HTMLInputElement>("#manual-magical-sheet")?.addEventListener("change", (event) => {
+    if (!state || state.source !== "manual") return;
+    updateManualMagic(state, (event.target as HTMLInputElement).checked);
+    if (!isMagicallyGifted(state) && activeTab === "spells") activeTab = "overview";
+    state.hero.dateModified = new Date().toISOString();
+    persist();
+    render();
+  });
+
+  document.querySelectorAll<HTMLInputElement>("[data-manual-attribute]").forEach((input) => {
+    input.addEventListener("change", () => {
+      if (!state || state.source !== "manual") return;
+      const id = input.dataset.manualAttribute;
+      const attribute = state.hero.attr.values.find((entry) => entry.id === id);
+      if (!attribute) return;
+      attribute.value = Math.max(0, Math.min(30, Math.round(asNumber(input.value, attribute.value))));
+      if (id === "ATTR_7") refreshManualLifePoints(state);
+      state.hero.dateModified = new Date().toISOString();
+      persist();
+      render();
+    });
+  });
+
+  document.querySelector<HTMLInputElement>("#manual-ap")?.addEventListener("change", (event) => {
+    if (!state || state.source !== "manual") return;
+    state.hero.ap ??= {};
+    state.hero.ap.total = Math.max(0, Math.round(asNumber((event.target as HTMLInputElement).value, state.hero.ap.total ?? 0)));
+    persist(false);
+    render();
+  });
+
+  document.querySelectorAll<HTMLInputElement>("[data-manual-talent]").forEach((input) => {
+    input.addEventListener("change", () => {
+      if (!state || state.source !== "manual") return;
+      const id = input.dataset.manualTalent;
+      if (!id) return;
+      state.hero.talents[id] = Math.max(0, Math.min(30, Math.round(asNumber(input.value, state.hero.talents[id] ?? 0))));
+      persist(false);
+      render();
+    });
+  });
+
+  document.querySelectorAll<HTMLInputElement>("[data-manual-technique]").forEach((input) => {
+    input.addEventListener("change", () => {
+      if (!state || state.source !== "manual") return;
+      const id = input.dataset.manualTechnique;
+      if (!id) return;
+      state.hero.ct ??= {};
+      state.hero.ct[id] = Math.max(0, Math.min(30, Math.round(asNumber(input.value, state.hero.ct[id] ?? 6))));
+      persist(false);
+      render();
+    });
+  });
+
+  document.querySelectorAll<HTMLInputElement>("[data-manual-spell]").forEach((input) => {
+    input.addEventListener("change", () => {
+      if (!state || state.source !== "manual") return;
+      const id = input.dataset.manualSpell;
+      if (!id) return;
+      state.hero.spells ??= {};
+      state.hero.spells[id] = Math.max(0, Math.min(30, Math.round(asNumber(input.value, state.hero.spells[id] ?? 0))));
+      persist(false);
+      render();
+    });
+  });
+
+  document.querySelector("#add-spell")?.addEventListener("click", () => {
+    if (!state || state.source !== "manual") return;
+    const select = document.querySelector<HTMLSelectElement>("#spell-catalog-select");
+    const id = select?.value;
+    if (!id || !SPELL_BY_ID[id]) return;
+    state.hero.spells ??= {};
+    state.hero.spells[id] = 0;
+    persist(false);
+    render();
+  });
+
+  document.querySelectorAll<HTMLButtonElement>("[data-delete-spell]").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (!state || state.source !== "manual") return;
+      const id = button.dataset.deleteSpell;
+      if (!id) return;
+      delete state.hero.spells?.[id];
+      persist(false);
+      render();
+    });
+  });
+
+  document.querySelector("#add-cantrip")?.addEventListener("click", () => {
+    if (!state || state.source !== "manual") return;
+    const select = document.querySelector<HTMLSelectElement>("#cantrip-catalog-select");
+    const id = select?.value;
+    if (!id || !CANTRIPS[id]) return;
+    state.hero.cantrips ??= [];
+    if (!state.hero.cantrips.includes(id)) state.hero.cantrips.push(id);
+    persist(false);
+    render();
+  });
+
+  document.querySelectorAll<HTMLButtonElement>("[data-delete-cantrip]").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (!state || state.source !== "manual") return;
+      const id = button.dataset.deleteCantrip;
+      if (!id) return;
+      state.hero.cantrips = (state.hero.cantrips ?? []).filter((entry) => entry !== id);
+      persist(false);
+      render();
+    });
+  });
 
   const backup = (): void => downloadJson(`${state?.hero.name ?? "Held"}-owlbear.json`, state);
   document.querySelector("#export-quick")?.addEventListener("click", backup);
@@ -607,7 +920,8 @@ const attachSheetListeners = (): void => {
     button.addEventListener("click", () => {
       if (!state) return;
       const key = button.dataset.enableResource as "ae" | "kp";
-      state.runtime.resources[key] = { current: 20, max: 20 };
+      if (key === "ae" && state.source === "manual") updateManualMagic(state, true);
+      else state.runtime.resources[key] = { current: 20, max: 20 };
       persist();
       render();
     });
@@ -618,6 +932,65 @@ const attachSheetListeners = (): void => {
     if (!state) return;
     state.runtime.notes = notes.value;
     persist(false);
+  });
+
+  document.querySelector("#add-inventory-item")?.addEventListener("click", () => {
+    if (!state) return;
+    state.hero.belongings ??= {};
+    state.hero.belongings.items ??= {};
+    let id = `ITEM_CUSTOM_${Date.now().toString(36)}`;
+    while (state.hero.belongings.items[id]) id += "_1";
+    state.hero.belongings.items[id] = {
+      id,
+      name: "Neuer Gegenstand",
+      gr: 7,
+      amount: 1,
+      weight: 0,
+      price: 0,
+    };
+    persist(false);
+    render();
+    document.querySelector<HTMLInputElement>(`[data-inventory-key="${id}"][data-inventory-field="name"]`)?.select();
+  });
+
+  document.querySelectorAll<HTMLInputElement | HTMLSelectElement>("[data-inventory-key][data-inventory-field]").forEach((input) => {
+    input.addEventListener("change", () => {
+      if (!state) return;
+      const key = input.dataset.inventoryKey;
+      const field = input.dataset.inventoryField as "name" | "gr" | "amount" | "weight" | "price";
+      const item = key ? state.hero.belongings?.items?.[key] : undefined;
+      if (!item) return;
+      if (field === "name") item.name = input.value.trim() || "Unbenannter Gegenstand";
+      else if (field === "gr") item.gr = Math.max(0, Math.round(asNumber(input.value, item.gr ?? 0)));
+      else if (field === "amount") item.amount = Math.max(0, Math.round(asNumber(input.value, item.amount ?? 1)));
+      else item[field] = Math.max(0, asNumber(input.value, item[field] ?? 0));
+      persist(false);
+      render();
+    });
+  });
+
+  document.querySelectorAll<HTMLButtonElement>("[data-delete-inventory]").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (!state) return;
+      const key = button.dataset.deleteInventory;
+      const item = key ? state.hero.belongings?.items?.[key] : undefined;
+      if (!key || !item || !window.confirm(`„${item.name}“ aus dem Inventar löschen?`)) return;
+      delete state.hero.belongings?.items?.[key];
+      persist(false);
+      render();
+    });
+  });
+
+  document.querySelectorAll<HTMLInputElement>("[data-purse]").forEach((input) => {
+    input.addEventListener("change", () => {
+      if (!state) return;
+      const key = input.dataset.purse as "d" | "s" | "h" | "k";
+      state.hero.belongings ??= {};
+      state.hero.belongings.purse ??= {};
+      state.hero.belongings.purse[key] = input.value.trim() || "0";
+      persist(false);
+      render();
+    });
   });
 
   document.querySelector("#link-token")?.addEventListener("click", async () => {
@@ -642,6 +1015,15 @@ const attachSheetListeners = (): void => {
     refreshed?.setSelectionRange(talentSearch.length, talentSearch.length);
   });
 
+  const spellSearchInput = document.querySelector<HTMLInputElement>("#spell-search");
+  spellSearchInput?.addEventListener("input", () => {
+    spellSearch = spellSearchInput.value;
+    render();
+    const refreshed = document.querySelector<HTMLInputElement>("#spell-search");
+    refreshed?.focus();
+    refreshed?.setSelectionRange(spellSearch.length, spellSearch.length);
+  });
+
   document.querySelectorAll<HTMLButtonElement>("[data-favorite]").forEach((button) => {
     button.addEventListener("click", () => {
       if (!state) return;
@@ -659,7 +1041,16 @@ const attachSheetListeners = (): void => {
     button.addEventListener("click", () => {
       const talentId = button.dataset.rollTalent;
       if (!talentId) return;
-      rollDialog = { talentId, modifier: 0 };
+      rollDialog = { kind: "talent", entryId: talentId, modifier: 0 };
+      render();
+    });
+  });
+
+  document.querySelectorAll<HTMLButtonElement>("[data-roll-spell]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const spellId = button.dataset.rollSpell;
+      if (!spellId || !SPELL_BY_ID[spellId]) return;
+      rollDialog = { kind: "spell", entryId: spellId, modifier: 0 };
       render();
     });
   });
@@ -683,10 +1074,16 @@ const attachSheetListeners = (): void => {
     if (!state || !rollDialog) return;
     const modifierInput = document.querySelector<HTMLInputElement>("#roll-modifier");
     rollDialog.modifier = Math.max(-20, Math.min(20, asNumber(modifierInput?.value ?? "0")));
-    const definition = TALENT_BY_ID[rollDialog.talentId];
+    const definition = rollDialog.kind === "talent"
+      ? TALENT_BY_ID[rollDialog.entryId]
+      : SPELL_BY_ID[rollDialog.entryId];
+    if (!definition) return;
     const attributes = getAttributeValues(state.hero);
-    const values = definition.check.map((code) => attributes[code]) as [number, number, number];
-    rollDialog.result = rollTalent(values, state.hero.talents[definition.id], rollDialog.modifier);
+    const values = definition.check.map((code: AttributeCode) => attributes[code]) as [number, number, number];
+    const skillValue = rollDialog.kind === "talent"
+      ? state.hero.talents[definition.id] ?? 0
+      : state.hero.spells?.[definition.id] ?? 0;
+    rollDialog.result = rollTalent(values, skillValue, rollDialog.modifier);
     render();
   });
 };
