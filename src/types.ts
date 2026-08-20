@@ -250,7 +250,7 @@ export interface CombatTechniqueDefinition {
 export interface SpellDefinition {
   id: string;
   name: string;
-  check: [AttributeCode, AttributeCode, AttributeCode];
+  check?: [AttributeCode, AttributeCode, AttributeCode];
   kind: "Zauber" | "Ritual";
   improvementCost: string;
   checkModifier?: string;

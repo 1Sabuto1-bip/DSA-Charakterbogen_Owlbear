@@ -1,8 +1,8 @@
 {
   "name": "Aventurischer Heldenbogen",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "manifest_version": 1,
-  "description": "Interaktiver DSA-5-Heldenbogen mit Waffenbibliothek, Kampfwerten und AP-Steigerungen",
+  "description": "Interaktiver DSA-5-Heldenbogen mit vollständigem Zauberkatalog, Kampfwerten und AP-Steigerungen",
   "author": "Alexander Hoffmann",
   "action": {
     "title": "Heldenbogen",

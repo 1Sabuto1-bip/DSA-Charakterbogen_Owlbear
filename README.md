@@ -15,13 +15,15 @@ Der aktuelle Prototyp importiert Optolith-JSON-Dateien der Version 1.5.x und TDC
 - alle 59 Basistalente mit Eigenschaftsproben anzeigen, auch bei Fertigkeitswert 0
 - vollständige 3W20-Proben mit Modifikator, FP und QS würfeln
 - bedingter Reiter **Zauber**, der nur bei magisch begabten Figuren erscheint
-- vorhandene Optolith-Zauber und Zaubertricks mit deutschen Namen anzeigen und durchsuchen
+- vorhandene Optolith- und DarkAid-Zauber sowie Zaubertricks mit deutschen Namen anzeigen und durchsuchen
 - Zauberproben mit den passenden drei Eigenschaften würfeln
-- im manuellen Modus Zauber aus 330 Optolith-kompatiblen Zaubern und 97 Zaubertricks hinzufügen, bearbeiten und entfernen
+- im manuellen Modus 541 unterschiedliche Zauber und Rituale aus dem gemeinsamen Optolith-/DarkAid-Katalog durchsuchen und mit einem Klick importieren
+- für 533 Katalogeinträge die hinterlegte 3W20-Probe anzeigen; Einträge ohne Quelldaten-Probe klar kennzeichnen
+- 97 Zaubertricks separat hinzufügen, bearbeiten und entfernen
 - Kampftechniken, Waffen und Rüstungen anzeigen
 - Waffen und Rüstungen über eine durchsuchbare Bibliothek aus dem integrierten DarkAid-Regelkatalog übernehmen oder frei anlegen
 - eine Primärwaffe auswählen und daraus AT/FK, PA und Ausweichen regelgerecht berechnen
-- Initiative mit Basiswert, Rüstungs- und Situationsmodifikator direkt im Kampfbereich würfeln
+- Initiative mit Basiswert, Rüstungs- und Situationsmodifikator direkt im Kampfbereich würfeln; kontrastreiche Anzeige und gut sichtbarer Würfelknopf
 - Nahkampfwerte (TP, AT/PA, Reichweite, TP-Schwelle), Fernkampfwerte (TP, Ladezeit, Reichweiten, Munition) sowie RS, BE, GS-/INI-Abzüge bearbeiten
 - Waffen, Schilde und Rüstungen für Optolith-, DarkAid- und manuelle Helden hinzufügen, ändern und löschen
 - Inventar und Geldbörse bearbeiten; Gegenstände hinzufügen und löschen

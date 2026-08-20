@@ -10,8 +10,9 @@ import {
   TALENTS,
   TALENT_BY_ID,
 } from "./data";
-import { CANTRIPS, SPELLS, SPELL_BY_ID } from "./magic-data";
+import { CANTRIPS, SPELL_BY_ID } from "./magic-data";
 import { DARKAID_ITEM_DATA, DARKAID_MAGIC_BY_ID, DARKAID_MAGIC_BY_SOURCE_ID } from "./darkaid-data";
+import { ALL_SPELLS, ALL_SPELL_BY_ID } from "./spell-catalog";
 import {
   combatTechniqueMaximum,
   improvementCostForTarget,
@@ -71,6 +72,7 @@ let state: CharacterSheetState | null = loadState();
 let activeTab: TabId = "overview";
 let talentSearch = "";
 let spellSearch = "";
+let spellCatalogSearch = "";
 let advancementSearch = "";
 let advancementSection: AdvancementSection = "attributes";
 let weaponCatalogSearch = "";
@@ -133,8 +135,7 @@ const getDarkAidMagicDefinition = (id: string) => {
 };
 
 const getSpellDefinition = (id: string): SpellDefinition | undefined => {
-  const definition = SPELL_BY_ID[id] ?? getDarkAidMagicDefinition(id);
-  return definition?.check ? { ...definition, check: definition.check } : undefined;
+  return SPELL_BY_ID[id] ?? ALL_SPELL_BY_ID[id] ?? getDarkAidMagicDefinition(id);
 };
 
 const getCantripName = (id: string): string =>
@@ -179,6 +180,7 @@ const importFile = async (file?: File): Promise<void> => {
     activeTab = "overview";
     talentSearch = "";
     spellSearch = "";
+    spellCatalogSearch = "";
     persist(false);
     render();
     showToast(`${state.hero.name} wurde erfolgreich importiert.`);
@@ -420,36 +422,44 @@ const renderSpellRow = (
   editable: boolean,
 ): string => {
   const name = definition?.name ?? id;
+  const check = definition?.check;
+  const definitionSummary = definition
+    ? `${definition.kind} · Steigerungsfaktor ${definition.improvementCost}${definition.checkModifier ? ` · mod. ${definition.checkModifier}` : ""}${check ? "" : " · Probe nicht hinterlegt"}`
+    : "Unbekannte Zauberkennung";
   return `
     <div class="talent-row spell-row">
       <span class="spell-sigil" aria-hidden="true">✦</span>
-      <div class="talent-name"><strong>${escapeHtml(name)}</strong><span>${definition ? `${definition.kind} · Steigerungsfaktor ${definition.improvementCost}${definition.checkModifier ? ` · mod. ${definition.checkModifier}` : ""}` : "Unbekannte Zauberkennung"}</span></div>
-      <div class="check-badges" aria-label="${definition ? `Probe ${definition.check.join(" ")}` : "Probe unbekannt"}">
-        ${definition ? definition.check.map((attribute) => `<span>${attribute}</span>`).join("") : '<span>?</span><span>?</span><span>?</span>'}
+      <div class="talent-name"><strong>${escapeHtml(name)}</strong><span>${escapeHtml(definitionSummary)}</span></div>
+      <div class="check-badges" aria-label="${check ? `Probe ${check.join(" ")}` : "Probe nicht hinterlegt"}">
+        ${check ? check.map((attribute) => `<span>${attribute}</span>`).join("") : '<span>?</span><span>?</span><span>?</span>'}
       </div>
       ${editable
         ? `<input class="talent-value talent-value-input" data-manual-spell="${escapeHtml(id)}" type="number" min="0" max="30" value="${value}" aria-label="Fertigkeitswert ${escapeHtml(name)}" />`
         : `<span class="talent-value" title="Fertigkeitswert">${value}</span>`}
-      <button class="roll-button" data-roll-spell="${escapeHtml(id)}" ${definition ? "" : "disabled"}>3W20</button>
+      <button class="roll-button" data-roll-spell="${escapeHtml(id)}" ${check ? "" : "disabled"} title="${check ? "Zauberprobe würfeln" : "Für diesen Eintrag ist keine Probe hinterlegt"}">3W20</button>
       ${editable ? `<button class="spell-delete" data-delete-spell="${escapeHtml(id)}" title="Zauber entfernen" aria-label="${escapeHtml(name)} entfernen">×</button>` : ""}
     </div>`;
 };
 
 const renderSpells = (sheet: CharacterSheetState): string => {
   const editable = sheet.source === "manual";
-  const query = spellSearch.trim().toLocaleLowerCase("de");
+  const query = normalizeSearch(spellSearch);
+  const catalogQuery = normalizeSearch(spellCatalogSearch);
   const learnedSpellIds = Object.keys(sheet.hero.spells ?? {});
   const spellEntries = learnedSpellIds
     .map((id) => ({ id, definition: getSpellDefinition(id), value: sheet.hero.spells?.[id] ?? 0 }))
-    .filter((entry) => !query || (entry.definition?.name ?? entry.id).toLocaleLowerCase("de").includes(query))
+    .filter((entry) => !query || normalizeSearch(entry.definition?.name ?? entry.id).includes(query))
     .sort((a, b) => (a.definition?.name ?? a.id).localeCompare(b.definition?.name ?? b.id, "de"));
   const learnedCantrips = (sheet.hero.cantrips ?? [])
     .map((id) => ({ id, name: getCantripName(id) }))
-    .filter((entry) => !query || entry.name.toLocaleLowerCase("de").includes(query))
+    .filter((entry) => !query || normalizeSearch(entry.name).includes(query))
     .sort((a, b) => a.name.localeCompare(b.name, "de"));
-  const availableSpells = SPELLS
-    .filter((definition) => !learnedSpellIds.includes(definition.id))
-    .sort((a, b) => a.name.localeCompare(b.name, "de"));
+  const catalogMatches = catalogQuery
+    ? ALL_SPELLS
+      .filter((definition) => !learnedSpellIds.includes(definition.id))
+      .filter((definition) => normalizeSearch(`${definition.name} ${definition.kind}`).includes(catalogQuery))
+      .slice(0, 30)
+    : [];
   const availableCantrips = Object.entries(CANTRIPS)
     .filter(([id]) => !(sheet.hero.cantrips ?? []).includes(id))
     .sort((a, b) => a[1].localeCompare(b[1], "de"));
@@ -464,11 +474,19 @@ const renderSpells = (sheet: CharacterSheetState): string => {
         <span aria-hidden="true">⌕</span>
         <input id="spell-search" type="search" value="${escapeHtml(spellSearch)}" placeholder="Zauber oder Zaubertrick suchen …" autocomplete="off" />
       </label>
-      ${editable ? `<article class="spell-add-panel">
-        <label><span>Zauber aus dem Katalog</span><select id="spell-catalog-select" ${availableSpells.length ? "" : "disabled"}>
-          ${availableSpells.map((definition) => `<option value="${definition.id}">${escapeHtml(definition.name)} (${definition.kind}, ${definition.check.join("/")})</option>`).join("") || '<option>Alle Zauber hinzugefügt</option>'}
-        </select></label>
-        <button class="primary-button" id="add-spell" ${availableSpells.length ? "" : "disabled"}>+ Zauber</button>
+      ${editable ? `<article class="spell-library-panel">
+        <div class="spell-library-search">
+          <label for="spell-catalog-search"><span>Zauber oder Ritual aus dem Gesamtkatalog suchen</span></label>
+          <div class="search-input"><span aria-hidden="true">⌕</span><input id="spell-catalog-search" type="search" value="${escapeHtml(spellCatalogSearch)}" placeholder="z. B. Axxeleratus, Balsam, Ritual …" autocomplete="off" /></div>
+          <small>${catalogQuery ? `${catalogMatches.length}${catalogMatches.length === 30 ? "+" : ""} Treffer angezeigt` : `${ALL_SPELLS.length} Zauber und Rituale durchsuchbar`}</small>
+        </div>
+        ${catalogQuery ? `<div class="spell-search-results">
+          ${catalogMatches.map((definition) => `<article class="spell-search-result">
+            <span class="spell-search-result__kind">${definition.kind}</span>
+            <div><strong>${escapeHtml(definition.name)}</strong><small>${definition.check ? `Probe ${definition.check.join("/")} · Faktor ${definition.improvementCost}` : `Probe nicht hinterlegt · Faktor ${definition.improvementCost}`}</small></div>
+            <button class="secondary-button" data-import-spell="${escapeHtml(definition.id)}">Importieren</button>
+          </article>`).join("") || '<div class="empty-state">Kein noch nicht eingetragener Zauber gefunden.</div>'}
+        </div>` : '<p class="catalog-help">Suchbegriff eingeben und den gewünschten Zauber direkt importieren.</p>'}
       </article>` : ""}
       <div class="talent-list spell-list">
         ${(["Zauber", "Ritual"] as const).map((kind) => {
@@ -620,7 +638,7 @@ const renderCombat = (sheet: CharacterSheetState): string => {
         <div class="combat-stat combat-stat--initiative"><span>INI</span><strong>${overview.initiative}</strong><small>Basis ${overview.initiativeBase}${overview.armorModifier ? ` · Rüstung ${overview.armorModifier}` : ""}</small></div>
         <div class="initiative-control">
           <label><span>Weiterer Mod.</span><input id="initiative-modifier" type="number" min="-20" max="20" value="${sheet.runtime.combat.initiativeModifier}" /></label>
-          <button class="primary-button" id="roll-initiative">1W6 würfeln</button>
+          <button class="initiative-roll-button" id="roll-initiative"><span aria-hidden="true">⚄</span> Initiative würfeln</button>
           ${lastInitiative ? `<output class="initiative-result"><span>Letzter Wurf</span><strong>${lastInitiative.total}</strong><small>${lastInitiative.base} ${lastInitiative.armorModifier >= 0 ? "+" : ""}${lastInitiative.armorModifier} ${lastInitiative.manualModifier >= 0 ? "+" : ""}${lastInitiative.manualModifier} + W6 (${lastInitiative.die})</small></output>` : '<span class="initiative-placeholder">Noch nicht ausgewürfelt</span>'}
         </div>
       </section>
@@ -946,7 +964,7 @@ const renderRollDialog = (sheet: CharacterSheetState): string => {
   const definition = rollDialog.kind === "talent"
     ? TALENT_BY_ID[rollDialog.entryId]
     : getSpellDefinition(rollDialog.entryId);
-  if (!definition) return "";
+  if (!definition?.check) return "";
   const attributes = getAttributeValues(sheet.hero);
   const values = definition.check.map((code: AttributeCode) => attributes[code]) as [number, number, number];
   const skillValue = rollDialog.kind === "talent"
@@ -1203,15 +1221,28 @@ const attachSheetListeners = (): void => {
     });
   });
 
-  document.querySelector("#add-spell")?.addEventListener("click", () => {
-    if (!state || state.source !== "manual") return;
-    const select = document.querySelector<HTMLSelectElement>("#spell-catalog-select");
-    const id = select?.value;
-    if (!id || !SPELL_BY_ID[id]) return;
-    state.hero.spells ??= {};
-    state.hero.spells[id] = 0;
-    persist(false);
+  const spellCatalogSearchInput = document.querySelector<HTMLInputElement>("#spell-catalog-search");
+  spellCatalogSearchInput?.addEventListener("input", () => {
+    spellCatalogSearch = spellCatalogSearchInput.value;
     render();
+    const refreshed = document.querySelector<HTMLInputElement>("#spell-catalog-search");
+    refreshed?.focus();
+    refreshed?.setSelectionRange(spellCatalogSearch.length, spellCatalogSearch.length);
+  });
+
+  document.querySelectorAll<HTMLButtonElement>("[data-import-spell]").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (!state || state.source !== "manual") return;
+      const id = button.dataset.importSpell;
+      const definition = id ? ALL_SPELL_BY_ID[id] : undefined;
+      if (!id || !definition) return;
+      state.hero.spells ??= {};
+      state.hero.spells[id] = 0;
+      spellCatalogSearch = "";
+      persist(false);
+      render();
+      showToast(`„${definition.name}“ wurde hinzugefügt.`);
+    });
   });
 
   document.querySelectorAll<HTMLButtonElement>("[data-delete-spell]").forEach((button) => {
@@ -1760,7 +1791,7 @@ const attachSheetListeners = (): void => {
   document.querySelectorAll<HTMLButtonElement>("[data-roll-spell]").forEach((button) => {
     button.addEventListener("click", () => {
       const spellId = button.dataset.rollSpell;
-      if (!spellId || !getSpellDefinition(spellId)) return;
+      if (!spellId || !getSpellDefinition(spellId)?.check) return;
       rollDialog = { kind: "spell", entryId: spellId, modifier: 0 };
       render();
     });
@@ -1788,7 +1819,7 @@ const attachSheetListeners = (): void => {
     const definition = rollDialog.kind === "talent"
       ? TALENT_BY_ID[rollDialog.entryId]
       : getSpellDefinition(rollDialog.entryId);
-    if (!definition) return;
+    if (!definition?.check) return;
     const attributes = getAttributeValues(state.hero);
     const values = definition.check.map((code: AttributeCode) => attributes[code]) as [number, number, number];
     const skillValue = rollDialog.kind === "talent"

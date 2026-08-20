@@ -1,23 +1,20 @@
-DSA-CHARAKTERBOGEN – GITHUB-UPDATE 0.7.0
+DSA-CHARAKTERBOGEN – GITHUB-UPDATE 0.8.0
 =========================================
 
 Neu in dieser Version:
-- durchsuchbare Waffen- und Rüstungsbibliothek statt Ausklappmenü
-- Suchtreffer zeigen Typ, Schaden, Kampftechnik und weitere Kampfwerte
-- Waffen und Rüstungen mit einem Klick importieren
-- Primärwaffe direkt am Waffeneintrag auswählen
-- AT beziehungsweise FK, PA und Ausweichen oberhalb der Kampftechniken
-- Initiative mit Basiswert, Rüstung und weiterem Modifikator anzeigen
-- Initiative direkt mit 1W6 auswürfeln und letzten Wurf speichern
-- Inventar nach Kategorie, Name, Gewicht oder Wert sortieren
-- Gruppenüberschriften für Waffen, Rüstungen, Lebensmittel und weitere Kategorien
-- DarkAid-Proviant und viele typische Lebensmittel automatisch passend einsortieren
-- ältere gespeicherte Heldenbögen automatisch um die neuen Kampfwerte ergänzen
+- gemeinsamer Katalog mit 541 unterschiedlichen Zaubern und Ritualen
+- 533 Einträge mit vollständiger 3W20-Probe und Steigerungsfaktor
+- 97 Zaubertricks weiterhin sauber in einem eigenen Bereich
+- schnelle Zaubersuche statt einer sehr langen Auswahlliste
+- Zauber und Rituale mit einem Klick in manuelle Heldenbögen importieren
+- klare Kennzeichnung, wenn für einen seltenen Eintrag keine Probe hinterlegt ist
+- Initiative mit dunkler, gut lesbarer Schrift auf hellem Gold
+- deutlich sichtbarer roter Button "Initiative würfeln" mit Würfelsymbol
 
 UPLOAD
 ------
 1. Diese ZIP-Datei auf dem Mac doppelt anklicken.
-2. Den entpackten Ordner "github-update-v0.7.0" öffnen.
+2. Den entpackten Ordner "github-update-v0.8.0" öffnen.
 3. Im GitHub-Repository auf "Add file" und "Upload files" klicken:
    https://github.com/1Sabuto1-bip/DSA-Charakterbogen_Owlbear
 4. ALLE Inhalte des geöffneten Ordners in das Upload-Fenster ziehen.
@@ -39,13 +36,15 @@ erneut die alte Seite aus dem Browser-Cache erscheint.
 
 Falls Owlbear die alte Version trotzdem zeigt, die Erweiterung im Profil
 entfernen und mit folgender Adresse neu anlegen:
-https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/manifest.json?v=070
+https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/manifest.json?v=080
 
 BEDIENUNG
 ---------
-Im Reiter "Kampf" steht die neue Suche unter den Kampftechniken. Nach dem
-Import kann eine Waffe am jeweiligen Eintrag als "Primär" markiert werden.
-Die Werte oben werden sofort neu berechnet.
+Im Reiter "Zauber" steht bei manuell angelegten magischen Figuren die neue
+Katalogsuche. Suchbegriff eingeben und beim gewünschten Treffer auf
+"Importieren" klicken. Bereits eingetragene Zauber bleiben weiter oben
+durchsuchbar, editierbar, steigerbar und – bei hinterlegter Probe – würfelbar.
 
-Im Reiter "Inventar" ist "Kategorien" voreingestellt. Die Kategorie jedes
-Gegenstands kann weiterhin direkt im Eintrag geändert werden.
+Im Reiter "Kampf" ist die Initiative oben nun deutlich lesbar. Der rote
+Button "Initiative würfeln" führt wie bisher den W6-Wurf aus und speichert
+das letzte Ergebnis.
