@@ -117,7 +117,24 @@ export interface RuntimeState {
   favoriteTalentIds: string[];
   linkedTokenId?: string;
   linkedTokenName?: string;
+  inventoryCategoriesMigrated: boolean;
+  combat: CombatRuntimeState;
   advancement: AdvancementState;
+}
+
+export interface InitiativeRoll {
+  die: number;
+  base: number;
+  armorModifier: number;
+  manualModifier: number;
+  total: number;
+  rolledAt: string;
+}
+
+export interface CombatRuntimeState {
+  primaryWeaponId?: string;
+  initiativeModifier: number;
+  lastInitiativeRoll?: InitiativeRoll;
 }
 
 export type AdvancementKind = "attribute" | "talent" | "combatTechnique" | "spell" | "resource";

@@ -19,10 +19,13 @@ Der aktuelle Prototyp importiert Optolith-JSON-Dateien der Version 1.5.x und TDC
 - Zauberproben mit den passenden drei Eigenschaften würfeln
 - im manuellen Modus Zauber aus 330 Optolith-kompatiblen Zaubern und 97 Zaubertricks hinzufügen, bearbeiten und entfernen
 - Kampftechniken, Waffen und Rüstungen anzeigen
-- Waffen und Rüstungen aus dem integrierten DarkAid-Regelkatalog übernehmen oder frei anlegen
+- Waffen und Rüstungen über eine durchsuchbare Bibliothek aus dem integrierten DarkAid-Regelkatalog übernehmen oder frei anlegen
+- eine Primärwaffe auswählen und daraus AT/FK, PA und Ausweichen regelgerecht berechnen
+- Initiative mit Basiswert, Rüstungs- und Situationsmodifikator direkt im Kampfbereich würfeln
 - Nahkampfwerte (TP, AT/PA, Reichweite, TP-Schwelle), Fernkampfwerte (TP, Ladezeit, Reichweiten, Munition) sowie RS, BE, GS-/INI-Abzüge bearbeiten
 - Waffen, Schilde und Rüstungen für Optolith-, DarkAid- und manuelle Helden hinzufügen, ändern und löschen
 - Inventar und Geldbörse bearbeiten; Gegenstände hinzufügen und löschen
+- Inventar nach Kategorie, Name, Gewicht oder Wert sortieren; zusätzliche Gruppen für Lebensmittel, Dokumente, Alchemie, Wertsachen sowie Tiere und Transport
 - eigener Reiter **Steigern** mit AP-Guthaben, automatischen Kosten nach den Spalten A–E und Steigerungsprotokoll
 - Eigenschaften, Talente, Kampftechniken, bekannte Zauber sowie LeP, AsP und KaP mit AP steigern
 - regeltechnische Maximalwerte prüfen, mit gekennzeichneter Spielleiter-/Hausregeloption übergehen und die letzte Steigerung zurücknehmen

@@ -31,6 +31,12 @@ import {
 import { OwlbearBridge } from "./owlbear";
 import { rollTalent } from "./roll";
 import { clearState, loadState, saveState } from "./storage";
+import {
+  calculateCombatOverview,
+  getDefaultPrimaryWeaponId,
+  inferCombatItemKind,
+  rollInitiative,
+} from "./combat";
 import type {
   CharacterSheetState,
   AdvancementHistoryEntry,
@@ -48,6 +54,7 @@ import type {
 type TabId = "overview" | "talents" | "spells" | "combat" | "inventory" | "advance" | "source";
 
 type AdvancementSection = "attributes" | "talents" | "combat" | "spells" | "resources";
+type InventorySort = "category" | "name" | "weight" | "value";
 
 interface RollDialogState {
   kind: "talent" | "spell";
@@ -66,6 +73,8 @@ let talentSearch = "";
 let spellSearch = "";
 let advancementSearch = "";
 let advancementSection: AdvancementSection = "attributes";
+let weaponCatalogSearch = "";
+let inventorySort: InventorySort = "category";
 let rollDialog: RollDialogState | null = null;
 let toastTimer: number | undefined;
 
@@ -90,14 +99,12 @@ const COMBAT_CATALOG = Object.entries(DARKAID_ITEM_DATA)
   .map(([id, item]) => ({ id, item }))
   .sort((a, b) => (a.item.name ?? a.id).localeCompare(b.item.name ?? b.id, "de"));
 
-const inferItemKind = (item: OptolithItem): CombatItemKind => {
-  if (item.itemKind) return item.itemKind;
-  if (item.gr === 4 || typeof item.pro === "number") return "armor";
-  if (item.combatTechnique === "CT_10") return "shield";
-  if (item.gr === 2 || COMBAT_TECHNIQUE_RULES[item.combatTechnique ?? ""]?.range === "ranged") return "ranged";
-  if (item.damageDiceSides || item.combatTechnique) return "melee";
-  return "equipment";
-};
+const normalizeSearch = (value: string): string => value
+  .toLocaleLowerCase("de")
+  .normalize("NFD")
+  .replace(/[\u0300-\u036f]/g, "")
+  .replaceAll("ß", "ss")
+  .trim();
 
 const combatKindLabel = (kind: CombatItemKind): string => ({
   melee: "Nahkampfwaffe",
@@ -106,6 +113,15 @@ const combatKindLabel = (kind: CombatItemKind): string => ({
   armor: "Rüstung",
   equipment: "Gegenstand",
 })[kind];
+
+const combatCatalogSummary = (item: Partial<OptolithItem>): string => {
+  const kind = inferCombatItemKind(item as OptolithItem);
+  if (kind === "armor") return `RS ${item.pro ?? 0} · BE ${item.enc ?? 0}`;
+  const damage = `${item.damageDiceNumber ?? 1}W${item.damageDiceSides ?? 6}${Number(item.damageFlat ?? 0) >= 0 ? "+" : ""}${item.damageFlat ?? 0}`;
+  const technique = COMBAT_TECHNIQUES[item.combatTechnique ?? ""] ?? "ohne Kampftechnik";
+  if (kind === "ranged") return `${damage} TP · ${technique} · RW ${item.rangeShort ?? 0}/${item.rangeMedium ?? 0}/${item.rangeLong ?? 0}`;
+  return `${damage} TP · ${technique} · AT/PA ${Number(item.at ?? 0) >= 0 ? "+" : ""}${item.at ?? 0}/${Number(item.pa ?? 0) >= 0 ? "+" : ""}${item.pa ?? 0}`;
+};
 
 const getDarkAidMagicDefinition = (id: string) => {
   const sourceId = id.startsWith("DARKAID_CANTRIP_")
@@ -490,7 +506,12 @@ const combatTechniqueOptions = (selected: string | undefined, range?: "melee" | 
     .map((definition) => `<option value="${definition.id}" ${definition.id === selected ? "selected" : ""}>${escapeHtml(definition.name)}</option>`)
     .join("");
 
-const renderWeaponEditor = (key: string, item: OptolithItem, kind: "melee" | "ranged" | "shield"): string => {
+const renderWeaponEditor = (
+  key: string,
+  item: OptolithItem,
+  kind: "melee" | "ranged" | "shield",
+  isPrimary: boolean,
+): string => {
   const techniqueRange = kind === "ranged" ? "ranged" : "melee";
   const techniqueOptions = kind === "shield"
     ? `<option value="CT_10" selected>Schilde</option>`
@@ -501,6 +522,7 @@ const renderWeaponEditor = (key: string, item: OptolithItem, kind: "melee" | "ra
       <span class="weapon-icon">${kindIcon}</span>
       <label><span>Name</span><input class="combat-name-input" data-combat-key="${escapeHtml(key)}" data-combat-field="name" value="${escapeHtml(item.name)}" /></label>
       <span class="combat-kind">${combatKindLabel(kind)}</span>
+      <label class="primary-weapon-toggle" title="Diese Waffe für die Werte oben verwenden"><input type="radio" name="primary-weapon" data-primary-weapon="${escapeHtml(key)}" ${isPrimary ? "checked" : ""} /><span>Primär</span></label>
       <button class="inventory-delete" data-delete-combat="${escapeHtml(key)}" title="${escapeHtml(item.name)} löschen">×</button>
     </div>
     <div class="combat-editor__grid">
@@ -568,14 +590,41 @@ const renderCombat = (sheet: CharacterSheetState): string => {
       ? (COMBAT_TECHNIQUES[a[0]] ?? a[0]).localeCompare(COMBAT_TECHNIQUES[b[0]] ?? b[0], "de")
       : b[1] - a[1]);
   const combatItems = Object.entries(sheet.hero.belongings?.items ?? {})
-    .map(([key, item]) => ({ key, item, kind: inferItemKind(item) }))
+    .map(([key, item]) => ({ key, item, kind: inferCombatItemKind(item) }))
     .filter((entry) => entry.kind !== "equipment")
     .sort((a, b) => a.item.name.localeCompare(b.item.name, "de"));
   const weapons = combatItems.filter((entry) => entry.kind !== "armor");
   const armor = combatItems.filter((entry) => entry.kind === "armor");
+  const overview = calculateCombatOverview(
+    sheet.hero,
+    sheet.runtime.combat.primaryWeaponId,
+    sheet.runtime.combat.initiativeModifier,
+  );
+  const query = normalizeSearch(weaponCatalogSearch);
+  const catalogMatches = query
+    ? COMBAT_CATALOG.filter(({ id, item }) => normalizeSearch(`${item.name ?? ""} ${id} ${combatKindLabel(inferCombatItemKind(item as OptolithItem))}`).includes(query)).slice(0, 24)
+    : [];
+  const lastInitiative = sheet.runtime.combat.lastInitiativeRoll;
 
   return `
     <section class="page page--combat">
+      <section class="combat-overview" aria-label="Aktuelle Kampfwerte">
+        <div class="combat-overview__weapon">
+          <span>Primärwaffe</span>
+          <strong>${escapeHtml(overview.primaryWeaponName)}</strong>
+          <small>${escapeHtml(overview.combatTechniqueName)}</small>
+        </div>
+        <div class="combat-stat"><span>${overview.attackLabel}</span><strong>${overview.attack}</strong><small>${overview.attackLabel === "FK" ? "Fernkampf" : "Attacke"}</small></div>
+        <div class="combat-stat"><span>PA</span><strong>${overview.parry ?? "—"}</strong><small>Parade</small></div>
+        <div class="combat-stat"><span>AW</span><strong>${overview.dodge}</strong><small>Ausweichen</small></div>
+        <div class="combat-stat combat-stat--initiative"><span>INI</span><strong>${overview.initiative}</strong><small>Basis ${overview.initiativeBase}${overview.armorModifier ? ` · Rüstung ${overview.armorModifier}` : ""}</small></div>
+        <div class="initiative-control">
+          <label><span>Weiterer Mod.</span><input id="initiative-modifier" type="number" min="-20" max="20" value="${sheet.runtime.combat.initiativeModifier}" /></label>
+          <button class="primary-button" id="roll-initiative">1W6 würfeln</button>
+          ${lastInitiative ? `<output class="initiative-result"><span>Letzter Wurf</span><strong>${lastInitiative.total}</strong><small>${lastInitiative.base} ${lastInitiative.armorModifier >= 0 ? "+" : ""}${lastInitiative.armorModifier} ${lastInitiative.manualModifier >= 0 ? "+" : ""}${lastInitiative.manualModifier} + W6 (${lastInitiative.die})</small></output>` : '<span class="initiative-placeholder">Noch nicht ausgewürfelt</span>'}
+        </div>
+      </section>
+
       <div class="section-title"><div><p class="eyebrow">Kampfwerte</p><h2>Kampftechniken</h2></div><span class="section-hint">Steigerungen erfolgen im Reiter „Steigern“</span></div>
       <div class="technique-grid">
         ${techniques.map(([id, value]) => `<article class="technique-card">
@@ -588,11 +637,20 @@ const renderCombat = (sheet: CharacterSheetState): string => {
         <span class="section-hint">Regelvorlage wählen oder frei anlegen</span>
       </div>
       <article class="combat-add-panel">
-        <label><span>Vorlage mit DSA-Werten</span><select id="combat-catalog-select">
-          ${COMBAT_CATALOG.map(({ id, item }) => `<option value="${escapeHtml(id)}">${combatKindLabel(inferItemKind(item as OptolithItem))}: ${escapeHtml(item.name ?? id)}</option>`).join("")}
-        </select></label>
-        <button class="primary-button" id="add-combat-template">+ Vorlage</button>
+        <div class="combat-library-search">
+          <label for="weapon-catalog-search"><span>Waffe oder Rüstung suchen</span></label>
+          <div class="search-input"><span>⌕</span><input id="weapon-catalog-search" type="search" value="${escapeHtml(weaponCatalogSearch)}" placeholder="z. B. Langschwert, Bogen, Kettenhemd …" autocomplete="off" /></div>
+          <small>${query ? `${catalogMatches.length}${catalogMatches.length === 24 ? "+" : ""} Treffer angezeigt` : `${COMBAT_CATALOG.length} Vorlagen durchsuchbar`}</small>
+        </div>
+        ${query ? `<div class="combat-search-results">
+          ${catalogMatches.map(({ id, item }) => `<article class="combat-search-result">
+            <span class="combat-search-result__kind">${escapeHtml(combatKindLabel(inferCombatItemKind(item as OptolithItem)))}</span>
+            <div><strong>${escapeHtml(item.name ?? id)}</strong><small>${escapeHtml(combatCatalogSummary(item))}</small></div>
+            <button class="secondary-button" data-import-combat-template="${escapeHtml(id)}">Importieren</button>
+          </article>`).join("") || '<div class="empty-state">Keine passende Waffe oder Rüstung gefunden.</div>'}
+        </div>` : '<div class="combat-search-hint">Suchbegriff eingeben und den passenden Eintrag mit einem Klick importieren.</div>'}
         <div class="combat-add-panel__blank">
+          <span>Oder frei anlegen:</span>
           <button class="secondary-button" data-add-combat-kind="melee">+ Nahkampf</button>
           <button class="secondary-button" data-add-combat-kind="ranged">+ Fernkampf</button>
           <button class="secondary-button" data-add-combat-kind="shield">+ Schild</button>
@@ -601,7 +659,7 @@ const renderCombat = (sheet: CharacterSheetState): string => {
       </article>
 
       <div class="weapon-list">
-        ${weapons.map(({ key, item, kind }) => renderWeaponEditor(key, item, kind as "melee" | "ranged" | "shield")).join("") || '<div class="empty-state">Noch keine Waffen oder Schilde eingetragen.</div>'}
+        ${weapons.map(({ key, item, kind }) => renderWeaponEditor(key, item, kind as "melee" | "ranged" | "shield", overview.primaryWeaponId === key)).join("") || '<div class="empty-state">Noch keine Waffen oder Schilde eingetragen. Ohne Auswahl werden die Werte für Raufen angezeigt.</div>'}
       </div>
       <div class="section-title section-title--resources"><div><p class="eyebrow">Schutz</p><h2>Rüstungen</h2></div></div>
       <div class="armor-editor-list">
@@ -613,16 +671,56 @@ const renderCombat = (sheet: CharacterSheetState): string => {
 
 const renderInventory = (sheet: CharacterSheetState): string => {
   const items = Object.entries(sheet.hero.belongings?.items ?? {})
-    .map(([key, item]) => ({ key, item }))
-    .sort((a, b) => a.item.name.localeCompare(b.item.name, "de"));
+    .map(([key, item]) => ({ key, item }));
+  const categoryName = (item: OptolithItem): string => ITEM_GROUPS[item.gr ?? 0] ?? "Sonstiges";
+  items.sort((a, b) => {
+    if (inventorySort === "weight") return ((b.item.weight ?? 0) * (b.item.amount ?? 1)) - ((a.item.weight ?? 0) * (a.item.amount ?? 1)) || a.item.name.localeCompare(b.item.name, "de");
+    if (inventorySort === "value") return ((b.item.price ?? 0) * (b.item.amount ?? 1)) - ((a.item.price ?? 0) * (a.item.amount ?? 1)) || a.item.name.localeCompare(b.item.name, "de");
+    if (inventorySort === "category") {
+      const groupA = ITEM_GROUPS[a.item.gr ?? 0] ? Number(a.item.gr) : 99;
+      const groupB = ITEM_GROUPS[b.item.gr ?? 0] ? Number(b.item.gr) : 99;
+      return groupA - groupB || a.item.name.localeCompare(b.item.name, "de");
+    }
+    return a.item.name.localeCompare(b.item.name, "de");
+  });
   const purse = sheet.hero.belongings?.purse ?? {};
   const totalWeight = items.reduce((sum, entry) => sum + (entry.item.weight ?? 0) * (entry.item.amount ?? 1), 0);
+  let previousCategory = "";
+  const itemRows = items.map(({ key, item }) => {
+    const category = categoryName(item);
+    const categoryRow = inventorySort === "category" && category !== previousCategory
+      ? `<tr class="inventory-category-row"><th colspan="5"><span>${escapeHtml(category)}</span><small>${items.filter((entry) => categoryName(entry.item) === category).length} Einträge</small></th></tr>`
+      : "";
+    previousCategory = category;
+    return `${categoryRow}<tr>
+      <td class="inventory-item-cell">
+        <input class="inventory-name-input" data-inventory-key="${escapeHtml(key)}" data-inventory-field="name" value="${escapeHtml(item.name)}" aria-label="Gegenstand" />
+        <select data-inventory-key="${escapeHtml(key)}" data-inventory-field="gr" aria-label="Kategorie">
+          ${Object.entries(ITEM_GROUPS).map(([groupId, groupName]) => `<option value="${groupId}" ${Number(groupId) === (item.gr ?? 0) ? "selected" : ""}>${escapeHtml(groupName)}</option>`).join("")}
+          <option value="0" ${ITEM_GROUPS[item.gr ?? 0] ? "" : "selected"}>Sonstiges</option>
+        </select>
+      </td>
+      <td><input class="inventory-number-input" data-inventory-key="${escapeHtml(key)}" data-inventory-field="amount" type="number" min="0" step="1" value="${item.amount ?? 1}" aria-label="Anzahl" /></td>
+      <td><input class="inventory-number-input" data-inventory-key="${escapeHtml(key)}" data-inventory-field="weight" type="number" min="0" step="0.01" value="${item.weight ?? 0}" aria-label="Gewicht in Stein" /></td>
+      <td><input class="inventory-number-input" data-inventory-key="${escapeHtml(key)}" data-inventory-field="price" type="number" min="0" step="0.01" value="${item.price ?? 0}" aria-label="Wert" /></td>
+      <td><button class="inventory-delete" data-delete-inventory="${escapeHtml(key)}" title="Gegenstand löschen" aria-label="${escapeHtml(item.name)} löschen">×</button></td>
+    </tr>`;
+  }).join("");
 
   return `
     <section class="page page--inventory">
       <div class="section-title">
         <div><p class="eyebrow">Hab und Gut</p><h2>Inventar</h2></div>
-        <div class="inventory-heading-actions"><span class="section-hint">${formatNumber(totalWeight)} Stein</span><button class="primary-button inventory-add" id="add-inventory-item">+ Gegenstand</button></div>
+        <div class="inventory-heading-actions">
+          <span class="section-hint">${formatNumber(totalWeight)} Stein</span>
+          <label class="inventory-sort"><span>Sortierung</span><select id="inventory-sort">
+            <option value="category" ${inventorySort === "category" ? "selected" : ""}>Kategorien</option>
+            <option value="name" ${inventorySort === "name" ? "selected" : ""}>Name A–Z</option>
+            <option value="weight" ${inventorySort === "weight" ? "selected" : ""}>Gewicht</option>
+            <option value="value" ${inventorySort === "value" ? "selected" : ""}>Wert</option>
+          </select></label>
+          <button class="primary-button inventory-add" id="add-inventory-item">+ Gegenstand</button>
+        </div>
       </div>
       <div class="purse" aria-label="Geldbörse">
         ${[
@@ -640,23 +738,7 @@ const renderInventory = (sheet: CharacterSheetState): string => {
         <table class="inventory-table">
           <thead><tr><th>Gegenstand</th><th>Anzahl</th><th>Gewicht</th><th>Wert</th><th></th></tr></thead>
           <tbody>
-            ${items
-              .map(
-                ({ key, item }) => `<tr>
-                  <td class="inventory-item-cell">
-                    <input class="inventory-name-input" data-inventory-key="${escapeHtml(key)}" data-inventory-field="name" value="${escapeHtml(item.name)}" aria-label="Gegenstand" />
-                    <select data-inventory-key="${escapeHtml(key)}" data-inventory-field="gr" aria-label="Kategorie">
-                      ${Object.entries(ITEM_GROUPS).map(([groupId, groupName]) => `<option value="${groupId}" ${Number(groupId) === (item.gr ?? 0) ? "selected" : ""}>${escapeHtml(groupName)}</option>`).join("")}
-                      <option value="0" ${ITEM_GROUPS[item.gr ?? 0] ? "" : "selected"}>Sonstiges</option>
-                    </select>
-                  </td>
-                  <td><input class="inventory-number-input" data-inventory-key="${escapeHtml(key)}" data-inventory-field="amount" type="number" min="0" step="1" value="${item.amount ?? 1}" aria-label="Anzahl" /></td>
-                  <td><input class="inventory-number-input" data-inventory-key="${escapeHtml(key)}" data-inventory-field="weight" type="number" min="0" step="0.01" value="${item.weight ?? 0}" aria-label="Gewicht in Stein" /></td>
-                  <td><input class="inventory-number-input" data-inventory-key="${escapeHtml(key)}" data-inventory-field="price" type="number" min="0" step="0.01" value="${item.price ?? 0}" aria-label="Wert" /></td>
-                  <td><button class="inventory-delete" data-delete-inventory="${escapeHtml(key)}" title="Gegenstand löschen" aria-label="${escapeHtml(item.name)} löschen">×</button></td>
-                </tr>`,
-              )
-              .join("") || '<tr><td colspan="5" class="empty-state">Noch keine Gegenstände vorhanden.</td></tr>'}
+            ${itemRows || '<tr><td colspan="5" class="empty-state">Noch keine Gegenstände vorhanden.</td></tr>'}
           </tbody>
         </table>
       </div>
@@ -1265,23 +1347,76 @@ const attachSheetListeners = (): void => {
       createdItem.damageBonusAttribute = primaryAttributes[0];
     }
     state.hero.belongings.items[id] = createdItem;
+    if (kind !== "armor" && kind !== "equipment" && !state.runtime.combat.primaryWeaponId) {
+      state.runtime.combat.primaryWeaponId = id;
+    }
     persist(false);
     render();
     document.querySelector<HTMLInputElement>(`[data-combat-key="${id}"][data-combat-field="name"]`)?.select();
   };
 
-  document.querySelector("#add-combat-template")?.addEventListener("click", () => {
-    const select = document.querySelector<HTMLSelectElement>("#combat-catalog-select");
-    const catalogId = select?.value;
-    const template = catalogId ? DARKAID_ITEM_DATA[catalogId] : undefined;
-    if (!template) return;
-    const prefix = catalogId?.split(":", 1)[0];
-    const kind: CombatItemKind = prefix === "armor" ? "armor" : prefix === "rangedweapon" ? "ranged" : prefix === "shield" ? "shield" : "melee";
-    addCombatItem(kind, template);
+  const weaponSearchInput = document.querySelector<HTMLInputElement>("#weapon-catalog-search");
+  weaponSearchInput?.addEventListener("input", () => {
+    weaponCatalogSearch = weaponSearchInput.value;
+    render();
+    const refreshed = document.querySelector<HTMLInputElement>("#weapon-catalog-search");
+    refreshed?.focus();
+    refreshed?.setSelectionRange(weaponCatalogSearch.length, weaponCatalogSearch.length);
+  });
+
+  document.querySelectorAll<HTMLButtonElement>("[data-import-combat-template]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const catalogId = button.dataset.importCombatTemplate;
+      const template = catalogId ? DARKAID_ITEM_DATA[catalogId] : undefined;
+      if (!catalogId || !template) return;
+      const prefix = catalogId.split(":", 1)[0];
+      const kind: CombatItemKind = prefix === "armor" ? "armor" : prefix === "rangedweapon" ? "ranged" : prefix === "shield" ? "shield" : "melee";
+      weaponCatalogSearch = "";
+      addCombatItem(kind, template);
+      showToast(`„${template.name ?? "Kampfgegenstand"}“ wurde importiert.`);
+    });
   });
 
   document.querySelectorAll<HTMLButtonElement>("[data-add-combat-kind]").forEach((button) => {
     button.addEventListener("click", () => addCombatItem(button.dataset.addCombatKind as CombatItemKind));
+  });
+
+  document.querySelectorAll<HTMLInputElement>("[data-primary-weapon]").forEach((input) => {
+    input.addEventListener("change", () => {
+      if (!state || !input.checked) return;
+      const key = input.dataset.primaryWeapon;
+      const item = key ? state.hero.belongings?.items?.[key] : undefined;
+      if (!key || !item) return;
+      state.runtime.combat.primaryWeaponId = key;
+      item.equipped = true;
+      persist(false);
+      render();
+    });
+  });
+
+  document.querySelector<HTMLInputElement>("#initiative-modifier")?.addEventListener("input", (event) => {
+    if (!state) return;
+    state.runtime.combat.initiativeModifier = Math.max(-20, Math.min(20, Math.round(asNumber((event.target as HTMLInputElement).value))));
+    persist(false);
+    const overview = calculateCombatOverview(
+      state.hero,
+      state.runtime.combat.primaryWeaponId,
+      state.runtime.combat.initiativeModifier,
+    );
+    const value = document.querySelector<HTMLElement>(".combat-stat--initiative strong");
+    if (value) value.textContent = String(overview.initiative);
+  });
+
+  document.querySelector("#roll-initiative")?.addEventListener("click", () => {
+    if (!state) return;
+    const overview = calculateCombatOverview(
+      state.hero,
+      state.runtime.combat.primaryWeaponId,
+      state.runtime.combat.initiativeModifier,
+    );
+    state.runtime.combat.lastInitiativeRoll = rollInitiative(overview);
+    persist(false);
+    render();
   });
 
   document.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>("[data-combat-key][data-combat-field]").forEach((input) => {
@@ -1313,6 +1448,9 @@ const attachSheetListeners = (): void => {
       const item = key ? state.hero.belongings?.items?.[key] : undefined;
       if (!key || !item || !window.confirm(`„${item.name}“ vollständig aus dem Inventar löschen?`)) return;
       delete state.hero.belongings?.items?.[key];
+      if (state.runtime.combat.primaryWeaponId === key) {
+        state.runtime.combat.primaryWeaponId = getDefaultPrimaryWeaponId(state.hero);
+      }
       persist(false);
       render();
     });
@@ -1518,6 +1656,11 @@ const attachSheetListeners = (): void => {
     document.querySelector<HTMLInputElement>(`[data-inventory-key="${id}"][data-inventory-field="name"]`)?.select();
   });
 
+  document.querySelector<HTMLSelectElement>("#inventory-sort")?.addEventListener("change", (event) => {
+    inventorySort = (event.target as HTMLSelectElement).value as InventorySort;
+    render();
+  });
+
   document.querySelectorAll<HTMLInputElement | HTMLSelectElement>("[data-inventory-key][data-inventory-field]").forEach((input) => {
     input.addEventListener("change", () => {
       if (!state) return;
@@ -1541,6 +1684,9 @@ const attachSheetListeners = (): void => {
       const item = key ? state.hero.belongings?.items?.[key] : undefined;
       if (!key || !item || !window.confirm(`„${item.name}“ aus dem Inventar löschen?`)) return;
       delete state.hero.belongings?.items?.[key];
+      if (state.runtime.combat.primaryWeaponId === key) {
+        state.runtime.combat.primaryWeaponId = getDefaultPrimaryWeaponId(state.hero);
+      }
       persist(false);
       render();
     });

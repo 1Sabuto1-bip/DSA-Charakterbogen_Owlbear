@@ -1,22 +1,23 @@
-DSA-CHARAKTERBOGEN – GITHUB-UPDATE 0.6.0
+DSA-CHARAKTERBOGEN – GITHUB-UPDATE 0.7.0
 =========================================
 
 Neu in dieser Version:
-- Waffen, Schilde und Rüstungen hinzufügen, bearbeiten und löschen
-- Vorlagen aus dem integrierten DarkAid-Ausrüstungskatalog übernehmen
-- Nahkampfwerte, Fernkampfwerte und vollständige Rüstungswerte bearbeiten
-- neuer Reiter "Steigern" für Eigenschaften, Talente, Kampftechniken,
-  bekannte Zauber sowie LeP, AsP und KaP
-- AP-Guthaben und neu erhaltene Abenteuerpunkte verwalten
-- automatische AP-Kosten nach den DSA-5-Steigerungsspalten A bis E
-- regeltechnische Maximalwerte prüfen
-- letzte Steigerung zurücknehmen und AP erstatten
-- ältere gespeicherte Heldenbögen automatisch auf die neue Version umstellen
+- durchsuchbare Waffen- und Rüstungsbibliothek statt Ausklappmenü
+- Suchtreffer zeigen Typ, Schaden, Kampftechnik und weitere Kampfwerte
+- Waffen und Rüstungen mit einem Klick importieren
+- Primärwaffe direkt am Waffeneintrag auswählen
+- AT beziehungsweise FK, PA und Ausweichen oberhalb der Kampftechniken
+- Initiative mit Basiswert, Rüstung und weiterem Modifikator anzeigen
+- Initiative direkt mit 1W6 auswürfeln und letzten Wurf speichern
+- Inventar nach Kategorie, Name, Gewicht oder Wert sortieren
+- Gruppenüberschriften für Waffen, Rüstungen, Lebensmittel und weitere Kategorien
+- DarkAid-Proviant und viele typische Lebensmittel automatisch passend einsortieren
+- ältere gespeicherte Heldenbögen automatisch um die neuen Kampfwerte ergänzen
 
 UPLOAD
 ------
 1. Diese ZIP-Datei auf dem Mac doppelt anklicken.
-2. Den entpackten Ordner "github-update-v0.6.0" öffnen.
+2. Den entpackten Ordner "github-update-v0.7.0" öffnen.
 3. Im GitHub-Repository auf "Add file" und "Upload files" klicken:
    https://github.com/1Sabuto1-bip/DSA-Charakterbogen_Owlbear
 4. ALLE Inhalte des geöffneten Ordners in das Upload-Fenster ziehen.
@@ -32,22 +33,19 @@ Folder: /docs
 
 OWLBEAR
 -------
-Die bereits installierte Erweiterung verwendet weiterhin diese Adresse:
-https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/manifest.json
+Nach dem Upload Owlbear vollständig neu laden. Das Manifest dieser Version
+verwendet eine eigene Versionsadresse für die Programmoberfläche, damit nicht
+erneut die alte Seite aus dem Browser-Cache erscheint.
 
-Nach dem Upload Owlbear vollständig neu laden. Falls die alte Version im Cache
-bleibt, die Erweiterung im Profil entfernen und mit folgender Adresse neu anlegen:
-https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/manifest.json?v=060
+Falls Owlbear die alte Version trotzdem zeigt, die Erweiterung im Profil
+entfernen und mit folgender Adresse neu anlegen:
+https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/manifest.json?v=070
 
-AP-GUTHABEN
------------
-Bei importierten Helden ist das vorhandene AP-Guthaben nicht immer Teil der
-Quelldatei. Im Reiter "Steigern" kann es deshalb einmalig gesetzt werden.
-Später erhaltene AP werden über "AP hinzufügen" zugleich dem Guthaben und den
-Gesamt-AP des Helden gutgeschrieben.
+BEDIENUNG
+---------
+Im Reiter "Kampf" steht die neue Suche unter den Kampftechniken. Nach dem
+Import kann eine Waffe am jeweiligen Eintrag als "Primär" markiert werden.
+Die Werte oben werden sofort neu berechnet.
 
-REGELGRENZEN
-------------
-Der Bogen prüft die üblichen Maximalwerte. Für Sonderfälle, Merkmalskenntnis
-oder Hausregeln kann die Spielleiter-Freigabe aktiviert werden. Die AP-Kosten
-werden dabei weiterhin berechnet.
+Im Reiter "Inventar" ist "Kategorien" voreingestellt. Die Kategorie jedes
+Gegenstands kann weiterhin direkt im Eintrag geändert werden.

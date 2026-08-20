@@ -4,9 +4,11 @@ import {
   COMBAT_TECHNIQUES,
   SPECIES_BY_ID,
   SPECIES_BY_KEY,
+  suggestInventoryGroup,
   TALENTS,
 } from "./data";
 import { createDarkAidState, isDarkAidHero } from "./darkaid-importer";
+import { getDefaultPrimaryWeaponId, inferCombatItemKind } from "./combat";
 import type {
   AttributeCode,
   CharacterSheetState,
@@ -82,6 +84,13 @@ export const isMagicallyGifted = (sheet: CharacterSheetState): boolean =>
 
 const emptyResource = (): ResourceValue => ({ current: 0, max: 0 });
 
+const migrateInventoryCategories = (hero: OptolithHero): void => {
+  for (const item of Object.values(hero.belongings?.items ?? {})) {
+    if (inferCombatItemKind(item) !== "equipment") continue;
+    item.gr = suggestInventoryGroup(item.name, item.gr ?? 0);
+  }
+};
+
 export const createRuntimeState = (hero: OptolithHero): RuntimeState => ({
   resources: {
     lp: deriveLifePoints(hero),
@@ -91,6 +100,11 @@ export const createRuntimeState = (hero: OptolithHero): RuntimeState => ({
   },
   notes: "",
   favoriteTalentIds: [],
+  inventoryCategoriesMigrated: true,
+  combat: {
+    primaryWeaponId: getDefaultPrimaryWeaponId(hero),
+    initiativeModifier: 0,
+  },
   advancement: {
     availableAp: 0,
     spentAp: 0,
@@ -242,6 +256,8 @@ const validateBackup = (value: Record<string, unknown>): CharacterSheetState | n
   const fallback = createRuntimeState(hero);
   const runtime = value.runtime as unknown as Partial<RuntimeState>;
   const advancement = runtime.advancement;
+  const combat = runtime.combat;
+  if (runtime.inventoryCategoriesMigrated !== true) migrateInventoryCategories(hero);
   return {
     schemaVersion: 1,
     source,
@@ -258,6 +274,18 @@ const validateBackup = (value: Record<string, unknown>): CharacterSheetState | n
         ? runtime.favoriteTalentIds.filter((id): id is string => typeof id === "string")
         : [],
       notes: typeof runtime.notes === "string" ? runtime.notes : "",
+      inventoryCategoriesMigrated: true,
+      combat: {
+        ...fallback.combat,
+        ...(combat ?? {}),
+        primaryWeaponId: typeof combat?.primaryWeaponId === "string"
+          ? combat.primaryWeaponId
+          : fallback.combat.primaryWeaponId,
+        initiativeModifier: asFiniteNumber(combat?.initiativeModifier),
+        lastInitiativeRoll: isObject(combat?.lastInitiativeRoll)
+          ? combat.lastInitiativeRoll as unknown as RuntimeState["combat"]["lastInitiativeRoll"]
+          : undefined,
+      },
       advancement: {
         ...fallback.advancement,
         ...(advancement ?? {}),
@@ -289,6 +317,7 @@ export const importHeroJson = (json: string): CharacterSheetState => {
   if (isDarkAidHero(parsed)) return createDarkAidState(parsed, createRuntimeState);
 
   const hero = validateHero(parsed);
+  migrateInventoryCategories(hero);
   return {
     schemaVersion: 1,
     source: "optolith",

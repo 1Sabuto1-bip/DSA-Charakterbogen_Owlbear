@@ -181,4 +181,23 @@ export const ITEM_GROUPS: Record<number, string> = {
   7: "Reisebedarf",
   8: "Werkzeuge",
   9: "Heilmittel",
+  10: "Lebensmittel & Proviant",
+  11: "Bücher & Dokumente",
+  12: "Zutaten & Alchemie",
+  13: "Schmuck & Wertsachen",
+  14: "Tiere & Transport",
+};
+
+export const suggestInventoryGroup = (name: string, currentGroup = 0): number => {
+  const normalized = name
+    .toLocaleLowerCase("de")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replaceAll("ß", "ss");
+  if (/(proviant|mahlzeit|gericht|ration|lebensmittel|^brot\b|^fleisch\b|^fisch\b|^kase\b|^milch\b|^bier\b|^wein\b|^schnaps\b|^met\b|^obst\b|^gemuse\b|^tee\b|^kaffee\b)/.test(normalized)) return 10;
+  if (/(buch|schrift|dokument|urkunde|pergament|tagebuch|landkarte|stadtplan|brief\b)/.test(normalized)) return 11;
+  if (/(ingredienz|alchimi|zutat|laborbedarf|essenz|elixier)/.test(normalized)) return 12;
+  if (/(schmuck|edelstein|diamant|rubin|smaragd|saphir|halskette|armreif|ohrring|brosche)/.test(normalized)) return 13;
+  if (/(pferd|pony|muli|maultier|kamel|reittier|kutsche|karren|wagen\b|boot\b)/.test(normalized)) return 14;
+  return currentGroup;
 };

@@ -427,19 +427,52 @@ label:focus-within {
 .armor-card strong { font-size: 0.75rem; }
 .armor-card span { padding: 0.2rem 0.35rem; color: var(--forest); background: var(--paper-deep); border-radius: 5px; font-size: 0.62rem; font-weight: 800; }
 
-.combat-add-panel { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 0.65rem; margin-bottom: 0.8rem; padding: 0.8rem; background: rgba(236, 225, 197, 0.55); border: 1px solid var(--line); border-radius: 12px; }
-.combat-add-panel > label { min-width: 0; display: grid; gap: 0.3rem; }
-.combat-add-panel > label span { color: var(--muted); font-size: 0.62rem; font-weight: 700; }
-.combat-add-panel select { min-width: 0; width: 100%; padding: 0.55rem 0.65rem; color: var(--ink); background: #fffdf5; border: 1px solid var(--line); border-radius: 8px; }
+.combat-overview { display: grid; grid-template-columns: minmax(9rem, 1.7fr) repeat(4, minmax(4rem, 0.72fr)); gap: 0.5rem; margin-bottom: 1.25rem; padding: 0.7rem; color: #fff; background: var(--forest); border-radius: 15px; box-shadow: 0 8px 24px rgba(22, 63, 53, 0.16); }
+.combat-overview__weapon, .combat-stat { min-width: 0; display: flex; flex-direction: column; justify-content: center; padding: 0.55rem 0.65rem; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 10px; }
+.combat-overview__weapon span, .combat-stat span { font-size: 0.54rem; font-weight: 800; opacity: 0.7; text-transform: uppercase; }
+.combat-overview__weapon strong { overflow: hidden; margin-top: 0.15rem; font-family: Georgia, serif; font-size: 0.95rem; text-overflow: ellipsis; white-space: nowrap; }
+.combat-overview__weapon small, .combat-stat small { overflow: hidden; margin-top: 0.12rem; font-size: 0.53rem; opacity: 0.7; text-overflow: ellipsis; white-space: nowrap; }
+.combat-stat { align-items: center; text-align: center; }
+.combat-stat strong { margin-top: 0.05rem; font-family: Georgia, serif; font-size: 1.55rem; }
+.combat-stat--initiative { color: #342b18; background: var(--gold-light); border-color: rgba(255, 255, 255, 0.25); }
+.initiative-control { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(10rem, 1.3fr); align-items: center; gap: 0.55rem; padding: 0.55rem 0.65rem; background: rgba(0, 0, 0, 0.12); border-radius: 10px; }
+.initiative-control > label { display: flex; align-items: center; gap: 0.45rem; }
+.initiative-control > label span { font-size: 0.58rem; font-weight: 800; opacity: 0.75; }
+.initiative-control input { width: 3.5rem; padding: 0.38rem; color: var(--forest); background: #fffdf5; border: 0; border-radius: 6px; font-weight: 900; text-align: center; }
+.initiative-control .primary-button { color: var(--forest); background: var(--gold-light); border-color: var(--gold-light); }
+.initiative-result { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 0 0.7rem; }
+.initiative-result span, .initiative-placeholder { font-size: 0.58rem; opacity: 0.72; }
+.initiative-result strong { grid-row: span 2; font-family: Georgia, serif; font-size: 1.35rem; }
+.initiative-result small { font-size: 0.52rem; opacity: 0.65; }
+
+.combat-add-panel { display: grid; gap: 0.65rem; margin-bottom: 0.8rem; padding: 0.8rem; background: rgba(236, 225, 197, 0.55); border: 1px solid var(--line); border-radius: 12px; }
+.combat-library-search { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 0.3rem 0.65rem; }
+.combat-library-search label { grid-column: 1 / -1; }
+.combat-library-search label span { color: var(--muted); font-size: 0.62rem; font-weight: 800; }
+.combat-library-search small { color: var(--muted); font-size: 0.56rem; white-space: nowrap; }
+.combat-search-results { overflow: hidden; max-height: 20rem; overflow-y: auto; background: rgba(255, 252, 241, 0.7); border: 1px solid var(--line); border-radius: 10px; }
+.combat-search-result { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr) auto; align-items: center; gap: 0.6rem; padding: 0.55rem 0.65rem; border-bottom: 1px solid var(--line); }
+.combat-search-result:last-child { border-bottom: 0; }
+.combat-search-result__kind { color: var(--forest); font-size: 0.56rem; font-weight: 900; text-transform: uppercase; }
+.combat-search-result > div { min-width: 0; display: flex; flex-direction: column; }
+.combat-search-result strong { overflow: hidden; font-size: 0.72rem; text-overflow: ellipsis; white-space: nowrap; }
+.combat-search-result small { overflow: hidden; color: var(--muted); font-size: 0.55rem; text-overflow: ellipsis; white-space: nowrap; }
+.combat-search-result button { padding: 0.38rem 0.55rem; font-size: 0.56rem; }
+.combat-search-hint { padding: 0.8rem; color: var(--muted); background: rgba(255, 252, 241, 0.5); border: 1px dashed var(--line); border-radius: 9px; font-size: 0.63rem; text-align: center; }
 .combat-add-panel__blank { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 0.4rem; padding-top: 0.65rem; border-top: 1px solid var(--line); }
+.combat-add-panel__blank > span { align-self: center; margin-right: 0.2rem; color: var(--muted); font-size: 0.58rem; font-weight: 800; }
 .combat-add-panel__blank button { padding: 0.45rem 0.6rem; font-size: 0.6rem; }
 .combat-editor, .armor-editor-list { display: grid; gap: 0.65rem; }
 .combat-editor { overflow: hidden; background: rgba(255, 252, 241, 0.72); border: 1px solid var(--line); border-radius: 13px; }
-.combat-editor__header { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; align-items: center; gap: 0.65rem; padding: 0.7rem 0.8rem; background: rgba(236, 225, 197, 0.52); border-bottom: 1px solid var(--line); }
+.combat-editor__header { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto auto; align-items: center; gap: 0.65rem; padding: 0.7rem 0.8rem; background: rgba(236, 225, 197, 0.52); border-bottom: 1px solid var(--line); }
 .combat-editor__header > label { min-width: 0; display: grid; gap: 0.2rem; }
 .combat-editor__header > label span, .combat-field > span, .damage-field legend { color: var(--muted); font-size: 0.56rem; font-weight: 800; text-transform: uppercase; }
 .combat-name-input { min-width: 0; width: 100%; padding: 0.35rem 0.45rem; color: var(--forest); background: #fffdf5; border: 1px solid var(--line); border-radius: 6px; font-weight: 900; }
 .combat-kind { padding: 0.25rem 0.45rem; color: var(--forest); background: #fffaf0; border-radius: 99px; font-size: 0.58rem; font-weight: 800; white-space: nowrap; }
+.combat-editor__header .primary-weapon-toggle { display: flex; grid-template-columns: none; align-items: center; gap: 0.3rem; padding: 0.3rem 0.45rem; color: var(--muted); background: #fffaf0; border: 1px solid var(--line); border-radius: 99px; cursor: pointer; }
+.primary-weapon-toggle input { accent-color: var(--red); }
+.combat-editor__header .primary-weapon-toggle span { color: inherit; font-size: 0.56rem; text-transform: none; }
+.primary-weapon-toggle:has(input:checked) { color: #fff !important; background: var(--red) !important; border-color: var(--red) !important; }
 .combat-editor--ranged .weapon-icon { background: #315d76; }
 .combat-editor--shield .weapon-icon, .combat-editor--armor .weapon-icon { background: #6b5b45; }
 .combat-editor__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.55rem; padding: 0.75rem; }
@@ -497,11 +530,17 @@ label:focus-within {
 .purse span { width: 1.55rem; height: 1.55rem; display: grid; place-items: center; color: #fff; background: var(--gold); border-radius: 50%; font-size: 0.6rem; font-weight: 900; }
 .purse input { min-width: 0; width: 100%; padding: 0.35rem 0.45rem; color: var(--forest); background: #fffdf5; border: 1px solid var(--line); border-radius: 6px; font-weight: 800; }
 .inventory-heading-actions { display: flex; align-items: center; gap: 0.65rem; }
+.inventory-sort { display: grid; gap: 0.16rem; }
+.inventory-sort span { color: var(--muted); font-size: 0.52rem; font-weight: 800; text-transform: uppercase; }
+.inventory-sort select { padding: 0.42rem 0.55rem; color: var(--forest); background: #fffdf5; border: 1px solid var(--line); border-radius: 7px; font-size: 0.62rem; font-weight: 800; }
 .inventory-add { padding: 0.55rem 0.75rem; font-size: 0.65rem; }
 .inventory-table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 13px; }
 .inventory-table { width: 100%; border-collapse: collapse; background: rgba(255, 252, 241, 0.62); font-size: 0.72rem; }
 .inventory-table th { padding: 0.65rem; color: var(--muted); background: var(--paper-deep); font-size: 0.6rem; text-align: right; text-transform: uppercase; }
 .inventory-table th:first-child { text-align: left; }
+.inventory-table .inventory-category-row th { padding: 0.48rem 0.65rem; color: var(--forest); background: #e6dcc2; text-align: left; }
+.inventory-category-row th span { font-size: 0.64rem; }
+.inventory-category-row th small { margin-left: 0.45rem; color: var(--muted); font-size: 0.52rem; font-weight: 600; text-transform: none; }
 .inventory-table td { padding: 0.7rem 0.65rem; border-top: 1px solid var(--line); text-align: right; white-space: nowrap; }
 .inventory-table td:first-child { min-width: 12rem; text-align: left; white-space: normal; }
 .inventory-item-cell { display: grid; gap: 0.3rem; }
@@ -577,6 +616,7 @@ label:focus-within {
   .spell-row { grid-template-columns: 1.6rem minmax(7rem, 1fr) 6rem 2rem 3.3rem 1.7rem; }
   .check-badges span { min-width: 1.55rem; padding-inline: 0.18rem; }
   .combat-editor__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .combat-overview { grid-template-columns: minmax(8rem, 1.5fr) repeat(4, minmax(3.5rem, 0.7fr)); }
   .ap-controls { grid-template-columns: minmax(0, 1fr) auto; }
   .advance-history > div:not(.empty-state) { grid-template-columns: 1fr 4rem 3.5rem; }
   .advance-history span { grid-column: 1 / -1; }
@@ -601,10 +641,19 @@ label:focus-within {
   .app-footer { align-items: start; flex-direction: column; }
   .combat-add-panel { grid-template-columns: 1fr; }
   .combat-add-panel__blank { grid-column: 1; }
-  .combat-editor__header { grid-template-columns: auto minmax(0, 1fr) auto; }
+  .combat-editor__header { grid-template-columns: auto minmax(0, 1fr) auto auto; }
   .combat-kind { display: none; }
   .combat-editor__grid { grid-template-columns: 1fr 1fr; }
   .combat-field--wide, .combat-field--notes { grid-column: 1 / -1; }
+  .combat-overview { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .combat-overview__weapon { grid-column: 1 / -1; }
+  .initiative-control { grid-template-columns: 1fr auto; }
+  .initiative-result, .initiative-placeholder { grid-column: 1 / -1; }
+  .combat-library-search { grid-template-columns: 1fr; }
+  .combat-library-search small { white-space: normal; }
+  .combat-search-result { grid-template-columns: minmax(0, 1fr) auto; }
+  .combat-search-result__kind { grid-column: 1 / -1; }
+  .inventory-heading-actions { align-items: flex-end; flex-wrap: wrap; justify-content: flex-end; }
   .ap-dashboard { grid-template-columns: repeat(3, 1fr); }
   .advance-section-tabs { grid-template-columns: repeat(3, 1fr); }
   .advance-row { grid-template-columns: minmax(0, 1fr) 4.8rem 3.5rem 2.8rem; gap: 0.3rem; }

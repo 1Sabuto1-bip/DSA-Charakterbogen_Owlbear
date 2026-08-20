@@ -11,6 +11,7 @@ import {
 } from "../src/importer";
 import { CANTRIPS, SPELLS, SPELL_BY_ID } from "../src/magic-data";
 import { DARKAID_ITEM_DATA, DARKAID_MAGIC_BY_ID } from "../src/darkaid-data";
+import { suggestInventoryGroup } from "../src/data";
 
 const minimalHero = JSON.stringify({
   clientVersion: "1.5.2",
@@ -114,6 +115,18 @@ describe("Optolith import", () => {
       ignoreLimits: false,
       history: [],
     });
+  });
+
+  it("migrates old inventory entries into the new category groups once", () => {
+    const original = importHeroJson(minimalHero);
+    original.hero.belongings ??= {};
+    original.hero.belongings.items = {
+      provisions: { id: "provisions", name: "Proviant für einen Tag", gr: 8, itemKind: "equipment" },
+    };
+    delete (original.runtime as Partial<typeof original.runtime>).inventoryCategoriesMigrated;
+    const restored = importHeroJson(JSON.stringify(original));
+    expect(restored.hero.belongings?.items?.provisions.gr).toBe(10);
+    expect(restored.runtime.inventoryCategoriesMigrated).toBe(true);
   });
 
   it("creates and restores a complete manual character sheet", () => {
@@ -243,6 +256,12 @@ describe("DarkAid import", () => {
       movementPenalty: -1,
       initiativePenalty: -1,
     });
+  });
+
+  it("sorts common provisions and documents into useful inventory groups", () => {
+    expect(suggestInventoryGroup("Proviant für einen Tag", 8)).toBe(10);
+    expect(suggestInventoryGroup("Altes Tagebuch", 7)).toBe(11);
+    expect(suggestInventoryGroup("Seil, 10 Schritt", 7)).toBe(7);
   });
 
   it("imports every available public DarkAid sample hero", () => {

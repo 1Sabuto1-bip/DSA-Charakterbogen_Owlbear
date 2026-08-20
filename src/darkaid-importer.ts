@@ -1,4 +1,4 @@
-import { COMBAT_TECHNIQUES, TALENTS } from "./data";
+import { COMBAT_TECHNIQUES, suggestInventoryGroup, TALENTS } from "./data";
 import { DARKAID_ITEM_DATA, DARKAID_MAGIC_BY_SOURCE_ID } from "./darkaid-data";
 import { CANTRIPS, SPELLS } from "./magic-data";
 import type {
@@ -149,13 +149,15 @@ const convertItems = (hero: DarkAidHero): Record<string, OptolithItem> => {
       const id = `DARKAID_ITEM_${normalizeDarkAidId(sourceType)}_${normalizeDarkAidId(sourceId)}_${index}`;
       const directWeight = typeof value.weight === "number" ? value.weight : undefined;
       const directPrice = typeof value.price === "number" ? value.price : undefined;
+      const name = typeof value.name === "string" && value.name.trim()
+        ? value.name.trim()
+        : template.name ?? humanizeId(sourceId);
+      const fallbackGroup = template.gr ?? (sourceType === "armor" ? 4 : sourceType.includes("weapon") || sourceType === "shield" ? 1 : 7);
       items[id] = {
         ...template,
         id,
-        name: typeof value.name === "string" && value.name.trim()
-          ? value.name.trim()
-          : template.name ?? humanizeId(sourceId),
-        gr: template.gr ?? (sourceType === "armor" ? 4 : sourceType.includes("weapon") || sourceType === "shield" ? 1 : 7),
+        name,
+        gr: itemKind === "equipment" ? suggestInventoryGroup(name, fallbackGroup) : fallbackGroup,
         amount: Math.max(0, asNumber(value.amount, 1)),
         itemKind,
         ...(directWeight === undefined ? {} : { weight: directWeight }),
