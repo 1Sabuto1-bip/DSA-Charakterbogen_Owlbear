@@ -30,6 +30,7 @@ import {
   updateManualSpecies,
 } from "./importer";
 import { OwlbearBridge } from "./owlbear";
+import { getHealthPresentation } from "./group-monitor";
 import { rollTalent } from "./roll";
 import { clearState, loadState, saveState } from "./storage";
 import {
@@ -44,6 +45,7 @@ import type {
   AttributeCode,
   CombatItemKind,
   ImprovementCost,
+  GroupHeroSummary,
   ManualSpecies,
   OptolithItem,
   ResourceValue,
@@ -52,7 +54,7 @@ import type {
   TalentRollResult,
 } from "./types";
 
-type TabId = "overview" | "talents" | "spells" | "combat" | "inventory" | "advance" | "source";
+type TabId = "overview" | "talents" | "spells" | "combat" | "inventory" | "advance" | "source" | "group";
 
 type AdvancementSection = "attributes" | "talents" | "combat" | "spells" | "resources";
 type InventorySort = "category" | "name" | "weight" | "value";
@@ -68,6 +70,7 @@ const root = document.querySelector<HTMLDivElement>("#app");
 if (!root) throw new Error("App container not found");
 
 const bridge = new OwlbearBridge();
+const APP_VERSION = "0.8.1";
 let state: CharacterSheetState | null = loadState();
 let activeTab: TabId = "overview";
 let talentSearch = "";
@@ -78,6 +81,11 @@ let advancementSection: AdvancementSection = "attributes";
 let weaponCatalogSearch = "";
 let inventorySort: InventorySort = "category";
 let rollDialog: RollDialogState | null = null;
+let groupMembers: GroupHeroSummary[] = [];
+let groupLoading = false;
+let groupDashboardOpen = false;
+let groupRefreshRequest = 0;
+let groupRefreshTimer: number | undefined;
 let toastTimer: number | undefined;
 
 const escapeHtml = (value: unknown): string =>
@@ -181,12 +189,37 @@ const importFile = async (file?: File): Promise<void> => {
     talentSearch = "";
     spellSearch = "";
     spellCatalogSearch = "";
-    persist(false);
+    persist();
     render();
     showToast(`${state.hero.name} wurde erfolgreich importiert.`);
   } catch (error) {
     const message = error instanceof HeroImportError ? error.message : "Die Datei konnte nicht gelesen werden.";
     showToast(message, "error");
+  }
+};
+
+const groupMonitorVisible = (): boolean =>
+  bridge.isGameMaster && (groupDashboardOpen || (Boolean(state) && activeTab === "group"));
+
+const refreshGroupMembers = async (showLoading = true): Promise<void> => {
+  if (!bridge.available || !bridge.isGameMaster) return;
+  const request = ++groupRefreshRequest;
+  if (showLoading) {
+    groupLoading = true;
+    if (groupMonitorVisible()) render();
+  }
+  try {
+    const members = await bridge.getGroupSummaries();
+    if (request !== groupRefreshRequest) return;
+    groupMembers = members;
+  } catch {
+    if (request !== groupRefreshRequest) return;
+    showToast("Die Gruppenwerte konnten nicht aus der aktuellen Szene gelesen werden.", "error");
+  } finally {
+    if (request === groupRefreshRequest) {
+      groupLoading = false;
+      if (groupMonitorVisible()) render();
+    }
   }
 };
 
@@ -222,11 +255,16 @@ const renderImportScreen = (): string => `
         </div>
       </section>
       <div class="welcome-notes">
+        <span>Version ${APP_VERSION}</span>
         <span>✓ Optolith 1.5.x</span>
         <span>✓ DarkAid TDC</span>
         <span>✓ lokale Speicherung</span>
         <span>✓ 3W20-Proben</span>
       </div>
+      ${bridge.isGameMaster ? `<aside class="gm-entry">
+        <div><strong>Spielleiter-Ansicht</strong><span>Verbundene Helden dieser Szene überwachen – ein eigener Heldenbogen ist nicht erforderlich.</span></div>
+        <button class="secondary-button" id="open-group-monitor">Gruppenmonitor öffnen</button>
+      </aside>` : ""}
     </section>
   </main>
 `;
@@ -335,15 +373,18 @@ const renderOverview = (sheet: CharacterSheetState): string => {
           <p class="panel-copy">
             ${
               sheet.runtime.linkedTokenId
-                ? `Verknüpft mit <strong>${escapeHtml(sheet.runtime.linkedTokenName ?? "Charaktertoken")}</strong>. LeP und weitere Ressourcen werden am Token aktualisiert.`
+                ? `Verknüpft mit <strong>${escapeHtml(sheet.runtime.linkedTokenName ?? "Charaktertoken")}</strong>. Ressourcen, Grund- und Kampfwerte werden übertragen${sheet.runtime.statusDisplayId ? "; die Kartenanzeige ist aktiv." : "."}`
                 : bridge.available
                   ? "Wähle einen Charaktertoken auf der Karte aus und verbinde ihn mit diesem Bogen."
                   : "In der Browser-Vorschau ist keine Owlbear-Szene verbunden."
             }
           </p>
-          <button class="secondary-button" id="link-token" ${bridge.available ? "" : "disabled"}>
-            ${sheet.runtime.linkedTokenId ? "Anderen Token verbinden" : "Ausgewählten Token verbinden"}
-          </button>
+          <div class="button-row">
+            <button class="secondary-button" id="link-token" ${bridge.available ? "" : "disabled"}>
+              ${sheet.runtime.linkedTokenId ? "Anderen Token verbinden" : "Ausgewählten Token verbinden"}
+            </button>
+            ${sheet.runtime.linkedTokenId ? `<button class="primary-button" id="sync-status-display" ${bridge.available ? "" : "disabled"}>${sheet.runtime.statusDisplayId ? "Kartenanzeige aktualisieren" : "Kartenanzeige erstellen"}</button>` : ""}
+          </div>
         </article>
       </div>
 
@@ -959,6 +1000,85 @@ const renderSource = (sheet: CharacterSheetState): string => {
   `;
 };
 
+const formatGroupUpdate = (updatedAt: string): { label: string; stale: boolean } => {
+  const timestamp = new Date(updatedAt).getTime();
+  if (!Number.isFinite(timestamp)) return { label: "Zeit unbekannt", stale: true };
+  const ageSeconds = Math.max(0, Math.round((Date.now() - timestamp) / 1000));
+  if (ageSeconds < 15) return { label: "gerade aktualisiert", stale: false };
+  if (ageSeconds < 60) return { label: `vor ${ageSeconds} Sekunden`, stale: false };
+  const minutes = Math.floor(ageSeconds / 60);
+  if (minutes < 60) return { label: `vor ${minutes} Minute${minutes === 1 ? "" : "n"}`, stale: minutes >= 5 };
+  return {
+    label: new Date(timestamp).toLocaleString("de-DE", { dateStyle: "short", timeStyle: "short" }),
+    stale: true,
+  };
+};
+
+const renderGroupMember = (member: GroupHeroSummary): string => {
+  const { summary } = member;
+  const health = getHealthPresentation(summary.lp);
+  const updated = formatGroupUpdate(summary.updatedAt);
+  const resourceEntries = [
+    { short: "LeP", value: summary.lp, className: "lp" },
+    ...(summary.ae ? [{ short: "AsP", value: summary.ae, className: "ae" }] : []),
+    ...(summary.kp ? [{ short: "KaP", value: summary.kp, className: "kp" }] : []),
+    { short: "Schip", value: summary.fate, className: "fate" },
+  ];
+  const combat = summary.combat;
+  return `<article class="group-card group-card--${health.status}">
+    <header class="group-card__header">
+      <div><p>${escapeHtml(member.tokenName)}</p><h3>${escapeHtml(summary.name)}</h3></div>
+      <span class="health-pill" style="--health-color:${health.color}">${health.label}</span>
+    </header>
+    <div class="group-resources">
+      ${resourceEntries.map((entry) => {
+        const ratio = entry.value.max > 0 ? Math.max(0, Math.min(100, entry.value.current / entry.value.max * 100)) : 0;
+        return `<div class="group-resource group-resource--${entry.className}"><span>${entry.short}</span><strong>${entry.value.current}<small>/${entry.value.max}</small></strong><i><b style="width:${ratio}%"></b></i></div>`;
+      }).join("")}
+    </div>
+    ${summary.attributes ? `<dl class="group-attributes">
+      ${ATTRIBUTES.map((attribute) => `<div><dt>${attribute.code}</dt><dd>${summary.attributes?.[attribute.code] ?? "—"}</dd></div>`).join("")}
+    </dl>` : '<p class="group-legacy-note">Grundwerte werden nach der nächsten Änderung im Spielerbogen angezeigt.</p>'}
+    <div class="group-combat-values">
+      <div><span>${combat?.attackLabel ?? "AT"}</span><strong>${combat?.attack ?? "—"}</strong></div>
+      <div><span>PA</span><strong>${combat?.parry ?? "—"}</strong></div>
+      <div><span>AW</span><strong>${combat?.dodge ?? "—"}</strong></div>
+      <div><span>INI</span><strong>${combat?.initiative ?? summary.initiative}</strong></div>
+      <p>${combat ? `Primär: ${escapeHtml(combat.primaryWeaponName)}` : "Kampfwerte werden beim nächsten Synchronisieren ergänzt."}</p>
+    </div>
+    <footer class="group-card__footer">
+      <span class="${updated.stale ? "stale" : ""}">${updated.stale ? "⚠ " : ""}${escapeHtml(updated.label)}</span>
+      <span>${member.statusDisplayId ? "Statusanzeige auf der Karte" : "Noch keine Kartenanzeige"}</span>
+    </footer>
+  </article>`;
+};
+
+const renderGroupMonitor = (): string => `
+  <section class="page page--group">
+    <div class="section-title group-title">
+      <div><p class="eyebrow">Nur für den GM</p><h2>Gruppenmonitor</h2></div>
+      <div class="group-actions">
+        <button class="secondary-button" id="refresh-group" ${groupLoading ? "disabled" : ""}>↻ Aktualisieren</button>
+        <button class="primary-button" id="sync-group-status" ${groupLoading || groupMembers.length === 0 ? "disabled" : ""}>Statusanzeigen anlegen</button>
+      </div>
+    </div>
+    <aside class="info-callout compact"><strong>Live aus der aktuellen Owlbear-Szene</strong><p>Jeder Spieler verbindet seinen Bogen einmal mit seinem Charaktertoken. Danach erscheinen Ressourcen, Eigenschaften und Kampfwerte hier; Änderungen am Bogen werden automatisch übertragen.</p></aside>
+    ${groupLoading && groupMembers.length === 0
+      ? '<div class="group-loading">Gruppenwerte werden geladen …</div>'
+      : `<div class="group-grid">${groupMembers.map(renderGroupMember).join("") || '<div class="empty-state group-empty"><strong>Noch keine verbundenen Helden</strong><span>Die Spieler müssen in ihrem Bogen einen Charaktertoken auswählen und „Ausgewählten Token verbinden“ anklicken.</span></div>'}</div>`}
+    <aside class="group-thresholds"><strong>Automatischer Gesundheitszustand</strong><span>Gesund: über 75 % · leicht verletzt: über 25 % · schwer verwundet: bis 25 % · ohnmächtig: 0 LeP</span></aside>
+  </section>`;
+
+const renderGameMasterShell = (): string => `
+  <div class="app-shell">
+    <header class="hero-header gm-header">
+      <div class="hero-header__identity"><div class="hero-avatar">GM</div><div><p class="eyebrow">Spielleiter</p><h1>Gruppenmonitor</h1></div></div>
+      <div class="hero-meta"><span>${groupMembers.length} verbunden</span><span>aktuelle Szene</span></div>
+    </header>
+    <main class="content">${renderGroupMonitor()}</main>
+    <footer class="app-footer"><span><i class="connection-dot connection-dot--online"></i>Mit Owlbear Rodeo verbunden · v${APP_VERSION}</span><button id="close-group-monitor">Zur Heldenauswahl</button></footer>
+  </div>`;
+
 const renderRollDialog = (sheet: CharacterSheetState): string => {
   if (!rollDialog) return "";
   const definition = rollDialog.kind === "talent"
@@ -1029,6 +1149,7 @@ const tabLabel = (id: TabId, label: string, icon: string): string => `
 const renderSheet = (sheet: CharacterSheetState): string => {
   const hasMagic = isMagicallyGifted(sheet);
   if (!hasMagic && activeTab === "spells") activeTab = "overview";
+  if (!bridge.isGameMaster && activeTab === "group") activeTab = "overview";
   const content = {
     overview: renderOverview,
     talents: renderTalents,
@@ -1037,6 +1158,7 @@ const renderSheet = (sheet: CharacterSheetState): string => {
     inventory: renderInventory,
     advance: renderAdvance,
     source: renderSource,
+    group: renderGroupMonitor,
   }[activeTab](sheet);
 
   return `
@@ -1058,7 +1180,7 @@ const renderSheet = (sheet: CharacterSheetState): string => {
           <button class="icon-button" id="export-quick" title="Spielstand sichern">↓</button>
         </div>
       </header>
-      <nav class="main-nav" aria-label="Heldenbogen-Bereiche" style="grid-template-columns: repeat(${hasMagic ? 7 : 6}, 1fr)">
+      <nav class="main-nav" aria-label="Heldenbogen-Bereiche" style="grid-template-columns: repeat(${(hasMagic ? 7 : 6) + (bridge.isGameMaster ? 1 : 0)}, 1fr)">
         ${tabLabel("overview", "Übersicht", "◆")}
         ${tabLabel("talents", "Talente", "◈")}
         ${hasMagic ? tabLabel("spells", "Zauber", "✦") : ""}
@@ -1066,10 +1188,11 @@ const renderSheet = (sheet: CharacterSheetState): string => {
         ${tabLabel("inventory", "Inventar", "▣")}
         ${tabLabel("advance", "Steigern", "↑")}
         ${tabLabel("source", "Daten", "⋯")}
+        ${bridge.isGameMaster ? tabLabel("group", "Gruppe", "♟") : ""}
       </nav>
       <main class="content">${content}</main>
       <footer class="app-footer">
-        <span><i class="connection-dot ${bridge.available ? "connection-dot--online" : ""}"></i>${bridge.available ? "Mit Owlbear Rodeo verbunden" : "Lokale Vorschau"}</span>
+        <span><i class="connection-dot ${bridge.available ? "connection-dot--online" : ""}"></i>${bridge.available ? "Mit Owlbear Rodeo verbunden" : "Lokale Vorschau"} · v${APP_VERSION}</span>
         <button id="remove-hero">Helden aus diesem Browser entfernen</button>
       </footer>
     </div>
@@ -1077,9 +1200,31 @@ const renderSheet = (sheet: CharacterSheetState): string => {
   `;
 };
 
+const attachGroupMonitorListeners = (): void => {
+  document.querySelector("#refresh-group")?.addEventListener("click", () => void refreshGroupMembers());
+  document.querySelector("#sync-group-status")?.addEventListener("click", async () => {
+    try {
+      const count = await bridge.ensureGroupStatusDisplays();
+      showToast(`${count} Kartenanzeige${count === 1 ? "" : "n"} wurden angelegt oder aktualisiert.`);
+      await refreshGroupMembers(false);
+    } catch (error) {
+      showToast(error instanceof Error ? error.message : "Die Kartenanzeigen konnten nicht aktualisiert werden.", "error");
+    }
+  });
+  document.querySelector("#close-group-monitor")?.addEventListener("click", () => {
+    groupDashboardOpen = false;
+    render();
+  });
+};
+
 const attachImportListeners = (): void => {
   const input = document.querySelector<HTMLInputElement>("#hero-file");
   input?.addEventListener("change", () => void importFile(input.files?.[0]));
+  document.querySelector("#open-group-monitor")?.addEventListener("click", () => {
+    groupDashboardOpen = true;
+    render();
+    void refreshGroupMembers();
+  });
   const dropZone = document.querySelector<HTMLElement>("#drop-zone");
   dropZone?.addEventListener("dragover", (event) => {
     event.preventDefault();
@@ -1128,11 +1273,13 @@ const attachImportListeners = (): void => {
 
 const attachSheetListeners = (): void => {
   if (!state) return;
+  attachGroupMonitorListeners();
 
   document.querySelectorAll<HTMLButtonElement>("[data-tab]").forEach((button) => {
     button.addEventListener("click", () => {
       activeTab = button.dataset.tab as TabId;
       render();
+      if (activeTab === "group") void refreshGroupMembers();
     });
   });
 
@@ -1204,7 +1351,7 @@ const attachSheetListeners = (): void => {
       if (!id) return;
       state.hero.ct ??= {};
       state.hero.ct[id] = Math.max(0, Math.min(30, Math.round(asNumber(input.value, state.hero.ct[id] ?? 6))));
-      persist(false);
+      persist();
       render();
     });
   });
@@ -1263,7 +1410,7 @@ const attachSheetListeners = (): void => {
     if (!id || !CANTRIPS[id]) return;
     state.hero.cantrips ??= [];
     if (!state.hero.cantrips.includes(id)) state.hero.cantrips.push(id);
-    persist(false);
+    persist();
     render();
   });
 
@@ -1273,7 +1420,7 @@ const attachSheetListeners = (): void => {
       const id = button.dataset.deleteCantrip;
       if (!id) return;
       state.hero.cantrips = (state.hero.cantrips ?? []).filter((entry) => entry !== id);
-      persist(false);
+      persist();
       render();
     });
   });
@@ -1381,7 +1528,7 @@ const attachSheetListeners = (): void => {
     if (kind !== "armor" && kind !== "equipment" && !state.runtime.combat.primaryWeaponId) {
       state.runtime.combat.primaryWeaponId = id;
     }
-    persist(false);
+    persist();
     render();
     document.querySelector<HTMLInputElement>(`[data-combat-key="${id}"][data-combat-field="name"]`)?.select();
   };
@@ -1420,7 +1567,7 @@ const attachSheetListeners = (): void => {
       if (!key || !item) return;
       state.runtime.combat.primaryWeaponId = key;
       item.equipped = true;
-      persist(false);
+      persist();
       render();
     });
   });
@@ -1436,6 +1583,10 @@ const attachSheetListeners = (): void => {
     );
     const value = document.querySelector<HTMLElement>(".combat-stat--initiative strong");
     if (value) value.textContent = String(overview.initiative);
+  });
+
+  document.querySelector<HTMLInputElement>("#initiative-modifier")?.addEventListener("change", () => {
+    persist();
   });
 
   document.querySelector("#roll-initiative")?.addEventListener("click", () => {
@@ -1467,7 +1618,7 @@ const attachSheetListeners = (): void => {
         const numeric = asNumber(input.value, Number((item as Record<string, unknown>)[field] ?? 0));
         (item as Record<string, unknown>)[field] = allowNegative ? numeric : Math.max(0, numeric);
       }
-      persist(false);
+      persist();
       render();
     });
   });
@@ -1482,7 +1633,7 @@ const attachSheetListeners = (): void => {
       if (state.runtime.combat.primaryWeaponId === key) {
         state.runtime.combat.primaryWeaponId = getDefaultPrimaryWeaponId(state.hero);
       }
-      persist(false);
+      persist();
       render();
     });
   });
@@ -1703,7 +1854,7 @@ const attachSheetListeners = (): void => {
       else if (field === "gr") item.gr = Math.max(0, Math.round(asNumber(input.value, item.gr ?? 0)));
       else if (field === "amount") item.amount = Math.max(0, Math.round(asNumber(input.value, item.amount ?? 1)));
       else item[field] = Math.max(0, asNumber(input.value, item[field] ?? 0));
-      persist(false);
+      persist();
       render();
     });
   });
@@ -1718,7 +1869,7 @@ const attachSheetListeners = (): void => {
       if (state.runtime.combat.primaryWeaponId === key) {
         state.runtime.combat.primaryWeaponId = getDefaultPrimaryWeaponId(state.hero);
       }
-      persist(false);
+      persist();
       render();
     });
   });
@@ -1741,10 +1892,24 @@ const attachSheetListeners = (): void => {
       const linked = await bridge.linkSelectedToken(state);
       state.runtime.linkedTokenId = linked.id;
       state.runtime.linkedTokenName = linked.name;
+      state.runtime.statusDisplayId = linked.statusDisplayId;
       persist(false);
       render();
+      if (linked.statusWarning) showToast(linked.statusWarning, "error");
     } catch (error) {
       showToast(error instanceof Error ? error.message : "Der Token konnte nicht verbunden werden.", "error");
+    }
+  });
+
+  document.querySelector("#sync-status-display")?.addEventListener("click", async () => {
+    if (!state) return;
+    try {
+      state.runtime.statusDisplayId = await bridge.ensureLinkedStatusDisplay(state);
+      persist(false);
+      render();
+      showToast("Die Kartenanzeige wurde angelegt oder aktualisiert.");
+    } catch (error) {
+      showToast(error instanceof Error ? error.message : "Die Kartenanzeige konnte nicht erstellt werden.", "error");
     }
   });
 
@@ -1831,8 +1996,14 @@ const attachSheetListeners = (): void => {
 };
 
 const render = (): void => {
-  root.innerHTML = state ? renderSheet(state) : renderImportScreen();
-  state ? attachSheetListeners() : attachImportListeners();
+  root.innerHTML = state
+    ? renderSheet(state)
+    : groupDashboardOpen && bridge.isGameMaster
+      ? renderGameMasterShell()
+      : renderImportScreen();
+  if (state) attachSheetListeners();
+  else if (groupDashboardOpen && bridge.isGameMaster) attachGroupMonitorListeners();
+  else attachImportListeners();
 };
 
 document.addEventListener("keydown", (event) => {
@@ -1844,5 +2015,21 @@ document.addEventListener("keydown", (event) => {
 
 render();
 void bridge.initialize().then((available) => {
-  if (available) render();
+  if (!available) return;
+  render();
+  if (bridge.isGameMaster && groupMonitorVisible()) void refreshGroupMembers();
+});
+
+bridge.onChange((reason) => {
+  if (reason === "player") {
+    if (!bridge.isGameMaster) {
+      groupDashboardOpen = false;
+      if (activeTab === "group") activeTab = "overview";
+    }
+    render();
+  }
+  if (!bridge.isGameMaster) return;
+  if (!groupMonitorVisible()) return;
+  window.clearTimeout(groupRefreshTimer);
+  groupRefreshTimer = window.setTimeout(() => void refreshGroupMembers(false), 180);
 });

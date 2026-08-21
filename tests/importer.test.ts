@@ -101,8 +101,12 @@ describe("Optolith import", () => {
   it("accepts an Owlbear backup", () => {
     const original = importHeroJson(minimalHero);
     original.runtime.notes = "Testnotiz";
+    original.runtime.linkedTokenId = "token-1";
+    original.runtime.statusDisplayId = "status-1";
     const restored = importHeroJson(JSON.stringify(original));
     expect(restored.runtime.notes).toBe("Testnotiz");
+    expect(restored.runtime.linkedTokenId).toBe("token-1");
+    expect(restored.runtime.statusDisplayId).toBe("status-1");
   });
 
   it("migrates backups from before the advancement feature", () => {

@@ -117,6 +117,7 @@ export interface RuntimeState {
   favoriteTalentIds: string[];
   linkedTokenId?: string;
   linkedTokenName?: string;
+  statusDisplayId?: string;
   inventoryCategoriesMigrated: boolean;
   combat: CombatRuntimeState;
   advancement: AdvancementState;
@@ -275,6 +276,7 @@ export interface TalentRollResult {
 }
 
 export interface TokenSheetSummary {
+  version?: 2;
   heroId: string;
   name: string;
   lp: ResourceValue;
@@ -282,5 +284,24 @@ export interface TokenSheetSummary {
   kp?: ResourceValue;
   fate: ResourceValue;
   initiative: number;
+  healthStatus?: HealthStatus;
+  attributes?: Record<AttributeCode, number>;
+  combat?: {
+    primaryWeaponName: string;
+    attackLabel: "AT" | "FK";
+    attack: number;
+    parry?: number;
+    dodge: number;
+    initiative: number;
+  };
   updatedAt: string;
+}
+
+export type HealthStatus = "healthy" | "lightlyInjured" | "severelyWounded" | "unconscious";
+
+export interface GroupHeroSummary {
+  tokenId: string;
+  tokenName: string;
+  statusDisplayId?: string;
+  summary: TokenSheetSummary;
 }

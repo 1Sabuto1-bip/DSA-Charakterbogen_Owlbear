@@ -24,6 +24,11 @@ Der aktuelle Prototyp importiert Optolith-JSON-Dateien der Version 1.5.x und TDC
 - Waffen und Rüstungen über eine durchsuchbare Bibliothek aus dem integrierten DarkAid-Regelkatalog übernehmen oder frei anlegen
 - eine Primärwaffe auswählen und daraus AT/FK, PA und Ausweichen regelgerecht berechnen
 - Initiative mit Basiswert, Rüstungs- und Situationsmodifikator direkt im Kampfbereich würfeln; kontrastreiche Anzeige und gut sichtbarer Würfelknopf
+- nur für den GM sichtbarer Gruppenmonitor mit LeP, AsP, KaP, Schicksalspunkten, Eigenschaften sowie AT/FK, PA, AW und INI aller verbundenen Helden
+- Live-Aktualisierung der Gruppenwerte über die Metadaten der Charaktertoken
+- angeheftete Kartenanzeige mit Heldenname, LeP und automatisch berechnetem Gesundheitszustand
+- Gesundheitszustände Gesund, Leicht verletzt, Schwer verwundet und Ohnmächtig farblich unterscheiden
+- Statusanzeige zusammen mit dem Charaktertoken bewegen und auch zur erneuten Bogenverknüpfung auswählen
 - Nahkampfwerte (TP, AT/PA, Reichweite, TP-Schwelle), Fernkampfwerte (TP, Ladezeit, Reichweiten, Munition) sowie RS, BE, GS-/INI-Abzüge bearbeiten
 - Waffen, Schilde und Rüstungen für Optolith-, DarkAid- und manuelle Helden hinzufügen, ändern und löschen
 - Inventar und Geldbörse bearbeiten; Gegenstände hinzufügen und löschen
@@ -37,7 +42,19 @@ Der aktuelle Prototyp importiert Optolith-JSON-Dateien der Version 1.5.x und TDC
 - Spielstand oder die ursprünglichen Optolith-/DarkAid-Daten wieder exportieren
 
 Der vollständige Bogen wird im lokalen Browserspeicher abgelegt. Am verknüpften Token werden nur
-eine kleine Zusammenfassung und die aktuellen Ressourcen gespeichert.
+eine kleine Zusammenfassung, die aktuellen Ressourcen, Eigenschaften und Kampfgrundwerte gespeichert.
+
+## Gruppenmonitor und Kartenstatus
+
+Jeder Spieler wählt auf der Karte seinen Charaktertoken aus und klickt im Reiter **Übersicht** auf
+**Ausgewählten Token verbinden**. Dabei wird oberhalb des Tokens eine farbige Statusanzeige mit LeP
+und Gesundheitszustand angelegt. Sie bleibt am Charaktertoken angeheftet und aktualisiert sich bei
+Änderungen im Bogen.
+
+Der GM erhält den Reiter **Gruppe**. Dort werden alle verbundenen Helden der aktuellen Szene angezeigt.
+Der Gruppenmonitor kann auf der Startseite auch ohne eigenen importierten Helden geöffnet werden. Mit
+**Statusanzeigen anlegen** kann der GM fehlende oder wegen Spielerberechtigungen nicht erstellte
+Kartenanzeigen gesammelt ergänzen.
 
 ## Einfacher Start auf dem Mac – ohne npm
 

@@ -1,20 +1,22 @@
-DSA-CHARAKTERBOGEN – GITHUB-UPDATE 0.8.0
+DSA-CHARAKTERBOGEN – GITHUB-UPDATE 0.8.1
 =========================================
 
 Neu in dieser Version:
-- gemeinsamer Katalog mit 541 unterschiedlichen Zaubern und Ritualen
-- 533 Einträge mit vollständiger 3W20-Probe und Steigerungsfaktor
-- 97 Zaubertricks weiterhin sauber in einem eigenen Bereich
-- schnelle Zaubersuche statt einer sehr langen Auswahlliste
-- Zauber und Rituale mit einem Klick in manuelle Heldenbögen importieren
-- klare Kennzeichnung, wenn für einen seltenen Eintrag keine Probe hinterlegt ist
-- Initiative mit dunkler, gut lesbarer Schrift auf hellem Gold
-- deutlich sichtbarer roter Button "Initiative würfeln" mit Würfelsymbol
+- nur für den GM sichtbarer Gruppenmonitor
+- LeP, AsP, KaP und Schicksalspunkte aller verbundenen Helden
+- MU, KL, IN, CH, FF, GE, KO und KK in der Gruppenübersicht
+- AT beziehungsweise FK, PA, Ausweichen und Initiative pro Held
+- automatische Aktualisierung bei Änderungen in den Spielerbögen
+- farbige Kartenanzeige mit Heldenname, LeP und Gesundheitszustand
+- Kartenanzeige bleibt am Charaktertoken angeheftet
+- Auswahl der Kartenanzeige kann erneut als Bogenverknüpfung verwendet werden
+- GM kann fehlende Kartenanzeigen gesammelt anlegen
+- sichtbare Versionsnummer 0.8.1 zur Cache-Kontrolle
 
 UPLOAD
 ------
 1. Diese ZIP-Datei auf dem Mac doppelt anklicken.
-2. Den entpackten Ordner "github-update-v0.8.0" öffnen.
+2. Den entpackten Ordner "github-update-v0.8.1" öffnen.
 3. Im GitHub-Repository auf "Add file" und "Upload files" klicken:
    https://github.com/1Sabuto1-bip/DSA-Charakterbogen_Owlbear
 4. ALLE Inhalte des geöffneten Ordners in das Upload-Fenster ziehen.
@@ -36,15 +38,25 @@ erneut die alte Seite aus dem Browser-Cache erscheint.
 
 Falls Owlbear die alte Version trotzdem zeigt, die Erweiterung im Profil
 entfernen und mit folgender Adresse neu anlegen:
-https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/manifest.json?v=080
+https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/manifest.json?v=081
 
 BEDIENUNG
 ---------
-Im Reiter "Zauber" steht bei manuell angelegten magischen Figuren die neue
-Katalogsuche. Suchbegriff eingeben und beim gewünschten Treffer auf
-"Importieren" klicken. Bereits eingetragene Zauber bleiben weiter oben
-durchsuchbar, editierbar, steigerbar und – bei hinterlegter Probe – würfelbar.
+SPIELER:
+1. Charakter importieren oder vorhandenen Bogen öffnen.
+2. Auf der Owlbear-Karte den eigenen Charaktertoken auswählen.
+3. Im Reiter "Übersicht" auf "Ausgewählten Token verbinden" klicken.
+4. Die farbige Kartenanzeige wird automatisch oberhalb des Tokens angelegt.
 
-Im Reiter "Kampf" ist die Initiative oben nun deutlich lesbar. Der rote
-Button "Initiative würfeln" führt wie bisher den W6-Wurf aus und speichert
-das letzte Ergebnis.
+GM:
+1. Im Heldenbogen den nur für den GM sichtbaren Reiter "Gruppe" öffnen.
+2. Ohne eigenen Helden kann der Gruppenmonitor direkt auf der Startseite
+   geöffnet werden.
+3. Falls einem Spieler die Berechtigung zum Erstellen eines Anhangs fehlt,
+   auf "Statusanzeigen anlegen" klicken.
+
+GESUNDHEITSZUSTÄNDE:
+- Gesund: mehr als 75 Prozent der LeP
+- Leicht verletzt: mehr als 25 bis 75 Prozent
+- Schwer verwundet: 1 bis 25 Prozent
+- Ohnmächtig: 0 LeP
