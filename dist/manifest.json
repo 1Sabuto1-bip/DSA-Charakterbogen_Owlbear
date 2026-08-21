@@ -1,8 +1,8 @@
 {
   "name": "Aventurischer Heldenbogen",
-  "version": "0.8.2",
+  "version": "0.8.4",
   "manifest_version": 1,
-  "description": "Interaktiver DSA-5-Heldenbogen mit GM-Gruppenmonitor und rechteckiger Live-Tokenanzeige",
+  "description": "DSA-5-Heldenbogen auf Basis 0.8.1 mit bereinigbarem GM-Gruppenmonitor",
   "author": "Alexander Hoffmann",
   "action": {
     "title": "Heldenbogen",

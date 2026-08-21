@@ -70,7 +70,7 @@ const root = document.querySelector<HTMLDivElement>("#app");
 if (!root) throw new Error("App container not found");
 
 const bridge = new OwlbearBridge();
-const APP_VERSION = "0.8.2";
+const APP_VERSION = "0.8.4";
 let state: CharacterSheetState | null = loadState();
 let activeTab: TabId = "overview";
 let talentSearch = "";
@@ -373,7 +373,7 @@ const renderOverview = (sheet: CharacterSheetState): string => {
           <p class="panel-copy">
             ${
               sheet.runtime.linkedTokenId
-                ? `Verknüpft mit <strong>${escapeHtml(sheet.runtime.linkedTokenName ?? "Charaktertoken")}</strong>. Ressourcen, Grund- und Kampfwerte werden übertragen${sheet.runtime.statusDisplayId ? "; die rechteckige Tokenanzeige ist aktiv." : "."}`
+                ? `Verknüpft mit <strong>${escapeHtml(sheet.runtime.linkedTokenName ?? "Charaktertoken")}</strong>. Ressourcen, Grund- und Kampfwerte werden übertragen${sheet.runtime.statusDisplayId ? "; die Kartenanzeige ist aktiv." : "."}`
                 : bridge.available
                   ? "Wähle einen Charaktertoken auf der Karte aus und verbinde ihn mit diesem Bogen."
                   : "In der Browser-Vorschau ist keine Owlbear-Szene verbunden."
@@ -383,7 +383,7 @@ const renderOverview = (sheet: CharacterSheetState): string => {
             <button class="secondary-button" id="link-token" ${bridge.available ? "" : "disabled"}>
               ${sheet.runtime.linkedTokenId ? "Anderen Token verbinden" : "Ausgewählten Token verbinden"}
             </button>
-            ${sheet.runtime.linkedTokenId ? `<button class="primary-button" id="sync-status-display" ${bridge.available ? "" : "disabled"}>${sheet.runtime.statusDisplayId ? "Tokenanzeige aktualisieren" : "Tokenanzeige testen"}</button>` : ""}
+            ${sheet.runtime.linkedTokenId ? `<button class="primary-button" id="sync-status-display" ${bridge.available ? "" : "disabled"}>${sheet.runtime.statusDisplayId ? "Kartenanzeige aktualisieren" : "Kartenanzeige erstellen"}</button>` : ""}
           </div>
         </article>
       </div>
@@ -1047,8 +1047,11 @@ const renderGroupMember = (member: GroupHeroSummary): string => {
       <p>${combat ? `Primär: ${escapeHtml(combat.primaryWeaponName)}` : "Kampfwerte werden beim nächsten Synchronisieren ergänzt."}</p>
     </div>
     <footer class="group-card__footer">
-      <span class="${updated.stale ? "stale" : ""}">${updated.stale ? "⚠ " : ""}${escapeHtml(updated.label)}</span>
-      <span>${member.statusDisplayId ? "Tokenanzeige auf der Karte" : "Noch keine Tokenanzeige"}</span>
+      <div class="group-card__meta">
+        <span class="${updated.stale ? "stale" : ""}">${updated.stale ? "⚠ " : ""}${escapeHtml(updated.label)}</span>
+        <span>${member.statusDisplayId ? "Statusanzeige auf der Karte" : "Noch keine Kartenanzeige"}</span>
+      </div>
+      <button class="group-remove-button" data-remove-group="${escapeHtml(member.tokenId)}" type="button" title="Held aus der GM-Übersicht entfernen">Aus Übersicht entfernen</button>
     </footer>
   </article>`;
 };
@@ -1059,10 +1062,10 @@ const renderGroupMonitor = (): string => `
       <div><p class="eyebrow">Nur für den GM</p><h2>Gruppenmonitor</h2></div>
       <div class="group-actions">
         <button class="secondary-button" id="refresh-group" ${groupLoading ? "disabled" : ""}>↻ Aktualisieren</button>
-        <button class="primary-button" id="sync-group-status" ${groupLoading || groupMembers.length === 0 ? "disabled" : ""}>Tokenanzeigen anlegen</button>
+        <button class="primary-button" id="sync-group-status" ${groupLoading || groupMembers.length === 0 ? "disabled" : ""}>Statusanzeigen anlegen</button>
       </div>
     </div>
-    <aside class="info-callout compact"><strong>Live aus der aktuellen Owlbear-Szene</strong><p>Jeder Spieler verbindet seinen Bogen einmal mit seinem Charaktertoken. Danach erscheinen Ressourcen, Eigenschaften und Kampfwerte hier; Änderungen am Bogen werden automatisch übertragen.</p></aside>
+    <aside class="info-callout compact"><strong>Live aus der aktuellen Owlbear-Szene</strong><p>Jeder Spieler verbindet seinen Bogen einmal mit seinem Charaktertoken. Danach erscheinen Ressourcen, Eigenschaften und Kampfwerte hier. Alte Testhelden kann der GM aus der Übersicht entfernen, ohne den Charaktertoken oder den lokalen Spielerbogen zu löschen.</p></aside>
     ${groupLoading && groupMembers.length === 0
       ? '<div class="group-loading">Gruppenwerte werden geladen …</div>'
       : `<div class="group-grid">${groupMembers.map(renderGroupMember).join("") || '<div class="empty-state group-empty"><strong>Noch keine verbundenen Helden</strong><span>Die Spieler müssen in ihrem Bogen einen Charaktertoken auswählen und „Ausgewählten Token verbinden“ anklicken.</span></div>'}</div>`}
@@ -1205,11 +1208,33 @@ const attachGroupMonitorListeners = (): void => {
   document.querySelector("#sync-group-status")?.addEventListener("click", async () => {
     try {
       const count = await bridge.ensureGroupStatusDisplays();
-      showToast(`${count} Tokenanzeige${count === 1 ? "" : "n"} wurden angelegt oder aktualisiert.`);
+      showToast(`${count} Kartenanzeige${count === 1 ? "" : "n"} wurden angelegt oder aktualisiert.`);
       await refreshGroupMembers(false);
     } catch (error) {
-      showToast(error instanceof Error ? error.message : "Die Tokenanzeigen konnten nicht aktualisiert werden.", "error");
+      showToast(error instanceof Error ? error.message : "Die Kartenanzeigen konnten nicht aktualisiert werden.", "error");
     }
+  });
+  document.querySelectorAll<HTMLButtonElement>("[data-remove-group]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const tokenId = button.dataset.removeGroup;
+      const member = groupMembers.find((entry) => entry.tokenId === tokenId);
+      if (!tokenId || !member) return;
+      const confirmed = window.confirm(
+        `„${member.summary.name}“ aus der GM-Übersicht entfernen?\n\nDer Charaktertoken und der Spielerbogen bleiben erhalten. Der Spieler kann den Helden später bewusst erneut verbinden.`,
+      );
+      if (!confirmed) return;
+      button.disabled = true;
+      try {
+        const name = await bridge.removeGroupMember(tokenId);
+        groupMembers = groupMembers.filter((entry) => entry.tokenId !== tokenId);
+        render();
+        showToast(`${name} wurde aus der Gruppenübersicht entfernt.`);
+        await refreshGroupMembers(false);
+      } catch (error) {
+        button.disabled = false;
+        showToast(error instanceof Error ? error.message : "Der Held konnte nicht entfernt werden.", "error");
+      }
+    });
   });
   document.querySelector("#close-group-monitor")?.addEventListener("click", () => {
     groupDashboardOpen = false;
@@ -1907,9 +1932,9 @@ const attachSheetListeners = (): void => {
       state.runtime.statusDisplayId = await bridge.ensureLinkedStatusDisplay(state);
       persist(false);
       render();
-      showToast("Die rechteckige Tokenanzeige wurde angelegt oder aktualisiert.");
+      showToast("Die Kartenanzeige wurde angelegt oder aktualisiert.");
     } catch (error) {
-      showToast(error instanceof Error ? error.message : "Die Tokenanzeige konnte nicht erstellt werden.", "error");
+      showToast(error instanceof Error ? error.message : "Die Kartenanzeige konnte nicht erstellt werden.", "error");
     }
   });
 

@@ -14,8 +14,32 @@ export interface HealthPresentation {
   ratio: number;
 }
 
+export interface GroupHiddenMarker {
+  version: 1;
+  heroId: string;
+  removedAt: string;
+}
+
 const isObject = (value: unknown): value is Record<string, unknown> =>
   typeof value === "object" && value !== null && !Array.isArray(value);
+
+export const createGroupHiddenMarker = (
+  heroId: string,
+  removedAt = new Date().toISOString(),
+): GroupHiddenMarker => ({ version: 1, heroId, removedAt });
+
+export const parseGroupHiddenMarker = (value: unknown): GroupHiddenMarker | null => {
+  if (
+    !isObject(value)
+    || value.version !== 1
+    || typeof value.heroId !== "string"
+    || typeof value.removedAt !== "string"
+  ) return null;
+  return value as unknown as GroupHiddenMarker;
+};
+
+export const isGroupSummaryHidden = (value: unknown, heroId: string): boolean =>
+  parseGroupHiddenMarker(value)?.heroId === heroId;
 
 const isResource = (value: unknown): value is ResourceValue =>
   isObject(value)

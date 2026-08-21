@@ -627,7 +627,11 @@ label:focus-within {
 .group-combat-values strong { color: var(--forest); font-family: Georgia, serif; font-size: 0.9rem; }
 .group-combat-values p { grid-column: 1 / -1; margin: 0; overflow: hidden; color: var(--muted); font-size: 0.5rem; text-align: center; text-overflow: ellipsis; white-space: nowrap; }
 .group-card__footer { display: flex; justify-content: space-between; gap: 0.5rem; padding: 0.5rem 0.8rem; color: var(--muted); background: rgba(236,225,197,.3); border-top: 1px solid var(--line); font-size: 0.48rem; }
+.group-card__meta { min-width: 0; display: flex; flex: 1 1 auto; flex-direction: column; justify-content: center; gap: 0.12rem; }
 .group-card__footer .stale { color: var(--red); font-weight: 800; }
+.group-remove-button { flex: 0 0 auto; align-self: center; padding: 0.32rem 0.48rem; color: var(--red); background: rgba(255,255,255,.45); border: 1px solid rgba(159,57,47,.35); border-radius: 6px; font-size: 0.48rem; font-weight: 800; cursor: pointer; }
+.group-remove-button:hover, .group-remove-button:focus-visible { color: #fff; background: var(--red); border-color: var(--red); outline: none; }
+.group-remove-button:disabled { cursor: wait; opacity: .55; }
 .group-loading { min-height: 12rem; display: grid; place-items: center; color: var(--muted); font-size: 0.72rem; }
 .group-empty { grid-column: 1 / -1; min-height: 12rem; display: grid; place-items: center; align-content: center; gap: 0.25rem; }
 .group-empty strong { color: var(--forest); font-family: Georgia, serif; font-size: 1rem; }
@@ -705,7 +709,8 @@ label:focus-within {
   .group-title { align-items: flex-start; flex-direction: column; }
   .group-actions { width: 100%; justify-content: stretch; }
   .group-actions button { flex: 1; }
-  .group-card__footer { align-items: flex-start; flex-direction: column; }
+  .group-card__footer { align-items: stretch; flex-direction: column; }
+  .group-remove-button { width: 100%; align-self: stretch; }
   .talent-row { grid-template-columns: 1.4rem minmax(7rem, 1fr) 2rem 3.2rem; }
   .spell-row { grid-template-columns: 1.4rem minmax(7rem, 1fr) 2rem 3.2rem 1.7rem; }
   .check-badges { display: none; }
