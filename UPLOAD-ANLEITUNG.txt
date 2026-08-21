@@ -1,22 +1,20 @@
-DSA-CHARAKTERBOGEN – GITHUB-UPDATE 0.8.1
+DSA-CHARAKTERBOGEN – TEST-UPDATE 0.8.2
 =========================================
 
 Neu in dieser Version:
-- nur für den GM sichtbarer Gruppenmonitor
-- LeP, AsP, KaP und Schicksalspunkte aller verbundenen Helden
-- MU, KL, IN, CH, FF, GE, KO und KK in der Gruppenübersicht
-- AT beziehungsweise FK, PA, Ausweichen und Initiative pro Held
-- automatische Aktualisierung bei Änderungen in den Spielerbögen
-- farbige Kartenanzeige mit Heldenname, LeP und Gesundheitszustand
-- Kartenanzeige bleibt am Charaktertoken angeheftet
-- Auswahl der Kartenanzeige kann erneut als Bogenverknüpfung verwendet werden
-- GM kann fehlende Kartenanzeigen gesammelt anlegen
-- sichtbare Versionsnummer 0.8.1 zur Cache-Kontrolle
+- rechteckige Tokenanzeige im atmosphärischen Aventurien-Stil
+- vorhandener Charaktertoken bleibt als rundes Profilbild links sichtbar
+- LeP, Gesundheitszustand und Initiative werden rechts live eingeblendet
+- Gesundheitszustand wird zusätzlich farblich hervorgehoben
+- Rahmen und Texte bleiben am Charaktertoken angeheftet
+- bisherige kleine Kartenanzeige wird beim Aktualisieren ersetzt
+- GM kann fehlende Tokenanzeigen gesammelt anlegen
+- sichtbare Versionsnummer 0.8.2 zur Cache-Kontrolle
 
 UPLOAD
 ------
 1. Diese ZIP-Datei auf dem Mac doppelt anklicken.
-2. Den entpackten Ordner "github-update-v0.8.1" öffnen.
+2. Den entpackten Ordner "github-update-v0.8.2" öffnen.
 3. Im GitHub-Repository auf "Add file" und "Upload files" klicken:
    https://github.com/1Sabuto1-bip/DSA-Charakterbogen_Owlbear
 4. ALLE Inhalte des geöffneten Ordners in das Upload-Fenster ziehen.
@@ -38,7 +36,7 @@ erneut die alte Seite aus dem Browser-Cache erscheint.
 
 Falls Owlbear die alte Version trotzdem zeigt, die Erweiterung im Profil
 entfernen und mit folgender Adresse neu anlegen:
-https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/manifest.json?v=081
+https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/manifest.json?v=082
 
 BEDIENUNG
 ---------
@@ -46,14 +44,16 @@ SPIELER:
 1. Charakter importieren oder vorhandenen Bogen öffnen.
 2. Auf der Owlbear-Karte den eigenen Charaktertoken auswählen.
 3. Im Reiter "Übersicht" auf "Ausgewählten Token verbinden" klicken.
-4. Die farbige Kartenanzeige wird automatisch oberhalb des Tokens angelegt.
+4. Die rechteckige Anzeige wird um den Token gelegt; LeP, Zustand und INI
+   erscheinen auf der rechten Seite.
+5. Zum erneuten Test im Bogen auf "Tokenanzeige aktualisieren" klicken.
 
 GM:
 1. Im Heldenbogen den nur für den GM sichtbaren Reiter "Gruppe" öffnen.
 2. Ohne eigenen Helden kann der Gruppenmonitor direkt auf der Startseite
    geöffnet werden.
 3. Falls einem Spieler die Berechtigung zum Erstellen eines Anhangs fehlt,
-   auf "Statusanzeigen anlegen" klicken.
+   auf "Tokenanzeigen anlegen" klicken.
 
 GESUNDHEITSZUSTÄNDE:
 - Gesund: mehr als 75 Prozent der LeP
