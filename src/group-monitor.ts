@@ -1,4 +1,5 @@
 import { calculateCombatOverview } from "./combat";
+import { calculateCarryingOverview, calculateConditionOverview } from "./conditions";
 import { getAttributeValues } from "./importer";
 import type {
   CharacterSheetState,
@@ -65,13 +66,19 @@ export const getHealthPresentation = (lp: ResourceValue): HealthPresentation => 
 
 export const createTokenSheetSummary = (state: CharacterSheetState): TokenSheetSummary => {
   const { resources } = state.runtime;
+  const conditions = calculateConditionOverview(state);
+  const carrying = calculateCarryingOverview(state);
   const combat = calculateCombatOverview(
     state.hero,
     state.runtime.combat.primaryWeaponId,
     state.runtime.combat.initiativeModifier,
+    {
+      attackDefensePenalty: conditions.physicalPenalty,
+      encumbranceLevel: conditions.encumbrance,
+    },
   );
   return {
-    version: 2,
+    version: 3,
     heroId: state.hero.id,
     name: state.hero.name,
     lp: { ...resources.lp },
@@ -88,6 +95,18 @@ export const createTokenSheetSummary = (state: CharacterSheetState): TokenSheetS
       ...(combat.parry === undefined ? {} : { parry: combat.parry }),
       dodge: combat.dodge,
       initiative: combat.initiative,
+    },
+    conditions: {
+      generalPenalty: conditions.generalPenalty,
+      physicalPenalty: conditions.physicalPenalty,
+      totalLevels: conditions.totalLevels,
+      encumbrance: conditions.encumbrance,
+      incapacitated: conditions.potentiallyIncapacitated,
+      active: conditions.activeLabels,
+    },
+    carrying: {
+      weight: carrying.countedWeight,
+      capacity: carrying.capacity,
     },
     updatedAt: new Date().toISOString(),
   };

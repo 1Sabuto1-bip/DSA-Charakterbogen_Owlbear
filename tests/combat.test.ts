@@ -82,6 +82,20 @@ describe("combat overview", () => {
     expect(calculateCombatOverview(hero, "shield")).toMatchObject({ attackLabel: "AT", attack: 10, parry: 9 });
   });
 
+  it("applies condition penalties and an effective encumbrance level", () => {
+    expect(calculateCombatOverview(hero, "sword", 0, {
+      attackDefensePenalty: 2,
+      encumbranceLevel: 3,
+    })).toMatchObject({
+      attack: 13,
+      parry: 7,
+      dodge: 5,
+      conditionPenalty: 2,
+      armorModifier: -3,
+      initiative: 11,
+    });
+  });
+
   it("rolls initiative as effective initiative plus 1W6", () => {
     const overview = calculateCombatOverview(hero, "sword", 1);
     expect(rollInitiative(overview, () => 0.5)).toMatchObject({ die: 4, total: 17, base: 14, armorModifier: -2, manualModifier: 1 });

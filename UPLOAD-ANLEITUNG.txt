@@ -1,62 +1,75 @@
-DSA-CHARAKTERBOGEN – TEST-UPDATE 0.8.2
-=========================================
+DSA-CHARAKTERBOGEN – UPDATE 0.11.0
+=================================
 
-Neu in dieser Version:
-- rechteckige Tokenanzeige im atmosphärischen Aventurien-Stil
-- vorhandener Charaktertoken bleibt als rundes Profilbild links sichtbar
-- LeP, Gesundheitszustand und Initiative werden rechts live eingeblendet
-- Gesundheitszustand wird zusätzlich farblich hervorgehoben
-- Rahmen und Texte bleiben am Charaktertoken angeheftet
-- bisherige kleine Kartenanzeige wird beim Aktualisieren ersetzt
-- GM kann fehlende Tokenanzeigen gesammelt anlegen
-- sichtbare Versionsnummer 0.8.2 zur Cache-Kontrolle
+Dieser Stand baut auf Version 0.10.0 auf und ergänzt Zustände, Tragkraft
+und die regeltechnische Belastungsberechnung.
+
+Neu:
+- neuer Reiter "Zustände"
+- Betäubung, Entrückung, Furcht, Paralyse, Schmerz und Verwirrung in Stufe 0 bis IV
+- automatische Schmerzstufe aus den aktuellen Lebenspunkten
+- addierte Zustandserschwernis bis maximal 5 und Warnung ab 8 Zustandsstufen
+- Zustandsabzüge werden bei 3W20-Proben sowie AT, PA und AW berücksichtigt
+- Tragkraft nach KK x 2 Stein
+- je 4 volle Stein über der Tragkraft eine Belastungsstufe
+- Inventar, ausgerüstete Rüstung und zusätzliche Last werden getrennt berechnet
+- Tragkraftmodifikator, weitere Belastung und Belastungsreduktion einstellbar
+- Zustände und Tragkraft erscheinen im GM-Gruppenmonitor und auf der Kartenanzeige
+- Charaktergenerator in acht übersichtlichen Schritten
+- Erfahrungsgrad und regelgerechtes AP-Konto
+- Mensch, Halbelf, Elf und Zwerg mit passenden Eigenschaftsmaxima
+- 12 Herkunftsvarianten und 32 Kulturpakete
+- 271 Professionspakete und Varianten mit Quellenfilter
+- jeweils 68 Vorteile und Nachteile aus den fünf Regelbänden
+- 482 durchsuchbare allgemeine, Kampf- und Magie-Sonderfertigkeiten
+- Geoden für zwergische Helden sowie weitere elfische und magische Professionen
+- alle 238 in den Professionspaketen referenzierten Zauber werden aufgelöst
+- Prüfung von Eigenschafts-, AP- und 80-AP-Grenzen
+- Pflichtvorteile und Traditionen für Magiebegabte und Geweihte
+- der fertige Held wird direkt als interaktiver Bogen geöffnet
+- die Vorschlagslisten zeigen jeden Namen nur noch einmal an
+- interne Kleinbuchstaben-Kennungen werden im Rolldown nicht mehr eingeblendet
+- vollständiger gemeinsamer Katalog aus aktueller Regelwiki und DarkAid
+- insgesamt 211 Vorteile und 104 Nachteile
+- neuer Reiter "Biografie"
+- Spezies, Kultur und Profession werden aus Optolith und DarkAid übernommen
+- die drei Herkunftsangaben sind auch direkt bearbeitbar
+- 29 Speziesvarianten, 40 Kulturen und 315 Professionen sind durchsuchbar
+- sämtliche Vorteile und Nachteile sind durchsuchbar
+- Stufe und freie Ausprägung eines Vor- oder Nachteils können bearbeitet werden
+- Einträge können hinzugefügt und entfernt werden
+- vorhandene Owlbear-Sicherungen werden beim Laden automatisch ergänzt
+- sichtbare Versionsnummer 0.11.0 zur Cache-Kontrolle
 
 UPLOAD
 ------
 1. Diese ZIP-Datei auf dem Mac doppelt anklicken.
-2. Den entpackten Ordner "github-update-v0.8.2" öffnen.
+2. Den entpackten Ordner "github-update-v0.11.0" öffnen.
 3. Im GitHub-Repository auf "Add file" und "Upload files" klicken:
    https://github.com/1Sabuto1-bip/DSA-Charakterbogen_Owlbear
 4. ALLE Inhalte des geöffneten Ordners in das Upload-Fenster ziehen.
-   Nicht den übergeordneten Ordner selbst hineinziehen.
 5. Unten "Commit changes" anklicken.
 
 GITHUB PAGES
 ------------
-Die vorhandene Einstellung bleibt:
 Source: Deploy from a branch
 Branch: main
 Folder: /docs
 
 OWLBEAR
 -------
-Nach dem Upload Owlbear vollständig neu laden. Das Manifest dieser Version
-verwendet eine eigene Versionsadresse für die Programmoberfläche, damit nicht
-erneut die alte Seite aus dem Browser-Cache erscheint.
-
-Falls Owlbear die alte Version trotzdem zeigt, die Erweiterung im Profil
-entfernen und mit folgender Adresse neu anlegen:
-https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/manifest.json?v=082
+Nach dem Upload Owlbear vollständig neu laden. Falls noch eine andere Version
+erscheint, die Erweiterung im Profil entfernen und neu installieren mit:
+https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/manifest.json?v=0110
 
 BEDIENUNG
 ---------
-SPIELER:
-1. Charakter importieren oder vorhandenen Bogen öffnen.
-2. Auf der Owlbear-Karte den eigenen Charaktertoken auswählen.
-3. Im Reiter "Übersicht" auf "Ausgewählten Token verbinden" klicken.
-4. Die rechteckige Anzeige wird um den Token gelegt; LeP, Zustand und INI
-   erscheinen auf der rechten Seite.
-5. Zum erneuten Test im Bogen auf "Tokenanzeige aktualisieren" klicken.
+Auf der Startseite "Charaktergenerator öffnen" wählen. Der Entwurf wird
+automatisch im Browser gespeichert. Nach dem letzten Prüfschritt wird der
+Held als normaler interaktiver Bogen geöffnet. Noch nicht ausgegebene AP
+können anschließend im Reiter "Steigern" verteilt werden.
 
-GM:
-1. Im Heldenbogen den nur für den GM sichtbaren Reiter "Gruppe" öffnen.
-2. Ohne eigenen Helden kann der Gruppenmonitor direkt auf der Startseite
-   geöffnet werden.
-3. Falls einem Spieler die Berechtigung zum Erstellen eines Anhangs fehlt,
-   auf "Tokenanzeigen anlegen" klicken.
-
-GESUNDHEITSZUSTÄNDE:
-- Gesund: mehr als 75 Prozent der LeP
-- Leicht verletzt: mehr als 25 bis 75 Prozent
-- Schwer verwundet: 1 bis 25 Prozent
-- Ohnmächtig: 0 LeP
+Nach dem Laden eines vorhandenen Helden den Reiter "Biografie" öffnen. Dort können
+Spezies, Kultur und Profession korrigiert sowie Vor- und Nachteile gesucht,
+hinzugefügt, bearbeitet oder entfernt werden. Alle Änderungen werden wie die
+übrigen Heldenwerte automatisch im Browser gespeichert.

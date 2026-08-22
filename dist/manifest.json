@@ -1,13 +1,13 @@
 {
   "name": "Aventurischer Heldenbogen",
-  "version": "0.8.4",
+  "version": "0.11.0",
   "manifest_version": 1,
-  "description": "DSA-5-Heldenbogen auf Basis 0.8.1 mit bereinigbarem GM-Gruppenmonitor",
+  "description": "Interaktiver DSA-5-Heldenbogen mit Zuständen, Tragkraft, Regelwerksgenerator, Import, Kampf und GM-Übersicht",
   "author": "Alexander Hoffmann",
   "action": {
     "title": "Heldenbogen",
-    "icon": "/icon.svg",
-    "popover": "/",
+    "icon": "https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/icon.svg",
+    "popover": "https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/",
     "height": 760,
     "width": 680
   }

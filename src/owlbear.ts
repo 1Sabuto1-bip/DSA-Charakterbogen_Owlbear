@@ -31,7 +31,10 @@ const readStatusDisplayLink = (item: Item): StatusDisplayLink | null => {
 
 const statusText = (summary: TokenSheetSummary): string => {
   const health = getHealthPresentation(summary.lp);
-  return `${summary.name} · LeP ${summary.lp.current}/${summary.lp.max}\n${health.label.toUpperCase()}`;
+  const conditionText = summary.conditions && summary.conditions.totalLevels > 0
+    ? ` · Z ${summary.conditions.totalLevels}/8 · BE ${summary.conditions.encumbrance}`
+    : "";
+  return `${summary.name} · LeP ${summary.lp.current}/${summary.lp.max}\n${health.label.toUpperCase()} · INI ${summary.initiative}${conditionText}`;
 };
 
 export class OwlbearBridge {

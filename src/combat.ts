@@ -20,6 +20,13 @@ export interface CombatOverview {
   armorModifier: number;
   manualInitiativeModifier: number;
   initiative: number;
+  conditionPenalty: number;
+  encumbranceLevel?: number;
+}
+
+export interface CombatConditionModifiers {
+  attackDefensePenalty?: number;
+  encumbranceLevel?: number;
 }
 
 export const inferCombatItemKind = (item: OptolithItem): CombatItemKind => {
@@ -87,6 +94,13 @@ const equippedArmorModifier = (hero: OptolithHero): number => {
   return modifiers.length ? Math.min(...modifiers) : 0;
 };
 
+const equippedArmorAdditionalInitiativePenalty = (hero: OptolithHero): number => {
+  const penalties = Object.values(hero.belongings?.items ?? {})
+    .filter((item) => inferCombatItemKind(item) === "armor" && item.equipped !== false)
+    .map((item) => Math.min(0, Number(item.initiativePenalty ?? 0)));
+  return penalties.length ? Math.min(...penalties) : 0;
+};
+
 const passiveShieldBonus = (hero: OptolithHero, primaryWeaponId?: string): number =>
   Math.max(
     0,
@@ -99,6 +113,7 @@ export const calculateCombatOverview = (
   hero: OptolithHero,
   primaryWeaponId?: string,
   manualInitiativeModifier = 0,
+  conditionModifiers?: CombatConditionModifiers,
 ): CombatOverview => {
   const attributes = getAttributeValues(hero);
   const resolved = resolvePrimaryWeapon(hero, primaryWeaponId);
@@ -109,18 +124,25 @@ export const calculateCombatOverview = (
   const technique = COMBAT_TECHNIQUE_RULES[techniqueId] ?? COMBAT_TECHNIQUE_RULES.CT_9;
   const techniqueValue = Number(hero.ct?.[technique.id] ?? 6);
   const ranged = kind === "ranged" || technique.range === "ranged";
-  const attack = ranged
+  const rawAttack = ranged
     ? techniqueValue + attributeCombatBonus(attributes.FF)
     : techniqueValue + attributeCombatBonus(attributes.MU) + Number(weapon?.at ?? 0);
   const leadAttribute = Math.max(...technique.primaryAttributes.map((code) => attributes[code]));
   const baseParry = Math.ceil(techniqueValue / 2) + attributeCombatBonus(leadAttribute);
-  const parry = ranged
+  const rawParry = ranged
     ? undefined
     : kind === "shield"
       ? baseParry + Number(weapon?.pa ?? 0) * 2
       : baseParry + Number(weapon?.pa ?? 0) + passiveShieldBonus(hero, selectedId);
   const initiativeBase = Math.round((attributes.MU + attributes.GE) / 2);
-  const armorModifier = equippedArmorModifier(hero);
+  const conditionPenalty = Math.max(0, Math.min(5, Math.round(conditionModifiers?.attackDefensePenalty ?? 0)));
+  const attack = Math.max(0, rawAttack - conditionPenalty);
+  const parry = rawParry === undefined ? undefined : Math.max(0, rawParry - conditionPenalty);
+  const dodge = Math.max(0, Math.ceil(attributes.GE / 2) - conditionPenalty);
+  const encumbranceLevel = conditionModifiers?.encumbranceLevel;
+  const armorModifier = encumbranceLevel === undefined
+    ? equippedArmorModifier(hero)
+    : -Math.max(0, Math.min(4, Math.round(encumbranceLevel))) + equippedArmorAdditionalInitiativePenalty(hero);
   const initiative = Math.max(0, initiativeBase + armorModifier + manualInitiativeModifier);
 
   return {
@@ -131,11 +153,13 @@ export const calculateCombatOverview = (
     attackLabel: ranged ? "FK" : "AT",
     attack,
     parry,
-    dodge: Math.ceil(attributes.GE / 2),
+    dodge,
     initiativeBase,
     armorModifier,
     manualInitiativeModifier,
     initiative,
+    conditionPenalty,
+    ...(encumbranceLevel === undefined ? {} : { encumbranceLevel }),
   };
 };
 

@@ -14,11 +14,33 @@ export type ImprovementCost = "A" | "B" | "C" | "D" | "E";
 
 export type CombatItemKind = "melee" | "ranged" | "shield" | "armor" | "equipment";
 
-export type ManualSpecies = "human" | "elf" | "dwarf";
+export type ManualSpecies = "human" | "halfelf" | "elf" | "dwarf";
 
 export interface ManualHeroSettings {
   species: ManualSpecies;
   magical: boolean;
+}
+
+export interface BiographyCatalogEntry {
+  id: string;
+  name: string;
+}
+
+export interface BiographyTrait {
+  id: string;
+  sourceId?: string;
+  name: string;
+  level?: number;
+  variant?: string;
+}
+
+export interface HeroBiography {
+  species: string;
+  culture: string;
+  profession: string;
+  advantages: BiographyTrait[];
+  disadvantages: BiographyTrait[];
+  specialAbilities?: BiographyTrait[];
 }
 
 export interface OptolithAttributeValue {
@@ -93,6 +115,7 @@ export interface OptolithHero {
   liturgies?: Record<string, number>;
   blessings?: string[];
   manual?: ManualHeroSettings;
+  biography?: HeroBiography;
   belongings?: {
     items?: Record<string, OptolithItem>;
     purse?: Partial<Record<"d" | "s" | "h" | "k", string>>;
@@ -119,8 +142,26 @@ export interface RuntimeState {
   linkedTokenName?: string;
   statusDisplayId?: string;
   inventoryCategoriesMigrated: boolean;
+  conditions: ConditionRuntimeState;
+  carrying: CarryingRuntimeState;
   combat: CombatRuntimeState;
   advancement: AdvancementState;
+}
+
+export type ConditionId = "stun" | "rapture" | "fear" | "paralysis" | "pain" | "confusion";
+
+export type ConditionLevels = Record<ConditionId, number>;
+
+export interface ConditionRuntimeState {
+  levels: ConditionLevels;
+  automaticPain: boolean;
+  manualEncumbrance: number;
+  encumbranceReduction: number;
+}
+
+export interface CarryingRuntimeState {
+  additionalWeight: number;
+  capacityModifier: number;
 }
 
 export interface InitiativeRoll {
@@ -259,8 +300,8 @@ export interface SpellDefinition {
 
 export interface SpeciesDefinition {
   key: ManualSpecies;
-  id: "R_1" | "R_2" | "R_4";
-  name: "Mensch" | "Elf" | "Zwerg";
+  id: "R_1" | "R_2" | "R_3" | "R_4";
+  name: "Mensch" | "Halbelf" | "Elf" | "Zwerg";
   lifeBase: number;
   automaticallyMagical: boolean;
 }
@@ -276,7 +317,7 @@ export interface TalentRollResult {
 }
 
 export interface TokenSheetSummary {
-  version?: 2;
+  version?: 2 | 3;
   heroId: string;
   name: string;
   lp: ResourceValue;
@@ -293,6 +334,18 @@ export interface TokenSheetSummary {
     parry?: number;
     dodge: number;
     initiative: number;
+  };
+  conditions?: {
+    generalPenalty: number;
+    physicalPenalty: number;
+    totalLevels: number;
+    encumbrance: number;
+    incapacitated: boolean;
+    active: string[];
+  };
+  carrying?: {
+    weight: number;
+    capacity: number;
   };
   updatedAt: string;
 }

@@ -9,6 +9,11 @@ import {
 } from "./data";
 import { createDarkAidState, isDarkAidHero } from "./darkaid-importer";
 import { getDefaultPrimaryWeaponId, inferCombatItemKind } from "./combat";
+import { ensureHeroBiography } from "./biography";
+import {
+  createCarryingRuntimeState,
+  createConditionRuntimeState,
+} from "./conditions";
 import type {
   AttributeCode,
   CharacterSheetState,
@@ -101,6 +106,8 @@ export const createRuntimeState = (hero: OptolithHero): RuntimeState => ({
   notes: "",
   favoriteTalentIds: [],
   inventoryCategoriesMigrated: true,
+  conditions: createConditionRuntimeState(),
+  carrying: createCarryingRuntimeState(),
   combat: {
     primaryWeaponId: getDefaultPrimaryWeaponId(hero),
     initiativeModifier: 0,
@@ -131,6 +138,14 @@ export const createManualState = (name: string, options: ManualStateOptions = {}
     locale: "de-DE",
     r: species.id,
     manual: { species: species.key, magical },
+    biography: {
+      species: species.name,
+      culture: "",
+      profession: "",
+      advantages: [],
+      disadvantages: [],
+      specialAbilities: [],
+    },
     ap: { total: 0 },
     attr: {
       values: ATTRIBUTES.map((attribute) => ({ id: attribute.id, value: 8 })),
@@ -169,6 +184,7 @@ export const updateManualSpecies = (sheet: CharacterSheetState, speciesKey: Manu
   sheet.hero.manual ??= { species: "human", magical: false };
   sheet.hero.manual.species = species.key;
   sheet.hero.r = species.id;
+  ensureHeroBiography(sheet.hero).species = species.name;
   if (species.automaticallyMagical) sheet.hero.manual.magical = true;
   const life = deriveLifePoints(sheet.hero);
   sheet.runtime.resources.lp = { current: Math.max(0, life.max - damage), max: life.max };
@@ -232,6 +248,7 @@ const validateHero = (value: unknown): OptolithHero => {
     };
     hero.r = species.id;
   }
+  ensureHeroBiography(hero);
   return hero;
 };
 
@@ -257,6 +274,8 @@ const validateBackup = (value: Record<string, unknown>): CharacterSheetState | n
   const runtime = value.runtime as unknown as Partial<RuntimeState>;
   const advancement = runtime.advancement;
   const combat = runtime.combat;
+  const conditions = runtime.conditions;
+  const carrying = runtime.carrying;
   if (runtime.inventoryCategoriesMigrated !== true) migrateInventoryCategories(hero);
   return {
     schemaVersion: 1,
@@ -275,6 +294,27 @@ const validateBackup = (value: Record<string, unknown>): CharacterSheetState | n
         : [],
       notes: typeof runtime.notes === "string" ? runtime.notes : "",
       inventoryCategoriesMigrated: true,
+      conditions: {
+        ...fallback.conditions,
+        ...(conditions ?? {}),
+        levels: {
+          stun: Math.max(0, Math.min(4, Math.round(asFiniteNumber(conditions?.levels?.stun)))),
+          rapture: Math.max(0, Math.min(4, Math.round(asFiniteNumber(conditions?.levels?.rapture)))),
+          fear: Math.max(0, Math.min(4, Math.round(asFiniteNumber(conditions?.levels?.fear)))),
+          paralysis: Math.max(0, Math.min(4, Math.round(asFiniteNumber(conditions?.levels?.paralysis)))),
+          pain: Math.max(0, Math.min(4, Math.round(asFiniteNumber(conditions?.levels?.pain)))),
+          confusion: Math.max(0, Math.min(4, Math.round(asFiniteNumber(conditions?.levels?.confusion)))),
+        },
+        automaticPain: conditions?.automaticPain !== false,
+        manualEncumbrance: Math.max(0, Math.min(4, Math.round(asFiniteNumber(conditions?.manualEncumbrance)))),
+        encumbranceReduction: Math.max(0, Math.min(4, Math.round(asFiniteNumber(conditions?.encumbranceReduction)))),
+      },
+      carrying: {
+        ...fallback.carrying,
+        ...(carrying ?? {}),
+        additionalWeight: Math.max(0, asFiniteNumber(carrying?.additionalWeight)),
+        capacityModifier: asFiniteNumber(carrying?.capacityModifier),
+      },
       combat: {
         ...fallback.combat,
         ...(combat ?? {}),

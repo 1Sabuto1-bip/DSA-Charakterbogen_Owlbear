@@ -121,6 +121,27 @@ describe("Optolith import", () => {
     });
   });
 
+  it("migrates backups from before conditions and carrying capacity", () => {
+    const original = importHeroJson(minimalHero);
+    delete (original.runtime as Partial<typeof original.runtime>).conditions;
+    delete (original.runtime as Partial<typeof original.runtime>).carrying;
+    const restored = importHeroJson(JSON.stringify(original));
+    expect(restored.runtime.conditions).toMatchObject({
+      automaticPain: true,
+      manualEncumbrance: 0,
+      encumbranceReduction: 0,
+    });
+    expect(restored.runtime.conditions.levels).toEqual({
+      stun: 0,
+      rapture: 0,
+      fear: 0,
+      paralysis: 0,
+      pain: 0,
+      confusion: 0,
+    });
+    expect(restored.runtime.carrying).toEqual({ additionalWeight: 0, capacityModifier: 0 });
+  });
+
   it("migrates old inventory entries into the new category groups once", () => {
     const original = importHeroJson(minimalHero);
     original.hero.belongings ??= {};

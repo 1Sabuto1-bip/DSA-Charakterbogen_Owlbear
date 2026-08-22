@@ -1,8 +1,11 @@
 import { describe, expect, it } from "vitest";
 
 import {
+  createGroupHiddenMarker,
   createTokenSheetSummary,
   getHealthPresentation,
+  isGroupSummaryHidden,
+  parseGroupHiddenMarker,
   parseTokenSheetSummary,
 } from "../src/group-monitor";
 import { createManualState } from "../src/importer";
@@ -23,11 +26,13 @@ describe("group monitor summaries", () => {
     state.runtime.resources.lp = { current: 20, max: 30 };
     const summary = createTokenSheetSummary(state);
 
-    expect(summary.version).toBe(2);
+    expect(summary.version).toBe(3);
     expect(summary.name).toBe("Rondrik");
     expect(summary.healthStatus).toBe("lightlyInjured");
     expect(summary.attributes).toEqual({ MU: 10, KL: 11, IN: 12, CH: 13, FF: 14, GE: 15, KO: 16, KK: 17 });
-    expect(summary.combat).toMatchObject({ attackLabel: "AT", dodge: 8, initiative: 13 });
+    expect(summary.combat).toMatchObject({ attackLabel: "AT", dodge: 7, initiative: 13 });
+    expect(summary.conditions).toMatchObject({ generalPenalty: 1, encumbrance: 0, totalLevels: 1 });
+    expect(summary.carrying).toEqual({ weight: 0, capacity: 34 });
   });
 
   it("accepts summaries from older connected tokens", () => {
@@ -44,5 +49,17 @@ describe("group monitor summaries", () => {
 
   it("rejects unrelated token metadata", () => {
     expect(parseTokenSheetSummary({ name: "Dekoration" })).toBeNull();
+  });
+
+  it("keeps a deliberately removed hero hidden during passive synchronization", () => {
+    const marker = createGroupHiddenMarker("hero-1", "2026-08-21T08:00:00.000Z");
+    expect(parseGroupHiddenMarker(marker)).toEqual(marker);
+    expect(isGroupSummaryHidden(marker, "hero-1")).toBe(true);
+    expect(isGroupSummaryHidden(marker, "hero-2")).toBe(false);
+  });
+
+  it("rejects invalid removal markers", () => {
+    expect(parseGroupHiddenMarker({ version: 1, heroId: "hero-1" })).toBeNull();
+    expect(parseGroupHiddenMarker({ version: 2, heroId: "hero-1", removedAt: "now" })).toBeNull();
   });
 });

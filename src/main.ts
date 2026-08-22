@@ -14,6 +14,14 @@ import { CANTRIPS, SPELL_BY_ID } from "./magic-data";
 import { DARKAID_ITEM_DATA, DARKAID_MAGIC_BY_ID, DARKAID_MAGIC_BY_SOURCE_ID } from "./darkaid-data";
 import { ALL_SPELLS, ALL_SPELL_BY_ID } from "./spell-catalog";
 import {
+  BIOGRAPHY_CULTURES,
+  BIOGRAPHY_PROFESSIONS,
+  BIOGRAPHY_SPECIES,
+} from "./biography-data";
+import { COMPLETE_ADVANTAGES, COMPLETE_DISADVANTAGES } from "./biography-catalog";
+import { ensureHeroBiography, findBiographyEntry } from "./biography";
+import { CharacterGeneratorUI } from "./character-generator-ui";
+import {
   combatTechniqueMaximum,
   improvementCostForTarget,
   talentMaximum,
@@ -32,6 +40,11 @@ import {
 import { OwlbearBridge } from "./owlbear";
 import { getHealthPresentation } from "./group-monitor";
 import { rollTalent } from "./roll";
+import {
+  calculateCarryingOverview,
+  calculateConditionOverview,
+  CONDITION_DEFINITIONS,
+} from "./conditions";
 import { clearState, loadState, saveState } from "./storage";
 import {
   calculateCombatOverview,
@@ -43,7 +56,9 @@ import type {
   CharacterSheetState,
   AdvancementHistoryEntry,
   AttributeCode,
+  BiographyTrait,
   CombatItemKind,
+  ConditionId,
   ImprovementCost,
   GroupHeroSummary,
   ManualSpecies,
@@ -54,7 +69,7 @@ import type {
   TalentRollResult,
 } from "./types";
 
-type TabId = "overview" | "talents" | "spells" | "combat" | "inventory" | "advance" | "source" | "group";
+type TabId = "overview" | "biography" | "talents" | "spells" | "combat" | "conditions" | "inventory" | "advance" | "source" | "group";
 
 type AdvancementSection = "attributes" | "talents" | "combat" | "spells" | "resources";
 type InventorySort = "category" | "name" | "weight" | "value";
@@ -70,8 +85,10 @@ const root = document.querySelector<HTMLDivElement>("#app");
 if (!root) throw new Error("App container not found");
 
 const bridge = new OwlbearBridge();
-const APP_VERSION = "0.8.4";
+const APP_VERSION = "0.11.0";
 let state: CharacterSheetState | null = loadState();
+const generatorUI = new CharacterGeneratorUI();
+let generatorOpen = false;
 let activeTab: TabId = "overview";
 let talentSearch = "";
 let spellSearch = "";
@@ -185,6 +202,7 @@ const importFile = async (file?: File): Promise<void> => {
   if (!file) return;
   try {
     state = importHeroJson(await file.text());
+    generatorOpen = false;
     activeTab = "overview";
     talentSearch = "";
     spellSearch = "";
@@ -240,6 +258,12 @@ const renderImportScreen = (): string => `
         <span>oder hierher ziehen</span>
       </label>
       <div class="welcome-divider"><span>oder</span></div>
+      <section class="generator-start" aria-labelledby="generator-start-title">
+        <div class="generator-start__mark" aria-hidden="true">✦</div>
+        <div><strong id="generator-start-title">Neuen Helden nach Regeln erschaffen</strong><span>Schritt für Schritt mit AP-Konto, Spezies, Kultur, Profession sowie allen Vor- und Nachteilen des Grundregelwerks.</span></div>
+        <button class="primary-button" id="open-character-generator">Charaktergenerator öffnen</button>
+      </section>
+      <div class="welcome-divider"><span>oder ohne Regeln</span></div>
       <section class="manual-start" aria-labelledby="manual-start-title">
         <div>
           <strong id="manual-start-title">Kein digitaler Heldenbogen?</strong>
@@ -310,6 +334,9 @@ const renderOverview = (sheet: CharacterSheetState): string => {
   const species = SPECIES_BY_ID[sheet.hero.r ?? ""];
   const manualSpecies = sheet.hero.manual?.species ?? species?.key ?? "human";
   const magical = isMagicallyGifted(sheet);
+  const biography = ensureHeroBiography(sheet.hero);
+  const conditions = calculateConditionOverview(sheet);
+  const carrying = calculateCarryingOverview(sheet);
 
   return `
     <section class="page page--overview">
@@ -349,6 +376,12 @@ const renderOverview = (sheet: CharacterSheetState): string => {
           : ""
       }
 
+      <button class="overview-condition-strip ${conditions.potentiallyIncapacitated ? "overview-condition-strip--danger" : conditions.activeLabels.length ? "overview-condition-strip--active" : ""}" data-open-tab="conditions">
+        <span><b>${conditions.activeLabels.length ? escapeHtml(conditions.activeLabels.join(" · ")) : "Keine aktiven Zustände"}</b><small>Generelle Erschwernis ${conditions.generalPenalty ? `−${conditions.generalPenalty}` : "0"} · ${conditions.totalLevels}/8 Zustandsstufen</small></span>
+        <span><b>${formatNumber(carrying.countedWeight)}/${formatNumber(carrying.capacity)} Stein</b><small>Tragkraft · Belastung ${carrying.encumbrance}</small></span>
+        <i>Details →</i>
+      </button>
+
       <div class="overview-columns">
         <article class="panel">
           <div class="panel__header"><h3>Auf einen Blick</h3></div>
@@ -357,7 +390,9 @@ const renderOverview = (sheet: CharacterSheetState): string => {
             <div><dt>Abenteuerpunkte</dt><dd>${isManual ? `<input class="fact-input" id="manual-ap" type="number" min="0" value="${sheet.hero.ap?.total ?? 0}" aria-label="Abenteuerpunkte" />` : sheet.hero.ap?.total ?? "—"}</dd></div>
             <div><dt>Spezies</dt><dd>${isManual
               ? `<select class="fact-select" id="manual-species-sheet" aria-label="Spezies">${SPECIES.map((entry) => `<option value="${entry.key}" ${entry.key === manualSpecies ? "selected" : ""}>${entry.name}</option>`).join("")}</select>`
-              : escapeHtml(species?.name ?? sheet.hero.r ?? "—")}</dd></div>
+              : escapeHtml(biography.species || species?.name || sheet.hero.r || "—")}</dd></div>
+            <div><dt>Kultur</dt><dd>${escapeHtml(biography.culture || "—")}</dd></div>
+            <div><dt>Profession</dt><dd>${escapeHtml(biography.profession || "—")}</dd></div>
             <div><dt>Magie</dt><dd>${isManual
               ? `<label class="fact-toggle"><input id="manual-magical-sheet" type="checkbox" ${magical ? "checked" : ""} ${manualSpecies === "elf" ? "disabled" : ""} /><span>${manualSpecies === "elf" ? "automatisch" : "magisch begabt"}</span></label>`
               : magical ? "magisch begabt" : "nicht magisch"}</dd></div>
@@ -394,6 +429,93 @@ const renderOverview = (sheet: CharacterSheetState): string => {
       </article>
     </section>
   `;
+};
+
+const biographyOptions = (entries: Array<{ id: string; name: string }>): string => entries
+  .map((entry) => `<option value="${escapeHtml(entry.name)}"></option>`)
+  .join("");
+
+const renderBiographyTrait = (
+  trait: BiographyTrait,
+  kind: "advantage" | "disadvantage",
+): string => `
+  <div class="biography-trait-row">
+    <label class="biography-trait-name">
+      <span>Name</span>
+      <input data-biography-trait="${escapeHtml(trait.id)}" data-biography-kind="${kind}" data-biography-trait-field="name" type="text" value="${escapeHtml(trait.name)}" />
+    </label>
+    <label>
+      <span>Ausprägung</span>
+      <input data-biography-trait="${escapeHtml(trait.id)}" data-biography-kind="${kind}" data-biography-trait-field="variant" type="text" value="${escapeHtml(trait.variant ?? "")}" placeholder="optional" />
+    </label>
+    <label class="biography-trait-level">
+      <span>Stufe</span>
+      <input data-biography-trait="${escapeHtml(trait.id)}" data-biography-kind="${kind}" data-biography-trait-field="level" type="number" min="1" max="20" value="${trait.level ?? ""}" placeholder="–" />
+    </label>
+    <button class="inventory-delete" data-delete-biography-trait="${escapeHtml(trait.id)}" data-biography-kind="${kind}" title="Eintrag entfernen" aria-label="${escapeHtml(trait.name)} entfernen">×</button>
+  </div>`;
+
+const renderBiographyTraitPanel = (
+  title: string,
+  kind: "advantage" | "disadvantage",
+  traits: BiographyTrait[],
+): string => {
+  const catalogue = kind === "advantage" ? COMPLETE_ADVANTAGES : COMPLETE_DISADVANTAGES;
+  const inputId = `biography-add-${kind}`;
+  return `
+    <article class="panel biography-trait-panel biography-trait-panel--${kind}">
+      <div class="panel__header"><h3>${title}</h3><span>${traits.length} eingetragen · ${catalogue.length} im Katalog</span></div>
+      <div class="biography-add-row">
+        <label class="biography-add-name">
+          <span>${title.slice(0, -1)} suchen oder eintragen</span>
+          <input id="${inputId}" type="search" list="${inputId}-catalogue" placeholder="Name eingeben …" autocomplete="off" />
+          <datalist id="${inputId}-catalogue">${biographyOptions(catalogue)}</datalist>
+        </label>
+        <label><span>Ausprägung</span><input id="${inputId}-variant" type="text" placeholder="optional" /></label>
+        <label class="biography-add-level"><span>Stufe</span><input id="${inputId}-level" type="number" min="1" max="20" placeholder="–" /></label>
+        <button class="primary-button" data-add-biography-trait="${kind}">Hinzufügen</button>
+      </div>
+      <div class="biography-trait-list">
+        ${traits.length > 0
+          ? traits.map((trait) => renderBiographyTrait(trait, kind)).join("")
+          : `<div class="empty-state">Noch keine ${title.toLocaleLowerCase("de")} eingetragen.</div>`}
+      </div>
+    </article>`;
+};
+
+const renderBiographySpecialAbilities = (traits: BiographyTrait[]): string => {
+  if (!traits.length) return "";
+  return `<article class="panel biography-special-abilities">
+    <div class="panel__header"><h3>Sonderfertigkeiten &amp; Sprachen</h3><span>${traits.length} aus Herkunft und Profession</span></div>
+    <div class="biography-special-ability-list">${traits.map((trait) => `<span>${escapeHtml(trait.name)}${trait.level ? ` ${trait.level}` : ""}${trait.variant ? ` · ${escapeHtml(trait.variant)}` : ""}</span>`).join("")}</div>
+  </article>`;
+};
+
+const renderBiography = (sheet: CharacterSheetState): string => {
+  const biography = ensureHeroBiography(sheet.hero);
+  return `
+    <section class="page page--biography">
+      <div class="section-title">
+        <div><p class="eyebrow">Herkunft &amp; Prägung</p><h2>Biografie</h2></div>
+        <span class="section-hint">Importiert oder direkt bearbeitbar</span>
+      </div>
+      <article class="panel biography-identity-panel">
+        <div class="biography-identity-grid">
+          <label><span>Spezies</span><input data-biography-field="species" list="biography-species-catalogue" type="text" value="${escapeHtml(biography.species)}" placeholder="z. B. Mittelländer" /></label>
+          <label><span>Kultur</span><input data-biography-field="culture" list="biography-cultures-catalogue" type="text" value="${escapeHtml(biography.culture)}" placeholder="z. B. Mittelreich" /></label>
+          <label><span>Profession</span><input data-biography-field="profession" list="biography-professions-catalogue" type="text" value="${escapeHtml(biography.profession)}" placeholder="z. B. Söldnerin" /></label>
+        </div>
+        <datalist id="biography-species-catalogue">${biographyOptions(BIOGRAPHY_SPECIES)}</datalist>
+        <datalist id="biography-cultures-catalogue">${biographyOptions(BIOGRAPHY_CULTURES)}</datalist>
+        <datalist id="biography-professions-catalogue">${biographyOptions(BIOGRAPHY_PROFESSIONS)}</datalist>
+        <p class="biography-note">Die Herkunftsangaben werden gespeichert, verändern aber keine Grundwerte automatisch. Bei manuell angelegten Helden steuerst du die LeP-Basis weiterhin über die Speziesauswahl in der Übersicht.</p>
+      </article>
+      <div class="biography-columns">
+        ${renderBiographyTraitPanel("Vorteile", "advantage", biography.advantages)}
+        ${renderBiographyTraitPanel("Nachteile", "disadvantage", biography.disadvantages)}
+      </div>
+      ${renderBiographySpecialAbilities(biography.specialAbilities ?? [])}
+    </section>`;
 };
 
 const renderTalentRow = (
@@ -654,10 +776,15 @@ const renderCombat = (sheet: CharacterSheetState): string => {
     .sort((a, b) => a.item.name.localeCompare(b.item.name, "de"));
   const weapons = combatItems.filter((entry) => entry.kind !== "armor");
   const armor = combatItems.filter((entry) => entry.kind === "armor");
+  const conditions = calculateConditionOverview(sheet);
   const overview = calculateCombatOverview(
     sheet.hero,
     sheet.runtime.combat.primaryWeaponId,
     sheet.runtime.combat.initiativeModifier,
+    {
+      attackDefensePenalty: conditions.physicalPenalty,
+      encumbranceLevel: conditions.encumbrance,
+    },
   );
   const query = normalizeSearch(weaponCatalogSearch);
   const catalogMatches = query
@@ -676,13 +803,14 @@ const renderCombat = (sheet: CharacterSheetState): string => {
         <div class="combat-stat"><span>${overview.attackLabel}</span><strong>${overview.attack}</strong><small>${overview.attackLabel === "FK" ? "Fernkampf" : "Attacke"}</small></div>
         <div class="combat-stat"><span>PA</span><strong>${overview.parry ?? "—"}</strong><small>Parade</small></div>
         <div class="combat-stat"><span>AW</span><strong>${overview.dodge}</strong><small>Ausweichen</small></div>
-        <div class="combat-stat combat-stat--initiative"><span>INI</span><strong>${overview.initiative}</strong><small>Basis ${overview.initiativeBase}${overview.armorModifier ? ` · Rüstung ${overview.armorModifier}` : ""}</small></div>
+        <div class="combat-stat combat-stat--initiative"><span>INI</span><strong>${overview.initiative}</strong><small>Basis ${overview.initiativeBase}${overview.armorModifier ? ` · Belastung/Rüstung ${overview.armorModifier}` : ""}</small></div>
         <div class="initiative-control">
           <label><span>Weiterer Mod.</span><input id="initiative-modifier" type="number" min="-20" max="20" value="${sheet.runtime.combat.initiativeModifier}" /></label>
           <button class="initiative-roll-button" id="roll-initiative"><span aria-hidden="true">⚄</span> Initiative würfeln</button>
           ${lastInitiative ? `<output class="initiative-result"><span>Letzter Wurf</span><strong>${lastInitiative.total}</strong><small>${lastInitiative.base} ${lastInitiative.armorModifier >= 0 ? "+" : ""}${lastInitiative.armorModifier} ${lastInitiative.manualModifier >= 0 ? "+" : ""}${lastInitiative.manualModifier} + W6 (${lastInitiative.die})</small></output>` : '<span class="initiative-placeholder">Noch nicht ausgewürfelt</span>'}
         </div>
       </section>
+      ${conditions.physicalPenalty > 0 ? `<aside class="combat-condition-note"><strong>Zustände berücksichtigt: −${conditions.physicalPenalty}</strong><span>AT, PA und AW zeigen bereits den wirksamen Abzug. Belastung ${conditions.encumbrance} ist außerdem in der Initiative enthalten.</span><button data-open-tab="conditions">Details öffnen</button></aside>` : ""}
 
       <div class="section-title"><div><p class="eyebrow">Kampfwerte</p><h2>Kampftechniken</h2></div><span class="section-hint">Steigerungen erfolgen im Reiter „Steigern“</span></div>
       <div class="technique-grid">
@@ -728,6 +856,82 @@ const renderCombat = (sheet: CharacterSheetState): string => {
   `;
 };
 
+const conditionStageLabel = (stage: number): string => ["Keine", "Stufe I", "Stufe II", "Stufe III", "Stufe IV"][stage] ?? "Keine";
+
+const renderConditions = (sheet: CharacterSheetState): string => {
+  const conditions = calculateConditionOverview(sheet);
+  const carrying = calculateCarryingOverview(sheet);
+  const ratioMaximum = Math.max(1, carrying.capacity + 16, carrying.countedWeight);
+  const weightRatio = Math.max(0, Math.min(100, carrying.countedWeight / ratioMaximum * 100));
+  const capacityRatio = Math.max(0, Math.min(100, carrying.capacity / ratioMaximum * 100));
+  const stateMessage = conditions.incapacitated
+    ? "Handlungsunfähig"
+    : conditions.levels.pain >= 4
+      ? "Schmerz IV – Selbstbeherrschung nötig"
+      : conditions.activeLabels.length
+        ? conditions.activeLabels.join(" · ")
+        : "Keine aktiven Zustände";
+
+  return `
+    <section class="page page--conditions">
+      <div class="section-title">
+        <div><p class="eyebrow">Im Spiel</p><h2>Zustände</h2></div>
+        <span class="section-hint">Stufen und Auswirkungen nach Grundregelwerk</span>
+      </div>
+
+      <section class="condition-summary ${conditions.potentiallyIncapacitated ? "condition-summary--danger" : ""}">
+        <article><span>Generelle Erschwernis</span><strong>${conditions.generalPenalty ? `−${conditions.generalPenalty}` : "0"}</strong><small>automatisch bei 3W20-Proben</small></article>
+        <article><span>Körperlich/Kampf</span><strong>${conditions.physicalPenalty ? `−${conditions.physicalPenalty}` : "0"}</strong><small>inklusive Paralyse & Belastung</small></article>
+        <article><span>Zustandsstufen</span><strong>${conditions.totalLevels}</strong><small>ab 8 handlungsunfähig</small></article>
+        <div><strong>${escapeHtml(stateMessage)}</strong><span>Die Gesamterschwernis aus Zuständen ist auf 5 begrenzt.</span></div>
+      </section>
+
+      <div class="condition-grid">
+        ${CONDITION_DEFINITIONS.map((definition) => {
+          const level = conditions.levels[definition.id];
+          const automaticPain = definition.id === "pain" && sheet.runtime.conditions.automaticPain;
+          return `<article class="condition-card ${level > 0 ? "condition-card--active" : ""} ${level >= 4 ? "condition-card--critical" : ""}">
+            <header><div><span>${definition.id === "pain" ? "♥" : definition.id === "rapture" ? "✦" : "◆"}</span><h3>${definition.name}</h3></div><strong>${conditionStageLabel(level)}</strong></header>
+            <div class="condition-stage-control">
+              <button data-condition-adjust="${definition.id}" data-delta="-1" ${automaticPain || level <= 0 ? "disabled" : ""} aria-label="${definition.name} senken">−</button>
+              <input data-condition-level="${definition.id}" type="number" min="0" max="4" value="${level}" ${automaticPain ? "disabled" : ""} aria-label="Stufe ${definition.name}" />
+              <button data-condition-adjust="${definition.id}" data-delta="1" ${automaticPain || level >= 4 ? "disabled" : ""} aria-label="${definition.name} erhöhen">+</button>
+            </div>
+            <p>${escapeHtml(definition.stageEffects[level])}</p>
+            <small>${escapeHtml(definition.recovery)}</small>
+            ${definition.id === "pain" ? `<label class="condition-auto-toggle"><input id="automatic-pain" type="checkbox" ${sheet.runtime.conditions.automaticPain ? "checked" : ""} /><span>automatisch aus LeP berechnen</span></label>` : ""}
+          </article>`;
+        }).join("")}
+      </div>
+
+      <div class="section-title section-title--resources">
+        <div><p class="eyebrow">KK × 2 Stein</p><h2>Tragkraft & Belastung</h2></div>
+        <span class="section-hint">Je 4 volle Stein über der Tragkraft: +1 Belastung</span>
+      </div>
+      <section class="carrying-dashboard">
+        <article class="carrying-meter ${carrying.encumbrance >= 3 ? "carrying-meter--danger" : carrying.encumbrance > 0 ? "carrying-meter--warning" : ""}">
+          <header><div><span>Getragene Last</span><strong>${formatNumber(carrying.countedWeight)} <small>Stein</small></strong></div><div><span>Tragkraft</span><strong>${formatNumber(carrying.capacity)} <small>Stein</small></strong></div></header>
+          <div class="carrying-track"><i style="width:${weightRatio}%"></i><b style="left:${capacityRatio}%" title="Tragkraft ${formatNumber(carrying.capacity)} Stein"></b></div>
+          <footer><span>${carrying.overload > 0 ? `${formatNumber(carrying.overload)} Stein über Tragkraft` : `${formatNumber(carrying.capacity - carrying.countedWeight)} Stein frei`}</span><strong>Belastung ${carrying.encumbrance}</strong></footer>
+        </article>
+        <div class="carrying-facts">
+          <article><span>Inventar gesamt</span><strong>${formatNumber(carrying.inventoryWeight)}</strong><small>Stein</small></article>
+          <article><span>Getragene Rüstung</span><strong>−${formatNumber(carrying.ignoredArmorWeight)}</strong><small>nicht doppelt zählen</small></article>
+          <article><span>Gepäck-Belastung</span><strong>${carrying.cargoEncumbrance}</strong><small>${carrying.nextEncumbranceAt === undefined ? "Maximum" : `nächste Stufe ab ${formatNumber(carrying.nextEncumbranceAt)} Stein`}</small></article>
+          <article><span>Rüstungs-Belastung</span><strong>${carrying.armorEncumbrance}</strong><small>aus ausgerüsteter Rüstung</small></article>
+        </div>
+        <div class="carrying-controls">
+          <label><span>Zusätzliche Last</span><input id="additional-carrying-weight" type="number" min="0" step="0.1" value="${carrying.additionalWeight}" /><small>z. B. getragene Person</small></label>
+          <label><span>Tragkraft-Modifikator</span><input id="carrying-capacity-modifier" type="number" step="1" value="${carrying.capacityModifier}" /><small>Vorteil, Nachteil oder Hausregel</small></label>
+          <label><span>Weitere Belastung</span><input id="manual-encumbrance" type="number" min="0" max="4" step="1" value="${carrying.manualEncumbrance}" /><small>Umwelt oder sonstige Quelle</small></label>
+          <label><span>Belastungsreduktion</span><input id="encumbrance-reduction" type="number" min="0" max="4" step="1" value="${carrying.encumbranceReduction}" /><small>z. B. Belastungsgewöhnung</small></label>
+        </div>
+      </section>
+      <aside class="info-callout compact"><strong>Regelhinweis</strong><p>Gewicht ausgerüsteter Rüstung wird für die Gepäcklast abgezogen, weil ihre Belastungsstufe separat einfließt. Nicht ausgerüstete Rüstung im Gepäck zählt normal. Entrückung und Paralyse können situativ anders wirken; passe den manuellen Probenmodifikator bei Bedarf an.</p></aside>
+    </section>
+  `;
+};
+
 const renderInventory = (sheet: CharacterSheetState): string => {
   const items = Object.entries(sheet.hero.belongings?.items ?? {})
     .map(([key, item]) => ({ key, item }));
@@ -743,7 +947,7 @@ const renderInventory = (sheet: CharacterSheetState): string => {
     return a.item.name.localeCompare(b.item.name, "de");
   });
   const purse = sheet.hero.belongings?.purse ?? {};
-  const totalWeight = items.reduce((sum, entry) => sum + (entry.item.weight ?? 0) * (entry.item.amount ?? 1), 0);
+  const carrying = calculateCarryingOverview(sheet);
   let previousCategory = "";
   const itemRows = items.map(({ key, item }) => {
     const category = categoryName(item);
@@ -771,7 +975,7 @@ const renderInventory = (sheet: CharacterSheetState): string => {
       <div class="section-title">
         <div><p class="eyebrow">Hab und Gut</p><h2>Inventar</h2></div>
         <div class="inventory-heading-actions">
-          <span class="section-hint">${formatNumber(totalWeight)} Stein</span>
+          <button class="inventory-capacity ${carrying.encumbrance > 0 ? "inventory-capacity--warning" : ""}" data-open-tab="conditions" title="Tragkraft und Belastung öffnen"><strong>${formatNumber(carrying.countedWeight)}/${formatNumber(carrying.capacity)}</strong><span>Stein · Belastung ${carrying.encumbrance}</span></button>
           <label class="inventory-sort"><span>Sortierung</span><select id="inventory-sort">
             <option value="category" ${inventorySort === "category" ? "selected" : ""}>Kategorien</option>
             <option value="name" ${inventorySort === "name" ? "selected" : ""}>Name A–Z</option>
@@ -1046,6 +1250,10 @@ const renderGroupMember = (member: GroupHeroSummary): string => {
       <div><span>INI</span><strong>${combat?.initiative ?? summary.initiative}</strong></div>
       <p>${combat ? `Primär: ${escapeHtml(combat.primaryWeaponName)}` : "Kampfwerte werden beim nächsten Synchronisieren ergänzt."}</p>
     </div>
+    ${summary.conditions ? `<div class="group-condition-line ${summary.conditions.incapacitated ? "group-condition-line--danger" : ""}">
+      <strong>${summary.conditions.active.length ? escapeHtml(summary.conditions.active.join(" · ")) : "Keine Zustände"}</strong>
+      <span>Proben ${summary.conditions.generalPenalty ? `−${summary.conditions.generalPenalty}` : "±0"} · Belastung ${summary.conditions.encumbrance}${summary.carrying ? ` · ${formatNumber(summary.carrying.weight)}/${formatNumber(summary.carrying.capacity)} Stein` : ""}</span>
+    </div>` : ""}
     <footer class="group-card__footer">
       <div class="group-card__meta">
         <span class="${updated.stale ? "stale" : ""}">${updated.stale ? "⚠ " : ""}${escapeHtml(updated.label)}</span>
@@ -1094,6 +1302,9 @@ const renderRollDialog = (sheet: CharacterSheetState): string => {
     ? sheet.hero.talents[definition.id] ?? 0
     : sheet.hero.spells?.[definition.id] ?? 0;
   const result = rollDialog.result;
+  const conditionOverview = calculateConditionOverview(sheet);
+  const conditionModifier = -conditionOverview.generalPenalty;
+  const effectiveModifier = rollDialog.modifier + conditionModifier;
   const outcomeLabels = {
     success: "Gelungen",
     failure: "Misslungen",
@@ -1116,10 +1327,13 @@ const renderRollDialog = (sheet: CharacterSheetState): string => {
           <div class="roll-skill"><span>FW</span><strong>${skillValue}</strong></div>
         </div>
         <label class="modifier-control">
-          <span>Modifikator</span>
+          <span>Situativer Modifikator</span>
           <small>positiv = Erleichterung</small>
           <input id="roll-modifier" type="number" min="-20" max="20" value="${rollDialog.modifier}" />
         </label>
+        <div class="roll-condition-modifier ${conditionOverview.generalPenalty ? "roll-condition-modifier--active" : ""}">
+          <span>Zustände</span><strong>${conditionModifier > 0 ? "+" : ""}${conditionModifier}</strong><small>Gesamtmodifikator: ${effectiveModifier > 0 ? "+" : ""}${effectiveModifier}</small>
+        </div>
         ${
           result
             ? `<div class="dice-row">
@@ -1155,9 +1369,11 @@ const renderSheet = (sheet: CharacterSheetState): string => {
   if (!bridge.isGameMaster && activeTab === "group") activeTab = "overview";
   const content = {
     overview: renderOverview,
+    biography: renderBiography,
     talents: renderTalents,
     spells: renderSpells,
     combat: renderCombat,
+    conditions: renderConditions,
     inventory: renderInventory,
     advance: renderAdvance,
     source: renderSource,
@@ -1183,11 +1399,13 @@ const renderSheet = (sheet: CharacterSheetState): string => {
           <button class="icon-button" id="export-quick" title="Spielstand sichern">↓</button>
         </div>
       </header>
-      <nav class="main-nav" aria-label="Heldenbogen-Bereiche" style="grid-template-columns: repeat(${(hasMagic ? 7 : 6) + (bridge.isGameMaster ? 1 : 0)}, 1fr)">
+      <nav class="main-nav" aria-label="Heldenbogen-Bereiche" style="grid-template-columns: repeat(${(hasMagic ? 9 : 8) + (bridge.isGameMaster ? 1 : 0)}, 1fr)">
         ${tabLabel("overview", "Übersicht", "◆")}
+        ${tabLabel("biography", "Biografie", "✧")}
         ${tabLabel("talents", "Talente", "◈")}
         ${hasMagic ? tabLabel("spells", "Zauber", "✦") : ""}
         ${tabLabel("combat", "Kampf", "⚔")}
+        ${tabLabel("conditions", "Zustände", "♥")}
         ${tabLabel("inventory", "Inventar", "▣")}
         ${tabLabel("advance", "Steigern", "↑")}
         ${tabLabel("source", "Daten", "⋯")}
@@ -1250,6 +1468,10 @@ const attachImportListeners = (): void => {
     render();
     void refreshGroupMembers();
   });
+  document.querySelector("#open-character-generator")?.addEventListener("click", () => {
+    generatorOpen = true;
+    render();
+  });
   const dropZone = document.querySelector<HTMLElement>("#drop-zone");
   dropZone?.addEventListener("dragover", (event) => {
     event.preventDefault();
@@ -1308,6 +1530,65 @@ const attachSheetListeners = (): void => {
     });
   });
 
+  document.querySelectorAll<HTMLButtonElement>("[data-open-tab]").forEach((button) => {
+    button.addEventListener("click", () => {
+      activeTab = button.dataset.openTab as TabId;
+      render();
+    });
+  });
+
+  const updateConditionLevel = (id: ConditionId, value: number): void => {
+    if (!state || (id === "pain" && state.runtime.conditions.automaticPain)) return;
+    state.runtime.conditions.levels[id] = Math.max(0, Math.min(4, Math.round(value)));
+    persist();
+    render();
+  };
+  document.querySelectorAll<HTMLButtonElement>("[data-condition-adjust]").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (!state) return;
+      const id = button.dataset.conditionAdjust as ConditionId;
+      updateConditionLevel(id, state.runtime.conditions.levels[id] + asNumber(button.dataset.delta ?? "0"));
+    });
+  });
+  document.querySelectorAll<HTMLInputElement>("[data-condition-level]").forEach((input) => {
+    input.addEventListener("change", () => {
+      const id = input.dataset.conditionLevel as ConditionId;
+      updateConditionLevel(id, asNumber(input.value));
+    });
+  });
+  document.querySelector<HTMLInputElement>("#automatic-pain")?.addEventListener("change", (event) => {
+    if (!state) return;
+    const enabled = (event.target as HTMLInputElement).checked;
+    if (!enabled) state.runtime.conditions.levels.pain = calculateConditionOverview(state).levels.pain;
+    state.runtime.conditions.automaticPain = enabled;
+    persist();
+    render();
+  });
+  document.querySelector<HTMLInputElement>("#additional-carrying-weight")?.addEventListener("change", (event) => {
+    if (!state) return;
+    state.runtime.carrying.additionalWeight = Math.max(0, asNumber((event.target as HTMLInputElement).value));
+    persist();
+    render();
+  });
+  document.querySelector<HTMLInputElement>("#carrying-capacity-modifier")?.addEventListener("change", (event) => {
+    if (!state) return;
+    state.runtime.carrying.capacityModifier = asNumber((event.target as HTMLInputElement).value);
+    persist();
+    render();
+  });
+  document.querySelector<HTMLInputElement>("#manual-encumbrance")?.addEventListener("change", (event) => {
+    if (!state) return;
+    state.runtime.conditions.manualEncumbrance = Math.max(0, Math.min(4, Math.round(asNumber((event.target as HTMLInputElement).value))));
+    persist();
+    render();
+  });
+  document.querySelector<HTMLInputElement>("#encumbrance-reduction")?.addEventListener("change", (event) => {
+    if (!state) return;
+    state.runtime.conditions.encumbranceReduction = Math.max(0, Math.min(4, Math.round(asNumber((event.target as HTMLInputElement).value))));
+    persist();
+    render();
+  });
+
   const replacement = document.querySelector<HTMLInputElement>("#replace-hero-file");
   replacement?.addEventListener("change", () => void importFile(replacement.files?.[0]));
 
@@ -1356,6 +1637,100 @@ const attachSheetListeners = (): void => {
     state.hero.ap.total = Math.max(0, Math.round(asNumber((event.target as HTMLInputElement).value, state.hero.ap.total ?? 0)));
     persist(false);
     render();
+  });
+
+  document.querySelectorAll<HTMLInputElement>("[data-biography-field]").forEach((input) => {
+    input.addEventListener("change", () => {
+      if (!state) return;
+      const field = input.dataset.biographyField as "species" | "culture" | "profession" | undefined;
+      if (!field) return;
+      ensureHeroBiography(state.hero)[field] = input.value.trim();
+      state.hero.dateModified = new Date().toISOString();
+      persist(false);
+      render();
+    });
+  });
+
+  document.querySelectorAll<HTMLInputElement>("[data-biography-trait][data-biography-trait-field]").forEach((input) => {
+    input.addEventListener("change", () => {
+      if (!state) return;
+      const kind = input.dataset.biographyKind as "advantage" | "disadvantage" | undefined;
+      const id = input.dataset.biographyTrait;
+      const field = input.dataset.biographyTraitField as "name" | "variant" | "level" | undefined;
+      if (!kind || !id || !field) return;
+      const biography = ensureHeroBiography(state.hero);
+      const traits = kind === "advantage" ? biography.advantages : biography.disadvantages;
+      const trait = traits.find((entry) => entry.id === id);
+      if (!trait) return;
+      if (field === "level") {
+        const parsed = Math.round(asNumber(input.value));
+        if (parsed > 0) trait.level = Math.min(20, parsed);
+        else delete trait.level;
+      } else if (field === "variant") {
+        const value = input.value.trim();
+        if (value) trait.variant = value;
+        else delete trait.variant;
+      } else {
+        trait.name = input.value.trim() || "Unbenannter Eintrag";
+      }
+      state.hero.dateModified = new Date().toISOString();
+      persist(false);
+      render();
+    });
+  });
+
+  const addBiographyTrait = (kind: "advantage" | "disadvantage"): void => {
+    if (!state) return;
+    const baseId = `biography-add-${kind}`;
+    const nameInput = document.querySelector<HTMLInputElement>(`#${baseId}`);
+    const variantInput = document.querySelector<HTMLInputElement>(`#${baseId}-variant`);
+    const levelInput = document.querySelector<HTMLInputElement>(`#${baseId}-level`);
+    const enteredName = nameInput?.value.trim() ?? "";
+    if (!enteredName) {
+      showToast(`Bitte zuerst einen ${kind === "advantage" ? "Vorteil" : "Nachteil"} eingeben.`, "error");
+      nameInput?.focus();
+      return;
+    }
+    const match = findBiographyEntry(enteredName, kind);
+    const level = Math.round(asNumber(levelInput?.value ?? ""));
+    const variant = variantInput?.value.trim() ?? "";
+    const trait: BiographyTrait = {
+      id: `MANUAL_${kind.toUpperCase()}_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 7)}`,
+      ...(match ? { sourceId: match.id } : {}),
+      name: match?.name ?? enteredName,
+      ...(level > 0 ? { level: Math.min(20, level) } : {}),
+      ...(variant ? { variant } : {}),
+    };
+    const biography = ensureHeroBiography(state.hero);
+    (kind === "advantage" ? biography.advantages : biography.disadvantages).push(trait);
+    state.hero.dateModified = new Date().toISOString();
+    persist(false);
+    render();
+    showToast(`„${trait.name}“ wurde hinzugefügt.`);
+  };
+
+  document.querySelectorAll<HTMLButtonElement>("[data-add-biography-trait]").forEach((button) => {
+    button.addEventListener("click", () => addBiographyTrait(button.dataset.addBiographyTrait as "advantage" | "disadvantage"));
+  });
+  (["advantage", "disadvantage"] as const).forEach((kind) => {
+    document.querySelector<HTMLInputElement>(`#biography-add-${kind}`)?.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") addBiographyTrait(kind);
+    });
+  });
+
+  document.querySelectorAll<HTMLButtonElement>("[data-delete-biography-trait]").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (!state) return;
+      const kind = button.dataset.biographyKind as "advantage" | "disadvantage" | undefined;
+      const id = button.dataset.deleteBiographyTrait;
+      if (!kind || !id) return;
+      const biography = ensureHeroBiography(state.hero);
+      const key = kind === "advantage" ? "advantages" : "disadvantages";
+      biography[key] = biography[key].filter((entry) => entry.id !== id);
+      state.hero.dateModified = new Date().toISOString();
+      persist(false);
+      render();
+    });
   });
 
   document.querySelectorAll<HTMLInputElement>("[data-manual-talent]").forEach((input) => {
@@ -1601,10 +1976,15 @@ const attachSheetListeners = (): void => {
     if (!state) return;
     state.runtime.combat.initiativeModifier = Math.max(-20, Math.min(20, Math.round(asNumber((event.target as HTMLInputElement).value))));
     persist(false);
+    const conditionOverview = calculateConditionOverview(state);
     const overview = calculateCombatOverview(
       state.hero,
       state.runtime.combat.primaryWeaponId,
       state.runtime.combat.initiativeModifier,
+      {
+        attackDefensePenalty: conditionOverview.physicalPenalty,
+        encumbranceLevel: conditionOverview.encumbrance,
+      },
     );
     const value = document.querySelector<HTMLElement>(".combat-stat--initiative strong");
     if (value) value.textContent = String(overview.initiative);
@@ -1616,10 +1996,15 @@ const attachSheetListeners = (): void => {
 
   document.querySelector("#roll-initiative")?.addEventListener("click", () => {
     if (!state) return;
+    const conditionOverview = calculateConditionOverview(state);
     const overview = calculateCombatOverview(
       state.hero,
       state.runtime.combat.primaryWeaponId,
       state.runtime.combat.initiativeModifier,
+      {
+        attackDefensePenalty: conditionOverview.physicalPenalty,
+        encumbranceLevel: conditionOverview.encumbrance,
+      },
     );
     state.runtime.combat.lastInitiativeRoll = rollInitiative(overview);
     persist(false);
@@ -2015,18 +2400,35 @@ const attachSheetListeners = (): void => {
     const skillValue = rollDialog.kind === "talent"
       ? state.hero.talents[definition.id] ?? 0
       : state.hero.spells?.[definition.id] ?? 0;
-    rollDialog.result = rollTalent(values, skillValue, rollDialog.modifier);
+    const conditionModifier = -calculateConditionOverview(state).generalPenalty;
+    rollDialog.result = rollTalent(values, skillValue, rollDialog.modifier + conditionModifier);
     render();
   });
 };
 
 const render = (): void => {
-  root.innerHTML = state
+  root.innerHTML = generatorOpen && !state
+    ? generatorUI.render()
+    : state
     ? renderSheet(state)
     : groupDashboardOpen && bridge.isGameMaster
       ? renderGameMasterShell()
       : renderImportScreen();
-  if (state) attachSheetListeners();
+  if (generatorOpen && !state) {
+    generatorUI.attach({
+      refresh: render,
+      cancel: () => { generatorOpen = false; render(); },
+      complete: (sheet) => {
+        state = sheet;
+        generatorOpen = false;
+        activeTab = "overview";
+        persist(false);
+        render();
+        showToast(`${sheet.hero.name} wurde mit dem Regelwerksgenerator angelegt.`);
+      },
+      notify: showToast,
+    });
+  } else if (state) attachSheetListeners();
   else if (groupDashboardOpen && bridge.isGameMaster) attachGroupMonitorListeners();
   else attachImportListeners();
 };

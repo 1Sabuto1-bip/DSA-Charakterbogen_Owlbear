@@ -1,6 +1,7 @@
 import { COMBAT_TECHNIQUES, suggestInventoryGroup, TALENTS } from "./data";
 import { DARKAID_ITEM_DATA, DARKAID_MAGIC_BY_SOURCE_ID } from "./darkaid-data";
 import { CANTRIPS, SPELLS } from "./magic-data";
+import { createDarkAidBiography } from "./biography";
 import type {
   CharacterSheetState,
   DarkAidEquipmentValue,
@@ -322,6 +323,7 @@ export const convertDarkAidHero = (source: DarkAidHero): DarkAidConversion => {
     cantrips: magic.cantrips,
     liturgies: chants.liturgies,
     blessings: chants.blessings,
+    biography: createDarkAidBiography(source),
     belongings: {
       items: convertItems(source),
       purse: splitPurse(source),

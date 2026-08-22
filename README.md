@@ -3,14 +3,36 @@
 Ein eigenständig gestalteter, interaktiver DSA-5-Heldenbogen als Owlbear-Rodeo-Erweiterung.
 Der aktuelle Prototyp importiert Optolith-JSON-Dateien der Version 1.5.x und TDC-Helden aus The Dark Aid X.
 
+## Version 0.11.0 – Zustände, Tragkraft und Belastung
+
+Der neue Reiter **Zustände** verwaltet Betäubung, Entrückung, Furcht, Paralyse, Schmerz und Verwirrung in den Stufen 0 bis IV. Schmerz kann automatisch aus den aktuellen LeP berechnet werden. Zustandserschwernisse wirken auf die integrierten 3W20-Proben und körperliche Kampfwerte. Die Tragkraft wird aus `KK × 2` berechnet; Inventargewicht, ausgerüstete Rüstung, zusätzliche Last, Belastungsgewöhnung und je 4 volle Stein Überlast werden getrennt ausgewiesen. Zustände und Traglast werden außerdem an den GM-Gruppenmonitor und die Kartenanzeige übertragen.
+
+## Version 0.10.0 – Erweiterte Regelbände im Charaktergenerator
+
+Auf der Startseite kann ein neuer Held nach dem DSA5-Grundregelwerk (dritte Auflage), Aventurischem Kompendium und Aventurischer Magie I–III erschaffen werden. Der geführte Generator enthält Erfahrungsgrade, zwölf Herkunftsvarianten, 32 Kulturen, 271 Professionspakete und -varianten, jeweils 68 Vor- und Nachteile sowie 482 Sonderfertigkeiten. AP-Konto, Eigenschaftsmaxima, Professionsvoraussetzungen und die 80-AP-Grenzen werden geprüft. Der fertige Charakter wird als normaler interaktiver Heldenbogen geöffnet.
+
 ## Enthaltene Funktionen
 
+- geführter Charaktergenerator nach DSA5-Grundregelwerk, Aventurischem Kompendium und Aventurischer Magie I–III
+- Quellenfilter für 271 Professionspakete und 482 allgemeine, Kampf- und Magie-Sonderfertigkeiten
+- zusätzliche Kulturen, magische Traditionen und Professionszauber aus den drei Magiebänden
+- zwergische Geoden, elfische Professionen, Hexen, Druiden, Animisten, Zibiljas und weitere Magiebegabte
 - Optolith-JSON, DarkAid-TDC und eigene Owlbear-Sicherungen importieren
 - DarkAid-Eigenschaften, Fertigkeiten, Kampftechniken, Zauber, Zaubertricks, Ausrüstung und Geld übernehmen
 - alternativ einen leeren Heldenbogen ohne digitale Vorlage anlegen
 - Mensch, Elf oder Zwerg als Spezies wählen; Elfen werden automatisch als magisch begabt angelegt
 - Name, Eigenschaften, Abenteuerpunkte, Talente und Kampftechniken im manuellen Modus eintragen
+- eigener Reiter **Biografie** mit editierbarer Spezies, Kultur und Profession
+- durchsuchbare Kataloge mit 29 Speziesvarianten, 40 Kulturen und 315 Professionen
+- vollständiger gemeinsamer Katalog mit 211 Vorteilen und 104 Nachteilen aus aktueller Regelwiki und DarkAid-Daten
+- Vor- und Nachteile durchsuchen und hinzufügen, inklusive freier Ausprägung und Stufe bearbeiten oder entfernen
+- Biografiedaten aus Optolith-Kennungen und DarkAid-TDC-Dateien automatisch übernehmen
 - Eigenschaften und Ressourcen anzeigen
+- Zustände Betäubung, Entrückung, Furcht, Paralyse, Schmerz und Verwirrung mit Stufen, Regelhinweisen und Gesamterschwernis verwalten
+- Schmerz wahlweise automatisch aus den aktuellen LeP bestimmen; ab 8 addierten Zustandsstufen Handlungsunfähigkeit anzeigen
+- Tragkraft aus KK × 2 und Belastung je 4 volle Stein Überlast automatisch berechnen
+- ausgerüstete Rüstung separat berücksichtigen sowie zusätzliche Last, Tragkraftmodifikator und Belastungsreduktion eintragen
+- Zustandsabzüge automatisch auf 3W20-Proben und wirksame Kampfwerte anwenden und an den GM übertragen
 - LeP, AsP, KaP und Schicksalspunkte verwalten
 - alle 59 Basistalente mit Eigenschaftsproben anzeigen, auch bei Fertigkeitswert 0
 - vollständige 3W20-Proben mit Modifikator, FP und QS würfeln
@@ -44,6 +66,12 @@ Der aktuelle Prototyp importiert Optolith-JSON-Dateien der Version 1.5.x und TDC
 
 Der vollständige Bogen wird im lokalen Browserspeicher abgelegt. Am verknüpften Token werden nur
 eine kleine Zusammenfassung, die aktuellen Ressourcen, Eigenschaften und Kampfgrundwerte gespeichert.
+
+Die Namenskataloge für Vor- und Nachteile verbinden die DarkAid-kompatiblen Kennungen mit den
+vollständigen Auswahllisten der offiziellen
+[DSA-Regelwiki für Vorteile](https://dsa.ulisses-regelwiki.de/vorteilauswahl.html) und
+[DSA-Regelwiki für Nachteile](https://dsa.ulisses-regelwiki.de/nachteilauswahl.html).
+Es werden nur Namen und Kennungen gespeichert, keine Regeltexte.
 
 ## Gruppenmonitor und Kartenstatus
 
@@ -124,8 +152,8 @@ TEST_DARKAID_TDC=/pfad/zum/helden.tdc npm test
 
 ## Aktuelle Grenzen
 
-- Kultur, Profession, Vor- und Nachteile sowie Sonderfertigkeiten werden noch nicht vollständig
-  in eine gemeinsame Darstellung für beide Importformate überführt.
+- Erweiterte Optolith-Kennungen, für die keine öffentlich verfügbare deutsche Namenszuordnung
+  existiert, bleiben sichtbar und können im Biografie-Reiter manuell benannt werden.
 - Die Astralenergie magischer Figuren wird als Startwert aus 20 plus der höchsten geistigen
   Eigenschaft sowie den importierten Korrekturwerten vorgeschlagen. Da das genaue Leitattribut von
   der Tradition abhängt, bleibt der Wert direkt editierbar. Karmale Maximalwerte werden weiterhin
@@ -133,7 +161,7 @@ TEST_DARKAID_TDC=/pfad/zum/helden.tdc npm test
 - Beim Zukauf von AsP und KaP nutzt der Steigerungsreiter mangels vollständig aufgelöster
   Tradition zunächst die höchste Eigenschaft als Obergrenze und weist auf die manuelle Prüfung
   der tatsächlichen Leiteigenschaft hin.
-- Sonderfertigkeiten, Vorteile und der Abbau von Nachteilen sind noch nicht Teil des
+- Sonderfertigkeiten, der Erwerb von Vorteilen und der Abbau von Nachteilen sind noch nicht Teil des
   Steigerungsreiters.
 - Der vollständige Bogen wird noch nicht zwischen verschiedenen Geräten synchronisiert.
 - Die Token-Verknüpfung überträgt bewusst nur eine kompakte Zusammenfassung.

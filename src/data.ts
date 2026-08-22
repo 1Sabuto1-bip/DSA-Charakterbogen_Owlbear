@@ -11,6 +11,7 @@ import type {
 
 export const SPECIES: SpeciesDefinition[] = [
   { key: "human", id: "R_1", name: "Mensch", lifeBase: 5, automaticallyMagical: false },
+  { key: "halfelf", id: "R_3", name: "Halbelf", lifeBase: 5, automaticallyMagical: false },
   { key: "elf", id: "R_2", name: "Elf", lifeBase: 2, automaticallyMagical: true },
   { key: "dwarf", id: "R_4", name: "Zwerg", lifeBase: 8, automaticallyMagical: false },
 ];
