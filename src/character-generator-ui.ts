@@ -7,8 +7,10 @@ import {
   GRW_PROFESSIONS,
   GRW_RACES,
   GRW_SPECIAL_ABILITIES,
+  GENERATOR_SHOP_ITEMS,
   buildGeneratedCharacter,
   calculateGeneratorBalance,
+  calculateGeneratorShopping,
   createGeneratorDraft,
   generatorCantripName,
   generatorCombatChoiceName,
@@ -22,14 +24,15 @@ import {
   getGeneratorRace,
   getGeneratorSpecies,
   getGeneratorSpecialAbilityDefinition,
+  getGeneratorShopItem,
   getGeneratorTraitDefinition,
   getRequiredProfessionComponents,
   normalizeGeneratorDraft,
   validateGeneratorDraft,
 } from "./character-generator";
-import { ATTRIBUTES } from "./data";
+import { ATTRIBUTES, COMBAT_TECHNIQUES, ITEM_GROUPS } from "./data";
 import type { CharacterSheetState } from "./types";
-import type { GeneratorDraft, GeneratorSpecialAbilitySelection, GeneratorTraitKind, GeneratorTraitSelection } from "./character-generator";
+import type { GeneratorDraft, GeneratorShopCategory, GeneratorShopItem, GeneratorSpecialAbilitySelection, GeneratorTraitKind, GeneratorTraitSelection } from "./character-generator";
 
 const STORAGE_KEY = "de.alexander-hoffmann.dsa5-sheet/generator-draft/v1";
 
@@ -64,6 +67,7 @@ const loadDraft = (): GeneratorDraft => {
       advantages: Array.isArray(parsed.advantages) ? parsed.advantages : [],
       disadvantages: Array.isArray(parsed.disadvantages) ? parsed.disadvantages : [],
       specialAbilities: Array.isArray(parsed.specialAbilities) ? parsed.specialAbilities : [],
+      purchases: Array.isArray(parsed.purchases) ? parsed.purchases : [],
     } as GeneratorDraft;
     normalizeGeneratorDraft(draft);
     return draft;
@@ -74,6 +78,10 @@ const loadDraft = (): GeneratorDraft => {
 
 const selectedTraitCost = (kind: GeneratorTraitKind, entry: GeneratorTraitSelection): number =>
   Math.abs(generatorTraitCost(kind, entry));
+
+const formatSilver = (value: number): string => `${value.toLocaleString("de-DE", { maximumFractionDigits: 2 })} S`;
+
+const formatWeight = (value: number): string => `${value.toLocaleString("de-DE", { maximumFractionDigits: 2 })} Stein`;
 
 export interface CharacterGeneratorCallbacks {
   refresh: () => void;
@@ -91,6 +99,8 @@ export class CharacterGeneratorUI {
   professionSource = "all";
   specialAbilitySource = "all";
   specialAbilityCategory = "all";
+  shopSearch = "";
+  shopCategory: GeneratorShopCategory | "all" = "all";
 
   reset(): void {
     this.draft = createGeneratorDraft();
@@ -101,6 +111,8 @@ export class CharacterGeneratorUI {
     this.professionSource = "all";
     this.specialAbilitySource = "all";
     this.specialAbilityCategory = "all";
+    this.shopSearch = "";
+    this.shopCategory = "all";
     this.persist();
   }
 
@@ -309,6 +321,73 @@ export class CharacterGeneratorUI {
     </section>`;
   }
 
+  private shopItemDetails(entry: GeneratorShopItem): string {
+    const item = entry.item;
+    const details = [entry.kindLabel];
+    if (item.damageDiceSides) details.push(`TP ${item.damageDiceNumber ?? 1}W${item.damageDiceSides}${Number(item.damageFlat ?? 0) >= 0 ? "+" : ""}${item.damageFlat ?? 0}`);
+    if (item.combatTechnique) details.push(COMBAT_TECHNIQUES[item.combatTechnique] ?? item.combatTechnique);
+    if (typeof item.pro === "number") details.push(`RS ${item.pro}`);
+    if (typeof item.enc === "number") details.push(`BE ${item.enc}`);
+    if (entry.itemKind === "equipment") details.push(ITEM_GROUPS[item.gr ?? 0] ?? "Inventar");
+    if (typeof item.weight === "number") details.push(formatWeight(item.weight));
+    return details.join(" · ");
+  }
+
+  private renderShopping(): string {
+    const shopping = calculateGeneratorShopping(this.draft);
+    const search = normalizeSearch(this.shopSearch);
+    const filtered = GENERATOR_SHOP_ITEMS.filter((entry) =>
+      (this.shopCategory === "all" || entry.category === this.shopCategory)
+      && (!search || normalizeSearch(`${entry.item.name} ${entry.kindLabel} ${ITEM_GROUPS[entry.item.gr ?? 0] ?? ""}`).includes(search)))
+      .slice(0, 60);
+    const purchases = this.draft.purchases
+      .map((purchase) => ({ purchase, entry: getGeneratorShopItem(purchase.catalogId) }))
+      .filter((value): value is { purchase: GeneratorDraft["purchases"][number]; entry: GeneratorShopItem } => Boolean(value.entry))
+      .sort((a, b) => a.entry.item.name.localeCompare(b.entry.item.name, "de"));
+    return `<section class="generator-page">
+      <p class="eyebrow">Schritt 13</p><h2>Ausrüstung einkaufen</h2>
+      <p class="generator-lead">Suche im Ausrüstungskatalog nach Inventar, Waffen und Rüstungen. Die vollständigen Werte und das übrige Geld werden direkt in den fertigen Heldenbogen übernommen.</p>
+      <div class="generator-shopping-balance ${shopping.remainingSilver < 0 ? "generator-shopping-balance--error" : ""}">
+        <div><span>Startkapital</span><strong>${formatSilver(shopping.startingCapitalSilver)}</strong></div>
+        <div><span>Ausgegeben</span><strong>${formatSilver(shopping.spentSilver)}</strong></div>
+        <div><span>Übrig</span><strong>${formatSilver(shopping.remainingSilver)}</strong></div>
+        <div><span>Gewicht</span><strong>${formatWeight(shopping.totalWeight)}</strong></div>
+      </div>
+      <div class="generator-rule-note"><strong>Startkapital</strong><span>Standard sind 750 Silbertaler. Der Vorteil „Reich“ erhöht und der Nachteil „Arm“ senkt diesen Betrag automatisch um 250 Silbertaler je Stufe.</span></div>
+      <div class="generator-filter-row generator-shop-filters">
+        <label class="generator-search"><span>Gegenstand suchen</span><input id="generator-shop-search" type="search" value="${escapeHtml(this.shopSearch)}" placeholder="z. B. Dolch, Kettenhemd, Seil …" /></label>
+        <label class="generator-field"><span>Bereich</span><select id="generator-shop-category">
+          <option value="all" ${this.shopCategory === "all" ? "selected" : ""}>Alles</option>
+          <option value="weapons" ${this.shopCategory === "weapons" ? "selected" : ""}>Waffen & Schilde</option>
+          <option value="armor" ${this.shopCategory === "armor" ? "selected" : ""}>Rüstungen</option>
+          <option value="equipment" ${this.shopCategory === "equipment" ? "selected" : ""}>Inventar</option>
+        </select></label>
+      </div>
+      <div class="generator-shop-layout">
+        <div class="generator-shop-catalog">
+          <h3>Katalog <small>${GENERATOR_SHOP_ITEMS.length} kaufbare Einträge</small></h3>
+          <div class="generator-shop-results">${filtered.map((entry) => {
+            const affordable = Math.round(entry.item.price * 100) <= Math.round(shopping.remainingSilver * 100);
+            return `<article class="generator-shop-result">
+              <div><strong>${escapeHtml(entry.item.name)}</strong><small>${escapeHtml(this.shopItemDetails(entry))}</small></div>
+              <span>${formatSilver(entry.item.price)}</span>
+              <button data-generator-buy="${escapeHtml(entry.catalogId)}" ${affordable ? "" : "disabled"} title="${affordable ? "Kaufen" : "Nicht genug Geld"}">Kaufen</button>
+            </article>`;
+          }).join("") || `<div class="empty-state">Kein passender Gegenstand gefunden.</div>`}</div>
+          ${filtered.length === 60 ? `<small class="generator-result-limit">Die ersten 60 Treffer werden angezeigt. Verfeinere die Suche für weitere Ergebnisse.</small>` : ""}
+        </div>
+        <div class="generator-shopping-cart">
+          <h3>Einkauf <small>${shopping.itemCount} Gegenstände</small></h3>
+          <div class="generator-cart-list">${purchases.map(({ purchase, entry }) => `<article class="generator-cart-item">
+            <div><strong>${escapeHtml(entry.item.name)}</strong><small>${formatSilver(entry.item.price)} je Stück · ${formatSilver(entry.item.price * purchase.amount)}</small></div>
+            <div class="generator-cart-amount"><button data-generator-purchase-adjust="${escapeHtml(entry.catalogId)}" data-delta="-1" title="Ein Stück entfernen">−</button><b>${purchase.amount}</b><button data-generator-purchase-adjust="${escapeHtml(entry.catalogId)}" data-delta="1" ${Math.round(entry.item.price * 100) <= Math.round(shopping.remainingSilver * 100) ? "" : "disabled"} title="Ein Stück hinzufügen">+</button></div>
+            <button class="generator-cart-remove" data-generator-remove-purchase="${escapeHtml(entry.catalogId)}" title="Aus Einkauf entfernen">×</button>
+          </article>`).join("") || `<div class="empty-state">Noch nichts gekauft.</div>`}</div>
+        </div>
+      </div>
+    </section>`;
+  }
+
   private renderReview(): string {
     const validation = validateGeneratorDraft(this.draft);
     const experience = getGeneratorExperience(this.draft);
@@ -316,6 +395,7 @@ export class CharacterGeneratorUI {
     const culture = getGeneratorCulture(this.draft);
     const profession = getGeneratorProfession(this.draft);
     const balance = calculateGeneratorBalance(this.draft);
+    const shopping = calculateGeneratorShopping(this.draft);
     return `<section class="generator-page">
       <p class="eyebrow">Abschluss</p><h2>Heldenentwurf prüfen</h2>
       <div class="generator-review-grid">
@@ -326,6 +406,7 @@ export class CharacterGeneratorUI {
         <article><span>Eigenschaften</span><strong>${Object.values(this.draft.attributes).reduce((sum, value) => sum + value, 0)} Punkte</strong><small>${ATTRIBUTES.map((entry) => `${entry.code} ${this.draft.attributes[entry.code]}`).join(" · ")}</small></article>
         <article><span>Zusätzliche Sonderfertigkeiten</span><strong>${this.draft.specialAbilities.length}</strong><small>${balance.specialAbilities} AP</small></article>
         <article><span>AP-Bilanz</span><strong>${balance.remaining} AP übrig</strong><small>Vorteile ${balance.advantageLimit}/80 · Nachteile ${balance.disadvantageLimit}/80</small></article>
+        <article><span>Ausrüstung</span><strong>${shopping.itemCount} Gegenstände</strong><small>${formatSilver(shopping.spentSilver)} ausgegeben · ${formatSilver(shopping.remainingSilver)} übrig · ${formatWeight(shopping.totalWeight)}</small></article>
       </div>
       ${validation.errors.length ? `<div class="generator-validation generator-validation--error"><strong>Noch zu korrigieren</strong><ul>${validation.errors.map((entry) => `<li>${escapeHtml(entry)}</li>`).join("")}</ul></div>` : ""}
       ${validation.warnings.length ? `<div class="generator-validation generator-validation--warning"><strong>Hinweise</strong><ul>${validation.warnings.map((entry) => `<li>${escapeHtml(entry)}</li>`).join("")}</ul></div>` : ""}
@@ -343,11 +424,12 @@ export class CharacterGeneratorUI {
       this.renderProfession(),
       this.renderTraits(),
       this.renderSpecialAbilities(),
+      this.renderShopping(),
       this.renderReview(),
     ];
     const validation = validateGeneratorDraft(this.draft);
     return `<main class="generator-shell">
-      <header class="generator-header"><div><p class="eyebrow">DSA 5 · GRW + Kompendium + Magie I–III</p><h1>Regelwerksgenerator</h1></div><button id="generator-close" class="icon-button" title="Generator schließen">×</button></header>
+      <header class="generator-header"><div><p class="eyebrow">DSA 5 · GRW + Kompendium + Magie I–III</p><h1>Regelwerksgenerator</h1></div><div class="generator-header__actions"><button id="generator-reset" class="generator-reset-button" title="Gesamten Entwurf zurücksetzen">↺ Neu beginnen</button><button id="generator-close" class="icon-button" title="Generator schließen">×</button></div></header>
       <nav class="generator-stepper" aria-label="Schritte der Heldenerschaffung">${GENERATOR_STEPS.map((label, index) => `<button data-generator-step="${index}" class="${index === this.draft.step ? "active" : index < this.draft.step ? "done" : ""}"><b>${index + 1}</b><span>${label}</span></button>`).join("")}</nav>
       <div class="generator-workspace"><div class="generator-main">${pages[this.draft.step] ?? pages[0]}</div>${this.renderBalance()}</div>
       <footer class="generator-footer">
@@ -361,6 +443,12 @@ export class CharacterGeneratorUI {
     const rerender = (): void => { this.persist(); callbacks.refresh(); };
     document.querySelector("#generator-close")?.addEventListener("click", callbacks.cancel);
     document.querySelector("#generator-cancel")?.addEventListener("click", callbacks.cancel);
+    document.querySelector("#generator-reset")?.addEventListener("click", () => {
+      if (!window.confirm("Den gesamten Heldenentwurf einschließlich Einkauf wirklich zurücksetzen?")) return;
+      this.reset();
+      callbacks.notify("Der Charaktergenerator wurde zurückgesetzt.", "success");
+      callbacks.refresh();
+    });
     document.querySelectorAll<HTMLButtonElement>("[data-generator-step]").forEach((button) => button.addEventListener("click", () => {
       this.draft.step = Number(button.dataset.generatorStep ?? 0);
       rerender();
@@ -505,6 +593,47 @@ export class CharacterGeneratorUI {
     document.querySelectorAll<HTMLButtonElement>("[data-generator-remove-sa]").forEach((button) => button.addEventListener("click", () => {
       const index = this.draft.specialAbilities.findIndex((entry) => entry.id === button.dataset.generatorRemoveSa);
       if (index >= 0) this.draft.specialAbilities.splice(index, 1);
+      rerender();
+    }));
+    const shopSearch = document.querySelector<HTMLInputElement>("#generator-shop-search");
+    shopSearch?.addEventListener("input", () => {
+      this.shopSearch = shopSearch.value;
+      callbacks.refresh();
+      const refreshed = document.querySelector<HTMLInputElement>("#generator-shop-search");
+      refreshed?.focus();
+      refreshed?.setSelectionRange(this.shopSearch.length, this.shopSearch.length);
+    });
+    bindValue("#generator-shop-category", (value) => { this.shopCategory = value as CharacterGeneratorUI["shopCategory"]; });
+    document.querySelectorAll<HTMLButtonElement>("[data-generator-buy]").forEach((button) => button.addEventListener("click", () => {
+      const catalogId = button.dataset.generatorBuy;
+      const entry = catalogId ? getGeneratorShopItem(catalogId) : undefined;
+      if (!catalogId || !entry) return;
+      const shopping = calculateGeneratorShopping(this.draft);
+      if (Math.round(entry.item.price * 100) > Math.round(shopping.remainingSilver * 100)) {
+        callbacks.notify("Dafür reicht das verbleibende Startkapital nicht.", "error");
+        return;
+      }
+      const purchase = this.draft.purchases.find((item) => item.catalogId === catalogId);
+      if (purchase) purchase.amount += 1;
+      else this.draft.purchases.push({ catalogId, amount: 1 });
+      normalizeGeneratorDraft(this.draft);
+      rerender();
+    }));
+    document.querySelectorAll<HTMLButtonElement>("[data-generator-purchase-adjust]").forEach((button) => button.addEventListener("click", () => {
+      const catalogId = button.dataset.generatorPurchaseAdjust;
+      const purchase = this.draft.purchases.find((item) => item.catalogId === catalogId);
+      const entry = catalogId ? getGeneratorShopItem(catalogId) : undefined;
+      const delta = Number(button.dataset.delta ?? 0);
+      if (!purchase || !entry || !delta) return;
+      if (delta > 0 && Math.round(entry.item.price * 100) > Math.round(calculateGeneratorShopping(this.draft).remainingSilver * 100)) return;
+      purchase.amount += delta;
+      if (purchase.amount <= 0) this.draft.purchases.splice(this.draft.purchases.indexOf(purchase), 1);
+      normalizeGeneratorDraft(this.draft);
+      rerender();
+    }));
+    document.querySelectorAll<HTMLButtonElement>("[data-generator-remove-purchase]").forEach((button) => button.addEventListener("click", () => {
+      const index = this.draft.purchases.findIndex((item) => item.catalogId === button.dataset.generatorRemovePurchase);
+      if (index >= 0) this.draft.purchases.splice(index, 1);
       rerender();
     }));
     document.querySelector("#generator-create")?.addEventListener("click", () => {

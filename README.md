@@ -3,6 +3,10 @@
 Ein eigenständig gestalteter, interaktiver DSA-5-Heldenbogen als Owlbear-Rodeo-Erweiterung.
 Der aktuelle Prototyp importiert Optolith-JSON-Dateien der Version 1.5.x und TDC-Helden aus The Dark Aid X.
 
+## Version 0.12.0 – Generator-Reset und Ausrüstungseinkauf
+
+Der Charaktergenerator besitzt jetzt den deutlich sichtbaren, abgesicherten Knopf **Neu beginnen**, der den gesamten gespeicherten Entwurf einschließlich Einkauf zurücksetzt. Vor dem Prüfschritt steht ein eigener Ausrüstungseinkauf mit Suche und Filtern für Waffen, Schilde, Rüstungen und Inventar zur Verfügung. Das regelgerechte Startkapital von 750 Silbertalern wird durch **Reich** beziehungsweise **Arm** automatisch um 250 Silbertaler je Stufe verändert. Preise, Mengen, Gesamtgewicht und Restgeld werden live berechnet; gekaufte Gegenstände werden mit allen vorhandenen Kampf- und Rüstungswerten in den fertigen Heldenbogen übernommen.
+
 ## Version 0.11.0 – Zustände, Tragkraft und Belastung
 
 Der neue Reiter **Zustände** verwaltet Betäubung, Entrückung, Furcht, Paralyse, Schmerz und Verwirrung in den Stufen 0 bis IV. Schmerz kann automatisch aus den aktuellen LeP berechnet werden. Zustandserschwernisse wirken auf die integrierten 3W20-Proben und körperliche Kampfwerte. Die Tragkraft wird aus `KK × 2` berechnet; Inventargewicht, ausgerüstete Rüstung, zusätzliche Last, Belastungsgewöhnung und je 4 volle Stein Überlast werden getrennt ausgewiesen. Zustände und Traglast werden außerdem an den GM-Gruppenmonitor und die Kartenanzeige übertragen.
@@ -14,6 +18,10 @@ Auf der Startseite kann ein neuer Held nach dem DSA5-Grundregelwerk (dritte Aufl
 ## Enthaltene Funktionen
 
 - geführter Charaktergenerator nach DSA5-Grundregelwerk, Aventurischem Kompendium und Aventurischer Magie I–III
+- Generatorentwurf mit **Neu beginnen** vollständig und nach Sicherheitsabfrage zurücksetzen
+- abschließender Ausrüstungseinkauf mit mehr als 1.500 bepreisten Inventar-, Waffen-, Schild- und Rüstungseinträgen
+- Startkapital, Reich/Arm, Mengen, Ausgaben, Restgeld und Gesamtgewicht automatisch berechnen
+- gekaufte Waffen und Rüstungen mit TP, Kampftechnik, AT/PA, RS, BE und weiteren Katalogwerten in den Bogen übernehmen
 - Quellenfilter für 271 Professionspakete und 482 allgemeine, Kampf- und Magie-Sonderfertigkeiten
 - zusätzliche Kulturen, magische Traditionen und Professionszauber aus den drei Magiebänden
 - zwergische Geoden, elfische Professionen, Hexen, Druiden, Animisten, Zibiljas und weitere Magiebegabte

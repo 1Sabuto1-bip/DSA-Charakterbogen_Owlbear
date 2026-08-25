@@ -1,10 +1,19 @@
-DSA-CHARAKTERBOGEN – UPDATE 0.11.0
+DSA-CHARAKTERBOGEN – UPDATE 0.12.0
 =================================
 
-Dieser Stand baut auf Version 0.10.0 auf und ergänzt Zustände, Tragkraft
-und die regeltechnische Belastungsberechnung.
+Dieser Stand baut auf Version 0.11.0 auf und ergänzt den Generator-Reset
+und den abschließenden Ausrüstungseinkauf.
 
 Neu:
+- sichtbarer Knopf "Neu beginnen" mit Sicherheitsabfrage
+- vollständiger Reset des Generatorentwurfs einschließlich Einkauf
+- neuer Generator-Schritt "Ausrüstung"
+- Suche und Filter für Inventar, Waffen, Schilde und Rüstungen
+- mehr als 1.500 kaufbare Einträge aus dem integrierten Ausrüstungskatalog
+- Startkapital 750 Silbertaler; Reich/Arm ändern es automatisch um 250 S je Stufe
+- Warenkorb mit Mengensteuerung, Ausgaben, Restgeld und Gesamtgewicht
+- gekaufte Gegenstände werden mit ihren Kampf- und Rüstungswerten übernommen
+- übrig gebliebenes Geld wird in Dukaten, Silber, Heller und Kreuzer übertragen
 - neuer Reiter "Zustände"
 - Betäubung, Entrückung, Furcht, Paralyse, Schmerz und Verwirrung in Stufe 0 bis IV
 - automatische Schmerzstufe aus den aktuellen Lebenspunkten
@@ -15,7 +24,7 @@ Neu:
 - Inventar, ausgerüstete Rüstung und zusätzliche Last werden getrennt berechnet
 - Tragkraftmodifikator, weitere Belastung und Belastungsreduktion einstellbar
 - Zustände und Tragkraft erscheinen im GM-Gruppenmonitor und auf der Kartenanzeige
-- Charaktergenerator in acht übersichtlichen Schritten
+- Charaktergenerator in neun übersichtlichen Schritten
 - Erfahrungsgrad und regelgerechtes AP-Konto
 - Mensch, Halbelf, Elf und Zwerg mit passenden Eigenschaftsmaxima
 - 12 Herkunftsvarianten und 32 Kulturpakete
@@ -39,12 +48,12 @@ Neu:
 - Stufe und freie Ausprägung eines Vor- oder Nachteils können bearbeitet werden
 - Einträge können hinzugefügt und entfernt werden
 - vorhandene Owlbear-Sicherungen werden beim Laden automatisch ergänzt
-- sichtbare Versionsnummer 0.11.0 zur Cache-Kontrolle
+- sichtbare Versionsnummer 0.12.0 zur Cache-Kontrolle
 
 UPLOAD
 ------
 1. Diese ZIP-Datei auf dem Mac doppelt anklicken.
-2. Den entpackten Ordner "github-update-v0.11.0" öffnen.
+2. Den entpackten Ordner "github-update-v0.12.0" öffnen.
 3. Im GitHub-Repository auf "Add file" und "Upload files" klicken:
    https://github.com/1Sabuto1-bip/DSA-Charakterbogen_Owlbear
 4. ALLE Inhalte des geöffneten Ordners in das Upload-Fenster ziehen.
@@ -60,7 +69,7 @@ OWLBEAR
 -------
 Nach dem Upload Owlbear vollständig neu laden. Falls noch eine andere Version
 erscheint, die Erweiterung im Profil entfernen und neu installieren mit:
-https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/manifest.json?v=0110
+https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/manifest.json?v=0120
 
 BEDIENUNG
 ---------
@@ -68,6 +77,11 @@ Auf der Startseite "Charaktergenerator öffnen" wählen. Der Entwurf wird
 automatisch im Browser gespeichert. Nach dem letzten Prüfschritt wird der
 Held als normaler interaktiver Bogen geöffnet. Noch nicht ausgegebene AP
 können anschließend im Reiter "Steigern" verteilt werden.
+
+Im Schritt "Ausrüstung" Gegenstände suchen, nach Waffen/Rüstungen/Inventar
+filtern und mit "Kaufen" in den Warenkorb legen. Der Generator verhindert
+Einkäufe über dem Startkapital. Mit "Neu beginnen" oben rechts lässt sich
+der gesamte Entwurf nach einer Sicherheitsabfrage zurücksetzen.
 
 Nach dem Laden eines vorhandenen Helden den Reiter "Biografie" öffnen. Dort können
 Spezies, Kultur und Profession korrigiert sowie Vor- und Nachteile gesucht,

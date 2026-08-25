@@ -1,13 +1,16 @@
-import { ATTRIBUTES, COMBAT_TECHNIQUES, COMBAT_TECHNIQUE_RULES, TALENTS } from "./data";
-import { DARKAID_MAGIC_BY_SOURCE_ID } from "./darkaid-data";
+import { ATTRIBUTES, COMBAT_TECHNIQUES, COMBAT_TECHNIQUE_RULES, TALENTS, suggestInventoryGroup } from "./data";
+import { DARKAID_ITEM_DATA, DARKAID_MAGIC_BY_SOURCE_ID } from "./darkaid-data";
 import { GRW_CHARACTER_DATA } from "./grw-character-data";
 import { improvementCostForTarget } from "./advancement";
 import { createManualState, getAttributeValues } from "./importer";
+import { getDefaultPrimaryWeaponId } from "./combat";
 import type {
   AttributeCode,
   BiographyTrait,
   CharacterSheetState,
+  CombatItemKind,
   ManualSpecies,
+  OptolithItem,
 } from "./types";
 
 export type GeneratorTraitKind = "advantage" | "disadvantage";
@@ -24,6 +27,29 @@ export interface GeneratorSpecialAbilitySelection {
   level: number;
   variant: string;
   costOverride: number;
+}
+
+export interface GeneratorPurchase {
+  catalogId: string;
+  amount: number;
+}
+
+export type GeneratorShopCategory = "weapons" | "armor" | "equipment";
+
+export interface GeneratorShopItem {
+  catalogId: string;
+  category: GeneratorShopCategory;
+  kindLabel: string;
+  itemKind: CombatItemKind;
+  item: Partial<OptolithItem> & { name: string; price: number };
+}
+
+export interface GeneratorShoppingBalance {
+  startingCapitalSilver: number;
+  spentSilver: number;
+  remainingSilver: number;
+  itemCount: number;
+  totalWeight: number;
 }
 
 export interface GeneratorDraft {
@@ -44,6 +70,7 @@ export interface GeneratorDraft {
   advantages: GeneratorTraitSelection[];
   disadvantages: GeneratorTraitSelection[];
   specialAbilities: GeneratorSpecialAbilitySelection[];
+  purchases: GeneratorPurchase[];
 }
 
 export interface GeneratorBalance {
@@ -116,6 +143,7 @@ export const GENERATOR_STEPS = [
   "Profession",
   "Vor- & Nachteile",
   "Sonderfertigkeiten",
+  "Ausrüstung",
   "Prüfen",
 ] as const;
 
@@ -128,6 +156,33 @@ export const GRW_ADVANTAGES = GRW_CHARACTER_DATA.advantages;
 export const GRW_DISADVANTAGES = GRW_CHARACTER_DATA.disadvantages;
 export const GRW_SPECIAL_ABILITIES = GRW_CHARACTER_DATA.specialAbilities;
 export const GENERATOR_SOURCES = GRW_CHARACTER_DATA.sources;
+
+const shopKind = (catalogId: string): Pick<GeneratorShopItem, "category" | "kindLabel" | "itemKind"> | undefined => {
+  if (catalogId.startsWith("meleeweapon:")) return { category: "weapons", kindLabel: "Nahkampfwaffe", itemKind: "melee" };
+  if (catalogId.startsWith("rangedweapon:")) return { category: "weapons", kindLabel: "Fernkampfwaffe", itemKind: "ranged" };
+  if (catalogId.startsWith("shield:")) return { category: "weapons", kindLabel: "Schild", itemKind: "shield" };
+  if (catalogId.startsWith("armor:")) return { category: "armor", kindLabel: "Rüstung", itemKind: "armor" };
+  if (catalogId.startsWith("equipment:")) return { category: "equipment", kindLabel: "Ausrüstung", itemKind: "equipment" };
+  return undefined;
+};
+
+export const GENERATOR_SHOP_ITEMS: readonly GeneratorShopItem[] = Object.entries(DARKAID_ITEM_DATA)
+  .flatMap(([catalogId, item]) => {
+    const kind = shopKind(catalogId);
+    const name = typeof item.name === "string" ? item.name.trim() : "";
+    const price = Number(item.price);
+    if (!kind || !name || name.includes("%") || !Number.isFinite(price) || price < 0) return [];
+    return [{
+      catalogId,
+      ...kind,
+      item: { ...item, name, price },
+    }];
+  })
+  .sort((a, b) => a.item.name.localeCompare(b.item.name, "de"));
+
+const shopItemById = Object.fromEntries(GENERATOR_SHOP_ITEMS.map((entry) => [entry.catalogId, entry])) as Record<string, GeneratorShopItem>;
+
+export const getGeneratorShopItem = (catalogId: string): GeneratorShopItem | undefined => shopItemById[catalogId];
 
 const experienceById = Object.fromEntries(GRW_EXPERIENCES.map((entry) => [entry.id, entry])) as Record<string, Experience>;
 const speciesById = Object.fromEntries(GRW_SPECIES.map((entry) => [entry.id, entry])) as Record<string, Species>;
@@ -168,6 +223,7 @@ export const createGeneratorDraft = (): GeneratorDraft => {
     advantages: [],
     disadvantages: [],
     specialAbilities: [],
+    purchases: [],
   };
   normalizeGeneratorDraft(draft);
   return draft;
@@ -191,6 +247,14 @@ export const getGeneratorProfession = (draft: GeneratorDraft): Profession =>
 const choiceKey = (profession: Profession, choiceId: string): string => `${profession.id}:${choiceId}`;
 
 export const normalizeGeneratorDraft = (draft: GeneratorDraft): void => {
+  draft.step = Math.max(0, Math.min(GENERATOR_STEPS.length - 1, Math.round(Number(draft.step) || 0)));
+  const mergedPurchases = new Map<string, number>();
+  for (const purchase of Array.isArray(draft.purchases) ? draft.purchases : []) {
+    if (!purchase || !shopItemById[purchase.catalogId]) continue;
+    const amount = Math.max(1, Math.min(999, Math.round(Number(purchase.amount) || 1)));
+    mergedPurchases.set(purchase.catalogId, Math.min(999, (mergedPurchases.get(purchase.catalogId) ?? 0) + amount));
+  }
+  draft.purchases = [...mergedPurchases].map(([catalogId, amount]) => ({ catalogId, amount }));
   const experience = getGeneratorExperience(draft);
   const species = getGeneratorSpecies(draft);
   const race = getGeneratorRace(draft);
@@ -239,6 +303,69 @@ export const normalizeGeneratorDraft = (draft: GeneratorDraft): void => {
     draft.spellChoices[key] = current;
   }
 };
+
+export const calculateGeneratorShopping = (draft: GeneratorDraft): GeneratorShoppingBalance => {
+  const wealthyLevels = draft.advantages
+    .filter((entry) => entry.id === "reich")
+    .reduce((sum, entry) => sum + Math.max(1, Number(entry.level) || 1), 0);
+  const poorLevels = draft.disadvantages
+    .filter((entry) => entry.id === "arm")
+    .reduce((sum, entry) => sum + Math.max(1, Number(entry.level) || 1), 0);
+  const startingCapitalKreuzer = Math.max(0, 75_000 + wealthyLevels * 25_000 - poorLevels * 25_000);
+  let spentKreuzer = 0;
+  let itemCount = 0;
+  let totalWeight = 0;
+  for (const purchase of draft.purchases ?? []) {
+    const shopItem = shopItemById[purchase.catalogId];
+    if (!shopItem) continue;
+    const amount = Math.max(1, Math.round(Number(purchase.amount) || 1));
+    spentKreuzer += Math.round(shopItem.item.price * 100) * amount;
+    itemCount += amount;
+    totalWeight += Number(shopItem.item.weight ?? 0) * amount;
+  }
+  return {
+    startingCapitalSilver: startingCapitalKreuzer / 100,
+    spentSilver: spentKreuzer / 100,
+    remainingSilver: (startingCapitalKreuzer - spentKreuzer) / 100,
+    itemCount,
+    totalWeight,
+  };
+};
+
+const purseFromSilver = (silver: number): Partial<Record<"d" | "s" | "h" | "k", string>> => {
+  let kreuzer = Math.max(0, Math.round(silver * 100));
+  const d = Math.floor(kreuzer / 1000);
+  kreuzer %= 1000;
+  const s = Math.floor(kreuzer / 100);
+  kreuzer %= 100;
+  const h = Math.floor(kreuzer / 10);
+  const k = kreuzer % 10;
+  return { d: String(d), s: String(s), h: String(h), k: String(k) };
+};
+
+const generatorItemId = (catalogId: string): string => `GENERATOR_ITEM_${catalogId.replace(/[^a-z0-9]+/gi, "_").replace(/^_|_$/g, "")}`;
+
+const buildPurchasedItems = (draft: GeneratorDraft): Record<string, OptolithItem> => Object.fromEntries(
+  (draft.purchases ?? []).flatMap((purchase) => {
+    const shopItem = shopItemById[purchase.catalogId];
+    if (!shopItem) return [];
+    const id = generatorItemId(purchase.catalogId);
+    const fallbackGroup = shopItem.itemKind === "armor" ? 4 : shopItem.itemKind === "ranged" ? 2 : shopItem.itemKind === "equipment" ? 7 : 1;
+    const group = shopItem.itemKind === "equipment"
+      ? suggestInventoryGroup(shopItem.item.name, Number(shopItem.item.gr ?? fallbackGroup))
+      : fallbackGroup;
+    return [[id, {
+      ...shopItem.item,
+      id,
+      name: shopItem.item.name,
+      gr: group,
+      amount: Math.max(1, Math.round(Number(purchase.amount) || 1)),
+      itemKind: shopItem.itemKind,
+      equipped: false,
+      generatorCatalogId: purchase.catalogId,
+    } satisfies OptolithItem]];
+  }),
+);
 
 export const getGeneratorAttributeMaximum = (draft: GeneratorDraft, code: AttributeCode): number => {
   const base = getGeneratorExperience(draft).attributemaximum;
@@ -377,6 +504,8 @@ export const validateGeneratorDraft = (draft: GeneratorDraft): GeneratorValidati
   if (balance.advantageLimit > 80) errors.push("Für Vorteile dürfen höchstens 80 AP ausgegeben werden.");
   if (balance.disadvantageLimit > 80) errors.push("Aus Nachteilen dürfen höchstens 80 AP gewonnen werden.");
   if (balance.remaining > 10) warnings.push(`${balance.remaining} AP sind noch nicht verteilt. Nach Regelwerk dürfen höchstens 10 AP übrig bleiben.`);
+  const shopping = calculateGeneratorShopping(draft);
+  if (shopping.remainingSilver < 0) errors.push(`Für den Einkauf fehlen ${Math.abs(shopping.remainingSilver).toLocaleString("de-DE")} Silbertaler.`);
   if (!race.commonCultures.includes(draft.cultureId as never)) warnings.push("Die gewählte Kultur ist für diese Herkunft unüblich und sollte mit dem GM abgestimmt werden.");
   if (profession.requiredCultures.length && !profession.requiredCultures.includes(draft.cultureId)) {
     const names = profession.requiredCultures.map((id) => cultureById[id]?.name ?? id).join(", ");
@@ -478,7 +607,7 @@ export const buildGeneratedCharacter = (draft: GeneratorDraft): CharacterSheetSt
   const required = getRequiredProfessionComponents(draft);
   const magical = profession.magical === true || species.id === "elfen";
   const sheet = createManualState(draft.name, { species: manualSpeciesFor(species.id), magical });
-  sheet.hero.clientVersion = "Regelwerksgenerator 0.10";
+  sheet.hero.clientVersion = "Regelwerksgenerator 0.12";
   sheet.hero.el = experience.id;
   sheet.hero.rv = race.id;
   sheet.hero.c = culture.id;
@@ -586,7 +715,10 @@ export const buildGeneratedCharacter = (draft: GeneratorDraft): CharacterSheetSt
   const fate = Math.max(0, 3 + fateModifier);
   sheet.runtime.resources.fate = { current: fate, max: fate };
   sheet.hero.belongings ??= {};
-  sheet.hero.belongings.purse = { d: "75", s: "0", h: "0", k: "0" };
+  const shopping = calculateGeneratorShopping(draft);
+  sheet.hero.belongings.items = buildPurchasedItems(draft);
+  sheet.hero.belongings.purse = purseFromSilver(shopping.remainingSilver);
+  sheet.runtime.combat.primaryWeaponId = getDefaultPrimaryWeaponId(sheet.hero);
   sheet.originalData = {
     generator: {
       rulebook: [
@@ -600,6 +732,7 @@ export const buildGeneratedCharacter = (draft: GeneratorDraft): CharacterSheetSt
       concept: draft.concept,
       draft,
       balance,
+      shopping,
       tradition: required.tradition,
       specialAbilities: [
         ...(required.tradition ? [required.tradition.name] : []),

@@ -6,8 +6,10 @@ import {
   GRW_PROFESSIONS,
   GRW_RACES,
   GRW_SPECIAL_ABILITIES,
+  GENERATOR_SHOP_ITEMS,
   buildGeneratedCharacter,
   calculateGeneratorBalance,
+  calculateGeneratorShopping,
   createGeneratorDraft,
   generatorAttributeCost,
   generatorSpecialAbilityCost,
@@ -87,6 +89,63 @@ describe("DSA5-Regelwerksgenerator", () => {
   it("berechnet feste Vor- und Nachteile mit Stufen", () => {
     expect(generatorTraitCost("advantage", { id: "hohelebenskraft", level: 3, variant: "", costOverride: 0 })).toBe(18);
     expect(generatorTraitCost("disadvantage", { id: "niedrigelebenskraft", level: 3, variant: "", costOverride: 0 })).toBe(-12);
+  });
+
+  it("stellt einen durchsuchbaren Ausrüstungskatalog mit Preisen und Kampfwerten bereit", () => {
+    expect(GENERATOR_SHOP_ITEMS.length).toBeGreaterThan(1_500);
+    expect(GENERATOR_SHOP_ITEMS.find((entry) => entry.catalogId === "meleeweapon:dolch")?.item).toMatchObject({
+      name: "Dolch",
+      price: 45,
+      damageDiceSides: 6,
+      combatTechnique: "CT_3",
+    });
+    expect(GENERATOR_SHOP_ITEMS.find((entry) => entry.catalogId === "armor:kettenhemd")?.item).toMatchObject({
+      name: "Kettenhemd",
+      price: 250,
+      pro: 4,
+      enc: 2,
+    });
+  });
+
+  it("berechnet Startkapital sowie Reich und Arm regelkonform", () => {
+    const draft = createGeneratorDraft();
+    draft.purchases = [
+      { catalogId: "meleeweapon:dolch", amount: 1 },
+      { catalogId: "armor:kettenhemd", amount: 1 },
+    ];
+    expect(calculateGeneratorShopping(draft)).toMatchObject({
+      startingCapitalSilver: 750,
+      spentSilver: 295,
+      remainingSilver: 455,
+      itemCount: 2,
+    });
+    draft.advantages = [{ id: "reich", level: 2, variant: "", costOverride: 0 }];
+    expect(calculateGeneratorShopping(draft).startingCapitalSilver).toBe(1_250);
+    draft.advantages = [];
+    draft.disadvantages = [{ id: "arm", level: 3, variant: "", costOverride: 0 }];
+    expect(calculateGeneratorShopping(draft).startingCapitalSilver).toBe(0);
+  });
+
+  it("übernimmt gekaufte Waffen, Rüstungen und Restgeld in den Heldenbogen", () => {
+    const draft = createGeneratorDraft();
+    draft.name = "Alrik";
+    draft.purchases = [
+      { catalogId: "meleeweapon:dolch", amount: 1 },
+      { catalogId: "armor:kettenhemd", amount: 1 },
+    ];
+    const state = buildGeneratedCharacter(draft);
+    const items = Object.values(state.hero.belongings?.items ?? {});
+    expect(items.find((item) => item.name === "Dolch")).toMatchObject({ itemKind: "melee", price: 45, amount: 1 });
+    expect(items.find((item) => item.name === "Kettenhemd")).toMatchObject({ itemKind: "armor", pro: 4, enc: 2 });
+    expect(state.hero.belongings?.purse).toEqual({ d: "45", s: "5", h: "0", k: "0" });
+    expect(state.runtime.combat.primaryWeaponId).toContain("meleeweapon_dolch");
+  });
+
+  it("verhindert einen Einkauf über dem verfügbaren Startkapital", () => {
+    const draft = createGeneratorDraft();
+    draft.name = "Alrik";
+    draft.purchases = [{ catalogId: "armor:kettenhemdbikini", amount: 1 }];
+    expect(validateGeneratorDraft(draft).errors.some((entry) => entry.includes("Einkauf"))).toBe(true);
   });
 
   it("erzeugt einen zwergischen Bogen mit Kultur- und Professionswerten", () => {
