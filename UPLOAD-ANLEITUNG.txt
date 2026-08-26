@@ -1,10 +1,20 @@
-DSA-CHARAKTERBOGEN – UPDATE 0.12.0
+DSA-CHARAKTERBOGEN – UPDATE 0.13.0
 =================================
 
-Dieser Stand baut auf Version 0.11.0 auf und ergänzt den Generator-Reset
-und den abschließenden Ausrüstungseinkauf.
+Dieser Stand baut auf Version 0.12.0 auf und korrigiert den Generator-Reset,
+die AP-Berechnung der Professionspakete und den Professionskatalog.
 
-Neu:
+Neu in 0.13.0:
+- "Neu beginnen" stellt das AP-Konto vollständig auf den gewählten Erfahrungsgrad zurück
+- alle Eigenschaften beginnen nach dem Reset wieder bei 8
+- Kulturpaket und Profession sind nach dem Reset abgewählt
+- Pflichtvorteile und Traditionen werden nicht mehr zusätzlich zum vollständigen Professionspreis berechnet
+- 564 Professionspakete und Varianten aus 35 Quellen
+- Gruppenfilter: Weltliche, Kämpfer, Ordensleute, Zauberer und Geweihte
+- neuere Regelwiki-Pakete für Adoru, Nachtalben, Tahayaschamanen und Ojomyaa
+- 134 Vorteile, 88 Nachteile und 1.243 Sonderfertigkeiten im Generator-Katalog
+
+Bereits enthalten:
 - sichtbarer Knopf "Neu beginnen" mit Sicherheitsabfrage
 - vollständiger Reset des Generatorentwurfs einschließlich Einkauf
 - neuer Generator-Schritt "Ausrüstung"
@@ -27,12 +37,12 @@ Neu:
 - Charaktergenerator in neun übersichtlichen Schritten
 - Erfahrungsgrad und regelgerechtes AP-Konto
 - Mensch, Halbelf, Elf und Zwerg mit passenden Eigenschaftsmaxima
-- 12 Herkunftsvarianten und 32 Kulturpakete
-- 271 Professionspakete und Varianten mit Quellenfilter
-- jeweils 68 Vorteile und Nachteile aus den fünf Regelbänden
-- 482 durchsuchbare allgemeine, Kampf- und Magie-Sonderfertigkeiten
+- 12 Herkunftsvarianten und 40 Kulturpakete
+- 564 Professionspakete und Varianten mit Gruppen- und Quellenfilter
+- 134 Vorteile und 88 Nachteile aus den eingebundenen Regelbänden
+- 1.243 durchsuchbare allgemeine, Kampf- und Magie-Sonderfertigkeiten
 - Geoden für zwergische Helden sowie weitere elfische und magische Professionen
-- alle 238 in den Professionspaketen referenzierten Zauber werden aufgelöst
+- alle 279 in den Professionspaketen referenzierten Zauber werden aufgelöst
 - Prüfung von Eigenschafts-, AP- und 80-AP-Grenzen
 - Pflichtvorteile und Traditionen für Magiebegabte und Geweihte
 - der fertige Held wird direkt als interaktiver Bogen geöffnet
@@ -48,12 +58,12 @@ Neu:
 - Stufe und freie Ausprägung eines Vor- oder Nachteils können bearbeitet werden
 - Einträge können hinzugefügt und entfernt werden
 - vorhandene Owlbear-Sicherungen werden beim Laden automatisch ergänzt
-- sichtbare Versionsnummer 0.12.0 zur Cache-Kontrolle
+- sichtbare Versionsnummer 0.13.0 zur Cache-Kontrolle
 
 UPLOAD
 ------
 1. Diese ZIP-Datei auf dem Mac doppelt anklicken.
-2. Den entpackten Ordner "github-update-v0.12.0" öffnen.
+2. Den entpackten Ordner "github-update-v0.13.0" öffnen.
 3. Im GitHub-Repository auf "Add file" und "Upload files" klicken:
    https://github.com/1Sabuto1-bip/DSA-Charakterbogen_Owlbear
 4. ALLE Inhalte des geöffneten Ordners in das Upload-Fenster ziehen.
@@ -69,7 +79,7 @@ OWLBEAR
 -------
 Nach dem Upload Owlbear vollständig neu laden. Falls noch eine andere Version
 erscheint, die Erweiterung im Profil entfernen und neu installieren mit:
-https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/manifest.json?v=0120
+https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/manifest.json?v=0130
 
 BEDIENUNG
 ---------

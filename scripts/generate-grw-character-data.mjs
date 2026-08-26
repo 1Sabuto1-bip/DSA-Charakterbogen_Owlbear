@@ -1,18 +1,29 @@
 import fs from "node:fs";
 import path from "node:path";
+import {
+  regelwikiCantripNames,
+  regelwikiChantNames,
+  regelwikiProfessionAdditions,
+  regelwikiProfessionSources,
+} from "./regelwiki-profession-additions.mjs";
 
 const projectRoot = path.resolve(import.meta.dirname, "..");
 const sourceRoot = path.resolve(projectRoot, "../darkaid-source/src/rulesystems/dsa5aventurien");
 const outputFile = path.resolve(projectRoot, "src/grw-character-data.ts");
 
 const load = (file) => JSON.parse(fs.readFileSync(path.join(sourceRoot, file), "utf8")).data;
-const sources = [
-  { id: "regelwerk", directory: "", label: "Regelwerk (3. Auflage)", shortLabel: "GRW" },
-  { id: "aventurischeskompendium", directory: "aventurischeskompendium", label: "Aventurisches Kompendium", shortLabel: "AKO" },
-  { id: "aventurischemagie1", directory: "aventurischemagie1", label: "Aventurische Magie I", shortLabel: "AM I" },
-  { id: "aventurischemagie2", directory: "aventurischemagie2", label: "Aventurische Magie II", shortLabel: "AM II" },
-  { id: "aventurischemagie3", directory: "aventurischemagie3", label: "Aventurische Magie III", shortLabel: "AM III" },
-];
+const ruleSystem = JSON.parse(fs.readFileSync(path.join(sourceRoot, "rulesystem.json"), "utf8"));
+const sources = ruleSystem.rulebooks.flatMap((rulebook) => {
+  const professionFile = (rulebook.files ?? []).find((file) => path.basename(file) === "professions.json");
+  if (!professionFile || !fs.existsSync(path.join(sourceRoot, professionFile))) return [];
+  const directory = path.dirname(professionFile) === "." ? "" : path.dirname(professionFile);
+  return [{
+    id: rulebook.id,
+    directory,
+    label: rulebook.name,
+    shortLabel: rulebook.abbreviation ?? rulebook.name,
+  }];
+});
 const sourcePath = (source, file) => path.join(source.directory, file);
 const hasSourceFile = (source, file) => fs.existsSync(path.join(sourceRoot, sourcePath(source, file)));
 const loadSource = (source, file) => hasSourceFile(source, file) ? load(sourcePath(source, file)) : [];
@@ -81,19 +92,25 @@ const replaceOrAppendSelections = (base = [], variant = [], type) => {
   ];
 };
 
-const specialAbilityFiles = {
-  "spab-general.json": "Allgemein",
-  "spab-combat.json": "Kampf",
-  "spab-combatextended.json": "Erweiterter Kampf",
-  "spab-commands.json": "Befehle",
-  "spab-fatepoints.json": "Schicksalspunkte",
-  "spab-fightingstyles.json": "Kampfstile",
-  "spab-magical.json": "Magie",
-  "spab-magicalextended.json": "Erweiterte Magie",
-  "spab-praegung.json": "Prägungen",
-  "spab-spellstyles.json": "Zauberstile",
-  "spab-karma.json": "Karma",
+const specialAbilityCategory = (file) => {
+  if (file.includes("fighting")) return "Kampfstile";
+  if (file.includes("combat")) return "Kampf";
+  if (file.includes("spellstyle")) return "Zauberstile";
+  if (file.includes("magical")) return "Magie";
+  if (file.includes("chantstyle")) return "Liturgiestile";
+  if (file.includes("karma")) return "Karma";
+  if (file.includes("skillstyle")) return "Talentstile";
+  if (file.includes("skill")) return "Talente";
+  if (file.includes("fatepoint")) return "Schicksalspunkte";
+  if (file.includes("command")) return "Befehle";
+  if (file.includes("praegung")) return "Prägungen";
+  return "Allgemein";
 };
+const specialAbilityFiles = Object.fromEntries([...new Set(ruleSystem.rulebooks
+  .flatMap((rulebook) => rulebook.files ?? [])
+  .map((file) => path.basename(file))
+  .filter((file) => file.startsWith("spab-") && file.endsWith(".json")))]
+  .map((file) => [file, specialAbilityCategory(file)]));
 const allSpecialAbilities = sources.flatMap((source) => Object.entries(specialAbilityFiles).flatMap(([file, category]) =>
   loadSource(source, file).map((entry) => ({ ...entry, source, category }))));
 const specialAbilityNames = Object.fromEntries(allSpecialAbilities.map((entry) => [entry.id, entry.name]));
@@ -128,8 +145,25 @@ for (const source of sources) {
   }
 }
 
-const professionTraditionId = (profession) => profession.prerequisites?.find((entry) =>
+const blessedTraditionData = new Map();
+for (const source of sources) {
+  for (const entry of loadSource(source, "blessedtraditions.json")) {
+    const previous = blessedTraditionData.get(entry.id) ?? {};
+    blessedTraditionData.set(entry.id, {
+      ...entry,
+      ...previous,
+      sourceId: previous.sourceId ?? source.id,
+      sourceLabel: previous.sourceLabel ?? source.label,
+    });
+  }
+}
+
+const professionTraditionId = (profession) => asArray(profession.prerequisites).find((entry) =>
   entry.type === "specialability" && entry.specialabilitysignatures?.ruleelement === "magischetradition")
+  ?.specialabilitysignatures?.variant?.id?.id;
+
+const professionBlessedTraditionId = (profession) => asArray(profession.prerequisites).find((entry) =>
+  entry.type === "specialability" && entry.specialabilitysignatures?.ruleelement === "geweihtentradition")
   ?.specialabilitysignatures?.variant?.id?.id;
 
 const professionExtras = (profession) => {
@@ -142,6 +176,18 @@ const professionExtras = (profession) => {
       tradition: tradition.name,
       traditionId,
       traditionCost: Number(tradition.cost ?? 0),
+      ...(primary ? { primaryAttribute: attributeCodes[primary] ?? "IN" } : {}),
+    };
+  }
+  const blessedTraditionId = professionBlessedTraditionId(profession);
+  const blessedTradition = blessedTraditionData.get(blessedTraditionId);
+  if (blessedTradition?.name) {
+    const primary = blessedTradition.specialrules?.find((entry) => entry.type === "primaryattribute")?.attribute;
+    return {
+      blessed: true,
+      tradition: blessedTradition.name,
+      traditionId: blessedTraditionId,
+      traditionCost: Number(blessedTradition.cost ?? 0),
       ...(primary ? { primaryAttribute: attributeCodes[primary] ?? "IN" } : {}),
     };
   }
@@ -160,6 +206,27 @@ const professionExtras = (profession) => {
   return {};
 };
 
+const professionGroups = new Map();
+for (const source of sources) {
+  for (const entry of loadSource(source, "professiongroups.json")) {
+    if (entry.id) professionGroups.set(entry.id, { ...professionGroups.get(entry.id), ...entry });
+  }
+}
+
+const professionCategory = (groupId) => {
+  const ancestors = new Set();
+  let current = groupId;
+  while (current && !ancestors.has(current)) {
+    ancestors.add(current);
+    current = professionGroups.get(current)?.parent;
+  }
+  if (ancestors.has("ordensprofessionen")) return "Ordensleute";
+  if (ancestors.has("geweihte")) return "Geweihte";
+  if (ancestors.has("zauberer")) return "Zauberer";
+  if (ancestors.has("kaempfer")) return "Kämpfer";
+  return "Weltliche";
+};
+
 const cleanProfession = (profession, variant, source) => {
   const prerequisites = [...asArray(profession.prerequisites), ...asArray(variant?.prerequisites)];
   const requiredCultures = [...new Set(prerequisites.flatMap((entry) => {
@@ -169,6 +236,19 @@ const cleanProfession = (profession, variant, source) => {
   }))];
   const rawRequiredSex = prerequisites.find((entry) => entry.type === "sex")?.sex;
   const requiredSex = rawRequiredSex === "male" ? "m" : rawRequiredSex === "female" ? "f" : rawRequiredSex;
+  const requiredAdvantages = prerequisites
+    .filter((entry) => entry.type === "disadvantage" && entry.disadvantages?.ruleelement)
+    .map((entry) => ({ id: entry.disadvantages.ruleelement, level: Number(entry.level ?? 1), variant: "" }));
+  const requiredDisadvantages = prerequisites
+    .filter((entry) => entry.type === "disadvantagevariants" && entry.disadvantage)
+    .map((entry) => ({
+      id: entry.disadvantage,
+      level: Number(entry.level ?? 1),
+      variant: asArray(entry.variants)
+        .map((value) => typeof value === "string" ? value : value?.text ?? value?.name ?? value?.id ?? "")
+        .filter(Boolean)
+        .join("/") || "Voraussetzung der Profession",
+    }));
   const skills = mergeBy(profession.skills, variant?.skills, "skill")
     .map((entry) => ({ id: entry.skill, level: Number(entry.level ?? 0) }));
   const combatEntries = replaceOrAppendSelections(
@@ -183,6 +263,12 @@ const cleanProfession = (profession, variant, source) => {
       id: `combat-${index}`,
       count: Number(entry.count ?? 1),
       options: (entry.combattechniques ?? []).map((option) => ({ id: option.ruleelement, level: Number(option.level ?? 6) })),
+    }));
+  const combatMultiChoices = combatEntries.filter((entry) => entry.type === "combattechniquelevelmultiselect")
+    .map((entry, index) => ({
+      id: `combat-multi-${index}`,
+      count: Number(entry.count ?? entry.levels?.length ?? 1),
+      options: (entry.combattechniques ?? []).map((id) => ({ id, level: Number(entry.levels?.[0] ?? 6) })),
     }));
   const spells = mergeBy(profession.spells, variant?.spells, "spell")
     .map((entry) => ({ id: entry.spell, level: Number(entry.level ?? 0) }));
@@ -207,16 +293,19 @@ const cleanProfession = (profession, variant, source) => {
     name,
     femaleName: variant?.namefemale ?? profession.namefemale ?? name,
     group: profession.group,
+    category: professionCategory(profession.group),
     page: pageNumber(profession.page),
     sourceId: source.id,
     sourceLabel: source.label,
     sourceShortLabel: source.shortLabel,
     requiredCultures,
     ...(requiredSex ? { requiredSex } : {}),
+    requiredAdvantages,
+    requiredDisadvantages,
     ap: Number(variant?.apvalue ?? profession.apvalue),
     skills,
     combat,
-    combatChoices,
+    combatChoices: [...combatChoices, ...combatMultiChoices],
     spells,
     spellSelections,
     chants,
@@ -262,7 +351,7 @@ const cultures = load("cultures.json").map((entry) => ({
   script: entry.scripts?.variant?.id?.id ?? "",
 }));
 
-const cultureData = sources.flatMap((source) => loadSource(source, "cultures.json").map((entry) => ({
+const allCultureData = sources.flatMap((source) => loadSource(source, "cultures.json").filter((entry) => entry.id && entry.name).map((entry) => ({
   id: entry.id,
   name: entry.name,
   page: pageNumber(entry.page),
@@ -274,10 +363,14 @@ const cultureData = sources.flatMap((source) => loadSource(source, "cultures.jso
   language: entry.languages?.variant?.text ?? entry.languages?.variant?.id?.id ?? "",
   script: entry.scripts?.variant?.id?.id ?? "",
 })));
+const cultureData = [...new Map(allCultureData.map((entry) => [entry.id, entry])).values()]
+  .sort((a, b) => a.name.localeCompare(b.name, "de"));
 
-const professionData = sources.flatMap((source) => loadSource(source, "professions.json")
+const allProfessionData = sources.flatMap((source) => loadSource(source, "professions.json")
   .filter((entry) => Number.isFinite(entry.apvalue) && (entry.namemale || entry.namefemale))
   .flatMap((entry) => [cleanProfession(entry, undefined, source), ...(entry.variants ?? []).filter((variant) => Number.isFinite(variant.apvalue)).map((variant) => cleanProfession(entry, variant, source))]));
+const professionData = [...new Map([...allProfessionData, ...regelwikiProfessionAdditions].map((entry) => [entry.id, entry])).values()]
+  .sort((a, b) => a.name.localeCompare(b.name, "de"));
 
 const traitEntries = [];
 for (const source of sources) {
@@ -323,7 +416,7 @@ const specialAbilities = [...specialAbilityMap.values()].sort((a, b) => a.name.l
 const mergeNameCatalog = (file) => Object.fromEntries(sources.flatMap((source) => loadSource(source, file)).map((entry) => [entry.id, entry.name]));
 
 const data = {
-  sources,
+  sources: [...sources, ...regelwikiProfessionSources],
   experiences: load("experiencelevels.json"),
   species,
   races,
@@ -334,11 +427,11 @@ const data = {
   specialAbilities,
   skillIds: Object.fromEntries(load("skills.json").map((entry, index) => [entry.id, `TAL_${index + 1}`])),
   combatIds: Object.fromEntries(load("combattechniques.json").map((entry, index) => [entry.id, `CT_${index + 1}`])),
-  cantripNames: mergeNameCatalog("spells-cantrips.json"),
-  chantNames: Object.fromEntries(load("chants.json").map((entry) => [entry.id, entry.name])),
-  blessingNames: Object.fromEntries(load("chants-blessings.json").map((entry) => [entry.id, entry.name])),
+  cantripNames: { ...mergeNameCatalog("spells-cantrips.json"), ...regelwikiCantripNames },
+  chantNames: { ...mergeNameCatalog("chants.json"), ...regelwikiChantNames },
+  blessingNames: mergeNameCatalog("chants-blessings.json"),
 };
 
-const output = `// Generated from structured DarkAid data and checked against the supplied DSA5 rulebooks.\n// Sources: core rulebook (third edition), Aventurisches Kompendium, Aventurische Magie I-III.\n// Do not add rule prose here; this module contains only names and mechanical package data.\n\nexport const GRW_CHARACTER_DATA = ${JSON.stringify(data, null, 2)} as const;\n`;
+const output = `// Generated from structured DarkAid data and checked against the official DSA5 Regelwiki profession lists.\n// Sources: all installed DarkAid rulebooks that contain profession packages.\n// Do not add rule prose here; this module contains only names and mechanical package data.\n\nexport const GRW_CHARACTER_DATA = ${JSON.stringify(data, null, 2)} as const;\n`;
 fs.writeFileSync(outputFile, output);
 console.log(`Wrote ${path.relative(projectRoot, outputFile)} (${professionData.length} profession packages, ${advantages.length} advantages, ${disadvantages.length} disadvantages, ${specialAbilities.length} special abilities).`);

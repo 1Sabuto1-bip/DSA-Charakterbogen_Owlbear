@@ -22,13 +22,31 @@ import {
 import { DARKAID_MAGIC_BY_SOURCE_ID } from "../src/darkaid-data";
 
 describe("DSA5-Regelwerksgenerator", () => {
-  it("enthält die Kataloge aus Grundregelwerk, Kompendium und Magie I bis III", () => {
+  it("enthält den erweiterten Katalog aus allen fünf Regelwiki-Professionsgruppen", () => {
     expect(GRW_RACES).toHaveLength(12);
-    expect(GRW_CULTURES).toHaveLength(32);
-    expect(GRW_PROFESSIONS).toHaveLength(271);
-    expect(GRW_ADVANTAGES).toHaveLength(68);
-    expect(GRW_DISADVANTAGES).toHaveLength(68);
-    expect(GRW_SPECIAL_ABILITIES).toHaveLength(482);
+    expect(GRW_CULTURES).toHaveLength(40);
+    expect(GRW_PROFESSIONS).toHaveLength(564);
+    expect(GRW_ADVANTAGES).toHaveLength(134);
+    expect(GRW_DISADVANTAGES).toHaveLength(88);
+    expect(GRW_SPECIAL_ABILITIES).toHaveLength(1_243);
+    expect(new Set(GRW_PROFESSIONS.map((entry) => entry.category))).toEqual(new Set([
+      "Weltliche", "Kämpfer", "Ordensleute", "Zauberer", "Geweihte",
+    ]));
+    expect(GRW_PROFESSIONS.some((entry) => entry.id === "adoruschwertkaempfershindai")).toBe(true);
+    expect(GRW_PROFESSIONS.some((entry) => entry.id === "adorumagierdorukha")).toBe(true);
+    expect(GRW_PROFESSIONS.some((entry) => entry.id === "tahayaschamanin")).toBe(true);
+  });
+
+  it("setzt einen neuen Entwurf einschließlich AP-Konto vollständig zurück", () => {
+    const draft = createGeneratorDraft();
+    expect(draft.professionId).toBe("");
+    expect(draft.useCulturePackage).toBe(false);
+    expect(new Set(Object.values(draft.attributes))).toEqual(new Set([8]));
+    expect(calculateGeneratorBalance(draft)).toMatchObject({
+      budget: 1_100,
+      spent: 0,
+      remaining: 1_100,
+    });
   });
 
   it("berechnet die Eigenschaftskosten über 14 korrekt", () => {
@@ -64,18 +82,30 @@ describe("DSA5-Regelwerksgenerator", () => {
     expect(required.tradition).toEqual({ name: "Tradition (Hexen)", cost: 135 });
   });
 
+  it("berechnet Voraussetzungen eines Professionspakets nicht doppelt", () => {
+    const draft = createGeneratorDraft();
+    draft.professionId = "katzenhexe";
+    const balance = calculateGeneratorBalance(draft);
+    expect(balance.profession).toBe(285);
+    expect(balance.tradition).toBe(0);
+    expect(balance.requiredAdvantages).toBe(0);
+    expect(balance.spent).toBe(285);
+    expect(balance.remaining).toBe(815);
+    expect(balance.advantageLimit).toBe(25);
+  });
+
   it("berücksichtigt Geoden aus Aventurische Magie III für Zwerge", () => {
     const draft = createGeneratorDraft();
     draft.raceId = "zwerge";
     draft.professionId = "dienerdererdmuttergefaehrtedesfeuers";
     const profession = GRW_PROFESSIONS.find((entry) => entry.id === draft.professionId);
-    expect(profession?.sourceShortLabel).toBe("AM III");
+    expect(profession?.sourceShortLabel).toBe("AM3");
     expect(getRequiredProfessionComponents(draft).tradition).toEqual({ name: "Tradition (Geoden)", cost: 130 });
   });
 
   it("löst alle Zauber der eingebundenen Professionspakete auf", () => {
     const spellIds = [...new Set(GRW_PROFESSIONS.flatMap((profession) => profession.spells.map((spell) => spell.id)))];
-    expect(spellIds).toHaveLength(238);
+    expect(spellIds).toHaveLength(279);
     expect(spellIds.filter((id) => !DARKAID_MAGIC_BY_SOURCE_ID[id])).toEqual([]);
   });
 
@@ -129,6 +159,7 @@ describe("DSA5-Regelwerksgenerator", () => {
   it("übernimmt gekaufte Waffen, Rüstungen und Restgeld in den Heldenbogen", () => {
     const draft = createGeneratorDraft();
     draft.name = "Alrik";
+    draft.professionId = "barde";
     draft.purchases = [
       { catalogId: "meleeweapon:dolch", amount: 1 },
       { catalogId: "armor:kettenhemd", amount: 1 },

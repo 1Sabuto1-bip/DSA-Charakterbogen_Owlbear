@@ -3,6 +3,10 @@
 Ein eigenständig gestalteter, interaktiver DSA-5-Heldenbogen als Owlbear-Rodeo-Erweiterung.
 Der aktuelle Prototyp importiert Optolith-JSON-Dateien der Version 1.5.x und TDC-Helden aus The Dark Aid X.
 
+## Version 0.13.0 – vollständiger AP-Reset und erweiterte Professionen
+
+**Neu beginnen** setzt jetzt auch das AP-Konto vollständig zurück: Eigenschaften beginnen wieder bei 8, Kulturpaket und Profession sind abgewählt und sämtliche eigenen Auswahlen sowie Einkäufe sind leer. Die Professionspakete berechnen ihre bereits enthaltenen Pflichtvorteile und Traditionen nicht mehr doppelt. Der Generator enthält nun 564 Professionspakete und Varianten aus 35 Quellen, aufgeteilt in die fünf durchsuchbaren Gruppen **Weltliche**, **Kämpfer**, **Ordensleute**, **Zauberer** und **Geweihte**. Neuere Regelwiki-Pakete wie Shindai, Adoru-Magier, Klingensängerin und Zauberweber der Shakagra, Tahayaschamanin sowie Ojomyaa sind ebenfalls enthalten.
+
 ## Version 0.12.0 – Generator-Reset und Ausrüstungseinkauf
 
 Der Charaktergenerator besitzt jetzt den deutlich sichtbaren, abgesicherten Knopf **Neu beginnen**, der den gesamten gespeicherten Entwurf einschließlich Einkauf zurücksetzt. Vor dem Prüfschritt steht ein eigener Ausrüstungseinkauf mit Suche und Filtern für Waffen, Schilde, Rüstungen und Inventar zur Verfügung. Das regelgerechte Startkapital von 750 Silbertalern wird durch **Reich** beziehungsweise **Arm** automatisch um 250 Silbertaler je Stufe verändert. Preise, Mengen, Gesamtgewicht und Restgeld werden live berechnet; gekaufte Gegenstände werden mit allen vorhandenen Kampf- und Rüstungswerten in den fertigen Heldenbogen übernommen.
@@ -17,12 +21,12 @@ Auf der Startseite kann ein neuer Held nach dem DSA5-Grundregelwerk (dritte Aufl
 
 ## Enthaltene Funktionen
 
-- geführter Charaktergenerator nach DSA5-Grundregelwerk, Aventurischem Kompendium und Aventurischer Magie I–III
+- geführter Charaktergenerator mit 564 Professionspaketen und Varianten aus 35 Quellen
 - Generatorentwurf mit **Neu beginnen** vollständig und nach Sicherheitsabfrage zurücksetzen
 - abschließender Ausrüstungseinkauf mit mehr als 1.500 bepreisten Inventar-, Waffen-, Schild- und Rüstungseinträgen
 - Startkapital, Reich/Arm, Mengen, Ausgaben, Restgeld und Gesamtgewicht automatisch berechnen
 - gekaufte Waffen und Rüstungen mit TP, Kampftechnik, AT/PA, RS, BE und weiteren Katalogwerten in den Bogen übernehmen
-- Quellenfilter für 271 Professionspakete und 482 allgemeine, Kampf- und Magie-Sonderfertigkeiten
+- Gruppen- und Quellenfilter für 564 Professionspakete sowie 1.243 allgemeine, Kampf- und Magie-Sonderfertigkeiten
 - zusätzliche Kulturen, magische Traditionen und Professionszauber aus den drei Magiebänden
 - zwergische Geoden, elfische Professionen, Hexen, Druiden, Animisten, Zibiljas und weitere Magiebegabte
 - Optolith-JSON, DarkAid-TDC und eigene Owlbear-Sicherungen importieren

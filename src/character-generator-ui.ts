@@ -97,6 +97,7 @@ export class CharacterGeneratorUI {
   disadvantageSearch = "";
   specialAbilitySearch = "";
   professionSource = "all";
+  professionCategory = "all";
   specialAbilitySource = "all";
   specialAbilityCategory = "all";
   shopSearch = "";
@@ -109,6 +110,7 @@ export class CharacterGeneratorUI {
     this.disadvantageSearch = "";
     this.specialAbilitySearch = "";
     this.professionSource = "all";
+    this.professionCategory = "all";
     this.specialAbilitySource = "all";
     this.specialAbilityCategory = "all";
     this.shopSearch = "";
@@ -153,7 +155,7 @@ export class CharacterGeneratorUI {
         </select></label>
         <label class="generator-field generator-field--wide"><span>Konzept und Motivation</span><textarea id="generator-concept" rows="7" placeholder="Herkunft, Ziele, Stärken, Schwächen …">${escapeHtml(this.draft.concept)}</textarea></label>
       </div>
-      <div class="generator-rule-note"><strong>Regelgrundlage</strong><span>DSA5 Regelwerk (3. Auflage), Aventurisches Kompendium und Aventurische Magie I–III</span></div>
+      <div class="generator-rule-note"><strong>Regelgrundlage</strong><span>DSA5-Regelwiki und die im Katalog genannten Quellenbände</span></div>
     </section>`;
   }
 
@@ -212,18 +214,19 @@ export class CharacterGeneratorUI {
     const profession = getGeneratorProfession(this.draft);
     const search = normalizeSearch(this.professionSearch);
     const filtered = GRW_PROFESSIONS.filter((entry) => (this.professionSource === "all" || entry.sourceId === this.professionSource)
-      && (!search || normalizeSearch(`${entry.name} ${entry.femaleName} ${entry.group} ${entry.sourceLabel}`).includes(search))).slice(0, 40);
+      && (this.professionCategory === "all" || entry.category === this.professionCategory)
+      && (!search || normalizeSearch(`${entry.name} ${entry.femaleName} ${entry.group} ${entry.category} ${entry.sourceLabel}`).includes(search))).slice(0, 60);
     const professionSources = [...new Map(GRW_PROFESSIONS.map((entry) => [entry.sourceId, { id: entry.sourceId, label: entry.sourceLabel }])).values()];
     const required = getRequiredProfessionComponents(this.draft);
     return `<section class="generator-page">
       <p class="eyebrow">Schritt 6</p><h2>Profession wählen</h2>
-      <p class="generator-lead">${GRW_PROFESSIONS.length} Professionspakete und Varianten aus allen fünf eingebundenen Regelbänden sind enthalten.</p>
-      <div class="generator-filter-row"><label class="generator-search"><span>Profession suchen</span><input id="generator-profession-search" type="search" value="${escapeHtml(this.professionSearch)}" placeholder="z. B. Geode, Schwertgeselle, Hexe …" /></label><label class="generator-field"><span>Quelle</span><select id="generator-profession-source"><option value="all">Alle Regelbände</option>${professionSources.map((entry) => `<option value="${entry.id}" ${this.professionSource === entry.id ? "selected" : ""}>${entry.label}</option>`).join("")}</select></label></div>
+      <p class="generator-lead">${GRW_PROFESSIONS.length} Professionspakete und Varianten aus den Bereichen Weltliche, Kämpfer, Ordensleute, Zauberer und Geweihte sind enthalten.</p>
+      <div class="generator-filter-row"><label class="generator-search"><span>Profession suchen</span><input id="generator-profession-search" type="search" value="${escapeHtml(this.professionSearch)}" placeholder="z. B. Geode, Schwertgeselle, Hexe …" /></label><label class="generator-field"><span>Gruppe</span><select id="generator-profession-category"><option value="all">Alle Gruppen</option>${["Weltliche", "Kämpfer", "Ordensleute", "Zauberer", "Geweihte"].map((entry) => `<option value="${entry}" ${this.professionCategory === entry ? "selected" : ""}>${entry}</option>`).join("")}</select></label><label class="generator-field"><span>Quelle</span><select id="generator-profession-source"><option value="all">Alle Regelbände</option>${professionSources.map((entry) => `<option value="${entry.id}" ${this.professionSource === entry.id ? "selected" : ""}>${entry.label}</option>`).join("")}</select></label></div>
       <div class="profession-layout">
         <div class="profession-list">${filtered.map((entry) => `<label class="profession-option ${entry.id === profession.id ? "profession-option--selected" : ""}"><input data-generator-profession type="radio" name="generator-profession" value="${entry.id}" ${entry.id === profession.id ? "checked" : ""} /><span><strong>${escapeHtml(this.draft.sex === "f" ? entry.femaleName : entry.name)}</strong><small>${generatorProfessionSummary(entry)}</small></span></label>`).join("") || `<div class="empty-state">Keine Profession gefunden.</div>`}</div>
         <article class="profession-detail">
           <p class="eyebrow">Ausgewählt</p><h3>${escapeHtml(this.draft.sex === "f" ? profession.femaleName : profession.name)}</h3>
-          <p>${generatorProfessionSummary(profession)} · S. ${profession.page}</p>
+          ${profession.id ? `<p>${generatorProfessionSummary(profession)} · S. ${profession.page}</p>` : `<p>Suche links nach einer Profession oder grenze die Liste nach Gruppe und Quelle ein.</p>`}
           ${profession.requiredCultures.length ? `<div><strong>Kulturvoraussetzung</strong><span>${profession.requiredCultures.map((id) => GRW_CULTURES.find((entry) => entry.id === id)?.name ?? id).join(", ")}</span></div>` : ""}
           ${required.advantages.length ? `<div><strong>Pflichtvorteil</strong><span>${required.advantages.map((entry) => `${entry.name} (${entry.cost} AP)`).join(", ")}</span></div>` : ""}
           ${required.tradition ? `<div><strong>Pflicht-Sonderfertigkeit</strong><span>${required.tradition.name} (${required.tradition.cost} AP)</span></div>` : ""}
@@ -429,7 +432,7 @@ export class CharacterGeneratorUI {
     ];
     const validation = validateGeneratorDraft(this.draft);
     return `<main class="generator-shell">
-      <header class="generator-header"><div><p class="eyebrow">DSA 5 · GRW + Kompendium + Magie I–III</p><h1>Regelwerksgenerator</h1></div><div class="generator-header__actions"><button id="generator-reset" class="generator-reset-button" title="Gesamten Entwurf zurücksetzen">↺ Neu beginnen</button><button id="generator-close" class="icon-button" title="Generator schließen">×</button></div></header>
+      <header class="generator-header"><div><p class="eyebrow">DSA 5 · erweiterter Professionskatalog</p><h1>Regelwerksgenerator</h1></div><div class="generator-header__actions"><button id="generator-reset" class="generator-reset-button" title="Gesamten Entwurf und das AP-Konto zurücksetzen">↺ Neu beginnen</button><button id="generator-close" class="icon-button" title="Generator schließen">×</button></div></header>
       <nav class="generator-stepper" aria-label="Schritte der Heldenerschaffung">${GENERATOR_STEPS.map((label, index) => `<button data-generator-step="${index}" class="${index === this.draft.step ? "active" : index < this.draft.step ? "done" : ""}"><b>${index + 1}</b><span>${label}</span></button>`).join("")}</nav>
       <div class="generator-workspace"><div class="generator-main">${pages[this.draft.step] ?? pages[0]}</div>${this.renderBalance()}</div>
       <footer class="generator-footer">
@@ -446,7 +449,7 @@ export class CharacterGeneratorUI {
     document.querySelector("#generator-reset")?.addEventListener("click", () => {
       if (!window.confirm("Den gesamten Heldenentwurf einschließlich Einkauf wirklich zurücksetzen?")) return;
       this.reset();
-      callbacks.notify("Der Charaktergenerator wurde zurückgesetzt.", "success");
+      callbacks.notify("Der Charaktergenerator und das AP-Konto wurden vollständig zurückgesetzt.", "success");
       callbacks.refresh();
     });
     document.querySelectorAll<HTMLButtonElement>("[data-generator-step]").forEach((button) => button.addEventListener("click", () => {
@@ -503,6 +506,7 @@ export class CharacterGeneratorUI {
       refreshed?.focus(); refreshed?.setSelectionRange(this.professionSearch.length, this.professionSearch.length);
     });
     bindValue("#generator-profession-source", (value) => { this.professionSource = value; });
+    bindValue("#generator-profession-category", (value) => { this.professionCategory = value; });
     document.querySelectorAll<HTMLInputElement>("[data-generator-profession]").forEach((input) => input.addEventListener("change", () => { this.draft.professionId = input.value; normalizeGeneratorDraft(this.draft); rerender(); }));
     const bindChoice = (selector: string, target: "combatChoices" | "spellChoices"): void => {
       document.querySelectorAll<HTMLInputElement>(selector).forEach((input) => input.addEventListener("change", () => {

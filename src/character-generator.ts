@@ -107,12 +107,15 @@ interface Profession {
   readonly name: string;
   readonly femaleName: string;
   readonly group: string;
+  readonly category: "Weltliche" | "Kämpfer" | "Ordensleute" | "Zauberer" | "Geweihte";
   readonly page: number;
   readonly sourceId: string;
   readonly sourceLabel: string;
   readonly sourceShortLabel: string;
   readonly requiredCultures: readonly string[];
   readonly requiredSex?: string;
+  readonly requiredAdvantages: ReadonlyArray<{ readonly id: string; readonly level: number; readonly variant: string }>;
+  readonly requiredDisadvantages: ReadonlyArray<{ readonly id: string; readonly level: number; readonly variant: string }>;
   readonly ap: number;
   readonly skills: ReadonlyArray<{ readonly id: string; readonly level: number }>;
   readonly combat: ReadonlyArray<{ readonly id: string; readonly level: number }>;
@@ -194,15 +197,40 @@ const disadvantageById = Object.fromEntries(GRW_DISADVANTAGES.map((entry) => [en
 const specialAbilityById = Object.fromEntries(GRW_SPECIAL_ABILITIES.map((entry) => [entry.id, entry])) as Record<string, SpecialAbilityDefinition>;
 
 const defaultAttributes = (): Record<AttributeCode, number> => ({
-  MU: 14,
-  KL: 12,
-  IN: 13,
-  CH: 12,
-  FF: 12,
-  GE: 13,
-  KO: 12,
-  KK: 12,
+  MU: 8,
+  KL: 8,
+  IN: 8,
+  CH: 8,
+  FF: 8,
+  GE: 8,
+  KO: 8,
+  KK: 8,
 });
+
+const EMPTY_PROFESSION: Profession = {
+  id: "",
+  baseId: "",
+  name: "Noch keine Profession gewählt",
+  femaleName: "Noch keine Profession gewählt",
+  group: "",
+  category: "Weltliche",
+  page: 0,
+  sourceId: "",
+  sourceLabel: "",
+  sourceShortLabel: "",
+  requiredCultures: [],
+  requiredAdvantages: [],
+  requiredDisadvantages: [],
+  ap: 0,
+  skills: [],
+  combat: [],
+  combatChoices: [],
+  spells: [],
+  spellSelections: [],
+  chants: [],
+  blessings: [],
+  specialAbilities: [],
+};
 
 export const createGeneratorDraft = (): GeneratorDraft => {
   const draft: GeneratorDraft = {
@@ -213,11 +241,11 @@ export const createGeneratorDraft = (): GeneratorDraft => {
     experienceId: "erfahren",
     raceId: "mittellaender",
     cultureId: "mittelreicher",
-    useCulturePackage: true,
+    useCulturePackage: false,
     positiveAttribute: "MU",
     negativeAttribute: "KL",
     attributes: defaultAttributes(),
-    professionId: "barde",
+    professionId: "",
     combatChoices: {},
     spellChoices: {},
     advantages: [],
@@ -242,7 +270,7 @@ export const getGeneratorCulture = (draft: GeneratorDraft): Culture =>
   cultureById[draft.cultureId] ?? cultureById.mittelreicher;
 
 export const getGeneratorProfession = (draft: GeneratorDraft): Profession =>
-  professionById[draft.professionId] ?? professionById.barde;
+  professionById[draft.professionId] ?? EMPTY_PROFESSION;
 
 const choiceKey = (profession: Profession, choiceId: string): string => `${profession.id}:${choiceId}`;
 
@@ -424,16 +452,26 @@ export interface RequiredProfessionComponents {
 
 export const getRequiredProfessionComponents = (draft: GeneratorDraft): RequiredProfessionComponents => {
   const profession = getGeneratorProfession(draft);
-  const species = getGeneratorSpecies(draft);
-  const advantages: RequiredProfessionComponents["advantages"] = [];
-  const disadvantages: RequiredProfessionComponents["disadvantages"] = [];
-  if (profession.magical === true && species.id !== "elfen") advantages.push({ id: "zauberer", name: "Zauberer", cost: 25 });
-  if (profession.blessed === true) {
-    advantages.push({ id: "geweihter", name: "Geweihter", cost: 25 });
-    const principleLevel = profession.baseId === "hesindegeweihter" || profession.baseId === "perainegeweihter" || profession.baseId === "phexgeweihter" ? 1 : 2;
-    disadvantages.push({ id: "prinzipientreue", name: "Prinzipientreue", level: principleLevel, variant: profession.tradition ?? "Kirche", cost: -10 * principleLevel });
-    disadvantages.push({ id: "verpflichtungen", name: "Verpflichtungen", level: 2, variant: "Tempel/Kirche", cost: -20 });
-  }
+  const advantages: RequiredProfessionComponents["advantages"] = profession.requiredAdvantages.map((entry) => {
+    const definition = advantageById[entry.id];
+    const selection = { id: entry.id, level: entry.level, variant: entry.variant, costOverride: 0 };
+    return {
+      id: entry.id,
+      name: definition?.name ?? entry.id,
+      cost: generatorTraitCost("advantage", selection),
+    };
+  });
+  const disadvantages: RequiredProfessionComponents["disadvantages"] = profession.requiredDisadvantages.map((entry) => {
+    const definition = disadvantageById[entry.id];
+    const selection = { id: entry.id, level: entry.level, variant: entry.variant, costOverride: 0 };
+    return {
+      id: entry.id,
+      name: definition?.name ?? entry.id,
+      level: entry.level,
+      variant: entry.variant,
+      cost: generatorTraitCost("disadvantage", selection),
+    };
+  });
   return {
     advantages,
     disadvantages,
@@ -458,8 +496,12 @@ export const calculateGeneratorBalance = (draft: GeneratorDraft): GeneratorBalan
     .reduce((sum, entry) => sum + generatorTraitCost("advantage", entry), 0);
   const disadvantages = withoutRequired(draft.disadvantages, requiredDisadvantageIds)
     .reduce((sum, entry) => sum + generatorTraitCost("disadvantage", entry), 0);
-  const requiredAdvantages = required.advantages.reduce((sum, entry) => sum + entry.cost, 0);
-  const requiredDisadvantages = required.disadvantages.reduce((sum, entry) => sum + entry.cost, 0);
+  // Der Regelwiki-AP-Wert eines Professionspakets enthält seine Voraussetzungen
+  // (z. B. Zauberer/Geweihter und die Tradition) bereits vollständig.
+  // Sie werden deshalb für die 80-AP-Grenzen berücksichtigt, aber nicht ein
+  // zweites Mal vom AP-Konto abgezogen bzw. gutgeschrieben.
+  const requiredAdvantageLimit = required.advantages.reduce((sum, entry) => sum + entry.cost, 0);
+  const requiredDisadvantageLimit = required.disadvantages.reduce((sum, entry) => sum + entry.cost, 0);
   const specialAbilities = draft.specialAbilities.reduce((sum, entry) => sum + generatorSpecialAbilityCost(entry), 0);
   const breakdown = {
     budget: experience.ap,
@@ -467,21 +509,21 @@ export const calculateGeneratorBalance = (draft: GeneratorDraft): GeneratorBalan
     attributes: generatorAttributeCost(draft),
     culture: draft.useCulturePackage ? culture.packageAp : 0,
     profession: profession.ap,
-    tradition: required.tradition?.cost ?? 0,
-    requiredAdvantages,
+    tradition: 0,
+    requiredAdvantages: 0,
     advantages,
-    requiredDisadvantages,
+    requiredDisadvantages: 0,
     disadvantages,
     specialAbilities,
   };
   const spent = breakdown.species + breakdown.attributes + breakdown.culture + breakdown.profession
-    + breakdown.tradition + requiredAdvantages + advantages + requiredDisadvantages + disadvantages + specialAbilities;
+    + advantages + disadvantages + specialAbilities;
   return {
     ...breakdown,
     spent,
     remaining: breakdown.budget - spent,
-    advantageLimit: requiredAdvantages + advantages,
-    disadvantageLimit: Math.abs(requiredDisadvantages + disadvantages),
+    advantageLimit: requiredAdvantageLimit + advantages,
+    disadvantageLimit: Math.abs(requiredDisadvantageLimit + disadvantages),
   };
 };
 
@@ -494,6 +536,7 @@ export const validateGeneratorDraft = (draft: GeneratorDraft): GeneratorValidati
   const balance = calculateGeneratorBalance(draft);
   const attributeSum = Object.values(draft.attributes).reduce((sum, value) => sum + value, 0);
   if (!draft.name.trim()) errors.push("Der Held braucht einen Namen.");
+  if (!draft.professionId || !professionById[draft.professionId]) errors.push("Wähle eine Profession.");
   if (attributeSum > experience.attributemaximumsum) errors.push(`Die Eigenschaftssumme darf höchstens ${experience.attributemaximumsum} betragen.`);
   for (const attribute of ATTRIBUTES) {
     const value = draft.attributes[attribute.code];
@@ -607,7 +650,7 @@ export const buildGeneratedCharacter = (draft: GeneratorDraft): CharacterSheetSt
   const required = getRequiredProfessionComponents(draft);
   const magical = profession.magical === true || species.id === "elfen";
   const sheet = createManualState(draft.name, { species: manualSpeciesFor(species.id), magical });
-  sheet.hero.clientVersion = "Regelwerksgenerator 0.12";
+  sheet.hero.clientVersion = "Regelwerksgenerator 0.13";
   sheet.hero.el = experience.id;
   sheet.hero.rv = race.id;
   sheet.hero.c = culture.id;
