@@ -21,6 +21,8 @@ import {
 import { COMPLETE_ADVANTAGES, COMPLETE_DISADVANTAGES } from "./biography-catalog";
 import { ensureHeroBiography, findBiographyEntry } from "./biography";
 import { CharacterGeneratorUI } from "./character-generator-ui";
+import { GRW_SPECIAL_ABILITIES } from "./character-generator";
+import { attachSpecialAbilityInfoListeners } from "./special-ability-info";
 import {
   combatTechniqueMaximum,
   improvementCostForTarget,
@@ -85,7 +87,7 @@ const root = document.querySelector<HTMLDivElement>("#app");
 if (!root) throw new Error("App container not found");
 
 const bridge = new OwlbearBridge();
-const APP_VERSION = "0.13.0";
+const APP_VERSION = "0.14.0";
 let state: CharacterSheetState | null = loadState();
 const generatorUI = new CharacterGeneratorUI();
 let generatorOpen = false;
@@ -132,6 +134,25 @@ const normalizeSearch = (value: string): string => value
   .replace(/[\u0300-\u036f]/g, "")
   .replaceAll("ß", "ss")
   .trim();
+
+interface SpecialAbilityInfoDefinition {
+  id: string;
+  name: string;
+  category: string;
+  maxLevel: number;
+  costPerLevel?: number;
+  costByLevel?: readonly number[];
+  suggestedCost?: number;
+  shortDescription: string;
+  prerequisites: readonly string[];
+  sourceLabel: string;
+  page: number;
+  regelwikiUrl: string;
+}
+
+const SPECIAL_ABILITY_INFO = GRW_SPECIAL_ABILITIES as unknown as readonly SpecialAbilityInfoDefinition[];
+const SPECIAL_ABILITY_INFO_BY_ID = new Map(SPECIAL_ABILITY_INFO.map((entry) => [entry.id, entry]));
+const SPECIAL_ABILITY_INFO_BY_NAME = new Map(SPECIAL_ABILITY_INFO.map((entry) => [normalizeSearch(entry.name), entry]));
 
 const combatKindLabel = (kind: CombatItemKind): string => ({
   melee: "Nahkampfwaffe",
@@ -485,9 +506,34 @@ const renderBiographyTraitPanel = (
 
 const renderBiographySpecialAbilities = (traits: BiographyTrait[]): string => {
   if (!traits.length) return "";
+  const info = (trait: BiographyTrait): string => {
+    const definition = trait.sourceId
+      ? SPECIAL_ABILITY_INFO_BY_ID.get(trait.sourceId) ?? SPECIAL_ABILITY_INFO_BY_NAME.get(normalizeSearch(trait.name))
+      : SPECIAL_ABILITY_INFO_BY_NAME.get(normalizeSearch(trait.name));
+    if (!definition) return "";
+    const cost = definition.costByLevel
+      ? `${definition.costByLevel.join("/")} AP für Stufe I–${definition.costByLevel.length}`
+      : definition.costPerLevel !== undefined
+        ? `${definition.costPerLevel} AP${definition.maxLevel > 1 ? " je Stufe" : ""}`
+        : `variabel${definition.suggestedCost !== undefined ? ` · Richtwert ${definition.suggestedCost} AP` : ""}`;
+    const prerequisites = definition.prerequisites.length
+      ? `<ul>${definition.prerequisites.map((entry) => `<li>${escapeHtml(entry)}</li>`).join("")}</ul>`
+      : `<span>Keine Voraussetzungen in den eingebundenen Daten hinterlegt.</span>`;
+    return `<div class="generator-sa-info">
+      <button type="button" class="generator-sa-info__button" data-generator-sa-info aria-label="Informationen zu ${escapeHtml(definition.name)}" aria-expanded="false">i</button>
+      <div class="generator-sa-info__popover" role="tooltip">
+        <strong>${escapeHtml(definition.name)}</strong>
+        <em>${escapeHtml(definition.category)} · ${escapeHtml(cost)}</em>
+        <p>${escapeHtml(definition.shortDescription || "Eine kurze Regelbeschreibung ist in den eingebundenen Daten noch nicht verfügbar.")}</p>
+        <b>Voraussetzungen</b>${prerequisites}
+        <small>${escapeHtml(definition.sourceLabel)} · Seite ${definition.page}</small>
+        <a href="${escapeHtml(definition.regelwikiUrl)}" target="_blank" rel="noopener noreferrer">Im DSA-Regelwiki nachschlagen ↗</a>
+      </div>
+    </div>`;
+  };
   return `<article class="panel biography-special-abilities">
     <div class="panel__header"><h3>Sonderfertigkeiten &amp; Sprachen</h3><span>${traits.length} aus Herkunft und Profession</span></div>
-    <div class="biography-special-ability-list">${traits.map((trait) => `<span>${escapeHtml(trait.name)}${trait.level ? ` ${trait.level}` : ""}${trait.variant ? ` · ${escapeHtml(trait.variant)}` : ""}</span>`).join("")}</div>
+    <div class="biography-special-ability-list">${traits.map((trait) => `<div class="biography-special-ability-chip"><span>${escapeHtml(trait.name)}${trait.level ? ` ${trait.level}` : ""}${trait.variant ? ` · ${escapeHtml(trait.variant)}` : ""}</span>${info(trait)}</div>`).join("")}</div>
   </article>`;
 };
 
@@ -1521,6 +1567,7 @@ const attachImportListeners = (): void => {
 const attachSheetListeners = (): void => {
   if (!state) return;
   attachGroupMonitorListeners();
+  attachSpecialAbilityInfoListeners();
 
   document.querySelectorAll<HTMLButtonElement>("[data-tab]").forEach((button) => {
     button.addEventListener("click", () => {

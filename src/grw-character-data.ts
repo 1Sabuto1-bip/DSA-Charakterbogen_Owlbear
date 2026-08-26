@@ -89688,6 +89688,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann nach dem Ablegen einer Liturgieprobe QS zurückbehalten und muss nicht alle erzielten QS einsetzen. Hat er beispielsweise 3 QS erreicht, kann …",
+      "prerequisites": [
+        "Geweihter",
+        "Leiteigenschaft 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Abgeschw%C3%A4chte%20Liturgie",
       "costPerLevel": 5
     },
     {
@@ -89699,6 +89705,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann nach dem Ablegen einer Zauberprobe QS zurückbehalten und muss nicht alle erzielten QS einsetzen. Hat er beispielsweise 3 QS erreicht, kann …",
+      "prerequisites": [
+        "Leiteigenschaft 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Abgeschw%C3%A4chter%20Zauber",
       "costPerLevel": 5
     },
     {
@@ -89710,6 +89721,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Eine in einen Magierstab eingebaute Magierkugel kann in 1 Aktion wieder aus dem Stab getrennt werden. Soll die Magierkugel wieder mit dem Stab zusammengefügt …",
+      "prerequisites": [
+        "Tradition (Gildenmagier)",
+        "weitere Voraussetzung laut Regelwiki",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Abnehmbare%20Magierkugel",
       "costPerLevel": 5
     },
     {
@@ -89721,6 +89739,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit erhält der Abenteurer die Einsatzmöglichkeit Abrichten im Talent Tierkunde. Als Abrichter ist der Abenteurer in der Lage, Wesen abzurichten, die als …",
+      "prerequisites": [
+        "Tierkunde 8",
+        "kein Unfähig (Tierkunde)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Abrichter",
       "costPerLevel": 5
     },
     {
@@ -89732,6 +89756,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Abrollen ist eine Einsatzmöglichkeit von Körperbeherrschung. Wer über die Sonderfertigkeit verfügt, der weiß genau, wie er sich bei Stürzen am geschicktesten abrollt. Beim Vermeiden …",
+      "prerequisites": [
+        "Körperbeherrschung 4",
+        "kein Unfähig (Körperbeherrschung)",
+        "kein Fettleibig"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Abrollen",
       "costPerLevel": 8
     },
     {
@@ -89743,6 +89774,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Beim Abschleppen (siehe Seite 36) hat der Held mehr Erfolg als andere Personen. Bei der Probe auf Betören (Liebeskünste) zum Abschleppen bekommt er +1 …",
+      "prerequisites": [
+        "Betören 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Abschleppspezialist%2Fin",
       "costPerLevel": 5
     },
     {
@@ -89754,6 +89790,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Ackerbau ist eine Einsatzmöglichkeit für Pflanzenkunde (Nutzpflanzen). Ein Held, der über die Sonderfertigkeit verfügt, kennt sich damit aus, Äcker zu bestellen und die Aussaat …",
+      "prerequisites": [
+        "Pflanzenkunde 4",
+        "kein Unfähig (Pflanzenkunde)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Ackerbau",
       "costPerLevel": 2
     },
     {
@@ -89765,6 +89807,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Der Zauberer hat sich an einen Fremdzauber so gewöhnt, dass dessen Wirken nur noch um 1 statt um 2 erschwert ist. Maximal können zwei …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki",
+        "höchstens 2 passende Auswahlen"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Adaption%20(Zauber)",
       "variableCost": true
     },
     {
@@ -89776,6 +89824,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Der Gegner des Schwertgesellen ist durch den ständigen Wechsel zwischen Ein- und Zweihandnutzung der Waffe so überrascht, dass seine Verteidigung um 1 gesenkt wird. …",
+      "prerequisites": [
+        "GE 13",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Adersin-Stil",
       "costPerLevel": 15
     },
     {
@@ -89787,6 +89841,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Ein Al'Drakorhim-Kämpfer muss im Kampf gegen Wesen des Typus Drachen nur 1 freie Aktion aufwenden, um gegenüber seinem Gegner in eine Vorteilhafte Position zu …",
+      "prerequisites": [
+        "GE 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Al'Drakorhim-Stil",
       "costPerLevel": 10
     },
     {
@@ -89798,6 +89857,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Bei der Analyse von Elixieren durch Alchimie kann, wie beim Brauen alchimistischer Elixiere (siehe Regelwerk Seite 271), für je 4 AsP eine Erleichterung von …",
+      "prerequisites": [
+        "Alchimie 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Alchimieanalytiker",
       "costPerLevel": 5
     },
     {
@@ -89809,6 +89873,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann bis zu 12 AsP (statt 8) beim Brauen in ein Elixier fließen lassen, um eine Erleichterung von bis zu 3 (statt …",
+      "prerequisites": [
+        "Alchimie 12"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Alchimieverst%C3%A4rkung",
       "costPerLevel": 10
     },
     {
@@ -89820,6 +89889,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin kann bei einer Probe auf ein Wissenstalent, die maximal um 3 erschwert sein darf, entscheiden, ob sie die Probe ablegen möchte oder …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Allgemeinwissen",
       "costPerLevel": 10
     },
     {
@@ -89831,6 +89903,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Setzt der Geweihte bei einem wohlgefälligen Talent ein Mirakel ein, erhält er dafür zusätzlich eine Erleichterung von +1.",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Altes%20Zwergenwissen",
       "costPerLevel": 15
     },
     {
@@ -89842,6 +89917,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Dieser Stil ist bestens dazu geeignet, die Blöße des Gegners offenzulegen. Setzt die Heldin eine Finte ein, steigt für den Gegner die Erschwernis auf …",
+      "prerequisites": [
+        "GE 13",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Amazonen-Stil",
       "costPerLevel": 15
     },
     {
@@ -89853,6 +89934,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Wer die Sonderfertigkeit Analytiker besitzt, ist in der Lage Artefakte, magische Wesen und Zauber zu analysieren. Ein Held mit der SF kann dazu eine …",
+      "prerequisites": [
+        "Magiekunde 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Analytiker",
       "costPerLevel": 5
     },
     {
@@ -89864,6 +89950,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Ein Held mit den Kenntnissen des Körperaufbaus einer Spezies ist in der Lage, chirurgische Eingriffe mit höheren Erfolgswahrscheinlichkeit im Körperinneren vorzunehmen (siehe Seite 10). …",
+      "prerequisites": [
+        "Heilkunde Wunden 10",
+        "kein Nachteil %1"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Anatomie%20(Spezies)",
       "costPerLevel": 10
     },
     {
@@ -89875,6 +89967,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Wenn der Körper des Patienten anatomisch begutachtet wird (Probe auf Heilkunde Wunden und 1 Minute Zeit notwendig), dann ist die Zauberprobe des Zauberers um …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Anatomische%20Magie",
       "costPerLevel": 10
     },
     {
@@ -89886,6 +89981,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch die Sonderfertigkeit erwirbt der Held eine Einsatzmöglichkeit für das Talent Überreden. Der Held kann mittels Überreden seine Gefährten während eines Kampfes unterstützen. Der …",
+      "prerequisites": [
+        "Kriegskunst 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Anf%C3%BChrer",
       "costPerLevel": 10
     },
     {
@@ -89897,6 +89997,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Um diese Sonderfertigkeit nutzen zu können, muss sie mit einer Finte kombiniert werden. Sollte dem Gegner die Verteidigung gegen die Finte misslingen und er …",
+      "prerequisites": [
+        "GE 15",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Anget%C3%A4uschter%20Angriff",
       "costPerLevel": 10
     },
     {
@@ -89908,6 +90014,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Voraussetzung für einen Angriff nach Hinten ist, dass der Held seinen Gegner den Rücken zugewendet hat und unter dem Modifikator Angriff von Hinten (siehe …",
+      "prerequisites": [
+        "IN 15",
+        "GE 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Angriff%20nach%20Hinten",
       "costPerLevel": 20
     },
     {
@@ -89919,6 +90031,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Levthanpriester kann auf bis zu 16 Schritt ein Ziel benennen. Dieses erleidet 1 Stufe Furcht. Nur Kulturschaffende können davon betroffen sein. Der Einsatz …",
+      "prerequisites": [
+        "verfuehrungdeswidders",
+        "lustvollerbock"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Angsteinfl%C3%B6ssendes%20Tier",
       "costPerLevel": 12
     },
     {
@@ -89930,6 +90048,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Die Anhänger des Güldenen können Liturgien und Zeremonien einer einzigen anderen Kirche nach Wahl bis zu Steigerungsfaktor B erlernen, auch wenn sie nicht die …",
+      "prerequisites": [
+        "Tradition (Der Namenlose)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Anh%C3%A4nger%20des%20G%C3%BCldenen",
       "costPerLevel": 30
     },
     {
@@ -89941,6 +90064,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Gegen Dämonen und Ungeheuer verfügen Anhänger des guten Kampfes über +1 RS. Dieser RS ist mit anderem RS kombinierbar, wenn dieser auch gegen das …",
+      "prerequisites": [
+        "Tradition (Korkirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Anh%C3%A4nger%20des%20guten%20Kampfes",
       "costPerLevel": 12
     },
     {
@@ -89952,6 +90080,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Wenn eine Liturgie oder Zeremonie nicht durch eine Modifikation verändert wird, erhalten die Anhänger des roten Gottes beim Wirken +1 FP (bis zu einem …",
+      "prerequisites": [
+        "Tradition (Ingerimmkirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Anh%C3%A4nger%20des%20roten%20Gottes",
       "costPerLevel": 25
     },
     {
@@ -89963,6 +90096,14 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDDD",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Wenn die Animistin mit einem Schild, der als Animistenwaffe an sie gebunden ist, erfolgreich einen gegen sie gerichteten Angriff pariert, erhält sie +1 TP …",
+      "prerequisites": [
+        "IN 13",
+        "Tradition (Animisten)",
+        "weitere Voraussetzung laut Regelwiki",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Animisten-Stil%20der%20Tapo-Tikaute",
       "costPerLevel": 20
     },
     {
@@ -89974,6 +90115,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch die Sonderfertigkeit erwirbt die Heldin eine Einsatzmöglichkeit für Einschüchtern. Die Abenteurerin kann mittels Einschüchtern ihre Gefährten (oder besser: ihre Schergen) während eines Kampfes …",
+      "prerequisites": [
+        "Kriegskunst 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Anpeitscher",
       "costPerLevel": 10
     },
     {
@@ -89985,6 +90131,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Wenn die Heldin eine Finte einsetzt, kann sie sich entscheiden gleichzeitig ein Antäuschen-Manöverzu nutzen. Die Erschwernisse und Auswirkungen entsprechen zunächst der Finte, es kommen …",
+      "prerequisites": [
+        "Finte"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Ant%C3%A4uschen",
       "costPerLevel": 15
     },
     {
@@ -89996,6 +90147,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Diese Sonderfertigkeit kann dazu eingesetzt werden, um einen Gegner durch anzügliches Verhalten zu irritieren. Der Held bekommt das neue Anwendungsgebiete Irritieren in Betören. Die …",
+      "prerequisites": [
+        "Betören 8",
+        "Einschüchtern 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Anz%C3%BCglichkeiten",
       "costPerLevel": 12
     },
     {
@@ -90007,6 +90164,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Wenn eine Liturgie oder Zeremonie nicht durch eine Modifikation verändert wird, erhalten Apricarier beim Wirken +1 FP (bis zu einem Maximum von 18 FP).",
+      "prerequisites": [
+        "Tradition (Praioskirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Apricarier",
       "costPerLevel": 25
     },
     {
@@ -90018,6 +90180,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDD",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Wer über den Aranischen Sippenkrieger-Stil verfügt, der kann mit 1 freien Aktion zu Beginn des Kampfes einen kulturschaffenden Gegner in 16 Schritt Radius auswählen …",
+      "prerequisites": [
+        "MU 13",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Aranischer%20Sippenkrieger-Stil",
       "costPerLevel": 12
     },
     {
@@ -90029,6 +90197,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Nur ein Held mit der Sonderfertigkeit Architekt ist in der Lage, größere Bauprojekte wie Häuser, Brunnen oder gar Paläste zu planen.",
+      "prerequisites": [
+        "Malen & Zeichnen 8",
+        "Rechnen 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Architekt",
       "costPerLevel": 5
     },
     {
@@ -90040,6 +90214,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held stöbert gesuchte Schriftstücke schneller auf als andere Bibliotheksnutzer. Er benötigt bei Recherchen nur 80 % der Zeit. Allerdings funktioniert die Sonderfertigkeit nur, …",
+      "prerequisites": [
+        "kein Blind"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Archivar",
       "costPerLevel": 3
     },
     {
@@ -90051,6 +90230,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Ein Adarit kann 1 Schip ausgeben, um beliebige Zustandsstufen (außer Belastung, Entrückung und Trance) für 5 KR zu ignorieren. Die Wirkung der Zustände setzt …",
+      "prerequisites": [
+        "GE 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Ardariten-Stil",
       "costPerLevel": 15
     },
     {
@@ -90062,6 +90246,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Beim Spannen der Armbrust, also bei der 1. Aktion des Ladens, muss das Überdrehen angekündigt werden. Der Schuss richtet +1 TP an. Bei einem …",
+      "prerequisites": [
+        "FF 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Armbrust%20%C3%BCberdrehen",
       "costPerLevel": 5
     },
     {
@@ -90073,6 +90262,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "ANE",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Die Aroqa-Rune kann mit anderen Zauberzeichen kombiniert werden, die in einem Zusammenhang mit Untoten stehen (z. B. die Glyphe der ewigen Wacht oder Bann- …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Aroqa-Rune",
       "costPerLevel": 8
     },
     {
@@ -90084,6 +90276,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Wird ein Objekt mittels Analys untersucht, sind Proben auf den Zauberspruch und auf das Talent Magiekunde (Artefakte) zum Zweck der magischen Analyse um 1 …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Artefaktanalytiker",
       "costPerLevel": 15
     },
     {
@@ -90095,6 +90290,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Zauber, die die Hexe auf sich selbst wirkt, haben eine doppelte Wirkungsdauer.",
+      "prerequisites": [
+        "Tradition (Hexen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Artisten%20(Fahrende%20Schwester)",
       "costPerLevel": 15
     },
     {
@@ -90106,6 +90306,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AT",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit ist der Zauberer in der Lage, fortpflanzungsfähige Transmutationen zu erschaffen. Für detaillierte Regeln zu fortpflanzungsfähigen Transmutationen siehe Seite 144.",
+      "prerequisites": [
+        "chimaeroform",
+        "eventuell Sonderfertigkeit Daimonidenkonstrukteur"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Asfaloths%20Segen",
       "costPerLevel": 25
     },
     {
@@ -90117,6 +90323,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit erlangt ein Geweihter besondere Kenntnisse in einem bestimmten Aspekt seiner Kirche. Neben den üblichen Aspekten der unterschiedlichen Kirchen gibt es auch …",
+      "prerequisites": [
+        "Leiteigenschaft 15",
+        "weitere Voraussetzung laut Regelwiki",
+        "höchstens 3 passende Auswahlen"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Aspektkenntnis",
       "variableCost": true,
       "suggestedCost": 10
     },
@@ -90129,6 +90342,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Der Zauberer ist durch die Astrale Meditation in der Lage, LeP in AsP umzuwandeln. Er muss sich dazu in stiller Umgebung aufhalten (z. B. …",
+      "prerequisites": [
+        "Leiteigenschaft 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Astrale%20Meditation",
       "costPerLevel": 15
     },
     {
@@ -90140,6 +90358,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Durch eine Berührung kann der Zauberer dem Opfer pro KR 1W6 AsP entziehen, die sich verflüchtigen. Im Zweifelfall ist dazu eine erfolgreiche, unverteidigte Raufen-AT …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Astralraub",
       "costPerLevel": 10
     },
     {
@@ -90151,6 +90372,16 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit sticht die Heldin bei körperlichen Leistungen hervor, für die ein athletischer Körperbau von Vorteil ist. Proben auf Körperbeherrschung (Springen und Laufen) …",
+      "prerequisites": [
+        "Körperbeherrschung 4",
+        "Kraftakt 4",
+        "kein Behäbig",
+        "kein Fettleibig",
+        "kein Nachteil Unfähig in den genannten Talenten",
+        "kein Nachteil Verstümmelt, der sie bei der Ausübung der Talente behindert"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Athlet",
       "costPerLevel": 20
     },
     {
@@ -90162,6 +90393,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Schicksalspunkte",
       "maxLevel": 1,
+      "shortDescription": "Mittels dieser Sonderfertigkeit kann der Held Schicksalspunkte für Ergebnis verbessern (Attacke) einsetzen.",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Attacke%20verbessern",
       "costPerLevel": 5
     },
     {
@@ -90173,6 +90407,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Ein Held mit dieser Sonderfertigkeit kann das Ergebnis einer Fertigkeitsprobe auf ein Talent eines Sippenmitglieds verbessern. Er legt eine Probe auf das gleiche Talent …",
+      "prerequisites": [
+        "Überreden 4",
+        "Mitglied einer Meschpoche"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=%C3%84tzes%20geben",
       "costPerLevel": 5
     },
     {
@@ -90184,8 +90424,15 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 2,
-      "variableCost": true,
-      "suggestedCost": 5
+      "shortDescription": "Wer einen Gegner auf Distanz halten will, muss über eine Waffe verfügen, deren Reichweite größer ist als die Reichweite des Widersachers. Ist diese Voraussetzung …",
+      "prerequisites": [
+        "GE 13/15/17 je nach Stufe"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Auf%20Distanz%20halten",
+      "costByLevel": [
+        15,
+        20
+      ]
     },
     {
       "id": "aufbegehren",
@@ -90196,6 +90443,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Bei einer Probe auf Bekehren & Überzeugen (Diskussionsführung oder öffentliche Rede) sowie Liturgien und Predigten, die dazu dienen, Kulturschaffende aufzuwiegeln oder sie für ketzerische …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Aufbegehren",
       "costPerLevel": 25
     },
     {
@@ -90207,6 +90457,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Ein Zauber der Reichweite Berührung kann bis zu 5 Kampfrunden lang im Körper des Anwenders gespeichert werden. Das Ziel muss während der Zauberdauer nicht …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Aufladung",
       "costPerLevel": 10
     },
     {
@@ -90218,6 +90471,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Führt die Kämpferin ein Schwert zusammen mit einem Schild mit mindestens einem PA-Bonus von 1, kann sie die Klinge auf den oberen Rand des …",
+      "prerequisites": [
+        "KK 13",
+        "Finte 1",
+        "Wuchtschlag 1"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Aufliegende%20Klinge",
       "costPerLevel": 10
     },
     {
@@ -90229,6 +90489,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Bei einem Hinterhalt oder wenn es darum geht, ob er überrascht wird, erhält er eine Erleichterung von 2 auf Sinnesschärfe (Hinterhalt entdecken), um seine …",
+      "prerequisites": [
+        "IN 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Aufmerksamkeit",
       "costPerLevel": 10
     },
     {
@@ -90240,6 +90505,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Tsageweihte ist von einem Licht oder aufwehenden Blüten umgeben. Dies sorgt dafür, dass Attacken von Kulturschaffenden gegen sie eine Erschwernis von 2 erhalten. …",
+      "prerequisites": [
+        "Tradition (Tsakirche)",
+        "Licht des Prismas"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Aura%20der%20Friedfertigkeit",
       "costPerLevel": 10
     },
     {
@@ -90251,6 +90522,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "A",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Priester kann über sich und eine Person, die er während des gesamten Vorgangs berühren muss, eine Tarnung legen. Proben auf Sinnesschärfe, um die …",
+      "prerequisites": [
+        "Tradition (Zsahh-Kult)",
+        "Pflanzensuche"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Aura%20der%20Friedfertigkeit",
       "costPerLevel": 10
     },
     {
@@ -90262,6 +90539,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Hierzu ist eine erfolgreiche Probe auf das Talent Willenskraft nötig. Proben auf Liturgien oder Hellsichtzauber, die direkt auf den Zauberkundigen gewirkt werden, um ein …",
+      "prerequisites": [
+        "MU 13",
+        "IN 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Aura%20Verbergen",
       "costPerLevel": 20
     },
     {
@@ -90273,6 +90556,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Besitzer der Sonderfertigkeit können ihre SK als Rüstungsschutz gegen Zauber einsetzen, die Trefferpunkte verursachen oder LeP abziehen. Der Schutz wirkt nur gegen Zauber der …",
+      "prerequisites": [
+        "Leiteigenschaft 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Aurapanzer",
       "costPerLevel": 12
     },
     {
@@ -90284,6 +90572,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDD",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Gefühlvolle Darbietung: Für Proben auf Zaubertänze mit dem Merkmal Einfluss erhält der Tänzer eine Erleichterung von +1. Impulsiver Tanz: Magische Handlungen und Gewandzauber, die …",
+      "prerequisites": [
+        "Tradition (Zaubertänzer)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Zaubertänzerprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Ausdruckst%C3%A4nzer",
       "variableCost": true
     },
     {
@@ -90295,6 +90589,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Schicksalspunkte",
       "maxLevel": 1,
+      "shortDescription": "Erleidet die Heldin eine Stufe Schmerz, kann sie diese mit 1 Verführungshandlung in 1 Stufe Erregung umwandeln. Außerdem erhöht sich dadurch bei ihrer nächsten …",
+      "prerequisites": [
+        "Zeugung durch ekstatischen Höhepunkt"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Auserw%C3%A4hlte%20der%20Liebe",
       "costPerLevel": 15
     },
     {
@@ -90306,6 +90605,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 2,
+      "shortDescription": "Um einen Ausfall zu starten, muss eine einleitende AT gelingen, die um 2 erschwert ist. Pro Stufe des Manövers, kann die Heldin innerhalb der …",
+      "prerequisites": [
+        "Finte"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Ausfall",
       "costPerLevel": 25
     },
     {
@@ -90317,6 +90621,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Ausgeglichene verfügen über keine Prägungsvor- oder nachteile.",
+      "prerequisites": [
+        "Tradition (Geoden)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Geodenprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Ausgeglichene",
       "variableCost": true
     },
     {
@@ -90328,6 +90638,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 2,
+      "shortDescription": "Während des gewöhnlichen Beischlafs oder Liebesspiels kann die Heldin entscheiden, ob sie ihrem männlichen Partner QS/2+1 Betören (Liebeskünste) LeP entwendet hat. Der Mann kann …",
+      "prerequisites": [
+        "Person mit Vagina",
+        "Tradition (Tsatuara-Anhängerinnen)",
+        "Leiteigenschaft undefined"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Auslaugende%20Vereinigung",
       "costPerLevel": 15
     },
     {
@@ -90339,6 +90656,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin kann bei Waffen der Kampftechnik Peitschen auf das Auswürfeln von TP nach einer misslungenen Verteidigung des Gegners verzichten und stattdessen 1 Stufe …",
+      "prerequisites": [
+        "Kampftechnik 10"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Auspeitscher%2Fin",
       "costPerLevel": 12
     },
     {
@@ -90350,6 +90672,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Die Geweihte kann das Blut eines Kulturschaffenden trinken und LeP zurückgewinnen. Für jeweils 2 LeP, die sie einem Kulturschaffenden auf diese Weise abzieht, kann …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Aussaugen",
       "costPerLevel": 18
     },
     {
@@ -90361,6 +90686,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Setzen Zauberer einen Zauber der Klasse Wesensbann ein, erhalten sie bei einer gelungenen Probe +1 FP (bis zu einem Maximum von 18 FP).",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Austreibung",
       "costPerLevel": 5
     },
     {
@@ -90372,6 +90700,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Schicksalspunkte",
       "maxLevel": 1,
+      "shortDescription": "Mittels dieser Sonderfertigkeit kann der Held Schicksalspunkte für Ergebnis verbessern (Ausweichen) einsetzen.",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Ausweichen%20verbessern",
       "costPerLevel": 5
     },
     {
@@ -90383,6 +90714,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AAN",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit wird das AnwendungsgebietMetallbearbeitung (Automatenkonstruktion) freigeschaltet, welches den Mechanikus dazu befähigt, Automaten der Komplexität einfach und komplex zu erschaffen. Für Automaten der …",
+      "prerequisites": [
+        "Mechanik 10",
+        "Rechnen 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Automatent%C3%BCftler",
       "costPerLevel": 15
     },
     {
@@ -90394,6 +90731,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Wenn eine Heldin den Ayshara-Stil beherrscht, verwandeln sich einfache Wurfwaffen in tödliche Geschosse. Von dem Stil unterstützte Wurfwaffen, die mit dieser Sonderfertigkeit eingesetzt werden, …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "FF 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Ayshara-Stil",
       "costPerLevel": 10
     },
     {
@@ -90405,6 +90748,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Eine Kriegerin aus Baburin kann mittels 1 freien Aktion im Kampf eine Probe auf Kriegskunst ablegen. Sie muss vor dem Ablegen der Probe einen …",
+      "prerequisites": [
+        "IN 13",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Baburin-Stil",
       "costPerLevel": 10
     },
     {
@@ -90416,6 +90765,14 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Ein Held mit dieser Sonderfertigkeit erhält einen zusätzlichen PA-Bonus von 2 zu seiner Hauptwaffe, wenn er einen brillantzwergischen Buckler mit einem brillantzwergischen Kurzschwert einsetzt. …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "GE 13",
+        "Beidhändiger Kampf 1",
+        "Spezies Zwerge"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Balboram-Stil",
       "costPerLevel": 12
     },
     {
@@ -90427,6 +90784,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Kämpft der Held beritten gegen Fußkämpfer, erhöht sich die aus der vorteilhaften Position resultierende Erleichterung auf AT und Verteidigung um jeweils 1 (siehe Regelwerk …",
+      "prerequisites": [
+        "MU 13",
+        "Berittener Kampf",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Baliho-Stil",
       "costPerLevel": 12
     },
     {
@@ -90438,6 +90802,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Schüsse mit Waffen der Kampftechniken Bögen haben in der Reichweitenkategorie weit eine um 50 % höhere Reichweite. Beispielsweise würde ein Bogen mit einer Reichweite …",
+      "prerequisites": [
+        "IN 13",
+        "FF 13",
+        "Präziser Schuss/Wurf"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Ballistischer%20Schuss",
       "costPerLevel": 10
     },
     {
@@ -90449,6 +90820,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Legt die Traviageweihte zwei kleine Gegenstände (z. B. Ringe) in den Gänsebeutel und übergibt sie nach 12 Stunden an zwei Kulturschaffende, können diese jeweils …",
+      "prerequisites": [
+        "Tradition (Traviakirche)",
+        "Kleine Mahlzeit"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Band%20des%20Umsorgens",
       "costPerLevel": 3
     },
     {
@@ -90460,6 +90837,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Bannkreis: Der erste Dschinn, der sich dem Kreis auf 7 Schritt nähert, wird in ihn hineingezogen und kann ihn während der Wirkungsdauer nicht mehr …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bann-%2FSchutzkreis%20gegen%20Dschinne",
       "costPerLevel": 15
     },
     {
@@ -90471,6 +90851,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Bannkreis: Der erste Elementargeist, der sich dem Kreis auf 7 Schritt nähert, wird in ihn hineingezogen und kann ihn während der Wirkungsdauer nicht mehr …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bann-%2FSchutzkreis%20gegen%20Elementargeister",
       "costPerLevel": 5
     },
     {
@@ -90482,6 +90865,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Bannkreis: Der erste gehörnte Dämon mit bis zu 5 Hörnern, der sich dem Kreis auf 7 Schritt nähert, wird in ihn hineingezogen und kann …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bann-%2FSchutzkreis%20gegen%20geh%C3%B6rnte%20D%C3%A4monen",
       "costPerLevel": 15
     },
     {
@@ -90493,6 +90879,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Bannkreis: Der erste niedere Dämon, der sich dem Kreis auf 7 Schritt nähert, wird in ihn hineingezogen und kann ihn während der Wirkungsdauer nicht …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bann-%2FSchutzkreis%20gegen%20niedere%20D%C3%A4monen",
       "costPerLevel": 10
     },
     {
@@ -90504,6 +90893,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "ANE",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Bannkreis: Der erste Untote (Hirnloser), der sich dem Kreis auf 7 Schritt nähert, wird in ihn hineingezogen und kann ihn während der Wirkungsdauer nicht …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bann-%2FSchutzkreis%20gegen%20Untote%20(Hirnlose)",
       "costPerLevel": 5
     },
     {
@@ -90515,6 +90907,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Der Geweihte erhält beim Bannen von Geistern und Dämonen eine Erleichterung von +1.",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bannmeister",
       "costPerLevel": 12
     },
     {
@@ -90526,6 +90921,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Gegenüber Zwölfgöttergläubigen wirken Bannstrahler einschüchternd, sodass alle Gläubigen eine Erschwernis von -1 auf VW erhalten. Außerdem sind Proben im Kampf auf Einschüchtern um +1 …",
+      "prerequisites": [
+        "KK 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bannstrahler-Stil",
       "costPerLevel": 15
     },
     {
@@ -90537,6 +90937,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Abenteurer bekommt im Talent Gaukeleien das neue Anwendungsgebiet Bauchreden. Dem Held gelingt es, Geräusche/Stimmen zu erzeugen, ohne die Lippen zu bewegen. Die Geräusche …",
+      "prerequisites": [
+        "Gaukeleien 8",
+        "Körperbeherrschung 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bauchreden",
       "costPerLevel": 5
     },
     {
@@ -90548,6 +90954,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Nur eine Heldin mit der Sonderfertigkeit Baumeisterin ist in der Lage, komplexere Bauprojekte wie Paläste zu bauen.",
+      "prerequisites": [
+        "Holzbearbeitung 8 oder Steinbearbeitung 8 (je nach Material)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Baumeisterin",
       "costPerLevel": 10
     },
     {
@@ -90559,6 +90970,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Geweihte kann ein Wesen der Größenkategorie mittel oder kleiner in einer Reichweite von bis zu 16 Schritt auswählen. Der Angroschgeweihte schlägt die Hände …",
+      "prerequisites": [
+        "Beständige Werksarbeit",
+        "Fliegende Steine"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bebende%20Erde",
       "costPerLevel": 8
     },
     {
@@ -90570,6 +90987,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Von dem Held geht eine bedrohliche Aura aus. Bei gelungenen Proben auf Einschüchtern erhält er +1 FP.",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bedrohliche%20Aura",
       "costPerLevel": 5
     },
     {
@@ -90581,6 +91001,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held bekommt eine neue Einsatzmöglichkeit im Talent Gaukeleien, Musizieren, Singen oder Tanzen. Pro Auftritt (maximal 1 x am Tag) kann eine Probe abgelegt …",
+      "prerequisites": [
+        "Gaukeleien 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Beeindruckende%20Vorstellung%20(Gaukeleien)",
       "costPerLevel": 5
     },
     {
@@ -90592,6 +91017,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held bekommt eine neue Einsatzmöglichkeit im Talent Gaukeleien, Musizieren, Singen oder Tanzen. Pro Auftritt (maximal 1 x am Tag) kann eine Probe abgelegt …",
+      "prerequisites": [
+        "Musizieren 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Beeindruckende%20Vorstellung%20(Musizieren)",
       "costPerLevel": 5
     },
     {
@@ -90603,6 +91033,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held bekommt eine neue Einsatzmöglichkeit im Talent Gaukeleien, Musizieren, Singen oder Tanzen. Pro Auftritt (maximal 1 x am Tag) kann eine Probe abgelegt …",
+      "prerequisites": [
+        "Singen 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Beeindruckende%20Vorstellung%20(Singen)",
       "costPerLevel": 5
     },
     {
@@ -90614,6 +91049,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held bekommt eine neue Einsatzmöglichkeit im Talent Gaukeleien, Musizieren, Singen oder Tanzen. Pro Auftritt (maximal 1 x am Tag) kann eine Probe abgelegt …",
+      "prerequisites": [
+        "Tanzen 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Beeindruckende%20Vorstellung%20(Tanzen)",
       "costPerLevel": 5
     },
     {
@@ -90625,6 +91065,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Befehle",
       "maxLevel": 1,
+      "shortDescription": "Mit dieser Sonderfertigkeit kann ein Reiter sein Reittier den Befehl Flugangriff durchführen lassen, vorausgesetzt, das Tier verfügt über die gleichnamige Sonderfertigkeit.",
+      "prerequisites": [
+        "Fliegen 8",
+        "Berittener Flugkampf"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Befehl%20Flugangriff",
       "costPerLevel": 12
     },
     {
@@ -90636,6 +91082,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Befehle",
       "maxLevel": 1,
+      "shortDescription": "Mit dieser Sonderfertigkeit kann ein Reiter sein Reittier den Befehl Klammergriff durchführen lassen, vorausgesetzt, das Tier verfügt über die gleichnamige Sonderfertigkeit.",
+      "prerequisites": [
+        "Tierkunde 8",
+        "Berittener Kampf"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Befehl%20Klammergriff",
       "costPerLevel": 12
     },
     {
@@ -90647,6 +91099,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Befehle",
       "maxLevel": 1,
+      "shortDescription": "Mit dieser Sonderfertigkeit kann ein Reiter seinem Reittier den Befehl Mächtiger Schlag durchführen lassen, vorausgesetzt, das Tier verfügt über die gleichnamige Sonderfertigkeit.",
+      "prerequisites": [
+        "Tierkunde 8",
+        "Berittener Kampf"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Befehl%20M%C3%A4chtiger%20Schlag",
       "costPerLevel": 10
     },
     {
@@ -90658,6 +91116,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Befehle",
       "maxLevel": 1,
+      "shortDescription": "Mit dieser Sonderfertigkeit kann ein Streitwagenfahrer einen Befehl für den Sichelangriff ausführen (siehe Seite 137). Der Streitwagen muss über ein Sichelrad verfügen, damit der …",
+      "prerequisites": [
+        "Fahrzeuge 10"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Befehl%20Sichelangriff",
       "costPerLevel": 10
     },
     {
@@ -90669,6 +91132,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Befehle",
       "maxLevel": 1,
+      "shortDescription": "Mit dieser Sonderfertigkeit kann ein Reiter sein Reittier den Befehl Trampeln durchführen lassen, vorausgesetzt, das Tier verfügt über die gleichnamige Sonderfertigkeit.",
+      "prerequisites": [
+        "Tierkunde 12",
+        "Berittener Kampf"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Befehl%20Trampeln",
       "costPerLevel": 15
     },
     {
@@ -90680,6 +91149,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Befehle",
       "maxLevel": 1,
+      "shortDescription": "Mit dieser Sonderfertigkeit kann ein Reiter sein Reittier den Befehl Überrennen durchführen lassen, vorausgesetzt, das Tier verfügt über die gleichnamige Sonderfertigkeit.",
+      "prerequisites": [
+        "Tierkunde 12",
+        "Berittener Kampf"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Befehl%20%C3%9Cberrennen",
       "costPerLevel": 12
     },
     {
@@ -90691,6 +91166,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Zauber des Merkmals Objekt erhalten bei einer gelungenen Probe +1 FP (bis zu einem Maximum von 18 FP).",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Begnadeter%20Objektzauberer",
       "costPerLevel": 25
     },
     {
@@ -90702,6 +91180,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Beherrschungsikone: Bei Ritualen und druidischen Herrschaftsritualen gilt die SK und ZK des Opfers als um 1 niedriger. Bei druidischen Herrschaftsritualen werden SK und ZK …",
+      "prerequisites": [
+        "Der Held ist ein Mehrer der Macht oder ein Haindruide.",
+        "Tradition (Druiden)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Denkschulenprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Beherrscher%20des%20Geistes",
       "variableCost": true
     },
     {
@@ -90713,8 +91198,15 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 2,
-      "variableCost": true,
-      "suggestedCost": 15
+      "shortDescription": "Der Abzug auf Attacke und Parade beträgt bei Stufe I der Sonderfertigkeit nur 1 statt wie üblich 2. Bei Stufe II der Sonderfertigkeit sinken …",
+      "prerequisites": [
+        "GE 13/15/17 je nach Stufe"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Beidh%C3%A4ndiger%20Kampf",
+      "costByLevel": [
+        20,
+        35
+      ]
     },
     {
       "id": "beistanddergoetter",
@@ -90725,7 +91217,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Schicksalspunkte",
       "maxLevel": 2,
-      "variableCost": true
+      "shortDescription": "Bei Stufe I kann ein Spieler für den Einsatz von 1 Schip bestimmen, dass eine Meisterperson einen oder mehrere W6 zur Bestimmung der TP …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Beistand%20der%20G%C3%B6tter",
+      "costByLevel": [
+        5,
+        5
+      ]
     },
     {
       "id": "beistandderunbesiegten",
@@ -90736,6 +91234,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Rondrageweihte kann beim Kampf mit dem Rondrakamm eine misslungene PA erneut würfeln und sich dann aussuchen, welches Ergebnis sie wählt. Dies gilt nicht …",
+      "prerequisites": [
+        "Schutz der Löwin",
+        "Schutz wider Unheiliges"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Beistand%20der%20Unbesiegten",
       "costPerLevel": 20
     },
     {
@@ -90747,6 +91251,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Gegenüber Zaubern mit dem Merkmal Einfluss erhält die Hesindegeweihte einen Bonus von +1 SK.",
+      "prerequisites": [
+        "Wall gegen Schadensmagie",
+        "Bollwerk gegen Magie"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Beistand%20gegen%20Einflusszauberei",
       "costPerLevel": 20
     },
     {
@@ -90758,6 +91268,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "A",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Gegenüber Zaubern mit dem Merkmal Einfluss erhält der Priester einen Bonus von +1 SK.",
+      "prerequisites": [
+        "Wall gegen Schadensmagie",
+        "Bollwerk gegen Magie"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Beistand%20gegen%20Einflusszauberei",
       "costPerLevel": 20
     },
     {
@@ -90769,8 +91285,15 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 2,
-      "variableCost": true,
-      "suggestedCost": 15
+      "shortDescription": "Diese SF sorgt dafür, dass für den Kämpfer die negativen Auswirkung seiner Rüstung um zwei Schritte pro Stufe der Belastungsgewöhnung in der BE-Spalte und …",
+      "prerequisites": [
+        "KO 13/15/17 je nach Stufe"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Belastungsgew%C3%B6hnung",
+      "costByLevel": [
+        20,
+        35
+      ]
     },
     {
       "id": "beniuchakanistil",
@@ -90781,6 +91304,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Der Kampfstil der Beni Uchakâni basiert auf gezielter Gewaltausübung. Sie können sich mit einer freien Aktion auf ihren nächsten Angriff so konzentrieren, dass dieser …",
+      "prerequisites": [
+        "KK 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Beni%20Uchak%C3%A2ni-Stil",
       "costPerLevel": 12
     },
     {
@@ -90792,6 +91320,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin bekommt das neue Anwendungsgebiet Minenkenntnis im Talent Steinbearbeitung. Sie kann von nun an planen, wie man Minen am besten anlegt.",
+      "prerequisites": [
+        "Steinbearbeitung 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bergbau",
       "costPerLevel": 5
     },
     {
@@ -90803,6 +91336,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Ein Reiter mit dieser Sonderfertigkeit kann zusammen mit bis zu zwei weiteren Reitern, die sich maximal 3 Schritt links und rechts von ihm befinden …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Berittene%20Lanzenformation",
       "costPerLevel": 12
     },
     {
@@ -90814,6 +91352,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Mit dieser Sonderfertigkeit kann ein Reiter sein Flugreittier Befehle durchführen lassen.",
+      "prerequisites": [
+        "Fliegen 10",
+        "Reiten 10"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Berittener%20Flugkampf",
       "costPerLevel": 10
     },
     {
@@ -90825,6 +91369,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Der Reiter hat die Möglichkeit im Reiterkampf spezielle Befehle zu erteilen, beispielsweise Niederreiten oder Sturmangriff zu Pferd.",
+      "prerequisites": [
+        "Reiten 10"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Berittener%20Kampf",
       "costPerLevel": 20
     },
     {
@@ -90836,6 +91385,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Geht das Reittier, ist das Schießen nicht mehr erschwert. Im Galopp ist es nur noch um 4 erschwert. Der Schütze kann zudem aus vollem …",
+      "prerequisites": [
+        "Berittener Kampf"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Berittener%20Sch%C3%BCtze",
       "costPerLevel": 10
     },
     {
@@ -90847,6 +91401,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Mit dieser Sonderfertigkeit erhält der Held das neue Anwendungsgebiet Bernstein verformen im Talent Steinbearbeitung. Durch Hitze kann er den Bernstein aufweichen, um ihn so …",
+      "prerequisites": [
+        "Steinbearbeitung 12"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bernstein%20erhitzen",
       "costPerLevel": 3
     },
     {
@@ -90858,6 +91417,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann sich, am Anfang einer KR, dazu entscheiden, seine AT um bis zu 4 zu erhöhen. Für jeden Punkt AT, den er …",
+      "prerequisites": [
+        "MU 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Berserkerangriff",
       "costPerLevel": 15
     },
     {
@@ -90869,6 +91433,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Um ein Berufsgeheimnis zu erlernen, benötigt der Held einen Lehrmeister und muss die Voraussetzungen erfüllen, um das Berufsgeheimnis überhaupt richtig verstehen zu können. Zudem …",
+      "prerequisites": [
+        "unterschiedlich"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Berufsgeheimnis",
       "variableCost": true
     },
     {
@@ -90880,6 +91449,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Die Abenteurerin kann gegnerische Attacken für Gefährten parieren. Dazu muss der Gegner in Angriffsdistanz sein und die Heldin eine ihrer eigenen Reaktionen als PA …",
+      "prerequisites": [
+        "GE 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Besch%C3%BCtzer",
       "costPerLevel": 20
     },
     {
@@ -90891,6 +91465,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Ein erschaffener Gegenstand weist die doppelte* Anzahl an Strukturpunkten auf.",
+      "prerequisites": [
+        "Tradition (Angroschkirche)",
+        "Lederne Haut"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Best%C3%A4ndige%20Werksarbeit",
       "costPerLevel": 8
     },
     {
@@ -90902,6 +91482,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDS",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Gelingt es dem Schleuderer, seinem Gegner mit der Schleuder mindestens 7 TP zu zufügen, dann muss dem Getroffenen eine Probe auf Selbstbeherrschung (Handlungsfähigkeit bewahren) …",
+      "prerequisites": [
+        "Präziser Schuss/Wurf 1"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bet%C3%A4ubendes%20Geschoss",
       "costPerLevel": 12
     },
     {
@@ -90913,6 +91498,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Gelingt die um 2 erschwerte AT und misslingt die Verteidigung, richtet der Angriff 1W3 TP an. Außerdem muss der Getroffene eine Probe auf Selbstbeherrschung …",
+      "prerequisites": [
+        "KK 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bet%C3%A4ubungsschlag",
       "costPerLevel": 15
     },
     {
@@ -90924,6 +91514,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Ein Bewahrer sticht durch seine Heilzauberei heraus. Auf Zauber, die LeP regenerieren, erhält er eine Begabung. Sollte er schon eine Begabung in einem dieser …",
+      "prerequisites": [
+        "Tradition (Elfen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bewahrer",
       "costPerLevel": 20
     },
     {
@@ -90935,6 +91530,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Ein Bewahrer des Uralten kann sich bis zu 3 Animistenkräfte auswählen (allgemeine oder zu seiner Kultur passende), die er erlernen und einsetzen kann. Die …",
+      "prerequisites": [
+        "Tradition (Druiden)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bewahrer%20des%20Uralten",
       "costPerLevel": 15
     },
     {
@@ -90946,6 +91546,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Ein gewirkter Eidsegen (siehe Regelwerk Seite 322) hält 2 Jahre (statt 1 Jahr), und die Probe auf Willenskraft, um ihn zu brechen, ist um …",
+      "prerequisites": [
+        "Licht des Götterfürsten",
+        "Wille zur Wahrheit"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bewahrung%20des%20Eids",
       "costPerLevel": 8
     },
     {
@@ -90957,6 +91563,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Zauber des Merkmals Heilung erhalten bei einer gelungenen Probe +1 FP (bis zu einem Maximum von 18 FP).",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bewanderter%20Heilzauberer",
       "costPerLevel": 25
     },
     {
@@ -90968,6 +91577,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Zauber, welche die körperliche Bewegung des Zauberers unterstützen, sind um 1 erleichtert und haben eine verdoppelte Wirkungsdauer. Zu diesen Zaubern zählen u.a. der AXXELERATUS, …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bewegungszauberei",
       "costPerLevel": 10
     },
     {
@@ -90979,6 +91591,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin ist in der Lage, Bier zu brauen. Mit dieser Sonderfertigkeit erwirbt sie im Talent Lebensmittelbearbeitung das neue Anwendungsgebiet Bierbrauen.",
+      "prerequisites": [
+        "Lebensmittelbearbeitung 4",
+        "Pflanzenkunde 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bierbrauerei",
       "costPerLevel": 2
     },
     {
@@ -90990,6 +91608,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Die Bilderstürmer können sich gezielt in ihre Emotionen hineinsteigern, sodass sie innerhalb von zwei Kampfrunden eine Erleichterung von 1 für ihre Liturgien und Zeremonien …",
+      "prerequisites": [
+        "Tradition (Tsakirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bilderst%C3%BCrmer",
       "costPerLevel": 10
     },
     {
@@ -91001,6 +91624,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Bildhauerei ist eine Einsatzmöglichkeit des Talents Steinbearbeitung (Steinmetzarbeiten). Über das Talent kann die Abenteurerin nun Statuen oder Büsten aus Stein anfertigen.",
+      "prerequisites": [
+        "Steinbearbeitung 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bildhauerei",
       "costPerLevel": 2
     },
     {
@@ -91012,6 +91640,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Gelingt der Heldin eine um 2 erschwerte PA, bekommt sie für ihre nächste Aktion einen Bonus von +4 AT gegen den Feind, gegen den …",
+      "prerequisites": [
+        "KK 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Binden",
       "costPerLevel": 25
     },
     {
@@ -91023,6 +91656,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AE",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Mit dieser Sonderfertigkeit kann ein Zauberer Elementare binden (siehe Seite 136). Die Sonderfertigkeit muss für jede Stufe von Elementaren einzeln erlernt werden, bauen jedoch …",
+      "prerequisites": [
+        "passendes Beschwörungsritual des Wesens FW 12"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bindung%20(Elementare)",
       "variableCost": true
     },
     {
@@ -91034,6 +91672,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch die Sonderfertigkeit erwirbt der Held ein neues Anwendungsgebiet für das Talent Handel. Hiermit kann er eine Vergleichsprobe auf Handel (Bine Maschores) gegen andere …",
+      "prerequisites": [
+        "Handel 8",
+        "Mitglied einer Meschpoche"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bine%20Maschores",
       "costPerLevel": 5
     },
     {
@@ -91045,6 +91689,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Schießt die Heldin auf ein Wesen des Typus Tier, richtet sie mit dieser Sonderfertigkeit mehr TP an. Jeder Punkt Erschwernis, den sie sich auferlegt, …",
+      "prerequisites": [
+        "Tierkunde 6"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Blattschuss",
       "costPerLevel": 15
     },
     {
@@ -91056,6 +91705,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Konzentriert sich ein Vampir auf ein Opfer in maximal 13 Schritt Entfernung, kann es bei ihm einen Sikaryan-Raub durchführen.",
+      "prerequisites": [
+        "Status Kind der Finsternis oder Kind der Nacht"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Blick%20des%20Nachtmahrs",
       "costPerLevel": 10
     },
     {
@@ -91067,6 +91721,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 2,
+      "shortDescription": "Mit der SF Blindkampf kann die Abenteurerin die Auswirkungen von Sichtmodifikatoren im Nahkampf auf AT und Verteidigungen abmildern (siehe Regelwerk Seite 239). Für sie …",
+      "prerequisites": [
+        "IN 15/17/19 je nach Stufe",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Blindkampf",
       "costPerLevel": 10
     },
     {
@@ -91078,6 +91738,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Spieler der Rondrageweihten würfelt zu Beginn einer KR eine Probe auf Kraftakt. Bei Gelingen bekommt die Geweihte für 3 KR einen Bonus von …",
+      "prerequisites": [
+        "Tradition (Rondrakirche)",
+        "Schutz der Löwin"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Blitz-Schlag",
       "costPerLevel": 15
     },
     {
@@ -91089,6 +91755,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "In der ersten KR eines jeden Kampfes verfügt der Held über einen Bonus von +2 VW.",
+      "prerequisites": [
+        "GE 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Blitzreflexe",
       "costPerLevel": 12
     },
     {
@@ -91100,6 +91771,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Vampir besitzt einziehbare Fangzähne, mit denen er sein Opfer beißen kann, um einen Sikaryan-Raub durchzuführen. beherrschen viele Sikaryan-Räuber von Anfang an",
+      "prerequisites": [
+        "Status Feylamia, Kind der Finsternis oder Kind der Nacht"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Blutdurst%20der%20Fledermaus",
       "costPerLevel": 0
     },
     {
@@ -91111,6 +91787,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Bei einem Treffer mit der Keule, der SP verursacht, erleidet ein Lebewesen den Status Blutend. Der Einsatz dieser Fähigkeit kostet 1 freie Aktion und …",
+      "prerequisites": [
+        "keulenweihe",
+        "Freundschaft des Tieres"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Blutende%20Keule",
       "costPerLevel": 10
     },
     {
@@ -91122,6 +91804,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "O",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Bei einem Treffer mit der Keule, der SP verursacht, erleidet ein Lebewesen den Status Blutend. Der Einsatz dieser Fähigkeit kostet 1 freie Aktion und …",
+      "prerequisites": [
+        "keulenweihe",
+        "Magieentzug"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Blutende%20Keule",
       "costPerLevel": 10
     },
     {
@@ -91133,6 +91821,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Bei einem Treffer mit dem Korspieß, der SP verursacht, blutet die Verletzung am Ende der KR so stark nach, dass das Opfer zusätzlich einmalig …",
+      "prerequisites": [
+        "Scharfe Krallen",
+        "Mantikorstich"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Blutende%20Wunde",
       "costPerLevel": 12
     },
     {
@@ -91144,6 +91838,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "In einem Radius von 4 Schritt um die Tsageweihte regnen Blüten vom Himmel, die einige unheilige Wesen verletzen können. Bestimmte Wesen erleiden 1W3 SP …",
+      "prerequisites": [
+        "Aura der Friedfertigkeit",
+        "Eidechsenhaut"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bl%C3%BCtenregen",
       "costPerLevel": 8
     },
     {
@@ -91155,6 +91855,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Wer eine Blutgrätsche ausführen will, benötigt dafür 2 Schritt Anlauf. Der Held führt eine Raufen-AT aus, die um 2 erschwert ist. Einer erfolgreichen Attacke …",
+      "prerequisites": [
+        "GE 13",
+        "Körperbeherrschung 8",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Blutgr%C3%A4tsche",
       "costPerLevel": 10
     },
     {
@@ -91166,6 +91873,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann sein eigenes Blut opfern, um AsP dazu zugewinnen. Um Blutmagie einzusetzen, muss dem Zauberer zunächst eine Probe auf Selbstbeherrschung gelingen, andernfalls …",
+      "prerequisites": [
+        "Zauberer",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Blutmagie%20(Selbstopfer)",
       "costPerLevel": 12
     },
     {
@@ -91177,6 +91890,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDGDG",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Runenkontrolle: Setzt ein Blutrunenschöpfer eine Zauberrune schnell ein, kostet ihn dies 1 AsP weniger (Minimum 1 AsP). Ungeduld: Setzt ein Blutrunenschöpfer eine Zauberrune langsam …",
+      "prerequisites": [
+        "Tradition (Runenschöpfer)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Runenschöpferprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Blutrunensch%C3%B6pfer",
       "variableCost": true
     },
     {
@@ -91188,6 +91907,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Alle Zauber und magischen Handlungen wirken gegen die Hesindegeweihte mit 1 QS weniger (bis zu einem Minimum von 1 QS). Diese Fähigkeit wirkt nur, …",
+      "prerequisites": [
+        "Wall gegen Schadensmagie",
+        "Beistand gegen Einflusszauberei"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bollwerk%20gegen%20Magie",
       "costPerLevel": 25
     },
     {
@@ -91199,6 +91924,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "A",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Alle Zauber und magische Handlungen wirken gegen den Priester mit 1 QS weniger (bis zu einem Minimum von 1 QS). Diese Fähigkeit wirkt nur, …",
+      "prerequisites": [
+        "Wall gegen Schadensmagie",
+        "Beistand gegen Einflusszauberei"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bollwerk%20gegen%20Magie",
       "costPerLevel": 25
     },
     {
@@ -91210,6 +91941,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Alle Zauber und magischen Handlungen wirken gegen den Praiosgeweihten mit 1 QS weniger (bis zu einem Minimum von 1 QS).",
+      "prerequisites": [
+        "Zepter der Furcht",
+        "Schutz wider Schadensmagie"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bollwerk%20wider%20Zauberei",
       "costPerLevel": 15
     },
     {
@@ -91221,6 +91958,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch die Sonderfertigkeit Bootsbauer wird im Talent Holzbearbeitung das neue Anwendungsgebiet Boote bauen erworben. Der Held ist in der Lage, das richtige Holz für …",
+      "prerequisites": [
+        "Boote & Schiffe 4",
+        "Holzbearbeitung 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bootsbauer",
       "costPerLevel": 5
     },
     {
@@ -91232,6 +91975,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Kennerinnen der SF Bornländisches Raufen erhöhen ihren Schaden bei allen waffenlosen Angriffen um +1 TP.* *Solltest du mit den Prügel-Regeln des DSA5-Meisterschirm-Beihefts spielen, dann …",
+      "prerequisites": [
+        "Eigenschaft 13",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bornl%C3%A4ndisches%20Raufen",
       "costPerLevel": 5
     },
     {
@@ -91243,6 +91992,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Immer, wenn die Heldin mehr SP als die halbe KO des Gegners erzielt, muss dieser eine Probe auf Selbstbeherrschung (Handlungsfähigkeit bewahren) erschwert um TP/2 …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "KK 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Boxer-Stil",
       "costPerLevel": 15
     },
     {
@@ -91254,6 +92009,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Ingerimmgeweihte kann eine Person auswählen. Der Status Brennend wirkt weniger stark gegen diese Person. Sollte der ganze Körper in Flammen stehen, wirkt der …",
+      "prerequisites": [
+        "Tradition (Ingerimmkirche)",
+        "werkzeugderbestaendigkeit"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Brandschutz",
       "costPerLevel": 8
     },
     {
@@ -91265,6 +92026,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Misslingt eine Liturgie, müssen Braniborier statt der Hälfte nur ein Drittel der KaP aufwenden.",
+      "prerequisites": [
+        "Tradition (Praioskirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Braniborier",
       "costPerLevel": 20
     },
     {
@@ -91276,6 +92042,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Bei Zaubern und Herrschaftsritualen mit dem Merkmal Einfluss verringert sich die SK des Ziels des Druiden um 1. Bei Herrschaftsritualen wird erst nach der …",
+      "prerequisites": [
+        "Tradition (Druiden)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Brecher%20des%20Willens",
       "costPerLevel": 15
     },
     {
@@ -91287,6 +92058,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Durch diese SF ist der Held in der Lage, den Befehl Breschenangriff mit seinem Reittier durchzuführen. Dabei werden bis zu drei Ziele getroffen, solange …",
+      "prerequisites": [
+        "Berittener Kampf"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Breschenangriff",
       "costPerLevel": 15
     },
     {
@@ -91298,6 +92074,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Zauber des Merkmals Telekinese erhalten bei einer gelungenen Probe +1 FP (bis zu einem Maximum von 18 FP).",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Brillanter%20Telekinetiker",
       "costPerLevel": 25
     },
     {
@@ -91309,6 +92088,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Traviageweihte kann in dem Beutel die Zutaten für ein Brot aufbewahren. Backt sie damit ein Brot und gelingt ihr eine Probe auf Lebensmittelbearbeitung …",
+      "prerequisites": [
+        "Band des Umsorgens",
+        "Bund der Heilung"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Brot%20der%20Erfrischung",
       "costPerLevel": 5
     },
     {
@@ -91320,6 +92105,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "A",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann gegnerische Attacken für Gefährten oder Objekte parieren. Dazu muss der Gegner in Angriffsdistanz sein und der Held eine seiner eigenen Reaktionen …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "MU 13",
+        "GE 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bruth%C3%BCter-Stil",
       "costPerLevel": 20
     },
     {
@@ -91331,6 +92123,14 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Mit dieser Sonderfertigkeit erhält die Abenteurerin im Talent Malen & Zeichnen das neue Anwendungsgebiet Drucken. Die Heldin ist nun in der Lage, Schriftstücke mit …",
+      "prerequisites": [
+        "Alchimie 2",
+        "Holzbearbeitung 4",
+        "Malen & Zeichnen 4",
+        "Mechanik 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Buchdrucker",
       "costPerLevel": 3
     },
     {
@@ -91342,6 +92142,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Legt die Traviageweihte zwei kleine Stücke Essen (z. B. Brotscheiben oder Äpfel) in den Gänsebeutel und übergibt sie nach 12 Stunden an zwei Kulturschaffende, …",
+      "prerequisites": [
+        "Band des Umsorgens",
+        "Brot der Erfrischung"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Bund%20der%20Heilung",
       "costPerLevel": 12
     },
     {
@@ -91353,6 +92159,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Gegen Gegner der Größenkategorie groß und riesig erhalten Krieger des Cendrasch-Stils einen Bonus von +1 auf ihre Verteidigung.",
+      "prerequisites": [
+        "KK 13",
+        "Spezies Zwerge",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Cendrasch-Stil",
       "costPerLevel": 15
     },
     {
@@ -91364,6 +92177,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "A",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Wenn ein Held mit diesem Stil gegen ein Wesen vorgeht, das eine größere Größenkategorie als er selbst aufweist, oder sich in seiner Angriffsdistanz mehr …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "MU 13",
+        "drohgebaerden"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Chaz'Zchakrr-Stil",
       "costPerLevel": 20
     },
     {
@@ -91375,6 +92195,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit ist der Zauberer in der Lage, Chimären der Komplexität einfach zu erschaffen (siehe Seite 58). Für Chimären der Komplexität komplex benötigt …",
+      "prerequisites": [
+        "chimaeroform"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Chim%C3%A4renmeister",
       "costPerLevel": 20
     },
     {
@@ -91386,6 +92211,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Gesegnete und geweihte Materialien verursachen bei Chimären Schaden, ganz so, als seien diese Dämonen (siehe Regelwerk Seite 316). Üblicherweise sind Chimären davon nicht betroffen, …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki",
+        "Daimonidenschreck"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Chim%C3%A4renschreck",
       "costPerLevel": 2
     },
     {
@@ -91397,6 +92228,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit ist der Zauberer in der Lage, Daimonide zu erschaffen (siehe Seite 58). Für Daimoniden der Komplexität komplex benötigt er zudem ein …",
+      "prerequisites": [
+        "chimaerenmeister"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Daimonidenkonstrukteur",
       "costPerLevel": 10
     },
     {
@@ -91408,6 +92244,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Gesegnete und geweihte Materialien verursachen bei Daimoniden Schaden, ganz so, als seien diese Dämonen (siehe Regelwerk Seite 316). Üblicherweise sind Daimonide davon nicht betroffen, …",
+      "prerequisites": [
+        "Geweihter"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Daimonidenschreck",
       "costPerLevel": 3
     },
     {
@@ -91419,6 +92260,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Sollte der Dajin-Buskur auf seiner Position verharren (sprich: er hat keine Aktion oder freie Aktion in dieser KR für Bewegung aufgewendet) und greift er …",
+      "prerequisites": [
+        "MU 13",
+        "GE 13",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Dajin-Stil",
       "costPerLevel": 15
     },
     {
@@ -91430,6 +92278,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Die Anrufungsschwierigkeit beim Beschwören und Verbannen von Dämonen verbessert sich für den Zauberer um 1 und das Beschwören kostet 2 AsP weniger (bis zu …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=D%C3%A4monenmeisterin",
       "costPerLevel": 12
     },
     {
@@ -91441,8 +92292,14 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AAN",
       "category": "Magie",
       "maxLevel": 3,
-      "variableCost": true,
-      "suggestedCost": 5
+      "shortDescription": "Mit dieser Sonderfertigkeit kann ein Zauberer die Wirkungsdauer des STEIN WANDLE auf permanent setzen. Der erschaffene Golem muss sich allerdings regelmäßig an einer Kraftlinie …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Dauerhafte%20Golems",
+      "costByLevel": [
+        5,
+        10,
+        15
+      ]
     },
     {
       "id": "dauerhaftekoerperformung",
@@ -91453,6 +92310,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Für 1 permanenten AsP kann beim Wirken der Zauber BRUSTFORMUNG, PENISFORMUNG und VAGINAFORMUNG die Wirkungsdauer auf permanent gesetzt werden. Die Permanenz kann u. a. …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Dauerhafte%20K%C3%B6rperformung",
       "costPerLevel": 10
     },
     {
@@ -91464,6 +92324,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Für 1 permanenten KaP kann beim Wirken der Zeremonien Geschlechterwechsel und Körper der Radscha Uschtammar die Wirkungsdauer auf permanent gesetzt werden. Die Permanenz kann …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Dauerhafte%20Liebesliturgien",
       "costPerLevel": 10
     },
     {
@@ -91475,8 +92338,16 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AT",
       "category": "Magie",
       "maxLevel": 3,
-      "variableCost": true,
-      "suggestedCost": 5
+      "shortDescription": "Mit dieser Sonderfertigkeit kann eine Zauberin die Wirkungsdauer des CHIMAEROFORM auf permament setzen. Die erschaffene Transmutation ist allerdings nur noch in der Lage, den …",
+      "prerequisites": [
+        "chimaerenmeister"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Dauerhafte%20Transmutationen",
+      "costByLevel": [
+        5,
+        10,
+        15
+      ]
     },
     {
       "id": "defensivesverhalten",
@@ -91487,6 +92358,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Sollte die Heldin Erschwernisse auf ihre Verteidigung erleiden, gleich welchen Ursprungs (bis auf Sichtmodifikatoren), so kann sie durch ihr ausgezeichnetes Defensiverhalten entscheiden, 1 oder …",
+      "prerequisites": [
+        "IN 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Defensives%20Verhalten",
       "costPerLevel": 12
     },
     {
@@ -91498,6 +92374,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "DSK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit erwirbt der Held das neue Anwendungsgebiet Deichbau im Talent Steinbearbeitung. Er kann fortan Deiche bauen. Einige Deiche sind jedoch komplex und …",
+      "prerequisites": [
+        "Steinbearbeitung 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Deichbauer",
       "costPerLevel": 2
     },
     {
@@ -91509,6 +92390,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Jeder Zauber, der einen Verlust von LeP oder Strukturpunkten herbeiführt, zieht einmalig 2 LeP oder 10 Strukturpunkte mehr ab. Der Effekt tritt sowohl bei …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Destruktor",
       "costPerLevel": 15
     },
     {
@@ -91520,6 +92404,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Deuter der Träume sind dazu in der Lage, durch eine Meditation Furcht und Verwirrung abzubauen. Der Spieler des Geweihten muss eine Probe auf Willenskraft …",
+      "prerequisites": [
+        "Tradition (Boronkirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Deuter%20der%20Tr%C3%A4ume",
       "costPerLevel": 15
     },
     {
@@ -91531,6 +92420,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Liturgien und Zeremonien der Verbreitung Phex (Handel und Schatten) wirken 50 % länger.",
+      "prerequisites": [
+        "Tradition (Phexkirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Diebe%20des%20Nachthimmels",
       "costPerLevel": 15
     },
     {
@@ -91542,6 +92436,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "DSK",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Ein Schloss, das mit diesem Ahnenzeichen versehen ist, sorgt zum einen dafür, dass die Teilproben auf FF beim Schlösserknacken um 1 erschwert sind, zum …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Diebesschreck",
       "costPerLevel": 4
     },
     {
@@ -91553,6 +92450,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held erwirbt durch diese Sonderfertigkeit im Talent Etikette das neue Anwendungsgebiet Dienen & Gehorchen. Dadurch kann der Abenteurer seinem Herrn ein guter Diener …",
+      "prerequisites": [
+        "Etikette 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Diener",
       "costPerLevel": 2
     },
     {
@@ -91564,6 +92466,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Der Kenner dieser Sonderfertigkeit muss sich für eines der sechs Elemente entscheiden. Zauber mit dem Merkmal Elementar und die auf diesem Element beruhen kosten …",
+      "prerequisites": [
+        "Tradition (Geoden)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Diener%20der%20Erdmutter",
       "costPerLevel": 15
     },
     {
@@ -91575,6 +92482,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Lebensbund: Wenden Diener der Natur Fertigkeitsproben auf Tiere oder Elementare an, so sind CH-Teilproben um 1 erleichtert. Dies können die Diener der Natur z. …",
+      "prerequisites": [
+        "Der Held ist ein Sumudiener oder ein Hüter der Kraft.",
+        "Tradition (Druiden)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Denkschulenprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Diener%20der%20Natur",
       "variableCost": true
     },
     {
@@ -91586,6 +92500,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Eine Dienerin der Nacht kann sich selbst eine Schnittverletzung (1 SP) zufügen und einen anderen Kulturschaffenden von ihrem Blut trinken lassen. Sie kann zusätzlich …",
+      "prerequisites": [
+        "Tradition (Marbokult)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Dienerinnen%20der%20Nacht",
       "costPerLevel": 20
     },
     {
@@ -91597,6 +92516,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDS",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Kämpft der Held beritten gegen Fußkämpfer, erhöht sich die aus der vorteilhaften Position resultierende Erleichterung auf AT um 2 (siehe Regelwerk Seite 238/240). Außerdem …",
+      "prerequisites": [
+        "GE 13",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Distelritter-Stil",
       "costPerLevel": 12
     },
     {
@@ -91608,6 +92533,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held ist in der Lage, Schriftstücke und Urkunden zu fälschen. Mit dieser Sonderfertigkeit erwirbt der Held im Talent Malen & Zeichnen das neue …",
+      "prerequisites": [
+        "Malen & Zeichnen 8",
+        "kein Blind"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Dokumentenf%C3%A4lscher",
       "costPerLevel": 5
     },
     {
@@ -91619,6 +92550,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Spieler der Rondrageweihten würfelt zu Beginn einer KR eine Probe auf Kraftakt. Bei Gelingen bekommt die Geweihte für 3 KR einen Bonus von …",
+      "prerequisites": [
+        "Blitz-Schlag",
+        "Heftiger Angriff"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Donner-Schlag",
       "costPerLevel": 20
     },
     {
@@ -91630,6 +92567,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "UT",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Ein Stoß ins Horn ist fünf Meilen weit zu hören und wird von jenen, die es vernehmen, intuitiv und nach Wahl des Priesters als …",
+      "prerequisites": [
+        "Tradition (Numinorukult)",
+        "Wasser der Vorbereitung"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Donnerndes%20Horn",
       "costPerLevel": 10
     },
     {
@@ -91641,6 +92584,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Der Doppelangriff muss im Beidhändigen Kampf angewandt werden. Zusätzlich zu den Modifikatoren im Beidhändigen Kampf ist die erste AT des Helden um 2 erschwert, …",
+      "prerequisites": [
+        "IN 13",
+        "KK 13",
+        "Beidhändiger Kampf 1"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Doppelangriff",
       "costPerLevel": 25
     },
     {
@@ -91652,6 +92602,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Durch die Sonderfertigkeit erwirbt der Held eine Einsatzmöglichkeit für das Talent Kriegskunst. Im Kampf gegen Drachen kann er 1 Aktion aufwenden, um eine Probe …",
+      "prerequisites": [
+        "Tierkunde 8",
+        "Kriegskunst 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Drachenkampf-Taktik",
       "costPerLevel": 10
     },
     {
@@ -91663,6 +92619,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Führt der Anwender dieser Sonderfertigkeit einen Drachentöter und setzt ihn im Spießgespann ein, so kann bei einem Angriff gegen ein Wesen des Typs Drachen …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Drachentod",
       "costPerLevel": 12
     },
     {
@@ -91674,6 +92636,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Setzt der Held einen Wuchtschlag ein und trifft, kann er bei der TP-Bestimmung einen W6 neu würfeln. Das zweite Ergebnis ist bindend. Allerdings sinkt …",
+      "prerequisites": [
+        "KK 15",
+        "Wuchtschlag 1"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Drehschlag",
       "costPerLevel": 12
     },
     {
@@ -91685,6 +92653,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Setzt der Held einen Präzisen Schuss/Wurf ein, kann er ihn mit Drehwurf kombinieren. Trifft er, kann er bei der TP-Bestimmung einen W6 neu würfeln. …",
+      "prerequisites": [
+        "KK 15",
+        "Präziser Schuss/Wurf 1"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Drehwurf",
       "costPerLevel": 10
     },
     {
@@ -91696,6 +92670,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch die Sonderfertigkeit erwirbt die Heldin eine Einsatzmöglichkeit für das Talent Einschüchtern. Die Abenteurerin kann mittels Einschüchtern (Drohung) ihre Gegner während eines Kampfes in …",
+      "prerequisites": [
+        "Einschüchtern 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Drohgeb%C3%A4rden",
       "costPerLevel": 10
     },
     {
@@ -91707,6 +92686,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Der Druide wendet sich 1 Minute mit gespreizten Beinen und ausgestreckten Armen nach Osten und nimmt Abschied von der Welt, denn von nun an …",
+      "prerequisites": [
+        "Tradition (Druiden)",
+        "MU 15",
+        "KL 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Druidenrache",
       "costPerLevel": 10
     },
     {
@@ -91718,6 +92704,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDDD",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Gegen einen Gegner, der gegenüber dem Helden mit diesem Stil den Status Überrascht aufweist, erhält dieser +2 auf AT und FK sowie +2 auf …",
+      "prerequisites": [
+        "GE 13",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Dschungelschleicher-Stil",
       "costPerLevel": 15
     },
     {
@@ -91729,6 +92721,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann mit einer Kriegslanze versuchen, einen Gegner zu durchbohren. Das Durchbohren-Manöver kann nur gegen gleichgroße Gegner oder solche der nächstkleineren Größenkategorie angewandt …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Durchbohrung",
       "costPerLevel": 20
     },
     {
@@ -91740,6 +92737,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 3,
+      "shortDescription": "Die TP des Angriffs erhöhen sich pro Stufe der Sonderfertigkeit um +1 TP. Zudem muss der Gegner eine Probe auf Körperbeherrschung (Balance) bestehen, um …",
+      "prerequisites": [
+        "GE 13/15/17 je nach Stufe"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Durchgezogener%20Tritt",
       "costPerLevel": 8
     },
     {
@@ -91751,6 +92753,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "A",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Fähigkeit erlangt die Priesterin eine neue Einsatzmöglichkeit in Tierkunde. Sie kann ein einzelnes Tier, eine beliebige Echse, mit einer Vergleichsprobe zwischen Tierkunde …",
+      "prerequisites": [
+        "Aura der Friedfertigkeit",
+        "Eidechsenhaut"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Echsenfreundschaft",
       "costPerLevel": 10
     },
     {
@@ -91762,6 +92770,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "DSO",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held ist in der Lage, (Halb-)Edelsteine zu schleifen. Mit dieser Sonderfertigkeit erwirbt der Held im Talent Steinbearbeitung das neue Anwendungsgebiet Edelsteinschleifen.",
+      "prerequisites": [
+        "Steinbearbeitung 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Edelsteinschleifen",
       "costPerLevel": 2
     },
     {
@@ -91773,6 +92786,14 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "In der ersten KR eines jeden Kampfes erhält der Held nach Wahl des Spielers entweder einen Bonus von +2 AT oder +2 FK oder …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "MU 13",
+        "IN 13",
+        "Spezies Elfen"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Ederion-Stil",
       "costPerLevel": 12
     },
     {
@@ -91784,6 +92805,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Phexgeweihte kann das Mondamulett dazu nutzen, eine Zone von 3 Schritt Radius um sich selbst zu erschaffen, die jeden Kulturschaffenden dazu bringt, unehrliche …",
+      "prerequisites": [
+        "Gespür für Geld",
+        "Sinn für den Wert"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Ehrliche%20Gesch%C3%A4fte",
       "costPerLevel": 8
     },
     {
@@ -91795,6 +92822,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Ehrwürdige Rituale: Dolch- und Sichelrituale kosten 1 AsP weniger (bei einem Minimum von 1 AsP). Ehrwürdige Tradition: Fremdzauber sind um 1 zusätzlich erschwert.",
+      "prerequisites": [
+        "Der Held ist ein Hüter der Kraft oder ein Konzildruide.",
+        "Tradition (Druiden)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Denkschulenprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Ehrw%C3%BCrdige",
       "variableCost": true
     },
     {
@@ -91806,6 +92840,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Tsageweihte erhält einen RS von 2, der mit allen anderen Rüstungen kombinierbar ist. Die Wirkung hält 5 KR an. Der Einsatz dieser Fähigkeit …",
+      "prerequisites": [
+        "Aura der Friedfertigkeit",
+        "Blütenregen"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Eidechsenhaut",
       "costPerLevel": 12
     },
     {
@@ -91817,6 +92857,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "A",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Priesterin erhält einen RS von 2, der mit allen anderen Rüstungen kombinierbar ist. Die Wirkung hält 5 KR lang an. Der Einsatz dieser …",
+      "prerequisites": [
+        "Aura der Friedfertigkeit",
+        "Echsenfreundschaft"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Eidechsenhaut",
       "costPerLevel": 12
     },
     {
@@ -91828,6 +92874,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDDD",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Kämpft die Heldin einhändig mit einer Waffe der Kampftechnik Dolche, so erhält sie +1 AT, +1 PA oder +1 TP und kann zusätzlich die …",
+      "prerequisites": [
+        "MU 13",
+        "Einhändiger Kampf",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Eidechsenkrieger-Stil",
       "costPerLevel": 10
     },
     {
@@ -91839,6 +92892,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Schicksalspunkte",
       "maxLevel": 1,
+      "shortDescription": "Mittels dieser Sonderfertigkeit kann der Held Schicksalspunkte für Ergebnis verbessern (Eigenschaft) einsetzen.",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Eigenschaft%20verbessern",
       "costPerLevel": 5
     },
     {
@@ -91850,6 +92906,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held bekommt einen Bonus von 2 FP bei Proben auf Betören (Liebeskünste), wenn er die Sexpraktiken Analverkehr oder Coitus einsetzt.",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Einf%C3%BChlsame%2Fr%20Verehrer%2Fin",
       "costPerLevel": 10
     },
     {
@@ -91861,6 +92920,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Schicksalspunkte",
       "maxLevel": 1,
+      "shortDescription": "In einem einzigen Durchgang während des Liebesspiels kann sich der Held für eine der folgenden Optionen entscheiden, wenn er 1 Verführungshandlung dafür aufwendet: Alle …",
+      "prerequisites": [
+        "Zeugung durch ekstatischen Höhepunkt"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Einf%C3%BChlsamkeit",
       "costPerLevel": 15
     },
     {
@@ -91872,6 +92936,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Der Kämpfer erhält folgende Boni, wenn er ausschließlich nur mit einer Waffe einhändig kämpft, also die Waffe nicht mit einer zweiten Waffe, einem Schild, …",
+      "prerequisites": [
+        "GE undefined"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Einh%C3%A4ndiger%20Kampf",
       "costPerLevel": 10
     },
     {
@@ -91883,6 +92952,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Setzt der Zauberer bei Zaubern mit dem Merkmal Einfluss Musik ein, so kann er die SK des Ziels für den Zauber um 1 senken, …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Einlullende%20Zaubermusik",
       "costPerLevel": 8
     },
     {
@@ -91894,6 +92966,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann ein Talent zum Geld verdienen (siehe Aventurisches Kompendium Seite 11) doppelt so häufig wie üblich pro Tag oder Vorstellung einsetzen.",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Einnahmequelle",
       "costPerLevel": 8
     },
     {
@@ -91905,6 +92980,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Geweihte wird vollkommen immun gegen Feuer. Einzig einen Sturz in Magma würde er nicht überleben. Selbst Feuerzauber, etwa ein IGNIFAXIUS, oder Drachenfeuer schaden …",
+      "prerequisites": [
+        "Lederne Haut",
+        "Hitzewall"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Eins%20mit%20der%20Flamme",
       "costPerLevel": 15
     },
     {
@@ -91916,6 +92997,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Durch die Sonderfertigkeit erwirbt die Geweihte eine neue Einsatzmöglichkeit für das Talent Einschüchtern. Die Geweihte kann mittels Einschüchtern (Drohung) ihre Gegner während eines Kampfes …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Einsch%C3%BCchternde%20Zurechtweisung",
       "costPerLevel": 15
     },
     {
@@ -91927,6 +93011,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der RS des Schamanen erhöht sich um 2. Dieser Bonus kann auch mit normalen Rüstungen kombiniert werden. Die Wirkungsdauer beträgt 5 Minuten. Der Einsatz …",
+      "prerequisites": [
+        "Knochenbrechende Keule"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Eisberg",
       "costPerLevel": 15
     },
     {
@@ -91938,6 +93027,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit kann ein Zauberer leichter Eisen und Stahl für Zwecke der Verzauberung nutzen. Erschwernisse durch die beiden Materialien sinken bei der Artefaktherstellung …",
+      "prerequisites": [
+        "arcanovi 14",
+        "Magiekunde 10",
+        "Metallbearbeitung 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Eisen-%20und%20Stahlverzauberung",
       "costPerLevel": 10
     },
     {
@@ -91949,6 +93045,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Wer über diese Sonderfertigkeit verfügt, kann die Besonderheiten der Kampftechnik Raufen ignorieren (siehe Regelwerk Seite 235). Der Held gilt als bewaffnet und muss nicht …",
+      "prerequisites": [
+        "Eigenschaft 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Eisenfaust",
       "costPerLevel": 15
     },
     {
@@ -91960,8 +93061,16 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 2,
-      "variableCost": true,
-      "suggestedCost": 5
+      "shortDescription": "Der Abenteurer ist durch die SF Eisenhagel in der Lage, innerhalb 1 Aktion mehrere Wurfwaffen des gleichen Waffentyps einzusetzen (also mehrere Wurfdolche, mehrere Wurfsterne …",
+      "prerequisites": [
+        "FF 15/17/19 je nach Stufe",
+        "Schnellladen (Wurfwaffen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Eisenhagel",
+      "costByLevel": [
+        15,
+        20
+      ]
     },
     {
       "id": "eisernekonzentrationsstaerke",
@@ -91972,6 +93081,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Wie bei der Sonderfertigkeit Konzentrationsstärke sind Proben auf Selbstbeherrschung (Störungen ignorieren) erleichtert, wenn der Held in seiner Konzentration beim Wirken von Zaubern gestört wird. …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Eiserne%20Konzentrationsst%C3%A4rke",
       "costPerLevel": 8
     },
     {
@@ -91983,6 +93097,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 2,
+      "shortDescription": "So lange der Held sich entsprechend darauf fokussiert, wird seine Seelenkraft willentlich um 1 pro Stufe verbessert. Durch die nötige Fokussierung sind währenddessen alle …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Eiserner%20Wille",
       "costPerLevel": 15
     },
     {
@@ -91994,6 +93111,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Schamane kann eine Person auswählen. Diese erhält den Vorteil Kälteresistenz. Die Wirkungsdauer beträgt 6 Stunden. Der Schamane kann sich auch selbst auswählen. Der …",
+      "prerequisites": [
+        "keulenweihe",
+        "Knochenbrechende Keule"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Eishaut",
       "costPerLevel": 12
     },
     {
@@ -92005,6 +93128,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held ist in der Lage, eine elegante Frisur zu schneiden. Gelingt ihm eine Probe auf Etikette (Mode), so kann er jemand anderem eine …",
+      "prerequisites": [
+        "Betören 6",
+        "Etikette 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Elegante%20Frisur",
       "costPerLevel": 5
     },
     {
@@ -92016,6 +93145,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Elementarfreund: Vom Druiden beschworene Elementarwesen gewähren ihm 1 zusätzlichen Dienst. Sechs Elemente: Der Druide ist, anders als viele andere Druiden, kein Freund der Idee …",
+      "prerequisites": [
+        "Der Held ist ein Haindruide oder ein Konzildruide.",
+        "Tradition (Druiden)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Denkschulenprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Elementaranh%C3%A4nger",
       "variableCost": true
     },
     {
@@ -92027,6 +93163,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Die Anrufungsschwierigkeit beim Beschwören und Verbannen von Elementaren verbessert sich für den Zauberer um 1 und das Beschwören kostet 2 AsP weniger (bis zu …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Elementarmeisterin",
       "costPerLevel": 12
     },
     {
@@ -92038,6 +93177,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Bei der SF Anführer muss die Elenviner Kriegerin nur 1 freie Aktion statt einer regulären Aktion aufwenden.",
+      "prerequisites": [
+        "MU 13",
+        "Anführer",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Elenvina-Stil",
       "costPerLevel": 15
     },
     {
@@ -92049,6 +93195,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Zauber aus der Tradition der Elfen erleiden nicht wie üblich eine Erschwernis von 2 als Fremdzauber. Zudem kann eine einzelne Modifikation durchgeführt werden. Die …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Elfenfreund",
       "costPerLevel": 15
     },
     {
@@ -92060,6 +93209,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 3,
+      "shortDescription": "Die TP des Angriffs erhöhen sich pro Stufe der Sonderfertigkeit um +1 TP. Außerdem muss der Gegner des Helden eine Probe auf Selbstbeherrschung (Handlungsfähigkeit …",
+      "prerequisites": [
+        "KK 13/15/17 je nach Stufe"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Ellbogenangriff",
       "costPerLevel": 8
     },
     {
@@ -92071,6 +93225,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Schicksalspunkte",
       "maxLevel": 1,
+      "shortDescription": "Für den Einsatz eines Schip kann der Held erspüren, welche Emotionen eine Person in seiner Nähe gerade spürt. Der Spieler muss eine Person innerhalb …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Empathie",
       "costPerLevel": 10
     },
     {
@@ -92082,6 +93239,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann sehr präzise Schätzungen abgegeben, wie weit ein bestimmter Punkt entfernt ist, den er sehen kann. Die Schätzung des Helden ist immer …",
+      "prerequisites": [
+        "kein Blind",
+        "kein Verstümmelt (Einäugig)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Entfernungen%20Sch%C3%A4tzen",
       "costPerLevel": 5
     },
     {
@@ -92093,6 +93256,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Sollte die Heldin durch ein Seil, Ketten oder andere Ursachen gefesselt sein, sind Proben auf Körperbeherrschung (Entwinden) um 2 erleichtert und sie benötigt für …",
+      "prerequisites": [
+        "Körperbeherrschung 10"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Entfesselungsk%C3%BCnstler",
       "costPerLevel": 8
     },
     {
@@ -92104,6 +93272,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Die Geweihte verbringt 1 Stunde mit der Meditation und erhält dafür 1 Stufe Entrückung. Diese Sonderfertigkeit ist nur einmal alle 24 Stunden einsetzbar.",
+      "prerequisites": [
+        "Geweihter",
+        "Leiteigenschaft 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Entr%C3%BCckungsmeditation",
       "costPerLevel": 10
     },
     {
@@ -92115,6 +93289,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Durch diese SF kann die Heldin mittels Pentagramma auch gehörnte Dämonen mit bis zu 5 Hörnern verbannen.",
+      "prerequisites": [
+        "MU 13",
+        "pentagramma"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Entschw%C3%B6rung%20(D%C3%A4monen)",
       "costPerLevel": 5
     },
     {
@@ -92126,6 +93306,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Durch diese SF kann der Held mittels Hexagramma auch Dschinne verbannen.",
+      "prerequisites": [
+        "MU 13",
+        "hexagramma"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Entschw%C3%B6rung%20(Elementare)",
       "costPerLevel": 5
     },
     {
@@ -92137,6 +93323,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Durch diese SF kann die Heldin mittels Heptagramma auch mittlere Geister verbannen.",
+      "prerequisites": [
+        "MU 13",
+        "heptagramma"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Entschw%C3%B6rung%20(Geister)",
       "costPerLevel": 5
     },
     {
@@ -92148,6 +93340,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Sollte die Heldin mit einem anderen Kulturschaffenden schlafen, so kann sie eine Probe auf Betören (Liebeskünste) ablegen. Anschließend würfelt sie mit 1W6. Hat sie …",
+      "prerequisites": [
+        "Betören 6"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Entspannendes%20Liebesspiel",
       "costPerLevel": 10
     },
     {
@@ -92159,6 +93356,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Um dem Gegner mit diesem Manöver eine Waffe (ausgenommen Schilde) aus der Hand zu schlagen, ist eine um 4, gegen Zweihandwaffen sogar um 6 …",
+      "prerequisites": [
+        "GE 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Entwaffnen",
       "costPerLevel": 40
     },
     {
@@ -92170,6 +93372,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Ingerimmgeweihte kann ein Wesen der Größenkategorie mittel oder kleiner in einer Reichweite von bis zu 8 Schritt auswählen. Der Ingerimmgeweihte schlägt den Hammer …",
+      "prerequisites": [
+        "Brandschutz",
+        "Glut des Hammers"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Erdbeben-Schlag",
       "costPerLevel": 8
     },
     {
@@ -92181,6 +93389,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "übernachtet die Hexe auf der Erde (z. B. auf einer Wiese, an den Wurzeln eines Baumes, auf einem natürlichen Felsen), so erhält sie bei …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Erdkraft",
       "costPerLevel": 20
     },
     {
@@ -92192,6 +93403,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Solange eine Erdverbundene in direktem Kontakt mit der Erde steht, sind IN-Teilproben bei Zaubersprüchen um 1 erleichtert.",
+      "prerequisites": [
+        "Tradition (Hexen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Erdverbundene%20(Tochter%20der%20Erde)",
       "costPerLevel": 15
     },
     {
@@ -92203,6 +93419,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Zauber des Merkmals Antimagie erhalten bei einer gelungenen Probe +1 FP (bis zu einem Maximum von 18 FP).",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Erfahrener%20Antimagier",
       "costPerLevel": 25
     },
     {
@@ -92214,6 +93433,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDDD",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Ein Held mit dieser Sonderfertigkeit erzielt bei gelungenen Proben auf Fischen & Angeln (Salzwassertiere oder Süßwassertiere) bei der Nahrungsbeschaffung +1 QS (bis zu einem …",
+      "prerequisites": [
+        "Fischer"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Erfolgreicher%20Fischer",
       "costPerLevel": 5
     },
     {
@@ -92225,6 +93449,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Ein Held mit dieser Sonderfertigkeit erzielt bei gelungenen Proben auf Tierkunde (Wildtiere) bei der Jagd +1 QS (bis zu einem Maximum von 6 QS).",
+      "prerequisites": [
+        "Jäger"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Erfolgreicher%20J%C3%A4ger",
       "costPerLevel": 8
     },
     {
@@ -92236,6 +93465,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDSO",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Ein Held mit dieser Sonderfertigkeit erzielt bei gelungenen Proben auf Pflanzenkunde zur Nahrungsbeschaffung +1 QS (bis zu einem Maximum von 6 QS).",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Erfolgreicher%20Sammler",
       "costPerLevel": 8
     },
     {
@@ -92247,6 +93481,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Würde die Geweihte durch Rauschmittel eine Stufe Betäubung, Schmerz oder Verwirrung erhalten, kann sie stattdessen entscheiden, dass sie eine Stufe Entrückung erhält. Der Einsatz …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Erforscher%20des%20Rausches",
       "costPerLevel": 15
     },
     {
@@ -92258,6 +93495,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "A",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Ein ausgewähltes Ziel in einer Reichweite von 16 Schritt erleidet Erfrierungen. Es kann eine Probe auf Selbstbeherrschung –2 ablegen. Bei Misslingen erleidet es 1W6 …",
+      "prerequisites": [
+        "keulenweihe",
+        "Freundschaft des Tieres"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Erfrierung%20verursachen",
       "costPerLevel": 12
     },
     {
@@ -92269,6 +93512,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Ein ausgewähltes Ziel in einer Reichweite von 16 Schritt erleidet Erfrierungen. Es kann eine Probe auf Selbstbeherrschung -2 ablegen. Bei Misslingen erleidet es 1W6 …",
+      "prerequisites": [
+        "Eishaut"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Erfrierung%20Verursachen",
       "costPerLevel": 12
     },
     {
@@ -92280,6 +93528,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Schicksalspunkte",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin kann unter dem Einsatz von 1 Schip ihren W6-Wurf bei der Regeneration wiederholen. Das zweite Ergebnis ist bindend.",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Erholsame%20Regeneration",
       "costPerLevel": 5
     },
     {
@@ -92291,6 +93542,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Ifirngeweihte kann einen Kulturschaffenden mit dem Ifirnsmantel zudecken. Dieser erleidet in der Regenerationsphase, in der er unter dem Mantel schläft, keine Abzüge auf …",
+      "prerequisites": [
+        "Warmer Mantel",
+        "Schutz gegen Kälte"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Erholsamer%20Schlaf",
       "costPerLevel": 12
     },
     {
@@ -92302,6 +93559,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "A",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Priesterin kann einen Kulturschaffenden mit der Echsenkleidung zudecken. Dieser erleidet in der Regenerationsphase, in der er schläft, keine Abzüge auf die Regeneration aufgrund …",
+      "prerequisites": [
+        "Pflanzensuche",
+        "Pflanzenerkennung"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Erholsamer%20Schlaf",
       "costPerLevel": 12
     },
     {
@@ -92313,6 +93576,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin weiß, wie man ein erholsames Bad vorbereitet. Sie benötigt dazu Kräuteressenzen und andere einfache Materialien im Wert von 5 Silbertalern. Alternativ kann …",
+      "prerequisites": [
+        "Heilkunde Wunden 6"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Erholsames%20Bad",
       "costPerLevel": 8
     },
     {
@@ -92324,6 +93592,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Die Sonderfertigkeit funktioniert wie die Sonderfertigkeit Ermutigender Gesang und lässt sich nun auch für das Talent Musizieren anwenden. Dabei sind maximal QS x 2 …",
+      "prerequisites": [
+        "Musizieren oder Singen 12",
+        "ermutigendergesang"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Ermutigende%20Darstellung",
       "costPerLevel": 5
     },
     {
@@ -92335,6 +93609,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Ermutigender Gesang ist eine Einsatzmöglichkeit des Talents Singen. Wenn der Abenteurer ein entsprechendes Lied oder ein Musikstück vorträgt, das mindestens 1 Minute in Anspruch …",
+      "prerequisites": [
+        "Singen 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Ermutigender%20Gesang",
       "costPerLevel": 10
     },
     {
@@ -92346,6 +93625,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit bekommt die Heldin eine neue Einsatzmöglichkeit im Talent Betören. Sie kann eine erotische Massage bei einem Kulturschaffenden durchführen. Dazu legt die …",
+      "prerequisites": [
+        "Betören 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Erotikmasseur%2Fin",
       "costPerLevel": 8
     },
     {
@@ -92357,6 +93641,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit bekommt die Heldin eine neue Einsatzmöglichkeit im Talent Tanzen. Sie kann einen erotischen Tanz aufführen, bei dem sie sich langsam entkleidet. …",
+      "prerequisites": [
+        "Nackttänzer/in",
+        "Betören 8",
+        "Tanzen 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Erotikt%C3%A4nzer%2Fin",
       "costPerLevel": 5
     },
     {
@@ -92368,6 +93659,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Wenn der Held maximal 1 Stunde vor Beginn seiner nächsten Regenerationsphase mit mindestens einer anderen Person ein Liebesspiel vollführt und Erregung IV erreicht, regeneriert …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Erotische%20Regeneration%20(Astralenergie)",
       "costPerLevel": 10
     },
     {
@@ -92379,6 +93675,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Wenn die Heldin maximal 1 Stunde vor Beginn ihrer nächsten Regenerationsphase mit mindestens einer anderen Person ein Liebesspiel vollführt und Erregung IV erreicht, regeneriert …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Erotische%20Regeneration%20(Karmaenergie)",
       "costPerLevel": 10
     },
     {
@@ -92390,6 +93691,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Wenn die Heldin sich mittels einer Probe auf Betören (Aufhübschen) zurechtmachen will, erhält sie eine Erleichterung von 1.",
+      "prerequisites": [
+        "Betören 4",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Erotische%20Stilsicherheit",
       "costPerLevel": 3
     },
     {
@@ -92401,6 +93708,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin bekommt einen Bonus von 2 FP bei Proben auf Betören (Liebeskünste), wenn sie die Sexpraktik Verbalerotik einsetzt.",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Erregende%20Worte",
       "costPerLevel": 5
     },
     {
@@ -92412,6 +93722,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Bei der Herstellung von Gegenständen durch Holz-, Leder-, oder Stoffbearbeitung kann, wie beim Brauen alchimistischer Elixiere (siehe Regelwerk Seite 271), für je 8 AsP …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Erschaffer",
       "costPerLevel": 15
     },
     {
@@ -92423,6 +93736,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Die Hexe kann am Ende des Liebesspiels jedem Teilnehmer für 4 AsP den Status Bewusstlos verleihen, der erreichte Durchgänge der Hexe x 30 Minuten …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Ersch%C3%B6pfendes%20Liebesspiel",
       "costPerLevel": 15
     },
     {
@@ -92434,6 +93750,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Durch die Sonderfertigkeit erwirbt der Held eine Einsatzmöglichkeit für das Talent Kriegskunst. Im Kampf gegen Drachen kann er 1 Aktion aufwenden, um eine Probe …",
+      "prerequisites": [
+        "Tierkunde 10",
+        "Kriegskunst 10",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Erweiterte%20Drachenkampf-Taktik",
       "costPerLevel": 20
     },
     {
@@ -92445,6 +93768,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Wie bei der Sonderfertigkeit Gedankenschutz ist die Seelenkraft gegen Zauber mit den Merkmalen Einfluss oder Hellsicht verbessert. Verfügt der Held über diese erweiterte Sonderfertigkeit, …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Erweiterter%20Gedankenschutz",
       "costPerLevel": 12
     },
     {
@@ -92456,6 +93784,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Wenn der Geweihte die Liturgiemodifikation Erzwingen einsetzt, so erhält er bei Gelingen der Liturgie +1 FP (bis zu einem Maximum von 18 FP).",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Erzwungene%20Liturgie",
       "costPerLevel": 10
     },
     {
@@ -92467,6 +93798,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AT",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Beim Erschaffen von Daimoniden wird beim Ritual CHIMAEROFORM die Zielkategorie Dämonische Essenz hinzugefügt. Die Essenz muss zu Beginn des Rituals bereits vorliegen und wird …",
+      "prerequisites": [
+        "chimaeroform",
+        "daimonidenkonstrukteur"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Essenzchim%C3%A4rologe",
       "costPerLevel": 10
     },
     {
@@ -92478,6 +93815,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 3,
+      "shortDescription": "Bei Stufe I muss sich der Held zwischen den Typusarten Dämonen, Elementare oder Geister entscheiden. Alle Zauber mit dem Merkmal Antimagie sind gegen das …",
+      "prerequisites": [
+        "Leiteigenschaft undefined",
+        "höchstens 1 passende Auswahl"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Exorzist",
       "costPerLevel": 10
     },
     {
@@ -92489,6 +93832,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Hesindegeweihte kann ein Wissenstalent benennen, das ihren Forschungsschwerpunkt darstellt und dem sie im Buch der Schlange am meisten Platz widmet. Das Wissenstalent lässt …",
+      "prerequisites": [
+        "Wissenssammlung",
+        "Forschungsgebiet",
+        "höchstens 1 passende Auswahl"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Expertenwissen",
       "variableCost": true,
       "suggestedCost": 3
     },
@@ -92501,6 +93851,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Segnungen gelten als mit 3 QS bestanden. Die QS bei Segnungen haben nur Auswirkungen darauf, wie gut man sie mittels anderer Sonderfertigkeiten brechen kann. …",
+      "prerequisites": [
+        "Geweihter",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Extrem%20starke%20Segnungen",
       "costPerLevel": 3
     },
     {
@@ -92512,6 +93868,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Zaubertricks gelten als mit 3 QS bestanden.",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Extrem%20starke%20Zaubertricks",
       "costPerLevel": 3
     },
     {
@@ -92523,6 +93884,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Segnungen jeglicher QS können aufgehoben werden. Dies kostet 1 KaP (+ KaP in Höhe einer eventuell vorhandenen Stufe der SF Hauptsegnung auf der Segnung) …",
+      "prerequisites": [
+        "Geweihter",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Extrem%20starker%20Segnungsbruch",
       "costPerLevel": 6
     },
     {
@@ -92534,6 +93901,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Ein Held mit der Sonderfertigkeit Extremschuss verfügt über die zusätzliche Reichweite extrem weit. Sie reicht bis zum Doppelten der Reichweite weit. Für den Schützen …",
+      "prerequisites": [
+        "IN 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Extremschuss",
       "costPerLevel": 15
     },
     {
@@ -92545,6 +93917,14 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Magie",
       "maxLevel": 5,
+      "shortDescription": "Mit dieser Sonderfertigkeit können auch Wesen verbannt werden, die eine zu starke Anrufungsschwierigkeit für Zauber wie den PENTA-, HEXA- oder HEPTAGRAMMA haben. Pro Stufe …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki",
+        "MU undefined",
+        "pentagramma,hexagramma",
+        "Leiteigenschaft undefined"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Exzellenter%20Entschw%C3%B6rer",
       "costPerLevel": 8
     },
     {
@@ -92556,6 +93936,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Mit Fächersprache kann man sich, ohne ein Wort zu sagen, mit jemanden der ebenfalls über diese Sonderfertigkeit verfügt, unterhalten. Die Fächersprache kann nur mit …",
+      "prerequisites": [
+        "Etikette 8",
+        "kein Blind"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=F%C3%A4chersprache",
       "costPerLevel": 3
     },
     {
@@ -92567,6 +93953,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Der Held muss sich auf ein Wissenstalent und zwei darin enthaltener Anwendungsgebiete festlegen. Legt der Held eine Probe darauf ab, kann +1 QS addieren …",
+      "prerequisites": [
+        "höchstens 1 passende Auswahl"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Fachwissen",
       "variableCost": true
     },
     {
@@ -92578,6 +93969,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Spontan: Affenhexen können die Modifikation Zauberdauer senken durchführen, ohne eine Erschwernis von 1 zu erhalten, allerdings sinkt bei diesem Einsatz der FW in dem …",
+      "prerequisites": [
+        "Tradition (Hexen)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Schwesternschaftsprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Fahrende%20Schwester",
       "variableCost": true
     },
     {
@@ -92589,6 +93986,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Bewegt sich das Reittier gehend fort, dann ist das Schießen für die Abenteurerin nicht mehr erschwert. Im Galopp sind Fernkampfangriffe nur noch um 2 …",
+      "prerequisites": [
+        "Fahrzeuge 10"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Fahrender%20Sch%C3%BCtze",
       "costPerLevel": 5
     },
     {
@@ -92600,6 +94002,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Der Held bekommt eine Erleichterung von 1 bei Fährtensuchen (tierische Spuren).",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=F%C3%A4hrtenleser",
       "costPerLevel": 10
     },
     {
@@ -92611,6 +94016,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch die Sonderfertigkeit wird das neue Anwendungsgebiet Fallen entschärfen des Talents Schlösserknacken erworben.",
+      "prerequisites": [
+        "Mechanik 4",
+        "Schlösserknacken 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Fallen%20entsch%C3%A4rfen",
       "costPerLevel": 5
     },
     {
@@ -92622,6 +94033,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Sollte eine Probe auf Brett- & Glücksspiel des Helden scheitern, darf der Spieler die Probe wiederholen (außer bei einem Patzer). Um den Betrug zu …",
+      "prerequisites": [
+        "Brett- & Glücksspiel 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Falschspielen",
       "costPerLevel": 5
     },
     {
@@ -92633,6 +94049,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Verfügt die Heldin über diese Sonderfertigkeit, kann sie in der ersten KR, gleich, welche Initiative sie aufweist, als erstes handeln. Sollten zwei oder mehr …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "MU 13",
+        "Eigenschaft 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Fasarer%20Blutgruben-Stil",
       "costPerLevel": 12
     },
     {
@@ -92644,6 +94067,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Die Sonderfertigkeit funktioniert wie die Sonderfertigkeit Faszinierender Gesang, lässt sich nun allerdings auch für das Talent Musizieren anwenden. Die Wirkungsdauer ist aber nicht auf …",
+      "prerequisites": [
+        "Musizieren oder Singen 12",
+        "faszinierendergesang"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Faszinierende%20Darstellung",
       "costPerLevel": 8
     },
     {
@@ -92655,6 +94084,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Faszinierender Gesang ist eine Einsatzmöglichkeit des Talents Singen. Wenn die Heldin ein entsprechendes Lied vorträgt, das maximal 5 Minuten andauern darf, sind alle ihre …",
+      "prerequisites": [
+        "Singen 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Faszinierender%20Gesang",
       "costPerLevel": 10
     },
     {
@@ -92666,6 +94100,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "In KR, in denen der Held keine Spezialmanöver einsetzt, verfügt er über eine um 2 erhöhte Verteidigung. Will der Abenteurer von dem Bonus auf …",
+      "prerequisites": [
+        "GE 13",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Fedorino-Stil",
       "costPerLevel": 20
     },
     {
@@ -92677,6 +94117,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Passierschläge sind gegen ihn zusätzlich um 4 erschwert.",
+      "prerequisites": [
+        "IN 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Feindgesp%C3%BCr",
       "costPerLevel": 10
     },
     {
@@ -92688,6 +94133,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "DSK",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Wird eine Lederrüstung mit diesem Ahnenzeichen versehen, können die zusätzlichen Abzüge auf GS und INI ignoriert werden. AsP-Kosten: 4 AsP",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Feinstes%20Leder",
       "costPerLevel": 4
     },
     {
@@ -92699,6 +94147,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDF",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Für eine Ferdoker Lanzerin sind Proben auf Reiten um +1 erleichtert. Erschwernisse aufgrund von sie betreffenden Zuständen kann sie bei einem Lanzenangriff sowie bei …",
+      "prerequisites": [
+        "MU 13",
+        "weitere Voraussetzung laut Regelwiki",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Ferdoker%20Lanzerinnen-Stil",
       "costPerLevel": 15
     },
     {
@@ -92710,6 +94165,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Schicksalspunkte",
       "maxLevel": 1,
+      "shortDescription": "Mittels dieser Sonderfertigkeit kann der Held Schicksalspunkte für Ergebnis verbessern (Fernkampf) einsetzen.",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Fernkampf%20verbessern",
       "costPerLevel": 5
     },
     {
@@ -92721,6 +94179,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Die Reichweite eines Zauberspruchs kann um weitere 50 % vergrößert werden, wenn die Zaubermodifikation Reichweite erhöhen eingesetzt wird. Fernzaubern muss vor dem Wirken des …",
+      "prerequisites": [
+        "KL 15",
+        "Leiteigenschaft 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Fernzaubern",
       "costPerLevel": 15
     },
     {
@@ -92732,6 +94196,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Ein Held erhält einen Bonus von 2 auf seinen Fertigkeitswert, wenn das entsprechende Anwendungsgebiet eine Rolle bei der Probe spielt. Ein Held kann sich …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Fertigkeitsspezialisierung%20(Talente)",
       "variableCost": true
     },
     {
@@ -92743,6 +94212,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Ein Festnageln-Manöver kann nur gegen Gegner durchgeführt werden, die den Status Liegend aufweisen. Gelingt die um 4 erschwerte AT und misslingt die Verteidigung, so …",
+      "prerequisites": [
+        "Eigenschaft 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Festnageln",
       "costPerLevel": 20
     },
     {
@@ -92754,6 +94228,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit bekommt der Held im Talent Gaukeleien das neue Anwendungsgebiet Feuer schlucken. Er kann extra dafür angefertigte brennende Fackeln in seinem Mund …",
+      "prerequisites": [
+        "Gaukeleien 8",
+        "Körperbeherrschung 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Feuerschlucker",
       "costPerLevel": 5
     },
     {
@@ -92765,8 +94245,16 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 3,
-      "variableCost": true,
-      "suggestedCost": 5
+      "shortDescription": "Der Angreifer kann mit diesem Manöver seine eigene Attacke pro Stufe der Sonderfertigkeit um 1 erschweren, was beim Gelingen die Verteidigung des Gegners um …",
+      "prerequisites": [
+        "GE 13/15/17 je nach Stufe"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Finte",
+      "costByLevel": [
+        15,
+        20,
+        25
+      ]
     },
     {
       "id": "fischer",
@@ -92777,6 +94265,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Mit dieser Sonderfertigkeit kann der Held erfolgreicher fischen. Bei einer erfolgreichen Probe auf Fischen & Angeln um Nahrung zu erbeuten kann er 1 QS …",
+      "prerequisites": [
+        "Fischen & Angeln 4",
+        "Verbergen 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Fischer",
       "costPerLevel": 3
     },
     {
@@ -92788,6 +94282,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "DSK",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Dieses Ahnenzeichen kann auf eine Angel, ein Netz oder eine Reuse gezeichnet oder geschnitzt werden. Zu Beginn muss dabei der Fluss oder See benannt …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Fischreichtum",
       "costPerLevel": 4
     },
     {
@@ -92799,6 +94296,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Der Schütze kann mit dieser Sonderfertigkeit einen Arm oder ein Bein des Gegners anvisieren und ihn am Boden, einem Baum, einer Holzwand oder einer …",
+      "prerequisites": [
+        "FF 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Fixierungsschuss",
       "costPerLevel": 15
     },
     {
@@ -92810,6 +94312,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Vampir verwandelt sich innerhalb von 2 Aktionen in einen Schwarm Fledermäuse (Werte siehe Seite 198). Die Anzahl der Fledermäuse entspricht der Höhe seiner …",
+      "prerequisites": [
+        "Status Kind der Finsternis"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Fledermausschwarm%20des%20Schreckens",
       "costPerLevel": 15
     },
     {
@@ -92821,6 +94328,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Schicksalspunkte",
       "maxLevel": 1,
+      "shortDescription": "Erleidet eine Heldin Schaden, beispielsweise im Kampf, durch einen Zauber oder einen Sturz, kann sie einen Schip ausgeben, um den durch diesen Effekt erzeugten …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Fleischwunde",
       "costPerLevel": 15
     },
     {
@@ -92832,6 +94342,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Priester kann lose Steine mit einem Gewicht von bis zu 1 Stein in einem Radius von 8 Schritt um sich herumwirbeln lassen. Er …",
+      "prerequisites": [
+        "Beständige Werksarbeit",
+        "Bebende Erde"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Fliegende%20Steine",
       "costPerLevel": 12
     },
     {
@@ -92843,6 +94359,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Schamane kann lose Steine mit einem Gewicht von bis zu 1 Stein in einem Radius von 8 Schritt um sich herumwirbeln lassen. Er …",
+      "prerequisites": [
+        "Tierische Kraft"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Fliegende%20Steine",
       "costPerLevel": 12
     },
     {
@@ -92854,6 +94375,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held bekommt einen Bonus von 2 FP bei Proben auf Betören (Liebeskünste), wenn er die Sexpraktiken Faustverkehr oder Fingerspiele einsetzt.",
+      "prerequisites": [
+        "Betören 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Flinke%20Finger",
       "costPerLevel": 10
     },
     {
@@ -92865,6 +94391,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Reichweite des Efferdbarts als Fernkampfwaffe beträgt 5/25/40 Schritt, statt 2/10/15.",
+      "prerequisites": [
+        "Tradition (Efferdkirche)",
+        "Kontrolle des Wassers"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Flug%20des%20Dreizacks",
       "costPerLevel": 5
     },
     {
@@ -92876,6 +94408,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit kann die Hexe Flugsalbe brauen (allerdings nur gemeinsam mit anderen Hexen bei einer Hexennacht) und damit ein bestrichenes Fluggerät nutzen. Die …",
+      "prerequisites": [
+        "Tradition (Hexen)",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Flugsalbe",
       "costPerLevel": 15
     },
     {
@@ -92887,6 +94425,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Swafnirgeweihte kann eine Schild-AT mit dem Walschild ausführen. Die Attacke unterliegt keiner Erschwernis durch den AT-Modifikator des Schilds. Bei einem unverteidigten Treffer muss …",
+      "prerequisites": [
+        "Tradition (Swafnirkirche)",
+        "Wall der Schilde"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Flukenschlag",
       "costPerLevel": 10
     },
     {
@@ -92898,6 +94442,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held bekommt einen Bonus von 2 FP bei Proben auf Betören (Liebeskünste), wenn er die Sexpraktik Samenspiele oder Wasserspiele einsetzt.",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Fl%C3%BCssigkeitsliebhaber%2Fin",
       "costPerLevel": 10
     },
     {
@@ -92909,6 +94456,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Flusswächter können die Modifikation Liturgiedauer senken ohne eine Erschwernis von 1 durchführen, allerdings sinkt bei diesem Einsatz der FW in der Liturgie um 2. …",
+      "prerequisites": [
+        "Tradition (Efferdkirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Flussw%C3%A4chter",
       "costPerLevel": 10
     },
     {
@@ -92920,6 +94472,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Für 5 Minuten kann der Borongeweihte alle Wesen sehen, die den Status Unsichtbar aufweisen. Dies kann z. B. Geister betreffen, aber auch andere unsichtbare …",
+      "prerequisites": [
+        "Tradition (Boronkirche)",
+        "Hammer der Furcht"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Fokus%20der%20Schattenwelt",
       "costPerLevel": 8
     },
     {
@@ -92931,6 +94489,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Diese Fähigkeit sorgt dafür, dass der Borongeweihte die Auswirkungen der höchsten Stufe des Zustands Furcht ignorieren darf. Er erleidet lediglich die Auswirkungen der nächstniedrigeren …",
+      "prerequisites": [
+        "Fokus der Schattenwelt",
+        "Fokus der Verwirrung"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Fokus%20der%20Seelenst%C3%A4rke",
       "costPerLevel": 12
     },
     {
@@ -92942,6 +94506,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Borongeweihte kann auf bis zu 32 Schritt ein Ziel benennen. Dieses erleidet 1 Stufe Verwirrung. Nur folgende Wesen können davon betroffen sein: Lebewesen. …",
+      "prerequisites": [
+        "Fokus der Schattenwelt",
+        "Fokus der Seelenstärke"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Fokus%20der%20Verwirrung",
       "costPerLevel": 12
     },
     {
@@ -92953,6 +94523,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "O",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Schamane kann auf bis zu 32 Schritt ein Ziel (nur Lebewesen) benennen. Dieses erleidet 1 Stufe Verwirrung. Die Wirkung tritt auch ein, wenn …",
+      "prerequisites": [
+        "Magieentzug"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Fokus%20der%20Verwirrung",
       "costPerLevel": 12
     },
     {
@@ -92964,6 +94539,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Wird der Held in seiner Konzentration beim Wirken von Liturgien oder Zeremonien gestört, sind die nötigen Proben auf Selbstbeherrschung (Störungen ignorieren) durch diese Sonderfertigkeit …",
+      "prerequisites": [
+        "MU 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Fokussierung",
       "costPerLevel": 8
     },
     {
@@ -92975,6 +94555,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Ein Kämpfer mit dieser Sonderfertigkeit kann zusammen mit bis zu vier weiteren Kämpfern, die sich maximal einen halben Schritt vor, hinter, links und rechts …",
+      "prerequisites": [
+        "Kriegskunst 6"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Formation",
       "costPerLevel": 20
     },
     {
@@ -92986,6 +94571,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Ein Kämpfer mit dieser SF kann zusammen mit bis zu zwei weiteren Kämpfern, die sich maximal einen halben Schritt links und rechts von ihm …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Formationsattacke",
       "costPerLevel": 12
     },
     {
@@ -92997,6 +94587,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Ein Kämpfer mit dieser SF kann zusammen mit bis zu zwei weiteren Kämpfern, die sich maximal einen halben Schritt links und rechts von ihm …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Formationsparade",
       "costPerLevel": 15
     },
     {
@@ -93008,6 +94603,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Gegenstände, die ein Former herstellt, erhalten für 8 AsP 10 % mehr Strukturpunkte, ausgehend von einem gewöhnlichen Gegenstand dieser Art. Der Erschaffer kann eine …",
+      "prerequisites": [
+        "Tradition (Elfen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Former",
       "costPerLevel": 15
     },
     {
@@ -93019,6 +94619,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Hesindegeweihte kann ein Wissenstalent benennen, das ihren Forschungsschwerpunkt darstellt und dem sie im Buch der Schlange am meisten Platz widmet. Das Wissenstalent lässt …",
+      "prerequisites": [
+        "Wissenssammlung",
+        "Expertenwissen",
+        "höchstens 1 passende Auswahl"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Forschungsgebiet",
       "variableCost": true,
       "suggestedCost": 3
     },
@@ -93031,6 +94638,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Die Freidenker erhalten +1 FP, wenn sie eine Liturgie oder Zeremonie modifizieren.",
+      "prerequisites": [
+        "Tradition (Hesindekirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Freidenker",
       "costPerLevel": 10
     },
     {
@@ -93042,6 +94654,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Tsageweihte kann durch Reflexionen ihres Prismas einen Kulturschaffenden von einer Zustandsstufe Furcht, Paralyse oder Verwirrung kurieren. Der Einsatz dieser Fähigkeit kostet 1 Aktion …",
+      "prerequisites": [
+        "Licht des Prismas",
+        "Freiheitsdrang"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Freiheit%20des%20Lichts",
       "costPerLevel": 10
     },
     {
@@ -93053,6 +94671,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Tsageweihte kann bei einer öffentlichen Rede ihre Zuhörer beeindrucken und bekommt bei Bekehren & Überzeugen (öffentliche Rede) eine Begabung, wenn es darum geht, …",
+      "prerequisites": [
+        "Licht des Prismas",
+        "Freiheit des Lichts"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Freiheitsdrang",
       "costPerLevel": 8
     },
     {
@@ -93064,6 +94688,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Eine Abenteurerin mit dieser Sonderfertigkeit kann Erschwernisse von bis zu 2 bei Proben auf Klettern aufgrund fehlender Werkzeuge ignorieren. Der Rest der Erschwernis gilt …",
+      "prerequisites": [
+        "Klettern 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Freiklettern",
       "costPerLevel": 6
     },
     {
@@ -93075,6 +94704,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Schicksalspunkte",
       "maxLevel": 1,
+      "shortDescription": "Ein Held kann 2 Schips ausgeben, um einem anderen Helden für eine Probe 1 Schip zukommen zu lassen. Der Schip muss umgehend eingesetzt werden. …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Freund%20von%20Freunden",
       "costPerLevel": 12
     },
     {
@@ -93086,6 +94718,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "In vom Zauberer erschaffenen magischen Artefakten kann nach seiner Wahl eine Artefaktseele entstanden sein. Diese hilft dem Zauberer beim Aktivieren des oder der enthaltenen …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Freundliche%20Artefaktseele",
       "costPerLevel": 15
     },
     {
@@ -93097,6 +94732,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Keule kann ein Tier im Abstand von bis zu 16 Schritt beruhigen, sodass es den Schamanen und seine Gefährten nicht angreift und in …",
+      "prerequisites": [
+        "keulenweihe",
+        "Blutende Keule"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Freundschaft%20des%20Tieres",
       "costPerLevel": 12
     },
     {
@@ -93108,6 +94749,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Keule kann ein Tier im Abstand von bis zu 16 Schritt beruhigen, sodass es den Schamanen und seine Gefährten nicht angreift und in …",
+      "prerequisites": [
+        "keulenweihe",
+        "Tierische Kraft"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Freundschaft%20des%20Tieres",
       "costPerLevel": 12
     },
     {
@@ -93119,6 +94766,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Keule kann ein Tier im Abstand von bis zu 16 Schritt beruhigen, sodass es den Schamanen und seine Gefährten nicht angreift und in …",
+      "prerequisites": [
+        "keulenweihe",
+        "magieentzugmoha"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Freundschaft%20des%20Tieres",
       "costPerLevel": 12
     },
     {
@@ -93130,6 +94783,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Keule kann ein Tier im Abstand von bis zu 16 Schritt beruhigen, sodass es den Schamanen und seine Gefährten nicht angreift und in …",
+      "prerequisites": [
+        "keulenweihe",
+        "Mondsicht"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Freundschaft%20des%20Tieres",
       "costPerLevel": 12
     },
     {
@@ -93141,6 +94800,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "A",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Keule kann ein Tier im Abstand von bis zu 16 Schritt beruhigen, sodass es den Schamanen und seine Gefährten nicht angreift und in …",
+      "prerequisites": [
+        "keulenweihe",
+        "Erfrierung verursachen"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Freundschaft%20des%20Tieres",
       "costPerLevel": 12
     },
     {
@@ -93152,6 +94817,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Friedensfreunde bekommen eine Erleichterung von 1 bei Proben auf Bekehren & Überzeugen, wenn es darum geht, dass sie sich für Konfliktlösungen und Frieden einsetzen. …",
+      "prerequisites": [
+        "Tradition (Tsakirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Friedensfreunde",
       "costPerLevel": 12
     },
     {
@@ -93163,6 +94833,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Der Frontalangriff ist ein eigener Befehl, der den Befehl Niederreiten mit einem normalen Lanzenangriff kombiniert. Der ausgewählte Gegner muss sich sowohl gegen die Attacke …",
+      "prerequisites": [
+        "Berittener Kampf",
+        "Lanzenangriff"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Frontalangriff",
       "costPerLevel": 25
     },
     {
@@ -93174,6 +94850,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann die Zinken des Füchsischen lesen und schreiben.",
+      "prerequisites": [
+        "Gassenwissen 8",
+        "kein Blind"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=F%C3%BCchsisch",
       "costPerLevel": 3
     },
     {
@@ -93185,6 +94867,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Mit dieser Sonderfertigkeit kann eine Geweihte mittels Berührung und 1 Aktion versuchen, einem Kulturschaffenden 1 Stufe Furcht zu nehmen, die durch folgende Wesen entstanden …",
+      "prerequisites": [
+        "Geweihter",
+        "Leiteigenschaft 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Furcht%20nehmen",
       "costPerLevel": 10
     },
     {
@@ -93196,6 +94884,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Gelingt der Heldin eine um 4 erschwerte AT und misslingt die Verteidigung des Gegners, fällt dieser zu Boden und erhält den Status Liegend. Schaden …",
+      "prerequisites": [
+        "KK 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Fu%C3%9Ffeger",
       "costPerLevel": 15
     },
     {
@@ -93207,6 +94900,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Mit dieser Sonderfertigkeit erhält die Heldin im Talent Betören das neue Anwendungsgebiet Gestaltung. Mit diesem Anwendungsgebiet kann ein Raum oder ein Festplatz dekoriert und …",
+      "prerequisites": [
+        "Betören 8",
+        "Etikette 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Galanterie",
       "costPerLevel": 15
     },
     {
@@ -93218,6 +94917,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Wer über den Gardisten-Stil verfügt, der erhält durch die Sonderfertigkeit Anführer (siehe Regelwerk Seite 215) zusätzlich einen Bonus von +1 AT oder +1 VW …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "MU 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gardisten-Stil",
       "costPerLevel": 8
     },
     {
@@ -93229,6 +94934,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Garether Krieger benötigen keine Probe auf Reiten (Kampfmanöver), damit ihr Pferd vom Trab in den Galopp oder umgedreht wechselt (siehe Regelwerk Seite 240). Zudem …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "GE 13",
+        "Lanzenangriff"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gareth-Stil",
       "costPerLevel": 10
     },
     {
@@ -93240,6 +94952,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Die Schadensschwelle bei der Kampftechniken Raufen sinkt um 1.",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Garether%20Gossen-Stil",
       "costPerLevel": 8
     },
     {
@@ -93251,6 +94966,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Liturgien und Zeremonien des gewählten Aspekts seiner Tradition erhalten bei einer gelungenen Probe +1 FP (bis zu einem Maximum von 18 FP). Der allgemeine …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gebieter%2Fin%20der%2Fdes%20(Aspekts)",
       "costPerLevel": 25
     },
     {
@@ -93262,6 +94980,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "So lange der Held sich entsprechend darauf konzentriert, ist seine Seelenkraft gegen Zauber mit den Merkmalen Einfluss und Hellsicht um 1 verbessert. Zum Aktivieren …",
+      "prerequisites": [
+        "MU 13",
+        "Leiteigenschaft 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gedankenschutz",
       "costPerLevel": 10
     },
     {
@@ -93273,6 +94997,14 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Eine Kämpferin mit dieser Sonderfertigkeit kann zusammen mit bis zu vier weiteren Kämpfern, die sich maximal einen halben Schritt vor, hinter, links und rechts …",
+      "prerequisites": [
+        [
+          "anfuehrer",
+          "formation"
+        ]
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gefechtsformation",
       "costPerLevel": 12
     },
     {
@@ -93284,6 +95016,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Ein Geweihter kann Erschwernisse für eine Zeremonieprobe, die durch Ort oder Zeit entstanden sind, um insgesamt 1 senken (bis zu einem Maximum von +/-0).",
+      "prerequisites": [
+        "Geweihter",
+        "Leiteigenschaft 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gefestigter%20Zeremonieablauf",
       "costPerLevel": 8
     },
     {
@@ -93295,6 +95033,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Eine Geflügelte Tochter kann mit ihrem Fluggerät bis zu 100 Meilen pro Stunde fliegen (statt 50 Meilen).",
+      "prerequisites": [
+        "Tradition (Hexen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gefl%C3%BCgelte%20T%C3%B6chter%20(Seherin%20von%20Heute%20und%20Morgen)",
       "costPerLevel": 12
     },
     {
@@ -93306,6 +95049,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin kann sich bei einem Angriff des Gegners nach dessen gelungener AT entscheiden, statt auf PA zu würfeln, ein Gegenhalten- Manöver zu starten …",
+      "prerequisites": [
+        "MU 15",
+        "Wuchtschlag 2"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gegenhalten",
       "costPerLevel": 20
     },
     {
@@ -93317,6 +95066,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Wer über diese Sonderfertigkeit verfügt, der kann Gegenstände verfluchen (siehe Seite 50).",
+      "prerequisites": [
+        "Tradition (Hexen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gegenst%C3%A4nde%20verfluchen",
       "costPerLevel": 12
     },
     {
@@ -93328,6 +95082,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Avesgeweihte erhält beim Kampf mit dem Avesstab +1 PA.",
+      "prerequisites": [
+        "wegdesstabtraegers",
+        "sichererschrittdesstabtraegers"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gegenwehr%20des%20Stabtr%C3%A4gers",
       "costPerLevel": 8
     },
     {
@@ -93339,6 +95099,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Gegen Zauber mit dem Merkmal Elementar, die auf dem gewählten Element basieren, erhält der Abenteurer eine Erleichterung von 2 auf seine Verteidigung (gleich ob …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gegnerische%20Zauberpraxis%20(Eis)",
       "costPerLevel": 5
     },
     {
@@ -93350,6 +95113,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Gegen Zauber mit dem Merkmal Elementar, die auf dem gewählten Element basieren, erhält der Abenteurer eine Erleichterung von 2 auf seine Verteidigung (gleich ob …",
+      "prerequisites": [
+        "passender Zauberstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gegnerische%20Zauberpraxis%20(Erz)",
       "costPerLevel": 5
     },
     {
@@ -93361,6 +95129,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Gegen Zauber mit dem Merkmal Elementar, die auf dem gewählten Element basieren, erhält der Abenteurer eine Erleichterung von 2 auf seine Verteidigung (gleich ob …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gegnerische%20Zauberpraxis%20(Feuer)",
       "costPerLevel": 5
     },
     {
@@ -93372,6 +95143,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Gegen Zauber mit dem Merkmal Elementar, die auf dem gewählten Element basieren, erhält der Abenteurer eine Erleichterung von 2 auf seine Verteidigung (gleich ob …",
+      "prerequisites": [
+        "passender Zauberstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gegnerische%20Zauberpraxis%20(Humus)",
       "costPerLevel": 5
     },
     {
@@ -93383,6 +95159,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Gegen Zauber mit dem Merkmal Elementar, die auf dem gewählten Element basieren, erhält der Abenteurer eine Erleichterung von 2 auf seine Verteidigung (gleich ob …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gegnerische%20Zauberpraxis%20(Luft)",
       "costPerLevel": 5
     },
     {
@@ -93394,6 +95173,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Gegen Zauber mit dem Merkmal Elementar, die auf dem gewählten Element basieren, erhält der Abenteurer eine Erleichterung von 2 auf seine Verteidigung (gleich ob …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gegnerische%20Zauberpraxis%20(Wasser)",
       "costPerLevel": 5
     },
     {
@@ -93405,6 +95187,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Für jede Stufe Erregung bekommt ein Gehörnter +2 FW auf Kraftakt und +1 KK. Dieser KK-Bonus kann zu einem TP-Bonus führen, wenn die entsprechende …",
+      "prerequisites": [
+        "Tradition (Levthankult)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Geh%C3%B6rnte",
       "costPerLevel": 15
     },
     {
@@ -93416,6 +95203,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Proben auf überreden (Aufschwatzen, Herausreden, Manipulieren oder Schmeicheln), um Geister freundlich zu stimmen, gelten bei Gelingen der Probe als um 1 QS besser (bis …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Geisterfreundin",
       "costPerLevel": 10
     },
     {
@@ -93427,6 +95217,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Der Geisterführer erhält bei allen Fertigkeitsproben, die sich mit dem Beschwören, Verbannen oder Kommunizieren mit Geistern befassen, +1 FP (bis zu einem Maximum von …",
+      "prerequisites": [
+        "Sonderfertigkeit Tradition (eine Schamanentradition)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Geisterf%C3%BChrer",
       "costPerLevel": 15
     },
     {
@@ -93438,6 +95233,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Der Geweihte kann ein Objekt von der Größe einer typischen Vase zu einem Geistergefäß machen. Wichtig ist, dass das Gefäß verschließbar ist, also z. …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Geistergef%C3%A4%C3%9F",
       "costPerLevel": 12
     },
     {
@@ -93449,6 +95247,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDDD",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Mit einer Probe auf Selbstbeherrschung kann ein Geisterkrieger sein gesamtes Wesen auf die Nipakau einstimmen. Gelingt die Probe, genießt er für QS KR Boni …",
+      "prerequisites": [
+        "MU 13",
+        "Tradition (Animisten)",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Geisterkrieger-Stil",
       "costPerLevel": 15
     },
     {
@@ -93460,6 +95265,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Die Hexe kann ein Geisterwesen, das sich maximal in einem Radius von 10 Schritt um sie befinden muss, in sich einfahren lassen. Dies kostet …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Geistermedium",
       "costPerLevel": 12
     },
     {
@@ -93471,6 +95279,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Gesegnete und geweihte Materialien verursachen bei Geistern Schaden, ganz so, als seien diese Dämonen (siehe Regelwerk Seite 316). Üblicherweise sind Geister davon nicht betroffen, …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Geisterschreck",
       "costPerLevel": 3
     },
     {
@@ -93482,6 +95295,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Geistergefäß: Proben bei Animistenkräften sind um 1 erleichtert. Schwierigere Waffenkontrolle: Der Einsatz der Animistenwaffe kostet bei Waffenzaubern zusätzlich 3 AsP.",
+      "prerequisites": [
+        "Tradition Animisten",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Animistenprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Geisterseher",
       "variableCost": true
     },
     {
@@ -93493,6 +95312,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Proben auf Gesellschaftstalente gegenüber Geisterwesen sind um 1 erleichtert.",
+      "prerequisites": [
+        "Tradition (Hexen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Geisterseherinnen%20(Schwarze%20Witwen)",
       "costPerLevel": 10
     },
     {
@@ -93504,6 +95328,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Ist der Geweihte von einer Liturgie oder einem Zauber des Merkmals Einfluss betroffen, der Zustandsstufen von Betäubung, Furcht, Schmerz oder Verwirrung verursacht, so kann …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Geistkontrolle",
       "costPerLevel": 25
     },
     {
@@ -93515,6 +95342,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Wer über diese Sonderfertigkeit verfügt, kann vor dem Wirken eines Zaubers mit dem Merkmal Einfluss entscheiden, ob der Zauber eine 50 % größere Wirkungsdauer …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Geistzauberer",
       "costPerLevel": 10
     },
     {
@@ -93526,6 +95356,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Eine Geländekunde gewährt eine Erleichterung von 1 auf Proben für folgende Talente, falls diese in der entsprechenden Umgebung angewandt werden können: Fährtensuchen, Orientierung, Pflanzenkunde, …",
+      "prerequisites": [
+        "Held hat mindestens 6 Monate in entsprechender Umgebung gelebt"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gel%C3%A4ndekunde",
       "costPerLevel": 15
     },
     {
@@ -93537,6 +95372,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Benutzt der Held die Stellungen des Rahjasutras beim Liebesspiel, erhält er +1 FP bei der Probe auf Körperbeherrschung (bis zu einem Maximum von 18 …",
+      "prerequisites": [
+        "Rahjasutra-Kenntnisse",
+        "Körperbeherrschung 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gelenkige%2Fr%20Liebhaber%2Fin",
       "costPerLevel": 8
     },
     {
@@ -93548,6 +95389,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Hexen, die über diese Sonderfertigkeit verfügen, können mit anderen Hexen, die ebenfalls diese Sonderfertigkeit haben, gemeinsam einen Fluch aussprechen (siehe Seite 51).",
+      "prerequisites": [
+        "Tradition (Hexen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gemeinsamer%20Fluch",
       "costPerLevel": 10
     },
     {
@@ -93559,6 +95405,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Gelingt eine Probe auf Heilkunde Krankheiten (jeweilige Krankheit), so muss die Krankheit nochmal eine Krankheitsprobe ablegen, aber gegen eine um 1 erhöhte ZK des …",
+      "prerequisites": [
+        "Seuchenhandschuh",
+        "Heilerhandschuh"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Genesungshandschuh",
       "costPerLevel": 8
     },
     {
@@ -93570,6 +95422,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AT",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit ist die Zauberin in der Lage, bei den Fokusregeln zur Erschaffung eigener Transmutationen im Rahmen der Regeln Zielmerkmale zu bestimmen, die …",
+      "prerequisites": [
+        "chimaeroform 12",
+        "chimaerenmeister",
+        "anatomiespezies"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Genius%20der%20Transmutationsforschung",
       "costPerLevel": 20
     },
     {
@@ -93581,6 +95440,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "BKAM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "CH-Teilproben bei Gesellschaftstalenten gegenüber Geisterwesen sind um 1 erleichtert und der Brobim-Geode spart bei den Zaubern GEISTERESSENZ, GEISTERRUF und GEISTERBESCHWÖRUNG 1 AsP ein.",
+      "prerequisites": [
+        "Tradition (Geoden)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Geode%20der%20Wilden%20Zwerge",
       "costPerLevel": 10
     },
     {
@@ -93592,6 +95456,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin bekommt eine neue Einsatzmöglichkeit für Gassenwissen. Sie kann einmal am Tag in einem entsprechenden Umfeld eine Probe ablegen und erhält je nach …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Ger%C3%BCchte%20Aufschnappen",
       "costPerLevel": 10
     },
     {
@@ -93603,6 +95470,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 3,
+      "shortDescription": "Durch diese Sonderfertigkeit ist der Held in der Lage, unangenehme Gerüchte über jemanden zu verbreiten. Möchte ein Held in einer Stadt ein Gerücht über …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Ger%C3%BCchtekoch",
       "costPerLevel": 10
     },
     {
@@ -93614,6 +95486,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Wenn er sich selbst eine Wunde von mindestens 2 LeP zufügt, kann ein Vampir einen Kulturschaffenden von seinem Blut trinken lassen. Dieser regeneriert dadurch …",
+      "prerequisites": [
+        "Status Kind der Nacht"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Geschenk%20des%20Blutes",
       "costPerLevel": 15
     },
     {
@@ -93625,6 +95502,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin bekommt einen Bonus von 2 FP bei Proben auf Betören (Liebeskünste), wenn sie die Sexpraktiken Cunnilingus, Fellatio oder Küssen & Lecken einsetzt.",
+      "prerequisites": [
+        "Betören 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Geschickte%20Zunge",
       "costPerLevel": 15
     },
     {
@@ -93636,6 +95518,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Verfügt ein Abenteurer über die SF Geschickter Wurf, aktiviert er für Wurfwaffen die Schadensschwelle FF 15. Mit jedem FF-Punkt über 15 richtet er +1 …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Geschickter%20Wurf",
       "costPerLevel": 12
     },
     {
@@ -93647,6 +95532,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 3,
+      "shortDescription": "Um sich gegen einen Angriff mit Wurfwaffen zu verteidigen, würfelt der Held statt einer Probe auf Ausweichen eine Raufen-PA. Gelingt sie, hat er die …",
+      "prerequisites": [
+        "FF 13/15/17 je nach Stufe"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Geschossabwehr",
       "costPerLevel": 5
     },
     {
@@ -93658,6 +95548,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Schicksalspunkte",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin bekommt das neue Anwendungsgebiet Gespür für das Böse im Talent Sinnesschärfe. Setzt der Spieler einen Schip ein, so verfügt seine Heldin über …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gesp%C3%BCr%20f%C3%BCr%20das%20B%C3%B6se",
       "costPerLevel": 5
     },
     {
@@ -93669,6 +95564,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Der Geweihte kann, wenn er ein Objekt genauer untersucht, feststellen, ob es von Drachen oder Echsen erschaffen wurde. Bei einer Magischen Analyse kann er …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gesp%C3%BCr%20f%C3%BCr%20Drachenwerk",
       "costPerLevel": 10
     },
     {
@@ -93680,6 +95578,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Phexgeweihte kann das Mondamulett dazu nutzen, zu ermitteln, wie viel Geld ein einzelner Kulturschaffender bei sich trägt. Dabei kann der Phexgeweihte nicht genau …",
+      "prerequisites": [
+        "Tradition (Phexkirche)",
+        "Licht des Madamals"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gesp%C3%BCr%20f%C3%BCr%20Geld",
       "costPerLevel": 2
     },
     {
@@ -93691,6 +95595,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Proben auf Willenskraft (Bedrohung standhalten) gelten bei Gelingen der Probe als um 1 QS besser. Allerdings kann sich so die QS nie über 6 …",
+      "prerequisites": [
+        "Willenskraft 8",
+        "kein Angst vor …"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gest%C3%A4hlter%20Wille",
       "costPerLevel": 5
     },
     {
@@ -93702,6 +95612,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Wenn der Feylamia einen Kulturschaffenden getötet hat, kann er dessen Gestalt annehmen. Er muss dazu eine Probe auf Selbstbeherrschung ablegen und benötigt 7–QS Minuten. …",
+      "prerequisites": [
+        "Status Feylamia"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gestaltwandlung",
       "costPerLevel": 0
     },
     {
@@ -93713,6 +95628,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Wendet der Held das Talent Steinbearbeitung an, um herauszufinden, mit welchem Edelstein er es zu hat, wie viel Karat und welchen Wert er besitzt, …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gesteinskunde",
       "costPerLevel": 3
     },
     {
@@ -93724,6 +95642,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Diese Sonderfertigkeit eröffnet eine neue Einsatzmöglichkeit im Talent Heilkunde Seele. Der Geweihte kann nach einer gelungenen Probe auf Heilkunde Wunden oder einer Liturgie oder …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gesunder%20Geist%2C%20gesunder%20K%C3%B6rper",
       "costPerLevel": 15
     },
     {
@@ -93735,6 +95656,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Die Geweihte kann eine oder zwei Stufen Entrückung mittels einer Berührung und 1 Aktion von sich auf jemand anderen übertragen. Sie muss die entsprechende …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Geteilte%20Freude",
       "costPerLevel": 15
     },
     {
@@ -93746,6 +95670,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Die karmale Kraft im Körper des Geweihten ist so stark, dass waffenlose Angriffe mit der Kampftechnik Raufen als geweihte Angriffe gelten. Er ist damit …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki",
+        "Leiteigenschaft 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Geweihter%20Karmalleib",
       "costPerLevel": 8
     },
     {
@@ -93757,6 +95687,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Mit diesem Manöver kann man gezielt eine Trefferzone angreifen. Dazu ist eine Attacke nötig, die entsprechend dem Zonenaufschlag erschwert ist.",
+      "prerequisites": [
+        "GE 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gezielter%20Angriff",
       "costPerLevel": 10
     },
     {
@@ -93768,6 +95703,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Der Schütze kann im Fernkampf gezielt eine Trefferzone beschießen. Dazu ist eine Probe auf Fernkampf nötig, die entsprechend dem Zonenaufschlag erschwert ist.",
+      "prerequisites": [
+        "FF 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gezielter%20Schuss",
       "costPerLevel": 10
     },
     {
@@ -93779,6 +95719,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "A",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Priester kann versuchen, ein bis zu 8 Schritt entferntes Ziel zu vergiften. Dazu wird eine Giftprobe (Stufe 4) abgelegt. Gelingt die Probe, erleidet …",
+      "prerequisites": [
+        "Wandelstab",
+        "Schlangenhaut"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Giftbiss",
       "costPerLevel": 12
     },
     {
@@ -93790,6 +95736,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Die Geweihte kann eine Probe auf Heilkunde Gift (spezielles Gift) ablegen, die um Giftstufe/2+1 erschwert ist. Gelingt die Probe, wirkt das Gift nur mit …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Giftkenntnis",
       "costPerLevel": 12
     },
     {
@@ -93801,6 +95750,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Hexen mit dieser Sonderfertigkeit können bei allen durch Alchimie hergestellten Giften und Elixieren, die spieltechnische Werte negativ beeinflussen, 4 zusätzliche AsP in das Erzeugnis …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Giftmeisterin",
       "costPerLevel": 5
     },
     {
@@ -93812,6 +95764,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann versuchen, die Giftstufe eines Giftes zu verstärken. Dazu legt er eine Probe auf Alchimie (für alchimistische Gifte), Pflanzenkunde (für pflanzliche Gifte), …",
+      "prerequisites": [
+        "Alchimie 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Giftverst%C3%A4rkung%20(alchimistische%20Gifte)",
       "costPerLevel": 12
     },
     {
@@ -93823,6 +95780,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann versuchen, die Giftstufe eines Giftes zu verstärken. Dazu legt er eine Probe auf Alchimie (für alchimistische Gifte), Pflanzenkunde (für pflanzliche Gifte), …",
+      "prerequisites": [
+        "Steinbearbeitung 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Giftverst%C3%A4rkung%20(mineralische%20Gifte)",
       "costPerLevel": 12
     },
     {
@@ -93834,6 +95796,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann versuchen, die Giftstufe eines Giftes zu verstärken. Dazu legt er eine Probe auf Alchimie (für alchimistische Gifte), Pflanzenkunde (für pflanzliche Gifte), …",
+      "prerequisites": [
+        "Pflanzenkunde 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Giftverst%C3%A4rkung%20(pflanzliche%20Gifte)",
       "costPerLevel": 12
     },
     {
@@ -93845,6 +95812,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann versuchen, die Giftstufe eines Giftes zu verstärken. Dazu legt er eine Probe auf Alchimie (für alchimistische Gifte), Pflanzenkunde (für pflanzliche Gifte), …",
+      "prerequisites": [
+        "Tierkunde 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Giftverst%C3%A4rkung%20(tierische%20Gifte)",
       "costPerLevel": 12
     },
     {
@@ -93856,6 +95828,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Gildenlose Magier verfügen über keine Gildenprägung.",
+      "prerequisites": [
+        "Der Held wurde an einer gildenlosen Akademie oder von einem gildenlosen privaten Lehrmeister unterrichtet, er hat seine Ausbildung abgebrochen, oder er wurde von der Gilde ausgeschlossen.",
+        "Tradition (Gildenmagier)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Gildenprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gildenlose",
       "variableCost": true
     },
     {
@@ -93867,6 +95846,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held erlangt das neue Anwendungsgebiet Gildenrecht in Rechtskunde.",
+      "prerequisites": [
+        "Rechtskunde 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gildenrecht",
       "costPerLevel": 2
     },
     {
@@ -93878,6 +95862,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Wer den Gladiatoren-Stil beherrscht, kann immer, wenn er mittels Raufen-AT Trefferpunkte verursacht, versuchen, die Zuschauer für sich zu gewinnen. Die Spielerin legt dazu eine …",
+      "prerequisites": [
+        "Eigenschaft 13",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gladiatoren-Stil",
       "costPerLevel": 5
     },
     {
@@ -93889,6 +95879,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held ist in der Lage, Glaswaren in Form von Vasen und Flaschen durch den Einsatz von Glasbläserei herzustellen. Durch die Sonderfertigkeit kennt der …",
+      "prerequisites": [
+        "Steinbearbeitung 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Glasbl%C3%A4serei",
       "costPerLevel": 2
     },
     {
@@ -93900,6 +95895,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Verfügt ein Held über diese SF, muss er beim Liebespiel die Sexpraktik nicht heimlich aufschreiben, sondern sein Spieler kann abwarten, bis die übrigen Teilnehmer …",
+      "prerequisites": [
+        "Betören 12",
+        "Menschenkenntnis 12"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gleichklang%20der%20Lust",
       "costPerLevel": 15
     },
     {
@@ -93911,6 +95912,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Phexgeweihte kann das Mondamulett einem Kulturschaffenden ausleihen. Spricht der Phexgeweihte nun noch einen Glücksegen (siehe Regelwerk Seite 323) auf den Träger, bekommt der …",
+      "prerequisites": [
+        "Licht des Madamals",
+        "Lautlos wie ein Schatten"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gl%C3%BCck%20des%20Fuchses",
       "costPerLevel": 12
     },
     {
@@ -93922,6 +95929,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Avesgeweihte kann einen Kulturschaffenden mit dem Avesstab segnen. Der Gesegnete erhält für die nächsten 12 Stunden die Fähigkeit Glückskind. Der Einsatz dieser Fähigkeit …",
+      "prerequisites": [
+        "Tradition (Aveskirche)",
+        "wegdesstabtraegers"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gl%C3%BCckskind",
       "costPerLevel": 8
     },
     {
@@ -93933,6 +95946,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Dämonen, Pflanzen, Objekte aus Holz und Wesen mit dem Nachteil Hitzeempfindlich erleiden durch den Ingerimmshammer +2 TP.",
+      "prerequisites": [
+        "Brandschutz",
+        "Erdbeben-Schlag"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Glut%20des%20Hammers",
       "costPerLevel": 8
     },
     {
@@ -93944,6 +95963,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "ANE",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Wird das Zeichen erfolgreich auf einem toten Körper angebracht, erhebt sich ein Untoter. Er kann sich nur in einem Bereich von 13 Schritt um …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Glyphe%20der%20ewigen%20Wacht",
       "costPerLevel": 10
     },
     {
@@ -93955,6 +95977,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Ritualmeister: Rituale und Geodenrituale kosten 1 AsP weniger (bei einem Minimum von 1 AsP). Fragwürdig: Gnome gelten in den Augen vieler Aventurier als wenig …",
+      "prerequisites": [
+        "Tradition (Geoden)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Geodenprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gnome",
       "variableCost": true
     },
     {
@@ -93966,6 +95994,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit ist der Zauberer in der Lage, Golems der Komplexität einfach zu erschaffen (siehe Seite 58). Für Golems der Komplexität komplex benötigt …",
+      "prerequisites": [
+        "steinwandle"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Golembauer",
       "costPerLevel": 30
     },
     {
@@ -93977,6 +96010,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Golems, die durch einen Zauberer mit dieser Fähigkeit erschaffen werden, können eine zusätzliche Verbesserung oder Wesensfähigkeit bekommen.",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Golemformer",
       "costPerLevel": 10
     },
     {
@@ -93988,6 +96024,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AE",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit ist der Zauberer in der Lage, Golemiden der Komplexität einfach und komplex zu erschaffen. Für Golemiden der Komplexität komplex benötigt er …",
+      "prerequisites": [
+        "staubwandle"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Golemidenbauer",
       "costPerLevel": 20
     },
     {
@@ -93999,6 +96040,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AAN",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Als Veredelung eines Golemkorpus kann ein Körperteil eines Kulturschaffenden (Haare, Fleisch oder Knochen) verwendet werden. Wie viel die eingeprägte Person an Körpermaterial spenden muss, …",
+      "prerequisites": [
+        "golembauer"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Golempr%C3%A4gung",
       "costPerLevel": 5
     },
     {
@@ -94010,6 +96056,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Gesegnete und geweihte Materialien verursachen bei Golems Schaden, ganz so, als seien diese Dämonen (siehe Regelwerk Seite 316). Üblicherweise sind Golems davon nicht betroffen, …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Golemschreck",
       "costPerLevel": 3
     },
     {
@@ -94021,6 +96072,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Kämpft der Held beritten gegen Fußkämpfer, erhöht sich die aus der vorteilhaften Position resultierende Erleichterung auf AT um 2 (siehe Regelwerk Seite 238/240). Außerdem …",
+      "prerequisites": [
+        "MU 13",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Golgariten-Stil",
       "costPerLevel": 10
     },
     {
@@ -94032,8 +96089,16 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 3,
-      "variableCost": true,
-      "suggestedCost": 5
+      "shortDescription": "Diese Sonderfertigkeit verleiht dem Geweihten einen zusätzlichen RS gegen die Angriffe von Dämonen. Stufe I schützt mit einem RS von 1 gegen Angriffe von …",
+      "prerequisites": [
+        "Geweihter"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=G%C3%B6ttlicher%20Schutz",
+      "costByLevel": [
+        10,
+        15,
+        20
+      ]
     },
     {
       "id": "grandioserleibdiener",
@@ -94044,6 +96109,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Möchte eine Heldin mit dieser Sonderfertigkeit ihrer Herrin durch eine Probe auf Etikette (Dienen & Gehorchen) die Wiederholung einer Teilprobe auf Gesellschaftstalente ermöglichen, so …",
+      "prerequisites": [
+        "Leibdiener"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Grandioser%20Leibdiener",
       "costPerLevel": 5
     },
     {
@@ -94055,6 +96125,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Wer eine Grätsche ausführen will, benötigt dafür 2 Schritt Anlauf. Der Held führt eine Raufen-AT aus, die um 2 erschwert ist. Einer erfolgreichen Attacke …",
+      "prerequisites": [
+        "GE 13",
+        "Körperbeherrschung 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gr%C3%A4tsche",
       "costPerLevel": 5
     },
     {
@@ -94066,6 +96142,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Wissbegierig: Das Verstehen und Durchdringen magischer Phänomene ist von besonderer Wichtigkeit für die meisten Graumagierinnen. Die Heldin bekommt bei Zaubern, die der magischen Analyse …",
+      "prerequisites": [
+        "Der Held wurde an einer Akademie oder von einem privaten Lehrmeister der Grauen Gilde unterrichtet und gehört der Gilde an.",
+        "Tradition (Gildenmagier)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Gildenprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Graue%20Gilde",
       "variableCost": true
     },
     {
@@ -94077,6 +96160,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Zauber, die der Hexe dazu dienen, sich zu verbergen, erhalten +1 FP. Darunter fallen beispielsweise Zauber wie die HARMLOSE GESTALT und SCHLEIER DER UNWISSENHEIT.",
+      "prerequisites": [
+        "Tradition (Hexen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Graue%20Katzen%20(Sch%C3%B6ne%20der%20Nacht)",
       "costPerLevel": 12
     },
     {
@@ -94088,6 +96176,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Graugänse können Erschwernisse für eine Zeremonieprobe, die durch Ort oder Zeit entstanden sind, um insgesamt 1 senken (bis zu einem Minimum von +/-0). Außerdem …",
+      "prerequisites": [
+        "Tradition (Traviakirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Graug%C3%A4nse",
       "costPerLevel": 10
     },
     {
@@ -94099,6 +96192,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Hände und Füße des Vampirs erhalten die Eigenschaft, sich auch an den glattesten Oberflächen festsaugen zu können. So kann er glatte Felswände und Mauern …",
+      "prerequisites": [
+        "Status Kind der Finsternis oder Kind der Nacht"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Griff%20des%20Pirschers",
       "costPerLevel": 15
     },
     {
@@ -94110,6 +96208,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 3,
+      "shortDescription": "Durch die Sonderfertigkeit bekommt der Held pro Stufe der Großen Meditation 6 zusätzliche AsP, die seinen Grundwert der Astralenergie erhöhen und ihm somit erlauben, …",
+      "prerequisites": [
+        "Zauberer",
+        "Leiteigenschaft undefined"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gro%C3%9Fe%20Meditation",
       "costPerLevel": 30
     },
     {
@@ -94121,6 +96225,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Der Zauberer kann für 4 AsP ein alchimistisches Elixier verdünnen, sodass daraus zwei Elixiere werden. Diese weisen allerdings jeweils eine um 2 niedrigere QS …",
+      "prerequisites": [
+        "Tradition (Zauberalchimisten)",
+        "Alchimie 12"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gro%C3%9Fe%20Trankverd%C3%BCnnung",
       "costPerLevel": 20
     },
     {
@@ -94132,6 +96242,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Während eines Feiertags der Kirche oder des Kults kann diese Sonderfertigkeit eingesetzt werden. Die Spielerin der Geweihten legt eine Probe auf Götter & Kulte …",
+      "prerequisites": [
+        "Tradition des Kults",
+        "Götter & Kulte 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Grosser%20Festritus",
       "costPerLevel": 15
     },
     {
@@ -94143,6 +96259,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Sollte die Heldin ein Erholsames Heilbad einsetzen, können bis zu sechs Personen gleichzeitig davon profitieren.",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Grosses%20Heilbad",
       "costPerLevel": 12
     },
     {
@@ -94154,6 +96273,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 2,
+      "shortDescription": "Üblicherweise dürfen nur 3 Teilenehmer bei einer Orgien-Gruppe eine Probe ablegen. Mit dieser Sonderfertigkeit kann die Spielerin des Helden am Anfang eines Durchgangs entscheiden, …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki",
+        "Orgienlöwe/in"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gruppensex-Veteran%2Fin",
       "costPerLevel": 8
     },
     {
@@ -94165,6 +96290,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Probe auf Willenskraft für das Halten der Erregung beim Liebesspiel ist für den Teilnehmer um 1 erleichtert, wenn die Heldin diesen Effekt nach …",
+      "prerequisites": [
+        "Betören 4",
+        "Selbstbeherrschung 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gute%20Technik%20(Sexpraktik)",
       "costPerLevel": 3
     },
     {
@@ -94176,6 +96307,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin kann sich ein Handwerkstalent aussuchen, dass zu ihrer Profession passt. Wenn sie damit etwas herstellt, steigt der Verkaufspreis des Objektes aufgrund der …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Gute%20Verarbeitung",
       "costPerLevel": 5
     },
     {
@@ -94187,6 +96321,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Diese Sonderfertigkeit lässt sich nur einsetzen, wenn zwei Personen darüber verfügen, sie die Rollen aufteilen und gegenüber einer anderen Person die Verhörmethode einsetzen. Proben …",
+      "prerequisites": [
+        "Einschüchtern 8",
+        "Menschenkenntnis 4",
+        "Überreden 2"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Guter%20Gardist%2C%20b%C3%B6ser%20Gardist",
       "costPerLevel": 3
     },
     {
@@ -94198,6 +96339,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Wer über diese Sonderfertigkeit verfügt, bekommt bei einer gelungenen Probe auf Handel (Feilschen) einen festen Bonus von +20 % und kann den Preis bis …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Guter%20Handel",
       "costPerLevel": 10
     },
     {
@@ -94209,6 +96353,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Felle, Pelze und andere Jagdtrophäen, die die Ifirngeweihte haltbar machen will, sind 50 % länger haltbar als üblich.",
+      "prerequisites": [
+        "Tradition (Ifirnkirche)",
+        "Warmer Mantel"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Haltbare%20Troph%C3%A4en",
       "costPerLevel": 3
     },
     {
@@ -94220,6 +96370,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Hierzu ist eine erfolgreiche Raufen-AT nötig. Kann der Gegner sich nicht verteidigen, hält der Angreifer ihn fest. So lange der Gegner festgehalten wird, leidet …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Haltegriff",
       "costPerLevel": 5
     },
     {
@@ -94231,6 +96384,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Verfügt der Abenteurer über die Sonderfertig-keit Haltegriff brechen, so kann er sich leichter aus einem Haltegriff und allen Manövern befreien, die ihre Wirkung über …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Haltegriff%20brechen",
       "costPerLevel": 5
     },
     {
@@ -94242,6 +96398,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Schicksalspunkte",
       "maxLevel": 1,
+      "shortDescription": "Für den Einsatz von 1 Schip kann die Heldin bis zu 4 Zielen, die sie sieht, bis zum Ende der nächsten KR einen Bonus …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Haltet%20durch!",
       "costPerLevel": 10
     },
     {
@@ -94253,6 +96412,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Borongeweihte kann auf bis zu 32 Schritt ein Ziel benennen. Dieses erleidet 1 Stufe Furcht. Nur folgende Wesen können davon betroffen sein: Geister …",
+      "prerequisites": [
+        "Tradition (Boronkirche)",
+        "Fokus der Schattenwelt"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Hammer%20der%20Furcht",
       "costPerLevel": 10
     },
     {
@@ -94264,6 +96429,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Kaum jemand anderes als der Ingerimmgeweihte kann den Hammer tragen. Will jemand anderes den Zeremonialgegenstand tragen oder aufheben, so muss ihm eine Probe auf …",
+      "prerequisites": [
+        "werkzeugderbestaendigkeit",
+        "schlagderzerstoerung"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Hammer%20der%20Schwere",
       "costPerLevel": 5
     },
     {
@@ -94275,6 +96446,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Borongeweihte kann einen Untoten, der eine wehr- oder schutzlose Person angreift oder angreifen will, herausfordern. Der Untote lässt von seinem Opfer ab und …",
+      "prerequisites": [
+        "Hammer der Furcht",
+        "Hammer wider Verstorbene"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Hammer%20des%20Schutzes",
       "costPerLevel": 8
     },
     {
@@ -94286,6 +96463,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Borongeweihte Waffen machen doppelten Schaden gegen Geister. Die Trefferpunkte werden ausgewürfelt, dann verdoppelt, anschließend wird der Rüstungsschutz abgezogen.",
+      "prerequisites": [
+        "Hammer der Furcht",
+        "Hammer des Schutzes"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Hammer%20wider%20Verstorbene",
       "costPerLevel": 8
     },
     {
@@ -94297,6 +96480,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Der Held, der diesen Stil beherrscht, richtet bei Lebewesen +1 TP an. Waffenlose Angriffe verdoppeln ihre TP gegen Objekte. Sollte ein Kenner dieser SF …",
+      "prerequisites": [
+        "KK 13",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Hammerfaust-Stil",
       "costPerLevel": 10
     },
     {
@@ -94308,6 +96497,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Die Attacke für den Hammerschlag ist um 2 erschwert. Dafür wird zur Bestimmung des Schadens ein weiterer W6 zu den Trefferpunkten hinzuaddiert. Wenn das …",
+      "prerequisites": [
+        "MU 15",
+        "Vorstoß",
+        "Wuchtschlag 3"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Hammerschlag",
       "costPerLevel": 25
     },
     {
@@ -94319,6 +96515,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "In der ersten KR eines jeden Kampfes richtet der Held mit den Waffen der Kampftechniken Dolche und Raufen +2 TP an. Sollte ein Gegner …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "GE 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Hand%20Borons-Stil",
       "costPerLevel": 15
     },
     {
@@ -94330,6 +96532,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Um einen Handkantenschlag auszuführen, muss der Held zunächst in der KR 1 freie Aktion nutzen, um sich zu konzentrieren. Danach kann er einen Handkantenschlag …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Handkantenschlag",
       "costPerLevel": 10
     },
     {
@@ -94341,6 +96546,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Händler des Listenreichen können Feilschen mit Phex (siehe Seite 36) auch bei Liturgien einsetzen.",
+      "prerequisites": [
+        "Tradition (Phexkirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=H%C3%A4ndler%20des%20Listenreichen",
       "costPerLevel": 15
     },
     {
@@ -94352,6 +96562,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Mittels dieser Sonderfertigkeit kann ein Geweihter bei der Berührung von 5 KR Dauer genaue Aussagen über ein Objekt treffen. Der Spieler des Geweihten legt …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Handwerksgesp%C3%BCr",
       "costPerLevel": 10
     },
     {
@@ -94363,6 +96576,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Einige Handwerkstalente, die für die Arbeit des Helden von großer Bedeutung sind, gehen ihm deutlich leichter von der Hand. Für jedes Talent, für das …",
+      "prerequisites": [
+        "höchstens 3 passende Auswahlen"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Handwerkskunst",
       "variableCost": true
     },
     {
@@ -94374,6 +96592,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Ein Held mit diesem Stil kann die Kampfsonderfertigkeit Zu Fall bringen auch mit Hiebwaffen, Raufen und Zweihandhiebwaffen einsetzen. Zudem richtet der Held nicht nur …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "KK 13",
+        "Spezies Zwerge"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Hardas-Stil",
       "costPerLevel": 15
     },
     {
@@ -94385,6 +96610,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Diese Sonderfertigkeit eröffnet eine neue Einsatzmöglichkeit für das Talent Heilkunde Seele. Die Geweihte kann mit einem Kulturschaffenden 1 Minute reden und versuchen, Zustandsstufen von …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Harmonie%20der%20Seele",
       "costPerLevel": 15
     },
     {
@@ -94396,6 +96624,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Dem Helden ist es möglich, bei der Modifikation Zauberdauer erhöhen nicht nur eine Erleichterung von 1, sondern eine von 2 zu bekommen. Allerdings erhöht …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Harmoniezauberei",
       "costPerLevel": 20
     },
     {
@@ -94407,6 +96638,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Mittels einer Berührung können Harmonisten ein Mirakel auf einen anderen Kulturschaffenden wirken, der dann statt des Geweihten von einer Verbesserung seiner Talente profitiert. Als …",
+      "prerequisites": [
+        "Tradition (Rahjakirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Harmonisten",
       "costPerLevel": 15
     },
     {
@@ -94418,6 +96654,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Keule wird für kurze Zeit zu einer mächtigen und gefürchteten Waffe. Für 5 KR richten Angriffe der Keule +2 TP an und nach …",
+      "prerequisites": [
+        "keulenweihe",
+        "Tierische Kraft"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=H%C3%A4rte%20der%20Keule",
       "costPerLevel": 15
     },
     {
@@ -94429,6 +96671,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "DSK",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Ein Gegenstand von maximal 5 Stein Gewicht erhält die doppelte Anzahl seiner üblichen Strukturpunkte. AsP-Kosten: 2 AsP",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Harter%20Kern",
       "costPerLevel": 2
     },
     {
@@ -94440,6 +96685,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Swafnirgeweihte kann eine Schild-AT mit dem Walschild ausführen. Die Attacke unterliegt keiner Erschwernis durch den AT-Modifikator des Schilds. Bei einem unverteidigten Treffer muss …",
+      "prerequisites": [
+        "Flukenschlag",
+        "Kraftvoller Vorstoß"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Hass%20des%20Gr%C3%BCnwals",
       "costPerLevel": 15
     },
     {
@@ -94451,6 +96702,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 3,
+      "shortDescription": "Eine einzige ausgewählte Segnung erhält pro Stufe der SF +1 QS. Wer die Wirkung einer Hauptsegnung brechen will, muss zusätzliche KaP-Kosten in Höhe der …",
+      "prerequisites": [
+        "Geweihter",
+        "nicht mehr als einmal wählbar"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Hauptsegnung",
       "costPerLevel": 1
     },
     {
@@ -94462,6 +96719,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Wenn eine Liturgie oder Zeremonie nicht durch eine Modifikation verändert wird, erhalten Hausgänse beim Wirken +1 FP (bis zu einem Maximum von 18 FP).",
+      "prerequisites": [
+        "Tradition (Traviakirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Hausg%C3%A4nse",
       "costPerLevel": 25
     },
     {
@@ -94473,6 +96735,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Abenteurerin ist in der Lage, die alltäglichen Aufgaben eines großen Haushaltes zu erledigen. Sie bekommt im Talent Handel die Einsatzmöglichkeit Verwaltung und kann …",
+      "prerequisites": [
+        "Handel 8",
+        "Rechnen 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Hauswirtschaft",
       "costPerLevel": 8
     },
     {
@@ -94484,6 +96752,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDS",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Der Held ist gegen die Auswirkungen der Sonderfertigkeiten Drohgebärden und Provozieren immun. Setzt der Held das Manöver Drehschlag ein, so kann er sich aussuchen, …",
+      "prerequisites": [
+        "MU 13",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Havena-Stil",
       "costPerLevel": 10
     },
     {
@@ -94495,6 +96769,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Chance auf einen Kritischen Erfolg mit dem Rondrakamm erhöht sich um 5 %. In der Regel liegt die Chance somit bei 1-2 (statt …",
+      "prerequisites": [
+        "Blitz-Schlag",
+        "Donner-Schlag"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Heftiger%20Angriff",
       "costPerLevel": 25
     },
     {
@@ -94506,6 +96786,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held erhält mit dieser Sonderfertigkeit das Anwendungsgebiet Hehlerei im Talent Handel. Dadurch ist es ihm möglich, gestohlene Ware über Kontaktleute zu verkaufen.",
+      "prerequisites": [
+        "Ortskenntnis für den Ort, an dem die Ware verkauft werden soll",
+        "Gassenwissen 8",
+        "Handel 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Hehlerei",
       "costPerLevel": 5
     },
     {
@@ -94517,6 +96804,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Die Heiler sind Spezialisten der karmalen Heilung. Für jeweils 5 volle LeP, die eine Liturgie zurückgibt, bekommt das Ziel der Liturgie 1 LeP zusätzlich …",
+      "prerequisites": [
+        "Tradition (Perainekirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Heiler%20der%20G%C3%BCtigen",
       "costPerLevel": 10
     },
     {
@@ -94528,6 +96820,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Ein Patient, der von der Perainegeweihten mittels einer gelungenen Probe auf Heilkunde Wunden (Heilung fördern) behandelt wird, muss nicht darauf würfeln, ob er am …",
+      "prerequisites": [
+        "Seuchenhandschuh",
+        "Genesungshandschuh"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Heilerhandschuh",
       "costPerLevel": 10
     },
     {
@@ -94539,6 +96837,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Die Geweihte erhält bei Proben auf Heilkunde Krankheit, Heilkunde Seele und bei allen Liturgien und Zeremonien, die sich mit der Heilung von Krankheiten und …",
+      "prerequisites": [
+        "Tradition (Marbokult)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Heilerinnen%20des%20Leids",
       "costPerLevel": 12
     },
     {
@@ -94550,6 +96853,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Die karmale Kraft im Körper des Geweihten ist so stark, dass waffenlose Angriffe mit der Kampftechnik Raufen als heilige Angriffe gelten. Er ist damit …",
+      "prerequisites": [
+        "Leiteigenschaft 17",
+        "Zweifachgeweihter Karmalleib"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Heiliger%20Karmalleib",
       "costPerLevel": 30
     },
     {
@@ -94561,7 +96870,16 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Schicksalspunkte",
       "maxLevel": 3,
-      "variableCost": true
+      "shortDescription": "Pro Stufe der Schicksalspunkte-Sonderfertigkeit darf der Spieler während der Regenerationsphase 1 Schip ausgeben und pro eingesetzten Schips zusätzlich 1W6 LeP regenerieren. Der Spieler kann …",
+      "prerequisites": [
+        "Erholsame Regeneration"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Heilkraft",
+      "costByLevel": [
+        5,
+        5,
+        5
+      ]
     },
     {
       "id": "heilritus",
@@ -94572,6 +96890,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Die Geweihte kann Karmaenergie einsetzen, um durch Handauflegen und einen längeren Ritus von 30 Minuten ein Lebewesen zu heilen. Für jeweils 2 KaP, welche …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Heilritus",
       "costPerLevel": 10
     },
     {
@@ -94583,6 +96904,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Schamane kann bis zu 6 Kulturschaffende mit der Keule berühren (innerhalb 1 Minute) und jedem von ihnen bis zu 2 LeP zurückgeben. Der …",
+      "prerequisites": [
+        "Freundschaft des Tieres"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Heilung%20der%20Gef%C3%A4hrten",
       "costPerLevel": 12
     },
     {
@@ -94594,6 +96920,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Verfügt ein Held über diese Sonderfertigkeit, erhält er im Talent Heilkunde Wunden ein neues Anwendungsgebiet. Folgende Anwendungsgebiete können erworben werden: Amputieren, Chirurgie, Knochenbrüche, Verbrennungen, …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Heilungsspezialgebiet",
       "variableCost": true
     },
     {
@@ -94605,6 +96934,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Die Helfer bekommen eine Erleichterung von 1 auf Heilkunde Gift, Heilkunde Krankheiten und alle Liturgien und Zeremonien, die zum Heilen von Giften und Krankheiten …",
+      "prerequisites": [
+        "Tradition (Perainekirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Helfer%20der%20G%C3%BCtigen",
       "costPerLevel": 10
     },
     {
@@ -94616,6 +96950,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch Heraldik kann ein Held Wappen unterscheiden und kennt sich bestens mit dem Wappenrecht und Stammbäumen aus. Mit dieser Sonderfertigkeit erwirbt der Held im …",
+      "prerequisites": [
+        "Etikette 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Heraldik",
       "costPerLevel": 2
     },
     {
@@ -94627,6 +96966,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held kennt die Namen aller heraldischen Listen bis zur Zeit der ersten Eintragung. Deshalb bekommt er eine Erleichterung von 1 für Proben auf …",
+      "prerequisites": [
+        "Heraldik"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Heraldikspezialist",
       "costPerLevel": 2
     },
     {
@@ -94638,6 +96982,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Der Kenner dieser Sonderfertigkeit muss sich für eines der sechs Elemente entscheiden. Zauber mit dem Merkmal Elementar und die auf diesem Element beruhen kosten …",
+      "prerequisites": [
+        "Tradition (Geoden)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Herren%20der%20Erde",
       "costPerLevel": 20
     },
     {
@@ -94649,6 +96998,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Ein Held kann Personen, die einen niedrigeren sozialen Stand als er selbst aufweisen, Befehle erteilen (sofern sie dem gleichen Kulturkreis angehören; ein Ork interessiert …",
+      "prerequisites": [
+        "Sozialer Stand 3 oder höher"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Herrschaftsanspruch",
       "costPerLevel": 15
     },
     {
@@ -94660,6 +97014,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Gelingt dem Helden eine um 4 erschwerte Attacke und misslingt die Verteidigung des Gegners, erleidet dieser minimalen Waffenschaden (wie gewürfelt 1 bei den TP, …",
+      "prerequisites": [
+        "KK 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Heruntersto%C3%9Fen",
       "costPerLevel": 12
     },
     {
@@ -94671,6 +97030,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Zauber des Merkmals Illusion erhalten bei einer gelungenen Probe +1 FP (bis zu einem Maximum von 18 FP).",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Hervorragender%20Illusionist",
       "costPerLevel": 25
     },
     {
@@ -94682,6 +97044,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Diese Sonderfertigkeit kann nur auf dem Tanzplatz der Hexennacht eingesetzt werden. Die Spielerin der Hexe legt eine Probe auf Tanzen (exotischer Tanz) ab. Jede …",
+      "prerequisites": [
+        "Tradition (Hexen)",
+        "Tanzen 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Hexentanz",
       "costPerLevel": 15
     },
     {
@@ -94693,6 +97061,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held bekommt eine neue Einsatzmöglichkeit im Talent Verbergen. Er kann mit 1 Stunde Vorbereitungszeit einen Hinterhalt so gestalten, dass die Probe auf Sinnesschärfe …",
+      "prerequisites": [
+        "Kriegskunst 4",
+        "Verbergen 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Hinterhaltsspezialist",
       "costPerLevel": 10
     },
     {
@@ -94704,6 +97078,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Hitzestufen werden für den Geweihten um 1 Stufe gesenkt, bis zu einem Minimum von 1. Diese Sonderfertigkeit ist mit dem Vorteil Hitzeresistenz kombinierbar (siehe …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Hitzegew%C3%B6hnung",
       "costPerLevel": 5
     },
     {
@@ -94715,6 +97092,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Geweihte kann in einem Radius von 4 Schritt um sich herum einen kugelförmigen Bereich großer Hitze erschaffen, der sich mit ihm mitbewegt. Den …",
+      "prerequisites": [
+        "Lederne Haut",
+        "Eins mit der Flamme"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Hitzewall",
       "costPerLevel": 12
     },
     {
@@ -94726,6 +97109,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Narr: Die Narrenkappe eines Hofnarren verfügt über 3 zusätzliche Volumenpunkte. Witzfigur: Proben auf Bekehren & Überzeugen, Betören, Handel und Überreden sind gegenüber Menschen um …",
+      "prerequisites": [
+        "Tradition (Schelme)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Schelmenprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Hofnarr",
       "variableCost": true
     },
     {
@@ -94737,6 +97126,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Verfügt ein Abenteurer über die Sonderfertigkeit Hofzeremoniell, so kennt er sich in den Gepflogenheiten verschiedener Adelshöfe aus und benimmt sich mit Leichtigkeit wie ein …",
+      "prerequisites": [
+        "Etikette 8",
+        "Menschenkenntnis 4",
+        "Willenskraft 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Hofzeremoniell",
       "costPerLevel": 8
     },
     {
@@ -94748,6 +97144,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Das Manöver Hohe Klinge muss am Anfang der KR angesagt werden. Der Abenteurer bekommt einen Bonus von +1 AT und +1 TP, allerdings ist …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Hohe%20Klinge",
       "costPerLevel": 15
     },
     {
@@ -94759,6 +97158,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 3,
+      "shortDescription": "Durch die Sonderfertigkeit bekommt der Held pro Stufe der Hohen Weihe 6 zusätzliche KaP, die seinen Grundwert der Karmaenergie erhöhen und ihm somit erlauben, …",
+      "prerequisites": [
+        "Geweihter",
+        "Leiteigenschaft undefined"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Hohe%20Weihe",
       "costPerLevel": 30
     },
     {
@@ -94770,6 +97175,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Schicksalspunkte",
       "maxLevel": 1,
+      "shortDescription": "Durch Knochenwerfen, die Beobachtung des Vogelflugs oder das Lesen von Inrahkarten kann ein Abenteurer anderen Mut machen, sie auf ihr Schicksal vorbereiten und ihrer …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki",
+        "Über Höhere Prophezeiung darf innerhalb einer Heldengruppe nur ein Held verfügen, da die SF ansonsten zu viele Schips generiert."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=H%C3%B6here%20Prophezeiung",
       "costPerLevel": 25
     },
     {
@@ -94781,6 +97192,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held kennt sich exzellent mit Bäumen aus. Er kann die Baumart genau bestimmen, ihr Alter, was man aus dem Holz alles herstellen kann …",
+      "prerequisites": [
+        "Pflanzenkunde 6"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Holzkenntnis",
       "costPerLevel": 8
     },
     {
@@ -94792,6 +97208,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AAN",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Mit dieser Sonderfertigkeit kann der Erschaffer eines Homunculus diesen an sich binden. Sie ermöglicht es, den Homunculus mit Eigenblut vor dem Verfall zu bewahren …",
+      "prerequisites": [
+        "keine; Es ist möglich, gleichzeitig die Sonderfertigkeiten Vertrautenbindung und Homunculusbindung zu besitzen. Es ist jedoch nicht möglich, gleichzeitig ein Vertrautentier und einen Homunculus an sich zu binden."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Homunculusbindung",
       "costPerLevel": 30
     },
     {
@@ -94803,6 +97224,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Bei Mirakeln, die Kampftechniken einen Bonus verleihen, bekommen Honoren zusätzlich +1 AT. Die Probe auf Selbstbeherrschung (Handlungsfähigkeit bewahren) bei Letztes Aufbäumen ist um 1 …",
+      "prerequisites": [
+        "Tradition (Rondrakirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Honoren",
       "costPerLevel": 15
     },
     {
@@ -94814,6 +97240,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Bei einem erfolgreichen Angriff mit Raufen würfelt die Spielerin für die Trefferpunkte statt 1W6 mit 2W6. Das höhere Ergebnis der einzelnen Würfel wird gewertet. …",
+      "prerequisites": [
+        "GE 13",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Hruruzat",
       "costPerLevel": 12
     },
     {
@@ -94825,6 +97257,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Wenn eine Liturgie oder Zeremonie nicht durch eine Modifikation verändert wird, erhalten Hüter der Esse beim Wirken +1 FP (bis zu einem Maximum von …",
+      "prerequisites": [
+        "Tradition (Angroschkirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=H%C3%BCter%20der%20Esse",
       "costPerLevel": 25
     },
     {
@@ -94836,6 +97273,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Den Hütern der Tradition ist es möglich, bei der Modifikation Liturgiedauer erhöhen oder Zeremoniedauer erhöhen nicht nur eine Erleichterung von +1, sondern sogar von …",
+      "prerequisites": [
+        "Tradition (Angroschkirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=H%C3%BCter%20der%20Tradition",
       "costPerLevel": 25
     },
     {
@@ -94847,6 +97289,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Liturgien und Zeremonien, die gegen Drachen und Echsenwesen gerichtet sind, erhalten einen Bonus von +2 FP (bis zu einem Maximum von 18 FP). Außerdem …",
+      "prerequisites": [
+        "Tradition (Angroschkirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=H%C3%BCter%20der%20Wacht",
       "costPerLevel": 15
     },
     {
@@ -94858,6 +97305,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Hüter der Walwütigen erhalten im Talent Überreden das neue Anwendungsgebiet Berserker beruhigen. Kulturschaffende, die den Status Blutrausch erlitten haben, können innerhalb von 7-QS KR …",
+      "prerequisites": [
+        "Tradition (Swafnirkirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=H%C3%BCter%20der%20Walw%C3%BCtigen",
       "costPerLevel": 15
     },
     {
@@ -94869,6 +97321,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Zauber mit dem Merkmal Heilung kosten 1 AsP weniger (bis zu einem Minimum von 1 AsP). Zudem sind Zauber, die TP oder SP verursachen, …",
+      "prerequisites": [
+        "Tradition (Druiden)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=H%C3%BCterin%20des%20Hains",
       "costPerLevel": 12
     },
     {
@@ -94880,6 +97337,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Durch eine Umarmung können Hüterinnen der Schwänin einen Kulturschaffenden wärmen. Die Kältestufe, welcher der Kulturschaffende ausgesetzt ist, sinkt für eine Stunde um 1. Die …",
+      "prerequisites": [
+        "Tradition (Ifirnkirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=H%C3%BCterinnen%20der%20Schw%C3%A4nin",
       "costPerLevel": 10
     },
     {
@@ -94891,6 +97353,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Ein Krieger von Hylailos vermag selbst wuchtige Waffen schnell und präzise zu führen. Dadurch verbessern sich PA-Abzüge von AT/PA-Modifikatoren bei Waffen der Kampftechnik Stangenwaffen …",
+      "prerequisites": [
+        "GE 13",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Hylailos-Stil",
       "costPerLevel": 15
     },
     {
@@ -94902,6 +97370,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Feylamia kann ein Ziel in bis zu 4 Schritt Reichweite hypnotisieren. Dazu legt der Vampir eine Vergleichsprobe zwischen Betören gegen Willenskraft (Betören widerstehen) …",
+      "prerequisites": [
+        "Status Feylamia"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Hypnose",
       "costPerLevel": 0
     },
     {
@@ -94913,6 +97386,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Iglubau ist eine neue Einsatzmöglichkeit für das Talent Wildnisleben. Mit dieser Sonderfertigkeit kann der Abenteurer über Wildnisleben (Lagerbau) ein Iglu bauen.",
+      "prerequisites": [
+        "Wildnisleben 8",
+        "passende Tradition"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Iglubau",
       "costPerLevel": 5
     },
     {
@@ -94924,6 +97403,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Besitzt der Zauberer diese Sonderfertigkeit, sind seine Sprüche mit dem Merkmal Illusion schwerer zu durchschauen. Die Probe auf Sinnesschärfe (Wahrnehmen), um seine Illusionen zu …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Illusion%C3%A4re%20Undurchschaubarkeit",
       "costPerLevel": 20
     },
     {
@@ -94935,6 +97417,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 5,
+      "shortDescription": "Pro Stufe der Sonderfertigkeit kann der Schelm einen Zauber in einen Schelmenstreich umwandeln.",
+      "prerequisites": [
+        "Tradition (Schelme)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Imitationszauberei",
       "costPerLevel": 5
     },
     {
@@ -94946,6 +97433,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann die gesprochene Formel eines Zaubers weglassen und erleidet dafür nur eine Erschwernis von 1 (siehe Regelwerk Seite 256).",
+      "prerequisites": [
+        "Leiteigenschaft 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Improvisationszauberei%20(Formel)",
       "costPerLevel": 15
     },
     {
@@ -94957,6 +97449,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann die Geste eines Zaubers weglassen und erleidet dafür nur eine Erschwernis von 1 (siehe Regelwerk Seite 256).",
+      "prerequisites": [
+        "Leiteigenschaft 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Improvisationszauberei%20(Gesten)",
       "costPerLevel": 10
     },
     {
@@ -94968,6 +97465,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann das gesprochene Gebet einer Liturgie weglassen und erleidet dafür nur eine Erschwernis von 1 (siehe Regelwerk Seite 310).",
+      "prerequisites": [
+        "Geweihter",
+        "Leiteigenschaft 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Improvisierte%20Liturgie%20(Gebet)",
       "costPerLevel": 15
     },
     {
@@ -94979,6 +97482,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin kann die Geste einer Liturgie weglassen und erleidet dafür nur eine Erschwernis von 1 (siehe Regelwerk Seite 310).",
+      "prerequisites": [
+        "Geweihter",
+        "Leiteigenschaft 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Improvisierte%20Liturgie%20(Gesten)",
       "costPerLevel": 10
     },
     {
@@ -94990,6 +97499,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Ein Zauberer kann die Erschwernis von 3 für den falschen Ritualplatz abmildern. Der Abzug beträgt stattdessen nur noch 2 (siehe Regelwerk Seite 260).",
+      "prerequisites": [
+        "IN 13",
+        "Leiteigenschaft 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Improvisiertes%20Ritual",
       "costPerLevel": 15
     },
     {
@@ -95001,6 +97516,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin erhält einen Bonus von 1 FP bei Proben auf Betören (Anbändeln).",
+      "prerequisites": [
+        "Betören 4",
+        "kein Nachteil Schlechte Angewohnheit (Innuendo)",
+        "kein Nachteil %1"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Innuendo-Experte%2Fin",
       "costPerLevel": 5
     },
     {
@@ -95012,6 +97534,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Spieler des Nandusgeweihten legt eine Probe auf ein Wissenstalent ab. Ein einzelner, zuhörender Schüler in Hör- und Sichtreichweite bekommt bei Gelingen QS/2 Erleichterungen …",
+      "prerequisites": [
+        "Meisterhafter Lehrmeister",
+        "Weisheit des Lehrers"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Inspirierender%20Unterricht",
       "costPerLevel": 10
     },
     {
@@ -95023,6 +97551,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held ist in der Lage, Instrumente wie Fanfaren, Flöten, Sackpfeifen, Lauten, Trommeln, Schellen und Hörner herzustellen. Durch die Sonderfertigkeit wird das neue Anwendungsgebiet …",
+      "prerequisites": [
+        "Holzbearbeitung + Metallbearbeitung zusammen 12"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Instrumente%20bauen",
       "costPerLevel": 2
     },
     {
@@ -95034,6 +97567,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Wenn eine Heldin mit diesem Stil auf einen Gegner zielt (siehe Regelwerk Seite 242), verdoppelt sich die Erleichterung durch das Zielen. Das bisherige Maximum …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "FF 13",
+        "Spezies Zwerge"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Irbrasch-Stil",
       "costPerLevel": 12
     },
     {
@@ -95045,6 +97585,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Eine Heldin, die über diesen Stil verfügt, erhält bei der Benutzung eines Fächers als Parierwaffe oder Schild einen PA-Bonus von +1 für die Hauptwaffe …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "GE 13",
+        "Klingenfänger"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Ishannah%20al'Kira-Stil",
       "costPerLevel": 15
     },
     {
@@ -95056,6 +97603,14 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Mit dieser Sonderfertigkeit kann der Held erfolgreicher jagen. Begibt er sich auf die Jagd, kann er bei einer erfolgreichen Probe auf Tierkunde um Nahrung …",
+      "prerequisites": [
+        "Fernkampftechnik 10",
+        "Fährtensuchen 4",
+        "Tierkunde 4",
+        "Verbergen 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=J%C3%A4ger",
       "costPerLevel": 5
     },
     {
@@ -95067,6 +97622,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Jäger der Seeschlangen können sich bei einer erfolgreichen AT entscheiden, lieber selbst eine Stufe Entrückung zu erlangen, als TP für ihren Gegner auszuwürfeln. Eingesetzt …",
+      "prerequisites": [
+        "Tradition (Swafnirkirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=J%C3%A4ger%20der%20Seeschlangen",
       "costPerLevel": 10
     },
     {
@@ -95078,6 +97638,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Alle TP oder SP verursachenden Zauber richten bei einer Jägerin grundsätzlich 1 TP bzw. SP mehr an.",
+      "prerequisites": [
+        "Tradition (Hexen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=J%C3%A4gerinnen%20(Verschwiegene%20Schwester)",
       "costPerLevel": 15
     },
     {
@@ -95089,6 +97654,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Jägerinnen der weißen Maid können eine Liturgie und eine Zeremonie der Tradition Firunkirche erlernen und so nutzen, als wäre sie eine Liturgie der eigenen …",
+      "prerequisites": [
+        "Tradition (Ifirnkirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=J%C3%A4gerinnen%20der%20wei%C3%9Fen%20Maid",
       "costPerLevel": 10
     },
     {
@@ -95100,6 +97670,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Ifirngeweihte erhält gegenüber Wildtieren +1 RS. Dieser RS ist mit anderem RS kombinierbar, wenn dieser auch gegen Wildtiere angewandt werden kann.",
+      "prerequisites": [
+        "Haltbare Trophäen",
+        "Tierfreundschaft"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=J%C3%A4germantel",
       "costPerLevel": 10
     },
     {
@@ -95111,6 +97687,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "",
+      "prerequisites": [
+        "freundschaftdestieresmoha"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Jaguarkraft",
       "costPerLevel": 12
     },
     {
@@ -95122,6 +97703,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Den Jüngern des Handwerks ist es möglich, bei der Modifikation Liturgiedauer erhöhen oder Zeremoniedauer erhöhen nicht nur eine Erleichterung von 1, sondern sogar von …",
+      "prerequisites": [
+        "Tradition (Ingerimmkirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=J%C3%BCnger%20des%20Handwerks",
       "costPerLevel": 25
     },
     {
@@ -95133,6 +97719,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit erlangt der Abenteurer im Talent Malen & Zeichnen das neue Anwendungsgebiet Kalligraphie. Der Abenteurer kann Schriftzeichen ästhetisch verzieren und sie beeindruckend …",
+      "prerequisites": [
+        "Malen & Zeichnen 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kalligraphie",
       "costPerLevel": 2
     },
     {
@@ -95144,6 +97735,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Kältestufen werden für den Geweihten um 1 Stufe gesenkt, bis zu einem Minimum von 1. Diese Sonderfertigkeit ist mit dem Vorteil Kälteresistenz kombinierbar (siehe …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=K%C3%A4ltegew%C3%B6hnung",
       "costPerLevel": 5
     },
     {
@@ -95155,6 +97749,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "A",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Aus der Keule schießt ein Strahl aus gebündelter Kälte, der in gerader Linie sein Ziel in maximal 32 Schritt Entfernung trifft. Das getroffene Ziel …",
+      "prerequisites": [
+        "Erfrierung verursachen"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=K%C3%A4ltestrahl",
       "costPerLevel": 12
     },
     {
@@ -95166,6 +97765,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Durch die Sonderfertigkeit erwerben Kameraden des guten Goldes eine Einsatzmöglichkeit für das Talent Kriegskunst. Sie können mittels Kriegskunst ihre Gefährten während eines Kampfes besser …",
+      "prerequisites": [
+        "Tradition (Korkirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kamerad%20des%20guten%20Goldes",
       "costPerLevel": 20
     },
     {
@@ -95177,6 +97781,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Für Helden mit dieser Sonderfertigkeit sinken die Erschwernisse beim Kampf im Wasser (siehe Regelwerk Seite 239) um 2.",
+      "prerequisites": [
+        "GE 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kampf%20im%20Wasser",
       "costPerLevel": 8
     },
     {
@@ -95188,6 +97797,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Zauber, welche die Kampfwerte des Elfen verbessern, sind um 1 erleichtert. Zudem spart der Elf 1 AsP ein (bis zu einem Minimum von 1 …",
+      "prerequisites": [
+        "Tradition (Elfen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=K%C3%A4mpfer",
       "costPerLevel": 20
     },
     {
@@ -95199,6 +97813,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Korgeweihte kann beliebige, in einem Radius von 3 Schritt um ihn befindliche Kulturschaffende auswählen, und bei ihnen allen entweder 1 Stufe Furcht oder …",
+      "prerequisites": [
+        "Verteidigungslücke",
+        "Schmerzhafter Hieb"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kampfesmut",
       "costPerLevel": 15
     },
     {
@@ -95210,8 +97830,16 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 3,
-      "variableCost": true,
-      "suggestedCost": 5
+      "shortDescription": "Der INI-Basiswert steigt um 1 pro Stufe der Sonderfertigkeit",
+      "prerequisites": [
+        "IN 13/15/17 je nach Stufe"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kampfreflexe",
+      "costByLevel": [
+        10,
+        15,
+        20
+      ]
     },
     {
       "id": "kampfstilkombination",
@@ -95222,6 +97850,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Mit dieser SF kann der Abenteurer über insgesamt zwei Kampfstile der gleichen Art verfügen, also beispielsweise zwei bewaffnete oder zwei waffenlose Stile (siehe Seite …",
+      "prerequisites": [
+        "ein Kampfstil; Voraussetzungen für den zweiten Kampfstil müssen erfüllt sein"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kampfstil-Kombination",
       "costPerLevel": 50
     },
     {
@@ -95233,6 +97866,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Mit dieser Sonderfertigkeit erwirbt der Held im Talent Musizieren das neue Anwendungsgebiet Dirigieren. Der Abenteurer ist damit in der Lage, ein Orchester zu dirigieren.",
+      "prerequisites": [
+        "Musizieren 8",
+        "Überreden 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kapellmeister",
       "costPerLevel": 2
     },
     {
@@ -95244,6 +97883,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Der Geweihte ist durch die Karmale Meditation in der Lage, während einer Regenerationsphase die ihm zur Verfügung stehende Regeneration für LeP zu ignorieren und …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki",
+        "Leiteigenschaft 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Karmale%20Meditation",
       "costPerLevel": 15
     },
     {
@@ -95255,6 +97900,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 2,
+      "shortDescription": "Mit dieser SF regeneriert der Held bei jeder Regenerationsphase 1 KaP pro Stufe der SF zusätzlich. Dieser Bonus ist kumulativ mit dem Vorteil Verbesserte …",
+      "prerequisites": [
+        "Geweihter",
+        "Leiteigenschaft undefined"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Karmale%20Regeneration",
       "costPerLevel": 12
     },
     {
@@ -95266,6 +97917,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit ist ein Held in der Lage, Landkarten anzufertigen. Sie schaltet das neue Anwendungsgebiet Kartographie des Talents Geographie frei.",
+      "prerequisites": [
+        "Geographie 8",
+        "Rechnen 4",
+        "Malen & Zeichnen 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kartographie",
       "costPerLevel": 5
     },
     {
@@ -95277,6 +97935,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 3,
+      "shortDescription": "Üblicherweise darf eine im Nahkampf verwickelte Heldin keinen Fernkampfangriff durchführen (siehe Regelwerk Seite 241). Mit dieser Sonderfertigkeit ist sie jedoch in der Lage, selbst …",
+      "prerequisites": [
+        "FF undefined"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kernschuss",
       "costPerLevel": 12
     },
     {
@@ -95288,6 +97951,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Eine Hexe mit dieser Sonderfertigkeit kann eine Probe auf Lebensmittelbearbeitung (Brauen) ablegen, wenn sie Tränke, Salben oder Suppen in ihrem Hexenkessel zubereitet. Gelingt ihr …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kesselmeisterin",
       "costPerLevel": 10
     },
     {
@@ -95299,6 +97965,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Keulenweihe ist stets die erste Weihe der zeremoniellen Knochenkeule. Mit ihr wird die Knochenkeule an den Schamanen gebunden und dadurch unzerbrechlich. Einzig elementares …",
+      "prerequisites": [
+        "passende Tradition"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Keulenweihe",
       "costPerLevel": 10
     },
     {
@@ -95310,6 +97981,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Keule trifft einen Gegner innerhalb einer Reichweite von 16 Schritt automatisch. Der Gegner kann dem Angriff durch Ausweichen oder eine Schilde-PA entgehen. Der …",
+      "prerequisites": [
+        "keulenweihe"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Keulenwurf",
       "costPerLevel": 15
     },
     {
@@ -95321,6 +97997,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 2,
+      "shortDescription": "Die Heldin erhält bei Proben auf Willenskraft (Betören widerstehen) pro Stufe der Sonderfertigkeit eine Erleichterung von 1.",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Keuschheits%C3%BCbungen",
       "costPerLevel": 5
     },
     {
@@ -95332,6 +98013,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Ein Kämpfer mit dieser Sonderfertigkeit kann zusammen mit bis zu vier weiteren Kämpfern, die sich maximal einen halben Schritt vor, hinter, links und rechts …",
+      "prerequisites": [
+        "Kriegskunst 10",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kha-Formation",
       "costPerLevel": 25
     },
     {
@@ -95343,6 +98030,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Einige Naturtalente, die für die Arbeit des Helden von großer Bedeutung sind, gehen ihm deutlich leichter von der Hand. Für jedes Talent, für das …",
+      "prerequisites": [
+        "höchstens 3 passende Auswahlen"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kind%20der%20Natur",
       "variableCost": true
     },
     {
@@ -95354,6 +98046,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Zauber, die direkt oder indirekt Gift erzeugen, wirken bei den Kindern der Kobra stärker. Das jeweilige Gift hat eine um 1 höhere Giftstufe (bis …",
+      "prerequisites": [
+        "Tradition (Hexen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kinder%20der%20Kobra%20(Schwester%20des%20Wissens)",
       "costPerLevel": 10
     },
     {
@@ -95365,6 +98062,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Ein Kind der Lüfte hat auf seinem Fluggerät keine Einschränkungen beim Zaubern. Regeltechnisch gilt die Hexe als in Kontakt mit dem Boden.",
+      "prerequisites": [
+        "Tradition (Hexen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kinder%20der%20L%C3%BCfte%20(Verschwiegene%20Schwester)",
       "costPerLevel": 20
     },
     {
@@ -95376,6 +98078,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Dieser Vorteil sorgt dafür, dass Kinder der Ratte die Auswirkungen der höchsten Stufe des Zustands Schmerz ignorieren dürfen. Sie erleiden lediglich die Auswirkungen der …",
+      "prerequisites": [
+        "Tradition (Der Namenlose)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kinder%20der%20Ratte",
       "costPerLevel": 30
     },
     {
@@ -95387,6 +98094,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Meeresverbunden: befindet sich der Klabauterlehrling auf einem Schiff, erhält er bei seinen Schelmenstreichen +1 FP (bis zu einem Maximum von 18 FP). Magierabscheu: Der …",
+      "prerequisites": [
+        "Tradition (Schelme)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Schelmenprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Klabauterlehrling",
       "variableCost": true
     },
     {
@@ -95398,6 +98111,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Liturgie kann der Geweihte seine eigene Entrückung aufheben. Je nachdem, wie viele Stufen der Geweihte abbauen will, muss er mit unterschiedlichen Konsequenzen …",
+      "prerequisites": [
+        "Geweihter",
+        "Leiteigenschaft 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Klarer%20Blick",
       "costPerLevel": 12
     },
     {
@@ -95409,6 +98128,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Bei einem misslungenen Zauber verliert der Held (nach der Halbierung der AsP-Kosten) 1 AsP weniger als üblich. Die Kosten können dadurch nicht unter 1 …",
+      "prerequisites": [
+        "Leiteigenschaft 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kleine%20Kraftkontrolle",
       "costPerLevel": 10
     },
     {
@@ -95420,6 +98144,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Im Gänsebeutel befindet sich jeden Tag eine kleine Mahlzeit bestehend aus einem Ei, einem Stück Brot oder einer Hartwurst, was zwar nicht als Tagesration …",
+      "prerequisites": [
+        "Tradition (Traviakirche)",
+        "Band des Umsorgens"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kleine%20Mahlzeit",
       "costPerLevel": 2
     },
     {
@@ -95431,6 +98161,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Der Zauberer kann für 4 AsP ein alchimistisches Elixier verdünnen, sodass daraus zwei Elixiere werden. Diese weisen allerdings jeweils eine um 3 niedrigere QS …",
+      "prerequisites": [
+        "Zauberer",
+        "Alchimie 12"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kleine%20Trankverd%C3%BCnnung",
       "costPerLevel": 15
     },
     {
@@ -95442,6 +98178,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Elfen, die über diese Sonderfertigkeit verfügen, können sich in einem mindestens einstündigen Ritual miteinander verbinden. Sie müssen sich dazu alle in einem Radius von …",
+      "prerequisites": [
+        "Tradition (Elfen)",
+        "Spezies Elfen"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kleines%20Salasandra",
       "costPerLevel": 20
     },
     {
@@ -95453,6 +98195,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Das Firunsmesser richtet gegen Tiere +2 TP an.",
+      "prerequisites": [
+        "Klinge des Waidmanns",
+        "Klinge des Pirschers"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Klinge%20des%20J%C3%A4gers",
       "costPerLevel": 10
     },
     {
@@ -95464,6 +98212,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Bei der Jagd erhält der Firungeweihte auf Tierkunde eine Begabung. Der Einsatz dieser Fähigkeit verursacht 1 Stufe Trance.",
+      "prerequisites": [
+        "Klinge des Waidmanns",
+        "Klinge des Jägers"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Klinge%20des%20Pirschers",
       "costPerLevel": 15
     },
     {
@@ -95475,6 +98229,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Felle, Pelze und andere Jagdtrophäen, die der Firungeweihte haltbar machen will, sind 50 % länger haltbar als üblich.",
+      "prerequisites": [
+        "Tradition (Firunkirche)",
+        "Messer des Frosts"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Klinge%20des%20Waidmanns",
       "costPerLevel": 3
     },
     {
@@ -95486,6 +98246,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Nach einer gelungenen AT, die mindestens 5 SP angerichtet hat, kann die Heldin die Klinge in der Wunde drehen. Dies verursacht zusätzlich 2 SP …",
+      "prerequisites": [
+        "MU 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Klinge%20Drehen",
       "costPerLevel": 15
     },
     {
@@ -95497,6 +98262,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Der passive PA-Bonus der vom Helden geführten Parierwaffe steigt um 1.",
+      "prerequisites": [
+        "GE 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Klingenf%C3%A4nger",
       "costPerLevel": 10
     },
     {
@@ -95508,6 +98278,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Waffenmeister: Der Einsatz einer Animistenwaffe kostet bei Waffenzaubern 1 AsP weniger (bei einem Minimum von 1 AsP). Zudem richtet die Waffe in ihren Händen …",
+      "prerequisites": [
+        "Tradition Animisten",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Animistenprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Klingenmeister",
       "variableCost": true
     },
     {
@@ -95519,6 +98295,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Die Abenteurerin vermag in 1 Aktion zwei einzelne Attacken zu schlagen. Beide Attacken sind um jeweils 2 erschwert. Der zweite Angriff bekommt einen Malus …",
+      "prerequisites": [
+        "Einhändiger Kampf"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Klingensturm",
       "costPerLevel": 25
     },
     {
@@ -95530,6 +98311,14 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Ein Klingentänzer würfelt bei der Bestimmung der Initiative zusätzlich +1W6 (also in der Regel insgesamt 2W6). Um die Sonderfertigkeit nutzen zu können, dürfen keine …",
+      "prerequisites": [
+        "IN 17",
+        "GE 15",
+        "weitere Voraussetzung laut Regelwiki",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Klingent%C3%A4nzer",
       "costPerLevel": 40
     },
     {
@@ -95541,6 +98330,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDF",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Für einen Klippag-Schwertgesellen sind Proben, um in eine Vorteilhafte Position (siehe Regelwerk Seite 238) zu gelangen, um +1 erleichtert und der Bonus auf Attacke …",
+      "prerequisites": [
+        "GE 13",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Klippag-Stil",
       "costPerLevel": 12
     },
     {
@@ -95552,6 +98347,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Keule versetzt dem Gegner extrem heftige Schläge. Sie erhält einen Bonus von +1W6 TP.",
+      "prerequisites": [
+        "Blutende Keule"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Knochenbrechende%20Keule",
       "costPerLevel": 20
     },
     {
@@ -95563,6 +98363,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Keule versetzt dem Gegner extrem heftige Schläge. Sie erhält einen Bonus von +1W6 TP.",
+      "prerequisites": [
+        "keulenweihe",
+        "Eishaut"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Knochenbrechende%20Keule",
       "costPerLevel": 20
     },
     {
@@ -95574,6 +98380,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Keule versetzt dem Gegner extrem heftige Schläge. Sie erhält einen Bonus von +1W6 TP.",
+      "prerequisites": [
+        "Tierische Kraft"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Knochenbrechende%20Keule",
       "costPerLevel": 20
     },
     {
@@ -95585,6 +98396,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Keule versetzt dem Gegner extrem heftige Schläge. Sie erhält einen Bonus von +1W6 TP.",
+      "prerequisites": [
+        "Härte der Keule"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Knochenbrechende%20Keule",
       "costPerLevel": 20
     },
     {
@@ -95596,6 +98412,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "O",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Keule versetzt dem Gegner extrem heftige Schläge. Sie erhält einen Bonus von +1W6 TP.",
+      "prerequisites": [
+        "Blutende Keule"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Knochenbrechende%20Keule",
       "costPerLevel": 20
     },
     {
@@ -95607,6 +98428,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Diese Sonderfertigkeit erlaubt es dem Anwender, einen Kobold zur rufen, den er persönlich kennt. Der Kobold reist durch ein Limbustor zum Anwender und erscheint …",
+      "prerequisites": [
+        "Tradition (Schelme)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Koboldruf",
       "costPerLevel": 15
     },
     {
@@ -95618,6 +98444,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Der Anwender kann einen Blick in eine ihm bekannte die Koboldwelt werfen. Das Fenster öffnet sich nur für ihn sichtbar in eine ihm bekannte, …",
+      "prerequisites": [
+        "Tradition (Schelme)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Koboldvision",
       "costPerLevel": 10
     },
     {
@@ -95629,6 +98460,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit erhält die Abenteurerin im Talent Malen & Zeichnen das neue Anwendungsgebiet Kohlezeichnungen anfertigen. Sie kann nun mit Kohle Zeichnungen und Bilder …",
+      "prerequisites": [
+        "Malen & Zeichnen 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kohlezeichnungen",
       "costPerLevel": 2
     },
     {
@@ -95640,6 +98476,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Konditor ist eine Einsatzmöglichkeit für das Talent Lebensmittelbearbeitung (Backen). Durch diese Sonderfertigkeit ist es dem Helden möglich, nun neben Broten, einfachen Kuchen und anderen …",
+      "prerequisites": [
+        "Lebensmittelbearbeitung 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Konditor",
       "costPerLevel": 2
     },
     {
@@ -95651,6 +98492,15 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AAN",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Die Lebenskraft des Zauberers wird zeitweise mit einem Konstrukt (Golem, Homunculus, Automat) verknüpft. Das hierfür notwendige dämonische Ritual dauert 7 Stunden und kann nicht …",
+      "prerequisites": [
+        "Zauberer",
+        "Magiekunde 10",
+        "steinwandle 12",
+        "Alchimie 12",
+        "animatio 12"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Konstruktsimulacrum",
       "costPerLevel": 30
     },
     {
@@ -95662,6 +98512,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Efferdgeweihte kann durch Berührung der Oberfläche eines größeren Gewässers (Meer, See, Fluss) eine kleine Welle erzeugen und ihr eine Richtung vorgeben. Die Welle …",
+      "prerequisites": [
+        "Kontrolle des Wassers",
+        "Kontrolle des Strudels"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kontrolle%20der%20Welle",
       "costPerLevel": 8
     },
     {
@@ -95673,6 +98529,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Bei einer misslungenen Liturgie verliert die Heldin (nach der Halbierung der KaP-Kosten) 1 KaP weniger als üblich. Die Kosten können dadurch nicht unter 1 …",
+      "prerequisites": [
+        "Geweihter",
+        "Leiteigenschaft 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kontrolle%20des%20Karmalk%C3%B6rpers",
       "costPerLevel": 10
     },
     {
@@ -95684,6 +98546,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Efferdgeweihte kann durch Berührung der Oberfläche eines größeren Gewässers (Meer, See, Fluss) einen kleinen Strudel erzeugen. Der Strudel darf sich maximal 12 Schritt …",
+      "prerequisites": [
+        "Kontrolle des Wassers",
+        "Kontrolle der Welle"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kontrolle%20des%20Strudels",
       "costPerLevel": 10
     },
     {
@@ -95695,6 +98563,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Efferdgeweihte kann mit einer Berührung seines Efferdbarts eine kleine Wassermenge (bis zu 10 Liter) beliebig in einem Radius von bis zu 2 Schritt …",
+      "prerequisites": [
+        "Tradition (Efferdkirche)",
+        "flugdesdreizacks"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kontrolle%20des%20Wassers",
       "costPerLevel": 3
     },
     {
@@ -95706,6 +98580,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AAN",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Bei der Erschaffung wird ein zum Golem gehöriges Kontrollobjekt mitgefertigt (in der Regel ein Schmuckstück mit Siegel des Erschaffers). Wer das Kontrollobjekt in seiner …",
+      "prerequisites": [
+        "golembauer"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kontrollobjekt",
       "costPerLevel": 10
     },
     {
@@ -95717,6 +98596,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Wird der Held in seiner Konzentration beim Wirken von Zaubern gestört, sind die nötigen Proben auf Selbstbeherrschung (Störungen ignorieren) durch diese Sonderfertigkeit um 1 …",
+      "prerequisites": [
+        "MU 13",
+        "Leiteigenschaft 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Konzentrationsst%C3%A4rke",
       "costPerLevel": 8
     },
     {
@@ -95728,6 +98613,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Zauber in der Tradition der Gildenmagier sind nur um 1 erschwert und können modifiziert werden.",
+      "prerequisites": [
+        "Tradition (Druiden)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Konzilsmeister",
       "costPerLevel": 20
     },
     {
@@ -95739,6 +98629,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Der Gegner muss bei einer gelungenen und unverteidigten AT des Helden eine Probe auf Selbstbeherrschung (Handlungsfähigkeit bewahren) erschwert um 1 ablegen. Bei Misslingen erleidet …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kopfsto%C3%9F",
       "costPerLevel": 5
     },
     {
@@ -95750,6 +98643,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin spart beim Kopieren und Abschreiben von Büchern 25 % der regulären Zeit, die sie dafür benötigen würde. Diese Ersparnis ist kumulativ mit …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kopist",
       "costPerLevel": 3
     },
     {
@@ -95761,6 +98657,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Sollte der Geweihte aufgrund einer misslungenen Probe auf Körperbeherrschung TP oder SP erleiden, wird der Schaden halbiert. Der Einsatz dieser Sonder- fertigkeit kostet 1 …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=K%C3%B6rperkontrolle",
       "costPerLevel": 12
     },
     {
@@ -95772,6 +98671,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Einige Körpertalente, die für die Arbeit der Heldin von großer Bedeutung sind, gehen ihr deutlich leichter von der Hand. Für jedes Talent, für das …",
+      "prerequisites": [
+        "höchstens 3 passende Auswahlen"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=K%C3%B6rperliches%20Geschick",
       "variableCost": true
     },
     {
@@ -95783,6 +98687,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin kann ihren FW in Kraftakt für eine Handlung um 4 erhöhen (bis zum Maximum der Fertigkeit für maximal 1 Minute). Danach erleidet …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kraftanstrengung",
       "costPerLevel": 10
     },
     {
@@ -95794,6 +98701,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Im Gänsebeutel befindet sich jeden Tag eine kleine Mahlzeit bestehend aus einem Ei, einem Stück Brot oder einer Hartwurst, was zwar nicht als Tagesration …",
+      "prerequisites": [
+        "Kleine Mahlzeit",
+        "Sättigende Mahlzeit"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kr%C3%A4ftigende%20Mahlzeit",
       "costPerLevel": 5
     },
     {
@@ -95805,6 +98718,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Verfügt der Zauberer über diese Sonderfertigkeit, erhält er eine Erleichterung von 1 auf Zauber, sofern sich sein Körper auf einem Kraftknoten befindet. Die Modifikation …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kraftknotenmagie",
       "costPerLevel": 15
     },
     {
@@ -95816,6 +98734,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Der Zauberer kann alle regeltechnischen Vorteile eines Kraftknotens nutzen (siehe Seite 51).",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki",
+        "Leiteigenschaft 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kraftknotennutzung",
       "costPerLevel": 20
     },
     {
@@ -95827,6 +98751,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Wirkt der Held erfolgreich einen Zauber, sinken dessen Gesamtkosten um 1 AsP. Die Kosten können dadurch nicht unter 1 AsP sinken.",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki",
+        "Leiteigenschaft 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kraftkontrolle",
       "costPerLevel": 20
     },
     {
@@ -95838,6 +98768,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Verfügt der Zauberer über diese Sonderfertigkeit, erhält er eine Erleichterung von 1 auf Zauber, sofern sich sein Körper auf einer Kraftlinie befindet. Die Modifikation …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kraftlinienmagie",
       "costPerLevel": 5
     },
     {
@@ -95849,6 +98784,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Der Zauberer kann alle regeltechnischen Vorteile einer Kraftlinie nutzen (siehe Seite 51).",
+      "prerequisites": [
+        "Vorteil Zauberer, Tradition muss Rituale einsetzen können"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kraftliniennutzung",
       "costPerLevel": 15
     },
     {
@@ -95860,6 +98800,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "ANE",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Dieses Zeichen kann andere Zauberzeichen mit einer permanenten Wirkung versehen. Voraussetzung ist, dass die Zauberzeichen auf Kraftlinien oder Kraftknoten angebracht sind, oder von einer …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kraftquellenspeisung",
       "costPerLevel": 10
     },
     {
@@ -95871,6 +98814,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Setzt ein Held diese Sonderfertigkeit ein, erhöhen sich die TP seines Angriffs um 2. Wird der Gegner getroffen, muss er eine Probe auf Körperbeherrschung …",
+      "prerequisites": [
+        "KK 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kraftvoller%20Speerwurf",
       "costPerLevel": 15
     },
     {
@@ -95882,6 +98830,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Swafnirgeweihte erhält die Möglichkeit, eine Probe auf Bekehren & Überzeugen (öffentliche Rede) abzulegen und bis zu QS/2 Ziele in seiner Hör- und Sichtreichweite …",
+      "prerequisites": [
+        "Flukenschlag",
+        "Hass des Grünwals"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kraftvoller%20Vorsto%C3%9F",
       "costPerLevel": 10
     },
     {
@@ -95893,6 +98847,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Die Geweihte kann eine Probe auf Heilkunde Krankheiten (spezielle Krankheit) ablegen, die um Krankheitsstufe/2+1 erschwert ist. Gelingt die Probe, wirkt die Krankheit nur mit …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Krankheitskenntnis",
       "costPerLevel": 15
     },
     {
@@ -95904,6 +98861,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin ist dazu in der Lage, eine Kräutermischung anzufertigen, die die Regeneration verbessert. Diese Mischung besteht nicht aus den üblichen Heilkräutern, die LeP …",
+      "prerequisites": [
+        "Pflanzenkunde 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kr%C3%A4utermischung",
       "costPerLevel": 8
     },
     {
@@ -95915,6 +98877,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Um mit Dolchen oder mit Fechtwaffen Waffen der Kampftechniken Kettenwaffen, Stangenwaffen, Zweihandhiebwaffen und Zweihandschwerter parieren zu können, bedarf es der Sonderfertigkeit Kreuzblock und zweier …",
+      "prerequisites": [
+        "GE 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kreuzblock",
       "costPerLevel": 10
     },
     {
@@ -95926,6 +98893,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Zauber mit dem Merkmal Elementar oder Verwandlung, die Schaden in Form von TP oder SP verursachen, haben automatisch eine um 1 Stufe höhere Reichweite …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kriegszauberer",
       "costPerLevel": 20
     },
     {
@@ -95937,6 +98907,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Mit Hilfe dieser Sonderfertigkeit, kann die Heldin Kristalle züchten und sie pflegen. Die Abenteurerin bekommt im Talent Steinbearbeitung das neue Anwendungsgebiet Kristalle züchten. Es …",
+      "prerequisites": [
+        "Steinbearbeitung 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kristallzucht",
       "costPerLevel": 2
     },
     {
@@ -95948,6 +98923,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held kennt sich durch die Sonderfertigkeit mit der Kryptographie aus und erhält das neue Anwendungsgebiet Verschlüsselungen. Es gibt drei Komplexitäten von Ver- und …",
+      "prerequisites": [
+        "Rechnen 8",
+        "Sonderfertigkeit Schrift, passende Sprache auf Stufe III",
+        "kein Nachteil %1"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kryptographie",
       "costPerLevel": 10
     },
     {
@@ -95959,6 +98941,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Liturgien und Zeremonien, die darauf abzielen, Feuer oder Erz zu kontrollieren oder zu formen, erhalten bei Gelingen +2 FP (bis zu einem Maximum von …",
+      "prerequisites": [
+        "Tradition (Ingerimmkirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kultisten%20des%20Ingra",
       "costPerLevel": 8
     },
     {
@@ -95970,6 +98957,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Zauber des Merkmals Sphären erhalten bei einer gelungenen Probe +1 FP (bis zu einem Maximum von 18 FP).",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kundiger%20Sph%C3%A4rologe",
       "costPerLevel": 25
     },
     {
@@ -95981,6 +98971,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Der Held hat in den Talenten Malen & Zeichnen, Musizieren, Singen und Tanzen ein wenig Ahnung. Legt er eine Probe auf eines dieser Talente …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kunstbegabt",
       "costPerLevel": 20
     },
     {
@@ -95992,6 +98985,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Mit der Sonderfertigkeit Kunstflug erwirbt der Held das neue Anwendungsgebiet Kunstflug im Talent Fliegen. Er kann fortan mit seinem Fluggerät Kunststücke vollführen, um Zuschauer …",
+      "prerequisites": [
+        "Fliegen 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kunstflug",
       "costPerLevel": 3
     },
     {
@@ -96003,6 +99001,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Mit der Sonderfertigkeit Kunstreiten erwirbt der Held das neue Anwendungsgebiet Kunstreiten im Talent Reiten. Wenn er ein entsprechend ausgebildetes Reittier hat, kann er mit …",
+      "prerequisites": [
+        "Reiten 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kunstreiten",
       "costPerLevel": 3
     },
     {
@@ -96014,6 +99017,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit erlangt der Abenteurer im Talent Malen & Zeichnen das neue Anwendungsgebiet Kupferstich anfertigen. Von nun an kann er eine Kupferplatte so …",
+      "prerequisites": [
+        "Malen & Zeichnen 4",
+        "Metallbearbeitung 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kupferstich",
       "costPerLevel": 2
     },
     {
@@ -96025,6 +99034,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin ist darin ausgebildet, jemand anderem zuzuhören, das Gesagte in einer Kurzschrift zu notieren und später wieder abzulesen. Beim Verfassen oder der Abschrift …",
+      "prerequisites": [
+        "Schrift",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kurzschrift",
       "costPerLevel": 5
     },
     {
@@ -96036,6 +99051,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Für den Sikaryan-Raub reicht ein inniger Kuss des Vampirs aus.",
+      "prerequisites": [
+        "Status Kind der Finsternis, Kind der Nacht oder Lamijah"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kuss%20der%20Todesfee",
       "costPerLevel": 8
     },
     {
@@ -96047,6 +99067,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Wenn Flusswächter die Liturgiemodifikation Erzwingen einsetzen, so erhalten sie bei Gelingen der Liturgie +1 FP (bis zu einem Maximum von 18 FP).",
+      "prerequisites": [
+        "Tradition (Efferdkirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=K%C3%BCstenw%C3%A4chter",
       "costPerLevel": 10
     },
     {
@@ -96058,6 +99083,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch die Sonderfertigkeit Kutschenbauer wird im Talent Holzbearbeitung das neue Anwendungsgebiet Kutschen bauen erworben. Der Held ist in der Lage, das richtige Holz für …",
+      "prerequisites": [
+        "Fahrzeuge 4",
+        "Holzbearbeitung 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Kutschenbauer",
       "costPerLevel": 5
     },
     {
@@ -96069,6 +99100,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Wer über diese Sonderfertigkeit verfügt, kann vor dem Wirken eines Zaubers mit dem Merkmal Illusion entscheiden, ob der Zauber eine 50 % größere Wirkungsdauer …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Langanhaltende%20Illusion",
       "costPerLevel": 15
     },
     {
@@ -96080,6 +99114,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch eine Berührung kann der Levthanpriester einem Kulturschaffenden 1 Stufe Betäubung nehmen und auf sich übertragen. Der Einsatz dieser Fähigkeit dauert 1 Minute und …",
+      "prerequisites": [
+        "rauschderkeule",
+        "rauschderlustbarkeiten"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Langanhaltender%20Rausch",
       "costPerLevel": 10
     },
     {
@@ -96091,6 +99131,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Gewirkte Liturgien oder Zeremonien halten 50 % länger, kosten aber auch 150 % der ursprünglichen KaP-Kosten.",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Langanhaltender%20Segen",
       "costPerLevel": 15
     },
     {
@@ -96102,6 +99145,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Ein Fluch, den die Hexe ausspricht, wirkt um eine QS länger als üblich (bis zu einem Maximum von 6 QS).",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Langer%20Fluch",
       "costPerLevel": 12
     },
     {
@@ -96113,6 +99159,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Stellt ein Magier ein magisches Artefakt her, so ist die Wirkungsdauer des darin wirkenden Spruchs um 25 % erhöht. Bei Artefakten mit mehreren Sprüchen …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Langwirkende%20Artefakte",
       "costPerLevel": 8
     },
     {
@@ -96124,6 +99173,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Möchte der Reiter einen Gegner mit einer Lanze angreifen, muss dazu der Befehl Lanzenangriff erteilt werden. Der Lanzenangriff kann nur im Galopp ausgeführt werden. …",
+      "prerequisites": [
+        "MU 13",
+        "Berittener Kampf"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Lanzenangriff",
       "costPerLevel": 10
     },
     {
@@ -96135,6 +99190,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann mit Lanzen, die normalerweise nur in einem Lanzenangriff eingesetzt werden können, Attacken und Paraden im Nahkampf als Fußkämpfer ausführen. Anders als …",
+      "prerequisites": [
+        "KK undefined"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Lanzenf%C3%BChrung",
       "costPerLevel": 5
     },
     {
@@ -96146,6 +99206,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Phexgeweihte kann auffällige Geräusche vermeiden, wenn er schleicht oder sich versteckt: Türscharniere quietschen nicht, das morsche Holz einer Treppe knarrt nicht, knackende Äste …",
+      "prerequisites": [
+        "Licht des Madamals",
+        "Glück des Fuchses"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Lautlos%20wie%20ein%20Schatten",
       "costPerLevel": 12
     },
     {
@@ -96157,6 +99223,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Geweihte kann eine Person auswählen. Der Status Brennend wirkt weniger stark gegen diese Person. Sollte der ganze Körper in Flammen stehen, wirkt der …",
+      "prerequisites": [
+        "Tradition (Angroschkirche)",
+        "Beständige Werksarbeit"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Lederne%20Haut",
       "costPerLevel": 8
     },
     {
@@ -96168,6 +99240,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Wer die Sonderfertigkeit Leg-ga-leg beherrscht, ist in der Lage, die maraskanische Geheimschrift zu verstehen und selbst anzuwenden.",
+      "prerequisites": [
+        "Gassenwissen 8",
+        "kein Nachteil Blind / Eingeschränkter Sinn (Tastsinn) (je nach Form des Leg-ga-leg)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Leg-ga-leg",
       "costPerLevel": 2
     },
     {
@@ -96179,6 +99257,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Die Wirkungsdauer von Elfenliedern ist bei Legendensängern verdoppelt.",
+      "prerequisites": [
+        "Tradition (Elfen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Legendens%C3%A4nger",
       "costPerLevel": 12
     },
     {
@@ -96190,6 +99273,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 3,
+      "shortDescription": "Eine Heldin mit dieser Sonderfertigkeit kann die Lernzeit ihres Schülers pro Stufe der Sonderfertigkeit um 10 % senken (siehe Seite 65).",
+      "prerequisites": [
+        "die beigebrachte Fähigkeit muss der Lehrer selbst beherrschen, bei Fertigkeiten muss der FW höher liegen als der ursprüngliche FW des Schülers."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Lehrer",
       "costPerLevel": 3
     },
     {
@@ -96201,6 +99289,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Bei Liturgien, die auf einen Angehörigen des sozialen Standes Stufe 1 oder 2 wirken, erhalten die Lehrer der Einsicht bei Gelingen +1 FP (bis …",
+      "prerequisites": [
+        "Tradition (Nanduskirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Lehrer%20der%20Einsicht",
       "costPerLevel": 20
     },
     {
@@ -96212,6 +99305,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Ein Leibdiener kann alle 24 Stunden eine Probe auf Etikette (Dienen & Gehorchen) ablegen. Gelingt die Probe, so kann der Herr des Helden innerhalb …",
+      "prerequisites": [
+        "Etikette 8",
+        "Menschenkenntnis 4",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Leibdiener",
       "costPerLevel": 3
     },
     {
@@ -96223,6 +99323,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "DSK",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Wer auf einem Truhe, einer Kiste oder einem Korb dieses Ahnenzeichen anbringt, hat weniger zu tragen. Maximal darf ein solches Behältnis 4 Raumschritt bemessen. …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Leicht%20wie%20eine%20Feder",
       "costPerLevel": 3
     },
     {
@@ -96234,6 +99337,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Schicksalspunkte",
       "maxLevel": 1,
+      "shortDescription": "Setzt der Held 1 Schip ein, so kann er den Status Handlungsunfähig für 5 KR ignorieren, sofern der Status aus niedriger Lebensenergie oder den …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Letzte%20Reserve",
       "costPerLevel": 10
     },
     {
@@ -96245,6 +99351,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Während der Nacht widmen sich die Levthansfreunde einem Kulturschaffenden und begeistern ihn mit Tanz, Musik, dem Liebesspiel oder einer anderen rahjagefälligen Handlung. Sie übertragen …",
+      "prerequisites": [
+        "Tradition (Rahjakirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Levthansfreunde",
       "costPerLevel": 15
     },
     {
@@ -96256,6 +99367,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Das Sonnenzepter beginnt zu leuchten und spendet für 30 Minuten so viel Licht wie eine Fackel (siehe Regelwerk Seite 324, Bann der Dunkelheit mit …",
+      "prerequisites": [
+        "Tradition (Praioskirche)",
+        "Zepter der Furcht"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Licht%20des%20G%C3%B6tterf%C3%BCrsten",
       "costPerLevel": 5
     },
     {
@@ -96267,6 +99384,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Das Mondamulett beginnt zu leuchten und spendet für 1 Stunde so viel Licht wie eine Kerze (siehe Regelwerk Seite 324, Bann der Dunkelheit mit …",
+      "prerequisites": [
+        "Tradition (Phexkirche)",
+        "Gespür für Geld"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Licht%20des%20Madamals",
       "costPerLevel": 5
     },
     {
@@ -96278,6 +99401,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Tsageweihte kann durch ihr Prisma kleine Reflexionen erscheinen lassen, die ein faszinierendes Spiel aus Farben und Licht darstellen. Dieser Effekt ist für jeden, …",
+      "prerequisites": [
+        "Tradition (Tsakirche)",
+        "Aura der Friedfertigkeit"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Licht%20des%20Prismas",
       "costPerLevel": 5
     },
     {
@@ -96289,6 +99418,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 3,
+      "shortDescription": "Der Held kann Erschwernisse durch Spezies- oder Kulturunterschiede bei der Probe auf Betören (Liebeskünste) pro Stufe um 1 senken (bis zu einem Minimum von …",
+      "prerequisites": [
+        "Betören 4",
+        "Geographie 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Liebesspiele%20fremder%20V%C3%B6lker%20(Spezies%2FKultur)",
       "costPerLevel": 3
     },
     {
@@ -96300,6 +99435,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Zauber, die in einem Ziel Liebe, Begehren, Verlangen, sexuelle Gelüste und ähnliche Gefühle auslösen oder die die Zauberin begehrenswerter und schöner machen, sind um …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Liebeszauberei",
       "costPerLevel": 10
     },
     {
@@ -96311,6 +99449,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Liebkosungen und Streicheleinheiten reichen für den Sikaryan-Räuber aus, um seinem Opfer Lebenskraft zu entziehen.",
+      "prerequisites": [
+        "Status Lamijah"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Liebkosung%20des%20Schmerzes",
       "costPerLevel": 8
     },
     {
@@ -96322,6 +99465,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit kann die Heldin Zuhörer bei einem öffentlichen Auftritt leichter von ihren Ansichten überzeugen. Proben auf Bekehren & Überzeugen (öffentliche Rede) gelten …",
+      "prerequisites": [
+        "Bekehren & Überzeugen 8",
+        "Menschenkenntnis 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Liebling%20der%20Massen",
       "costPerLevel": 4
     },
     {
@@ -96333,6 +99482,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann eine einzige Liturgie zu seiner Lieblingsliturgie erklären. Diese Liturgie hat bei Gelingen +2 FP (bis zu einem Maximum von 18 FP). …",
+      "prerequisites": [
+        "Geweihter",
+        "nicht mehr als einmal wählbar"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Lieblingsliturgie",
       "variableCost": true
     },
     {
@@ -96344,6 +99499,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann einen einzigen Zauber zu seinem Lieblingszauber erklären. Dieser Zauber hat bei Gelingen +2 FP (bis zu einem Maximum von 18 FP). …",
+      "prerequisites": [
+        "Sonderfertigkeit Lieblingszauber kann nur einmal gewählt werden"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Lieblingszauber",
       "variableCost": true
     },
     {
@@ -96355,6 +99515,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch die Sonderfertigkeit wird das neue Anwendungsgebiet Lippenlesen des Talents Sinnesschärfe erworben.",
+      "prerequisites": [
+        "Sinnesschärfe 4",
+        "kein Blind"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Lippenlesen",
       "costPerLevel": 10
     },
     {
@@ -96366,6 +99532,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Die Geweihte kann jede ihrer gewirkten Liturgien zu einem beliebigen Zeitpunkt der Wirkungsdauer beenden. Sie muss also nicht bis zum Ende der Wirkungsdauer warten, …",
+      "prerequisites": [
+        "Geweihter",
+        "Leiteigenschaft 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Liturgie%20abbrechen",
       "costPerLevel": 8
     },
     {
@@ -96377,6 +99549,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Karma",
       "maxLevel": 2,
+      "shortDescription": "Bis zu (Stufe der SF+1) Geweihte der gleichen Tradition können ihre Kräfte für eine Liturgie oder Zeremonie vereinigen, wenn sie sich berühren. Alle Beteiligten …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki",
+        "Leiteigenschaft undefined"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Liturgie%20Vereinen",
       "costPerLevel": 15
     },
     {
@@ -96388,6 +99566,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Der Schelm kann bei seinen Schelmenstreichen eine SK und ZK von bis zu 2 bei seinen Zielen ignorieren. Diese Sonderfertigkeit ist mit dem Vorteil …",
+      "prerequisites": [
+        "Tradition (Schelme)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Lockeres%20Zaubern",
       "costPerLevel": 15
     },
     {
@@ -96399,6 +99582,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Ein Held mit dieser Sonderfertigkeit erhält das neue Anwendungsgebiet Vorlieben erspüren im Talent Menschenkenntnis. Von nun an kann er deutlich leichter spüren, welche Vorlieben …",
+      "prerequisites": [
+        "Betören 8",
+        "Menschenkenntnis 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Lustempathie",
       "costPerLevel": 5
     },
     {
@@ -96410,6 +99599,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Ein einziges Mal während des Vergnügens zu zweit, wenn der andere Teilnehmer vom Helden eine Stufe Erregung erhält, kann sich die Spielerin des Helden …",
+      "prerequisites": [
+        "Betören 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Lustspender%2Fin",
       "costPerLevel": 8
     },
     {
@@ -96421,6 +99615,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Levthanpriester erhält +2 FP auf Betören (Anbändeln) und Überreden (Aufschwatzen, Manipulieren oder Schmeicheln). Der Einsatz dieser Fähigkeit dauert 1 Aktion und verursacht 1 …",
+      "prerequisites": [
+        "verfuehrungdeswidders",
+        "angsteinfloessendestier"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Lustvoller%20Bock",
       "costPerLevel": 12
     },
     {
@@ -96432,6 +99632,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 13,
+      "shortDescription": "Für jede Stufe der Sonderfertigkeit erhält der Namenloser-Geweihte einen Bonus für den Opferdolch. Diese Boni sind kumulativ. Stufe Boni I +1 TP II +1 …",
+      "prerequisites": [
+        "Tradition (Der Namenlose)",
+        "zusätzlich weitere Grade der Namenlosen Weihe: ab Stufe 4 den zweiten Grad, ab Stufe 8 den dritten Grad und ab Stufe 13 den vierten Grad"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Macht%20der%20Namenlosen%20Klinge",
       "costPerLevel": 13
     },
     {
@@ -96443,6 +99649,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDSO",
       "category": "Allgemein",
       "maxLevel": 13,
+      "shortDescription": "Für jede Stufe der Sonderfertigkeit erhält der Geweihte des Namenlosen einen Bonus für das Gewand. Diese Boni sind kumulativ. Stufe Boni I +1 RS …",
+      "prerequisites": [
+        "Tradition (Der Namenlose)",
+        "zusätzlich weitere Grade der Namenlosen Weihe: ab Stufe 4 den zweiten Grad, ab Stufe 8 den dritten Grad und ab Stufe 13 den vierten Grad"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Macht%20der%20Purpurnen%20Toga",
       "costPerLevel": 13
     },
     {
@@ -96454,6 +99666,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Efferdgeweihte kann eine kleine, an Ort und Stelle verharrende Windhose erzeugen, die sich maximal 12 Schritt von ihm weg befinden darf. Sie sorgt …",
+      "prerequisites": [
+        "flugdesdreizacks",
+        "sprungmitdemdreizack"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Macht%20des%20Dreizacks",
       "costPerLevel": 12
     },
     {
@@ -96465,6 +99683,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Die Hexen kann sich bei gezieltem Hineinsteigern in eine Emotion auf Hassgefühle konzentrieren und so eine weitere Erleichterung von 1 erhalten (siehe Seite 19).",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Macht%20des%20Hasses",
       "costPerLevel": 15
     },
     {
@@ -96476,6 +99697,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Bei Anwendungen auf Proben kann der Avesgeweihte auch mehrere Schips für die gleiche oder unterschiedliche Anwendungen einsetzen. Er kann z. B. Neu würfeln zweimal …",
+      "prerequisites": [
+        "Glückskind",
+        "Zeichen der Vorsehung"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Macht%20des%20Schicksals",
       "costPerLevel": 15
     },
     {
@@ -96487,6 +99714,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Dem Vampir ist es möglich, während des Beischlafs einen Sikaryan-Raub durchzuführen. beherrschen Lamijanim von Anfang an",
+      "prerequisites": [
+        "Status Kind der Finsternis, Kind der Nacht oder Lamijah"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Macht%20des%20Sukkubus",
       "costPerLevel": 5
     },
     {
@@ -96498,6 +99730,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Wirkt der Held erfolgreich eine Liturgie, sinken die Gesamtkosten um 1 KaP. Die Kosten können dadurch nicht unter 1 KaP sinken.",
+      "prerequisites": [
+        "Geweihter",
+        "weitere Voraussetzung laut Regelwiki",
+        "Leiteigenschaft 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=M%C3%A4chtige%20Kontrolle%20des%20Karmalk%C3%B6rpers",
       "costPerLevel": 20
     },
     {
@@ -96509,6 +99748,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Mit dem Mächtigen Lanzenangriff kann die Heldin +2 TP gegen Wesen erzielen, die als Ungeheuer klassifiziert sind, sofern sie die Größenkategorie groß oder riesig …",
+      "prerequisites": [
+        "Lanzenangriff"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=M%C3%A4chtiger%20Lanzenangriff",
       "costPerLevel": 5
     },
     {
@@ -96520,6 +99764,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Wer über den Mächtigen Rundumschlag verfügt, bekommt folgende Boni bei der Ausführung eines gewöhnlichen Rundumschlags dazu: Bei der ersten Attacke +1 TP; bei der …",
+      "prerequisites": [
+        "KK 15",
+        "Rundumschlag"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=M%C3%A4chtiger%20Rundumschlag",
       "costPerLevel": 10
     },
     {
@@ -96531,6 +99781,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Durch diese SF kann die Heldin mittels Pentagramma auch gehörnte Dämonen mit 6 oder mehr Hörnern verbannen.",
+      "prerequisites": [
+        "MU 15",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Machtvolle%20Entschw%C3%B6rung%20(D%C3%A4monen)",
       "costPerLevel": 10
     },
     {
@@ -96542,6 +99798,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Durch diese SF kann der Held mittels Hexagramma auch Elementare Meister verbannen.",
+      "prerequisites": [
+        "MU 15",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Machtvolle%20Entschw%C3%B6rung%20(Elementare)",
       "costPerLevel": 10
     },
     {
@@ -96553,6 +99815,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Durch diese SF kann die Heldin mittels Heptagramma auch hohe Geister verbannen.",
+      "prerequisites": [
+        "MU 15",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Machtvolle%20Entschw%C3%B6rung%20(Geister)",
       "costPerLevel": 10
     },
     {
@@ -96564,6 +99832,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Verfügt der Zauberer über eine körperliche Komponente seines Ziels (ein Büschel Haare, eine kleine Phiole Blut usw.), dann sinken SK und ZK des Ziels …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Machtvolle%20materielle%20Verbindung",
       "costPerLevel": 10
     },
     {
@@ -96575,6 +99848,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Ein Held mit dieser Sonderfertigkeit erleidet bei mehrfachen Paraden in einer KR nicht Erschwernisse von jeweils 3, sondern nur von jeweils 1 (siehe Regelwerk …",
+      "prerequisites": [
+        "Eigenschaft 17",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Machtvolle%20Meisterparade",
       "costPerLevel": 40
     },
     {
@@ -96586,6 +99865,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Wer die Verbotenen Pforten nutzt, dessen Probe auf Selbstbeherrschung ist um 1 erleichtert. Es müssen außerdem kein AsP aufgewendet werden, um die Verbotenen Pforten …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Machtvolle%20Verbotene%20Pforten",
       "costPerLevel": 8
     },
     {
@@ -96597,6 +99881,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Die astrale Kraft im Körper des Zauberers ist so stark, dass waffenlose Angriffe mit der Kampftechnik Raufen als magische Angriffe gelten. Er ist damit …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki",
+        "Leiteigenschaft 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Machtvoller%20Astralleib",
       "costPerLevel": 8
     },
     {
@@ -96608,6 +99898,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Wenn der Held jemanden mit Heilkunde Wunden (Heilung fördern) zusätzliche LeP bei der nächsten Regenerationsphase verschafft, so bekommt der Patient 1W3 weitere LeP zu …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Machtvoller%20Heiler",
       "costPerLevel": 20
     },
     {
@@ -96619,6 +99912,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Befindet sich die Heldin mit ihrer Fernkampfwaffe in der Reichweite nah, erhöht sich der Schaden durch den Einsatz der Sonderfertigkeit Präziser Schuss/ Wurf um …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki",
+        "Präziser Schuss/Wurf 1"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Machtvoller%20Kernschuss",
       "costPerLevel": 10
     },
     {
@@ -96630,6 +99929,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Das Manöver Machtvoller Sturmangriff kann nur durchgeführt werden, wenn die Angreiferin eine Anlaufstrecke von mindestens 2 Schritt hat und über eine GS von mindestens …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Machtvoller%20Sturmangriff",
       "costPerLevel": 25
     },
     {
@@ -96641,6 +99945,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin kann mit dieser Sonderfertigkeit drei Ziele in Angriffsdistanz angreifen. Sie muss vor dem Angriff ansagen, in welcher Reihenfolge sie die drei Gegner …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Machtvoller%20Wirbelangriff",
       "costPerLevel": 25
     },
     {
@@ -96652,6 +99961,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Die Madaschwestern können wie Gildenmagier einen Fremdzauber wählen, den sie wie einen Zauber ihrer Tradition behandeln können.",
+      "prerequisites": [
+        "Tradition (Hexen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Madaschwestern%20(Schwester%20des%20Wissens)",
       "costPerLevel": 15
     },
     {
@@ -96663,6 +99977,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Bei einer Berührung oder einem Treffer im Kampf, der TP verursacht, kann der Schamane dem Ziel 1W6+2 AsP entziehen. Die AsP werden nicht dem …",
+      "prerequisites": [
+        "keulenweihe",
+        "freundschaftdestieresmoha"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Magieentzug",
       "costPerLevel": 12
     },
     {
@@ -96674,6 +99994,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Bei einer Berührung oder einem Treffer im Kampf, der TP verursacht, kann der Schamane dem Ziel 1W6+2 AsP entziehen. Die AsP werden nicht dem …",
+      "prerequisites": [
+        "Mondsicht"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Magieentzug",
       "costPerLevel": 12
     },
     {
@@ -96685,6 +100010,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "O",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Bei einer Berührung oder einem Treffer im Kampf, der TP verursacht, kann der Schamane dem Ziel 1W6+2 AsP entziehen. Die AsP werden nicht dem …",
+      "prerequisites": [
+        "keulenweihe",
+        "Blutende Keule"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Magieentzug",
       "costPerLevel": 12
     },
     {
@@ -96696,6 +100027,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Schicksalspunkte",
       "maxLevel": 1,
+      "shortDescription": "Der Held bekommt das neue Anwendungsgebiet Magiespür im Talent Sinnesschärfe. Setzt der Spieler einen Schip ein, so verfügt sein Held über einen kurzen Zeitraum …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Magiegesp%C3%BCr",
       "costPerLevel": 10
     },
     {
@@ -96707,6 +100041,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "ANE",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Dieses Zeichen erschwert die Bannung einer Glyphe durch Antimagie. Die entsprechenden Proben auf Zauber und andere Effekte sind um –3 erschwert. Merkmal: Antimagie AsP-Kosten: …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Magiewiderstand",
       "costPerLevel": 5
     },
     {
@@ -96718,6 +100055,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Diese Sonderfertigkeit erfordert materielle Komponenten in Form von Heilkräutern (pro Behandlung im Wert von 5 Silbertalern). Zauber, die dem Ziel direkt Lebensenergie zurückgeben (etwa …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Magische%20Kr%C3%A4uterheilkunde",
       "costPerLevel": 15
     },
     {
@@ -96729,6 +100069,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 2,
+      "shortDescription": "Durch diese SF regeneriert der Held bei jeder Regenerationsphase 1 AsP zusätzlich. Dieser Bonus ist kumulativ mit dem Vorteil Verbesserte Regeneration (Astralenergie).",
+      "prerequisites": [
+        "Leiteigenschaft 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Magische%20Regeneration",
       "costPerLevel": 12
     },
     {
@@ -96740,6 +100085,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AAN",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Ein Zauberer, der über diese Sonderfertigkeit verfügt, kann die Rituale STEIN WANDLE und ANIMATIO nutzen, selbst, wenn seine Tradition dies eigentlich verbietet. Der Held …",
+      "prerequisites": [
+        "Zauberer",
+        "Magiekunde 10",
+        "Handwerkstalent des jeweiligen Golemmaterials 10 bzw. Metallbearbeitung (Automatenkonstruktion) 10 für Automaten"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Magischer%20Meisterkonstrukteur",
       "costPerLevel": 20
     },
     {
@@ -96751,6 +100103,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Der Zauberer ist in der Lage, mittels einer freien Handlung einen magischen Schild zu errichten, der ihn (und nur ihn) vor TP- oder SP-verursachenden …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Magischer%20Schutzschild",
       "costPerLevel": 12
     },
     {
@@ -96762,6 +100117,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held bekommt einen Bonus von 2 FP bei Proben auf Betören (Liebeskünste), wenn er die Sexpraktiken Fesselspiele oder Harte Gangart einsetzt.",
+      "prerequisites": [
+        "Betören 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Mal%20hart%2C%20mal%20Zart",
       "costPerLevel": 10
     },
     {
@@ -96773,6 +100133,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Erzielt der Korgeweihte mit einem Korspieß einen Kritischen Erfolg bei der AT, kann er den W6 bei der TP-Bestimmung zweimal würfeln und das bessere …",
+      "prerequisites": [
+        "MU 13",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Mantikor-Stil",
       "costPerLevel": 10
     },
     {
@@ -96784,6 +100150,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Gegen Wesen mit mindestens RS 2 richtet der Korspieß +1 SP an. Diese Fähigkeit ist kombinierbar mit Scharfe Krallen, sodass der Korspieß +2 SP …",
+      "prerequisites": [
+        "Scharfe Krallen",
+        "Blutende Wunde"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Mantikorstich",
       "costPerLevel": 10
     },
     {
@@ -96795,6 +100167,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Marwan Sahib-Balayanim können es ihren Feinden in enger Umgebung noch schwerer machen: Gegner mit dem Status Eingeengt die gegen einen Balayan kämpfen, erleiden jeweils …",
+      "prerequisites": [
+        "GE 13",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Marwan%20Sahib-Stil",
       "costPerLevel": 10
     },
     {
@@ -96806,6 +100184,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit bekommt die Heldin eine neue Einsatzmöglichkeit im Talent Heilkunde Wunden. Sie kann eine Massage bei einem Kulturschaffenden mit ähnlicher Anatomie wie …",
+      "prerequisites": [
+        "Heilkunde Wunden 6",
+        "Kraftakt 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Masseur%2Fin",
       "costPerLevel": 10
     },
     {
@@ -96817,6 +100201,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Verfügt der Zauberer über eine körperliche Komponente seines Ziels (ein Büschel Haare, eine kleine Phiole Blut usw.; ein Haar oder ein Tropfen Blut reicht …",
+      "prerequisites": [
+        "Zauberer"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Materielle%20Verbindung",
       "costPerLevel": 12
     },
     {
@@ -96828,6 +100217,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Kennern dieser Sonderfertigkeit steht es offen, Zauber im Rahmen der Zauberwerkstatt (siehe Seite 81) zu modifizieren.",
+      "prerequisites": [
+        "Leiteigenschaft 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Matrixkontrolle",
       "costPerLevel": 20
     },
     {
@@ -96839,6 +100233,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Wenn ein Zauber nicht durch eine Modifikation verändert wird, erhält der Zauberer beim Wirken +1 FP (bis zu einem Maximum von 18 FP).",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Matrixzauberei",
       "costPerLevel": 25
     },
     {
@@ -96850,6 +100247,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Solange die Heldin sich entsprechend darauf konzentriert, ist ihre Seelenkraft gegen Zauber mit den Merkmalen Einfluss und Hellsicht um 1 verbessert. Zum Aktivieren ist …",
+      "prerequisites": [
+        "Geweihter",
+        "MU 13",
+        "Leiteigenschaft 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Mauer%20des%20Geistes",
       "costPerLevel": 10
     },
     {
@@ -96861,6 +100265,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AAN",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Der Mechanikus kann sich bei der Herstellung eines Automaten dazu entscheiden, eine zusätzliche Erschwernis von –4 auf sich zu nehmen, um einen mechanopathischen Automaten …",
+      "prerequisites": [
+        "Zauberer",
+        "animatio 12",
+        "Mechanik 12"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Mechanopathische%20Automaten",
       "costPerLevel": 30
     },
     {
@@ -96872,6 +100283,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Der Medizinmann erhält bei allen Fertigkeitsproben, die sich mit Heilkunst befassen, gleich ob profaner oder karmaler Art, +1 FP (bis zu einem Maximum von …",
+      "prerequisites": [
+        "Sonderfertigkeit Tradition (eine Schamanentradition)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Medizinleute",
       "costPerLevel": 15
     },
     {
@@ -96883,6 +100299,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Liturgien und Zeremonien, die auf Seefahrt und Fischfang abzielen, erhalten bei Gelingen +2 FP (bis zu einem Maximum von 18 FP).",
+      "prerequisites": [
+        "Tradition (Efferdkirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Meeresw%C3%A4chter",
       "costPerLevel": 8
     },
     {
@@ -96894,6 +100315,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Bei Zaubern kann die Heldin die beiden Schicksalspunkte-Anwendungen Neuer Wurf und Qualität verbessern kombinieren. Sie muss nur 1 Schip einsetzen, um beide Anwendungen bei …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Mehr%20Gl%C3%BCck%20als%20Verstand",
       "costPerLevel": 12
     },
     {
@@ -96905,6 +100329,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDSK",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Beherrschungsikone: Bei Ritualen und druidischen Herrschaftsritualen gilt die SK und ZK des Opfers als um 1 niedriger. Bei druidischen Herrschaftsritualen werden SK und ZK …",
+      "prerequisites": [
+        "Der Held wurde von einem Druiden dieser Denkschule ausgebildet.",
+        "Tradition (Druiden)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Denkschulenprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Mehrer%20der%20Macht",
       "variableCost": true
     },
     {
@@ -96916,6 +100347,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Der Kenner dieser Sonderfertigkeit muss sich für eines der sechs Elemente entscheiden. Zauber mit dem Merkmal Elementar, die auf diesem Element beruhen, kosten 2 …",
+      "prerequisites": [
+        "Tradition (Druiden)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Meister%20der%20elementaren%20Gewalten",
       "costPerLevel": 20
     },
     {
@@ -96927,6 +100363,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Meister der Improvisation können bei Fertigkeitsproben auf Handwerkstalente Erschwernisse von bis zu 2 aufgrund schlechter Werkzeuge und Materialien ignorieren. Der Rest der Erschwernisse gilt …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Meister%20der%20Improvisation",
       "costPerLevel": 10
     },
     {
@@ -96938,6 +100377,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Die Abenteurerin kann improvisierte Waffen ohne Nachteile benutzen. Weder muss sie bereits bei einer gewürfelten 19 bei Attacken und Paraden einen Bestätigungswurf für einen …",
+      "prerequisites": [
+        "GE 13",
+        "KK 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Meister%20der%20improvisierten%20Waffen",
       "costPerLevel": 10
     },
     {
@@ -96949,6 +100394,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Der Zauberer kann Dämonen aus Belkelels Domä- ne leichter beschwören. Falls es durch die Anrufungsschwierigkeit Erschwernisse gibt, sind diese um 1 gesenkt und der …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Meister%20der%20Lustd%C3%A4monen",
       "costPerLevel": 10
     },
     {
@@ -96960,6 +100408,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Der Held bekommt eine Erleichterung von 1 bei Orientierung.",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Meister%20der%20Orientierung",
       "costPerLevel": 10
     },
     {
@@ -96971,6 +100422,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Meister des Kreises regenerieren in Steinkreisen, die nach druidischer Magie ausgerichtet sind, bei ihrer Regenerationsphase zusätzlich +2 AsP. Zudem sind Zauber an diesen Orten …",
+      "prerequisites": [
+        "Tradition (Druiden)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Meister%20des%20Kreises",
       "costPerLevel": 10
     },
     {
@@ -96982,6 +100438,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Kämpft der Held mit einer Elfenwaffe, so kann er 2 Punkte vom Würfelergebnis eines Bestätigungswurfes abziehen. Als Elfenwaffen gelten: Aleeza, Elfenbogen, Elfendolch, Elfenspeer, Robbentöter …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Meister%20elfischer%20Waffen",
       "costPerLevel": 10
     },
     {
@@ -96993,6 +100452,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Dolch- und Sichelrituale kosten beim Einsatz 1 AsP weniger (bis zu einem Minimum von 1 AsP).",
+      "prerequisites": [
+        "Tradition (Druiden)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Meister%20vom%20Wald",
       "costPerLevel": 12
     },
     {
@@ -97004,6 +100468,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Kämpft der Held mit einer Zwergenwaffe, so kann er 2 Punkte vom Würfelergebnis eines Bestätigungswurfes abziehen. Als Zwergenwaffen gelten: Drachentöter, Drachenzahn, Lindwurmschläger, Felsspalter, Wurmspieß, …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Meister%20zwergischer%20Waffen",
       "costPerLevel": 10
     },
     {
@@ -97015,6 +100482,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Wenn der Nandusgeweihte unterrichtet, verringert sich die Zeit zum Erlernen des Wissens für seine Schüler um 25 %.",
+      "prerequisites": [
+        "Tradition (Nanduskirche)",
+        "Wissensdurst"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Meisterhafter%20Lehrmeister",
       "costPerLevel": 3
     },
     {
@@ -97026,6 +100499,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Nutzt die Heldin die Talente Verbergen (Gegenstände verbergen) oder Verkleiden (Kostümieren), erhält sie bei Gelingen einer Probe +1 FP (bis zu einem Maximum von …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Meisterin%20der%20Tarnung",
       "costPerLevel": 8
     },
     {
@@ -97037,6 +100513,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Schicksalspunkte",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin kann sich unter Aufwendung von 1 Verführungshandlung eine beliebige Sex-Sonderfertigkeit aussuchen (siehe Seite 156). Sie muss die erforderlichen AP ausgeben, erhält diese …",
+      "prerequisites": [
+        "Zeugung durch ekstatischen Höhepunkt"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Meisterin%20des%20Liebesspiels",
       "costPerLevel": 15
     },
     {
@@ -97048,6 +100529,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 3,
+      "shortDescription": "Der Held würfelt bei der Verteidigung gegen Wurfwaffen statt einer Probe auf Ausweichen eine Raufen-PA. Gelingt sie, hat er die geworfene Waffe erfolgreich gefangen. …",
+      "prerequisites": [
+        "Geschossabwehr 2"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Meisterliche%20Geschossabwehr",
       "costPerLevel": 8
     },
     {
@@ -97059,6 +100545,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Nutzt der Held die Sonderfertigkeit Kräutermischung, heilt sein Patient 2 LeP statt 1 LeP.",
+      "prerequisites": [
+        "kraeutermischung"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Meisterliche%20Kr%C3%A4utermischung",
       "costPerLevel": 12
     },
     {
@@ -97070,6 +100561,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Während der Regenerationsphase kann sich der Zauberer entscheiden, statt dem W6 einen festen Wert von 4 in die Berechnung der AsP-Regeneration einzubeziehen (zuzüglich aller …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Meisterliche%20Regeneration",
       "costPerLevel": 10
     },
     {
@@ -97081,6 +100575,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Ein meisterlicher Klingentänzer bekommt +1/+2/+3 auf Verteidigung, wenn er beim würfeln seiner Initiative mit 2W6 ein Würfelergebnis von mindestens 3/7/11 erzielt. Um die Sonderfertigkeit …",
+      "prerequisites": [
+        "GE 17",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Meisterlicher%20Klingent%C3%A4nzer",
       "costPerLevel": 20
     },
     {
@@ -97092,6 +100592,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Während eines Turniers kann die Heldin in den Disziplinen Ring- und Schildstechen sowie Tjoste bis zu 5 beliebige eigenen Würfelwurf wiederholen, bei welchen das …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Meisterlicher%20Turnierreiter",
       "costPerLevel": 12
     },
     {
@@ -97103,6 +100608,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin kann gegen eine Raufen-AT eine Raufen-PA einsetzen, um einen meisterlichen Wurf anzusetzen. Diese PA ist um 4 erschwert. Gelingt sie, dann erhält …",
+      "prerequisites": [
+        "Wurf"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Meisterlicher%20Wurf",
       "costPerLevel": 10
     },
     {
@@ -97114,6 +100624,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Das Meisterliche Auraverbergen funktioniert wie die Sonderfertigkeit Aura verbergen, mit folgenden Ausnahmen: Während der Held die Sonderfertigkeit aktiviert hat, kann er zaubern und Zauber …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Meisterliches%20Auraverbergen",
       "costPerLevel": 10
     },
     {
@@ -97125,6 +100640,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Ein Held mit der SF Meisterliches Ausweichen erleidet bei mehrfachem Ausweichen in einer KR nicht Erschwernisse von jeweils 3, sondern nur von jeweils 2 …",
+      "prerequisites": [
+        "IN 13",
+        "Verbessertes Ausweichen 2"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Meisterliches%20Ausweichen",
       "costPerLevel": 15
     },
     {
@@ -97136,6 +100657,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Gelingt ein um 2 erschwerter Angriff der Heldin, entstehen keine SP, allerdings müssen die TP trotzdem ausgewürfelt werden. Der Gegner muss eine Probe Körperbeherrschung …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Meisterliches%20Umrennen",
       "costPerLevel": 10
     },
     {
@@ -97147,6 +100673,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Eine Heldin mit Meisterparade erleidet bei mehrfachen Paraden in einer KR nicht Erschwernisse von jeweils 3, sondern nur von jeweils 2 (siehe Regelwerk Seite …",
+      "prerequisites": [
+        "Eigenschaft 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Meisterparade",
       "costPerLevel": 25
     },
     {
@@ -97158,6 +100689,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 3,
+      "shortDescription": "Ein einziger ausgewählter Zaubertrick erhält pro Stufe der SF +1 QS. Dabei wird meist der Zaubertrick ausgewählt, der eine besondere Verbreitung bei Akademie oder …",
+      "prerequisites": [
+        "höchstens 1 passende Auswahl"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Meistertrick",
       "costPerLevel": 1
     },
     {
@@ -97169,6 +100705,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Diese SF sorgt dafür, dass die Heldin die Auswirkungen der höchsten Stufe des Zustands Furcht ignorieren darf. Sie erleidet lediglich die Auswirkungen der nächstniedrigeren …",
+      "prerequisites": [
+        "MU 13",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Mengbilla-Stil",
       "costPerLevel": 15
     },
     {
@@ -97180,6 +100722,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Verbindung: Fremdzauber sind nur um 1 erschwert. Badoc: Menschenfreunde können nicht am Salasandra teilnehmen (siehe Seite 71). Elfenlieder sind um 1 erschwert, ebenso Gesellschaftstalente …",
+      "prerequisites": [
+        "Spezies Elfen",
+        "Tradition (Elfen)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Elfenprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Menschenfreund",
       "variableCost": true
     },
     {
@@ -97191,6 +100740,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDGDG",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Einfluss auf Menschen: Menschenkenner erhalten eine Erleichterung von +1 auf Menschenkenntnis. Unkenntnis der Natur: Menschenkenner müssen bei Zaubermelodien, die nicht das Merkmal Einfluss aufweisen, …",
+      "prerequisites": [
+        "Tradition Zauberbarden",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Zauberbardenprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Menschenkenner",
       "variableCost": true
     },
     {
@@ -97202,6 +100757,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch die Sonderfertigkeit erwirbt der Held eine Einsatzmöglichkeit für Verkleiden (Person imitieren). Der Held kann mittels des Talents Verkleiden nun menschliche Stimmen ausgezeichnet imitieren. …",
+      "prerequisites": [
+        "Menschenkenntnis 4",
+        "Verkleiden 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Menschenstimmen%20imitieren",
       "costPerLevel": 10
     },
     {
@@ -97213,6 +100774,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Anwender des Mercenario-Stils können einen Schwertknauf, eine Dolchscheide oder einen anderen vergleichbaren Gegenstand im waffenlosen Kampf nutzen und diesen mit ihren Angriffen und ihrer …",
+      "prerequisites": [
+        "KK 13",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Mercenario-Stil",
       "costPerLevel": 8
     },
     {
@@ -97224,6 +100791,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Nur mit dem Erwerb einer bestimmten Merkmalskenntnis ist es dem Zauberkundigen möglich, Zauber über einen Fertigkeitswert von 14 hinaus zu steigern. Außerdem kann der …",
+      "prerequisites": [
+        "Leiteigenschaft 15",
+        "weitere Voraussetzung laut Regelwiki",
+        "höchstens 3 passende Auswahlen"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Merkmalskenntnis",
       "variableCost": true,
       "suggestedCost": 10
     },
@@ -97236,6 +100810,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Richtet das Firunsmesser mindestens 4 SP an, erleidet das Opfer sofort eine Unterkühlung (1 Stufe Verwirrung und 1 Stufe Paralyse), wenn der Firungeweihte dies …",
+      "prerequisites": [
+        "Messer des Frosts",
+        "Messer des Eises"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Messer%20der%20K%C3%A4lte",
       "costPerLevel": 15
     },
     {
@@ -97247,6 +100827,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Firungeweihte kann mühelos durch Eis schneiden.",
+      "prerequisites": [
+        "Messer des Frosts",
+        "Messer der Kälte"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Messer%20des%20Eises",
       "costPerLevel": 10
     },
     {
@@ -97258,6 +100844,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Firungeweihte kann mit dem Firunsmesser das Intervall der Kältestufen von vorne beginnen lassen (siehe Regelwerk Seite 346). Bei Kältestufe II beträgt das Intervall …",
+      "prerequisites": [
+        "Tradition (Firunkirche)",
+        "Klinge des Waidmanns"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Messer%20des%20Frosts",
       "costPerLevel": 8
     },
     {
@@ -97269,6 +100861,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "DD",
       "category": "Allgemein",
       "maxLevel": 3,
+      "shortDescription": "Wer Meteoreisen und seine Varianten nach der Bashuridenprozedur verarbeiten will, benötigt dazu diese Sonderfertigkeit. Mit Stufe I kann leichtes Meteoreisen, mit Stufe II gewöhnliches …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Meteoreisen%20verarbeiten",
       "costPerLevel": 5
     },
     {
@@ -97280,6 +100877,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Setzt eine Heldin mit diesem Stil eine Finte ein, kann sie statt der Senkung der Verteidigung des Gegners, Rüstungsschutz durch extern getragene Rüstungen in …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "GE 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Metessa%20Galora-Stil",
       "costPerLevel": 20
     },
     {
@@ -97291,6 +100894,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin kann eine um 2 erschwerte AT ausführen. Dieser AT kann der Gegner nur ausweichen. Gelingt ihm die Verteidigung nicht, so erleidet er …",
+      "prerequisites": [
+        "MU 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Miese%20Tricks",
       "costPerLevel": 15
     },
     {
@@ -97302,6 +100910,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Der Geweihte gibt bei seinem Mirakel zusätzlich 2 KaP aus (insgesamt also 6KaP), dafür erhält er einen FW-Bonus von +3 (statt von +2). Der …",
+      "prerequisites": [
+        "Geweihter",
+        "Leiteigenschaft 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Mirakelmacht",
       "costPerLevel": 15
     },
     {
@@ -97313,6 +100927,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Der Geweihte kann Anhänger für seinen Kult rekrutieren. Er kann pro vollem Monat eine Probe auf Bekehren & Überzeugen (Einzelgespräch oder öffentliche Rede) ablegen …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Missionierung",
       "costPerLevel": 15
     },
     {
@@ -97324,6 +100941,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Wenn der Zauberer es wünscht, kann er bei der Selbstverwandlung bis zu 10 Stein Ausrüstung mitverwandeln. Verwandelt werden kann dabei nur Material wie Holz, …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Mitverwandlung",
       "costPerLevel": 10
     },
     {
@@ -97335,6 +100955,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held bekommt die Einsatzmöglichkeit Möbelstücke herstellen im Talent Holzbearbeitung (Tischlerarbeiten und Zimmermannsarbeiten). Er kann fortan Möbel herstellen. Einige Möbel sind jedoch komplex, sodass …",
+      "prerequisites": [
+        "Holzbearbeitung 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=M%C3%B6bel%20herstellen",
       "costPerLevel": 2
     },
     {
@@ -97346,6 +100971,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Aufgeschlossen für Neues: Ein Geweihter kann bei Zeremonien Gebet oder Geste verändern, ohne dass dies für ihn regeltechnische Auswirkungen mit sich bringt. Bei Liturgien …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki",
+        "traditionelledenkrichtung"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Moderne%20Sichtweise",
       "variableCost": true
     },
     {
@@ -97357,6 +100988,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Schamane oder ein vom ihm mit der Keule berührtes Lebewesen erhält den Vorteil Dunkelsicht II für 5 Minuten.* Der Einsatz dieser Fähigkeit kostet …",
+      "prerequisites": [
+        "keulenweihe",
+        "Freundschaft des Tieres"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Mondsicht",
       "costPerLevel": 10
     },
     {
@@ -97368,6 +101005,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 3,
+      "shortDescription": "Wenn die Heldin beim Liebesspiel Erregung Stufe IV erreicht, sinkt die Erregung nicht zwingend auf 0. Bei Stufe I der Sonderfertigkeit sinkt die Erregung …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Multipler%20Orgasmus",
       "costPerLevel": 5
     },
     {
@@ -97379,6 +101019,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Der Zauberer kann bei seinen Zaubersprüchen die Gesten und die Formel zusätzlich um eine Strophe erweitern. Die Zauberdauer verlängert sich dadurch um 3 Aktionen. …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Musikzauberei",
       "costPerLevel": 15
     },
     {
@@ -97390,6 +101033,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Starke Entrückung: Ein Angehöriger des Mysterienkults kann entscheiden, dass es doppelt so lange dauert, bis eine Stufe Entrückung bei ihm abgebaut ist. Karmalabgabe: Zeremonien …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki",
+        "pragmatismus"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Mysterienkult",
       "variableCost": true
     },
     {
@@ -97401,6 +101050,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Liturgien und Zeremonien sowie Zaubersprüche und Rituale (sofern der Geweihte AsP verwendet) zur Beschwörung von Dämonen des Namenlosen sind um 2 erleichtert.",
+      "prerequisites": [
+        "Tradition (Der Namenlose)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Naaghot-Shaar-Kultisten",
       "costPerLevel": 40
     },
     {
@@ -97412,6 +101066,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Ein Held mit dieser Sonderfertigkeit benötigt keine zusätzliche Aktion, um eine nachgeladene Waffe abzuschießen, sondern der Schuss oder Wurf findet gleichzeitig mit der letzten …",
+      "prerequisites": [
+        "IN 13",
+        "Schnellladen (Armbrüste)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Nachladespezialist%20(Armbrueste)",
       "costPerLevel": 10
     },
     {
@@ -97423,6 +101083,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Ein Held mit dieser Sonderfertigkeit benötigt keine zusätzliche Aktion, um eine nachgeladene Waffe abzuschießen, sondern der Schuss oder Wurf findet gleichzeitig mit der letzten …",
+      "prerequisites": [
+        "IN 13",
+        "schnellladenblasrohre"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Nachladespezialist%20(Blasrohre)",
       "costPerLevel": 15
     },
     {
@@ -97434,6 +101100,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Ein Held mit dieser Sonderfertigkeit benötigt keine zusätzliche Aktion, um eine nachgeladene Waffe abzuschießen, sondern der Schuss oder Wurf findet gleichzeitig mit der letzten …",
+      "prerequisites": [
+        "IN 13",
+        "Schnellladen (Bögen)",
+        "passende Kampfstilsonderfertigkeit"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Nachladespezialist%20(B%C3%B6gen)",
       "costPerLevel": 20
     },
     {
@@ -97445,6 +101118,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Ein Held mit dieser Sonderfertigkeit benötigt keine zusätzliche Aktion, um eine nachgeladene Waffe abzuschießen, sondern der Schuss oder Wurf findet gleichzeitig mit der letzten …",
+      "prerequisites": [
+        "IN 13",
+        "schnellladendiskusse"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Nachladespezialist%20(Diskusse)",
       "costPerLevel": 15
     },
     {
@@ -97456,6 +101135,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Ein Held mit dieser Sonderfertigkeit benötigt keine zusätzliche Aktion, um eine nachgeladene Waffe abzuschießen, sondern der Schuss oder Wurf findet gleichzeitig mit der letzten …",
+      "prerequisites": [
+        "IN 13",
+        "Schnellladen (Schleudern)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Nachladespezialist%20(Schleudern)",
       "costPerLevel": 15
     },
     {
@@ -97467,6 +101152,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Ein Held mit dieser Sonderfertigkeit benötigt keine zusätzliche Aktion, um eine nachgeladene Waffe abzuschießen, sondern der Schuss oder Wurf findet gleichzeitig mit der letzten …",
+      "prerequisites": [
+        "IN 13",
+        "Schnellladen (Wurfwaffen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Nachladespezialist%20(Wurfwaffen)",
       "costPerLevel": 15
     },
     {
@@ -97478,6 +101169,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit bekommt die Heldin eine neue Einsatzmöglichkeit im Talent Tanzen. Sie kann einen erotischen Tanz aufführen, bei dem sie sich langsam entkleidet. …",
+      "prerequisites": [
+        "Betören 4",
+        "Tanzen 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Nacktt%C3%A4nzer%2Fin",
       "costPerLevel": 3
     },
     {
@@ -97489,6 +101186,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "DSK",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Zunächst muss auf einen Bogen ein Ahnenzeichen mit dem Namen des Schützen versehen werden. Dieser Schütze kann eine Erschwernis von 1 bei Schüssen mit …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Namensbogen",
       "costPerLevel": 8
     },
     {
@@ -97500,6 +101200,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held hat sich intensiv mit berühmten Namensträgern beschäftigt und kann zu jedem Namen eine passende Geschichte wiedergeben. Dies kann ihm nach Meisterentscheid eine …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Namensschmeichler",
       "costPerLevel": 8
     },
     {
@@ -97511,6 +101214,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Solange eine Natter der Nacht in direktem Kontakt mit der Erde steht, sind KL-Teilproben bei Zaubersprüchen um 1 erleichtert.",
+      "prerequisites": [
+        "Tradition (Hexen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Nattern%20der%20Nacht%20(Schwester%20des%20Wissens)",
       "costPerLevel": 15
     },
     {
@@ -97522,6 +101230,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDGDG",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Kenntnis der Natur: Naturverbundene erhalten eine Erleichterung von +1 auf Wildnisleben. Einflusslosigkeit auf Menschen: Naturverbundene müssen bei Zaubermelodien, die das Merkmal Einfluss aufweisen, +2 …",
+      "prerequisites": [
+        "Tradition Zauberbarden",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Zauberbardenprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Naturverbundene",
       "variableCost": true
     },
     {
@@ -97533,6 +101247,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Diese Sonderfertigkeit gibt dem Held im Talent Boote & Schiffe das neue Anwendungsgebiet Navigation. Er kann fortan einen Kurs setzen und berechnen. Allerdings ist …",
+      "prerequisites": [
+        "Boote & Schiffe 8",
+        "Rechnen 8",
+        "Sternkunde 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Navigation",
       "costPerLevel": 10
     },
     {
@@ -97544,6 +101265,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Vampir kann sich in Nebel verwandeln. Dazu muss er 2 Aktionen aufwenden und ihm muss eine Probe auf Willenskraft gelingen. Seine Kleidung und …",
+      "prerequisites": [
+        "Status Kind der Finsternis, Kind der Nacht oder Lamijah"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Nebelgestalt",
       "costPerLevel": 25
     },
     {
@@ -97555,6 +101281,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "In der ersten KR eines jeden Kampfes erhält der Held nach Wahl des Spielers entweder einen Bonus von +2 AT oder +2 PA oder …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "FF 13",
+        "Eigenschaft 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Neersand-Stil",
       "costPerLevel": 10
     },
     {
@@ -97566,6 +101299,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDSO",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Ein Neethaner Krieger erhält wahlweise einen Bonus von +1 AT oder +1 PA, während er sich auf dem Rücken eines Reittiers befindet. Der jeweilige …",
+      "prerequisites": [
+        "MU 13",
+        "weitere Voraussetzung laut Regelwiki",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Neetha-Stil",
       "costPerLevel": 12
     },
     {
@@ -97577,6 +101317,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit ist der Zauberer in der Lage, Untote der Komplexität einfach zu erschaffen (siehe Seite 58). Für Untote der Komplexität komplex benötigt …",
+      "prerequisites": [
+        "toteshandle"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Nekromant",
       "costPerLevel": 15
     },
     {
@@ -97588,6 +101333,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Sollte der Held von jemanden durch Einschüchtern (Drohung oder Provozieren) bedroht oder provoziert werden, kann er sich diesen Versuchen leichter widersetzen. Proben auf Willenskraft …",
+      "prerequisites": [
+        "Menschenkenntnis 4",
+        "Willenskraft 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Nerven%20aus%20Stahl",
       "costPerLevel": 5
     },
     {
@@ -97599,6 +101350,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Durch ständiges Provokationen, Gesten, Mimik und Gerede kann der Held einen ausgewählten Gegner in Hörreichweite nervös machen. Zu Beginn eines Kampfes legt der Provozierte …",
+      "prerequisites": [
+        "MU 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Nerv%C3%B6s%20Machen",
       "costPerLevel": 10
     },
     {
@@ -97610,6 +101366,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AAN",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit ist der Handwerker in der Lage, Unmetalle, zum Beispiel zur Veredelung von Golems oder Herstellung von Automaten, zu verarbeiten.",
+      "prerequisites": [
+        "Metallbearbeitung 12"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Niederh%C3%B6llischer%20Schmied",
       "costPerLevel": 20
     },
     {
@@ -97621,6 +101382,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Wendet der Held die Sonderfertigkeit Präziser Schuss/Wurf an, so erhält er einen Bonus von +1 TP. Außerdem bekommt er gegen Fernkampfangriffe einen Bonus von …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "FF 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Odilmar-Stil",
       "costPerLevel": 12
     },
     {
@@ -97632,6 +101399,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Sollte die Heldin Erschwernisse auf ihre AT erleiden, gleich welchen Ursprungs (bis auf Sichtmodifikatoren), so kann sie durch ihr ausgezeichnetes Offensivverhalten entscheiden, 1 oder …",
+      "prerequisites": [
+        "MU 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Offensives%20Verhalten",
       "costPerLevel": 12
     },
     {
@@ -97643,6 +101415,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit bekommt die Abenteurerin im Talent Malen & Zeichnen das neue Anwendungsgebiet Ölgemälde malen. Fortan ist die Heldin in der Lage, Ölgemälde …",
+      "prerequisites": [
+        "Malen & Zeichnen 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=%C3%96lmalerei",
       "costPerLevel": 2
     },
     {
@@ -97654,6 +101431,14 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "O",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Wer über den Olochtai-Stil verfügt, der kann mit 1 freien Aktion zu Beginn des Kampfes einen kulturschaffenden Gegner in 16 Schritt Radius auswählen und …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "MU 13",
+        "Spezies orks",
+        "Wesenszug Olochtai"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Olochtai-Stil",
       "costPerLevel": 15
     },
     {
@@ -97665,6 +101450,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDSO",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Kämpfer dieses Stils können Angreifer mit unregelmäßigen Schlägen der Waffe auf ihren Schild aus dem Konzept bringen. Zu Beginn jeder KR kann er einen …",
+      "prerequisites": [
+        "GE 13",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Oloranthe%20della%20Cerrano-Stil",
       "costPerLevel": 10
     },
     {
@@ -97676,6 +101467,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit kann eine Geweihte ihr Karma dazu einsetzen, bei einer gelungenen Probe auf ein wohlgefälliges Talent das Ergebnis zu verbessern. Pro 5 …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Omen",
       "costPerLevel": 20
     },
     {
@@ -97687,6 +101481,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Abenteurer erhält durch die Sonderfertigkeit im Talent Singen das neue Anwendungsgebiet Operngesang. Er kann nun auch bei Opernstücken mitsingen.",
+      "prerequisites": [
+        "Singen 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Operns%C3%A4nger",
       "costPerLevel": 2
     },
     {
@@ -97698,6 +101497,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 2,
+      "shortDescription": "Ein einziges Mal während des Liebesspiels eines Flotten Dreiers oder einer Orgie, wenn einer der anderen Teilnehmer von der Heldin eine Stufe Erregung erhält, …",
+      "prerequisites": [
+        "Lustspender/in",
+        "Orgienlöwe/in",
+        "Gruppensex-Veteran/in"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Orgiastische%2Fr%20Lustspender%2Fin",
       "costPerLevel": 8
     },
     {
@@ -97709,6 +101515,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 3,
+      "shortDescription": "Üblicherweise ist beim Liebesspiel ab dem dritten Teilnehmer die Probe auf Betören (Liebeskünste) um 1 pro weiterer Person erschwert. Eine Heldin mit dieser Sonderfertigkeit …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki",
+        "Orgienlöwe/in"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Orgienl%C3%B6we%2Fin",
       "costPerLevel": 5
     },
     {
@@ -97720,6 +101532,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Nur wer diese Sonderfertigkeit besitzt, kann Proben auf Orientierung (Unter Tage) ohne eine zusätzliche Erschwernis von 3 durchführen (siehe Seite 50).",
+      "prerequisites": [
+        "Orientierung 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Orientierung%20unter%20Tage",
       "costPerLevel": 3
     },
     {
@@ -97731,6 +101548,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Eine Ortskenntnis gewährt eine Erleichterung von 1 bei Proben auf Gassenwissen und Orientierung, wenn sie sich auf den entsprechenden Ort beziehen. Ortskenntnis muss jeweils …",
+      "prerequisites": [
+        "6 Monate lang an diesem Ort gelebt oder Weg dutzendfach bereist haben"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Ortskenntnis",
       "variableCost": true,
       "suggestedCost": 2
     },
@@ -97743,6 +101565,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDGDG",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Wenn sich der Held und mindestens zwei seiner Gefährten (nicht zwangsweise Mitglieder der Ottjasko), die sich in einem Radius von 10 Schritt um den …",
+      "prerequisites": [
+        "Eigenschaft 13",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Ottajasko-Rekker-Stil",
       "costPerLevel": 15
     },
     {
@@ -97754,6 +101582,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Schicksalspunkte",
       "maxLevel": 1,
+      "shortDescription": "Mittels dieser Sonderfertigkeit kann der Held Schicksalspunkte für Ergebnis verbessern (Parade) einsetzen.",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Parade%20verbessern",
       "costPerLevel": 5
     },
     {
@@ -97765,6 +101596,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit sinken die Erschwernisse durch aufrechterhaltene Zauber um 1 (bis zu einem Minimum von 0).",
+      "prerequisites": [
+        "Leiteigenschaft 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Parallelzauberei",
       "costPerLevel": 15
     },
     {
@@ -97776,6 +101612,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Wenn eine Liturgie oder Zeremonie nicht durch eine Modifikation verändert wird, erhalten Pastori beim Wirken +1 FP (bis zu einem Maximum von 18 FP).",
+      "prerequisites": [
+        "Tradition (Hesindekirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Pastori",
       "costPerLevel": 30
     },
     {
@@ -97787,6 +101628,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Die Ladezeit von Wurfspeeren sinkt um 1 Aktion. Würfe mit der Reichweite weit sind aber dann nicht möglich. Der Held hat bei jedem Wurf …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "KK 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Pelleas-Stil",
       "costPerLevel": 15
     },
     {
@@ -97798,6 +101645,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Um einen Fluch permanent wirksam zu machen, braucht man diese Sonderfertigkeit (siehe Seite 51).",
+      "prerequisites": [
+        "Tradition (Hexen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Permanenter%20Fluch",
       "costPerLevel": 20
     },
     {
@@ -97809,6 +101661,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Mittels der Berührung einer Pflanze kann die Perainegeweihte spüren, zu welchem Anwendungsgebiet von Pflanzenkunde sie gehört (Giftpflanzen, Heilpflanzen, Nutzpflanzen), ohne dafür eine Probe ablegen …",
+      "prerequisites": [
+        "Pflanzenkonservierung",
+        "Pflanzensuche"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Pflanzenerkennung",
       "costPerLevel": 10
     },
     {
@@ -97820,6 +101678,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "A",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Mittels der Berührung einer Pflanze kann die Zsahh-Priesterin spüren, zu welchem Anwendungsgebiet von Pflanzenkunde sie gehört (Giftpflanzen, Heilpflanzen, Nutzpflanzen), ohne dafür eine Probe ablegen …",
+      "prerequisites": [
+        "Pflanzensuche",
+        "Erholsamer Schlaf"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Pflanzenerkennung",
       "costPerLevel": 10
     },
     {
@@ -97831,6 +101695,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Pflanzen, die die Perainegeweihte haltbar machen will, beispielsweise durch Trocknen, Einlegen oder bei der Verarbeitung als Salbe, sind 50 % länger haltbar als üblich.",
+      "prerequisites": [
+        "Tradition (Perainekirche)",
+        "Seuchenhandschuh"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Pflanzenkonservierung",
       "costPerLevel": 3
     },
     {
@@ -97842,6 +101712,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Sollte die Perainegeweihte eine Probe auf Pflanzenkunde (Heilpflanzen) ablegen, um Heilpflanzen zu suchen, so kann sie bei der Bestimmung der Anwendungsmenge eine QS mehr …",
+      "prerequisites": [
+        "Pflanzenkonservierung",
+        "Pflanzenerkennung"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Pflanzensuche",
       "costPerLevel": 10
     },
     {
@@ -97853,6 +101729,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "A",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Sollte die Priesterin eine Probe auf Pflanzenkunde (Heilpflanzen) ablegen, um Heilpflanzen zu suchen, kann sie bei der Bestimmung der Anwendungsmenge 1 QS mehr Pflanzen …",
+      "prerequisites": [
+        "Tradition (Zsahh-Kult)",
+        "Aura der Friedfertigkeit"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Pflanzensuche",
       "costPerLevel": 10
     },
     {
@@ -97864,6 +101746,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Wendet die Heldin das Talent Malen & Zeichnen für Tätowierungen an, so kann sie ihrem Kunden eine Tätowierung stechen, die ihm bei Gesellschaftstalenten (außer …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Phantastische%20T%C3%A4towierung",
       "costPerLevel": 8
     },
     {
@@ -97875,6 +101760,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Eine Heldin, die den Phexcaer Gossen-Stil beherrscht, darf bei einem Patzer oder Kritischen Erfolg den Bestätigungswurf noch mal würfeln und das bessere Ergebnis wählen. …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "Eigenschaft 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Phexcaer%20Gossen-Stil",
       "costPerLevel": 10
     },
     {
@@ -97886,6 +101777,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Gelangt ein berittener Gegner in die Angriffsdistanz des Helden, darf dieser sofort eine um 2 erschwerte Attacke ausführen. Dies gilt auch dann, wenn der …",
+      "prerequisites": [
+        "GE 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Pikenwall",
       "costPerLevel": 10
     },
     {
@@ -97897,6 +101793,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Ein Kämpfer mit dieser Sonderfertigkeit kann zusammen mit bis zu zwei weiteren Kämpfern, die sich maximal einen halben Schritt rechts und links von ihm …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Pl%C3%A4nkler-Formation",
       "costPerLevel": 10
     },
     {
@@ -97908,6 +101807,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Verfügt eine Heldin über diese Sonderfertigkeit, ist ihre Probe auf Einschüchtern (Provozieren) beim Einsatz der Sonderfertigkeit Provozieren (siehe Aventurisches Kompendium Seite 108) um 2 …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "MU 13",
+        "provozieren"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Pl%C3%A4nkler-Stil",
       "costPerLevel": 5
     },
     {
@@ -97919,6 +101825,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held ist in der Lage, Porzellan in Form von Karaffen oder anderen Objekten durch den Einsatz dieser Sonderfertigkeit herzustellen. Durch die Sonderfertigkeit kennt …",
+      "prerequisites": [
+        "Steinbearbeitung 6"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Porzellanarbeiten",
       "costPerLevel": 2
     },
     {
@@ -97930,6 +101841,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Trickreich: Der Possenreißer darf einen Zauber mehr zu einem Schelmentrick umwandeln, als eigentlich erlaubt wäre (also 6 statt 5 Zauber). Unfug: Gegenüber Kulturschaffenden, die …",
+      "prerequisites": [
+        "Tradition (Schelme)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Schelmenprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Possenrei%C3%9Fer",
       "variableCost": true
     },
     {
@@ -97941,6 +101858,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann bis zu 16 AsP (statt 8) beim Brauen in einen Liebestrunk, einen Standhaftigkeitstrunk oder jedes andere erotisch-alchimistische Elixier mit einer QS-Angabe …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Potenzmittelverst%C3%A4rkung",
       "costPerLevel": 10
     },
     {
@@ -97952,6 +101872,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Gefestigte Liturgie: Pragmatiker beschäftigen sich sehr genau mit den Wirkungen von Liturgien. Unterläuft ihnen ein Patzer beim Wirken einer Liturgie, darf der Spieler den …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki",
+        "mysterienkult"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Pragmatismus",
       "variableCost": true
     },
     {
@@ -97963,6 +101889,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDF",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "In einer passenden Situation darf der Held vor einer Talentprobe den Versuch wagen, sein theoretisches Wissen praktisch einzusetzen. Dabei legt er zunächst eine Probe …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Praxisbezug",
       "costPerLevel": 20
     },
     {
@@ -97974,8 +101903,16 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 3,
-      "variableCost": true,
-      "suggestedCost": 5
+      "shortDescription": "Hierzu erschwert sich der Angreifer die Probe auf Fernkampf um 2 pro Stufe der Sonderfertigkeit. Bei Erfolg werden die Trefferpunkte um 2 pro Stufe …",
+      "prerequisites": [
+        "IN 13/15/17 je nach Stufe"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Pr%C3%A4ziser%20Schuss%2FWurf",
+      "costByLevel": [
+        15,
+        20,
+        25
+      ]
     },
     {
       "id": "praeziserstich",
@@ -97986,8 +101923,16 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 3,
-      "variableCost": true,
-      "suggestedCost": 5
+      "shortDescription": "Er erschwert seine Attacke um 2 pro Stufe der Sonderfertigkeit. Bei Erfolg werden die Trefferpunkte um 2 pro Stufe der Sonderfertigkeit erhöht.",
+      "prerequisites": [
+        "GE 13/15/17 je nach Stufe"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Pr%C3%A4ziser%20Stich",
+      "costByLevel": [
+        15,
+        20,
+        25
+      ]
     },
     {
       "id": "predigtdergemeinschaft",
@@ -97998,6 +101943,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "QS ausgewählte Zuhörer bekommen 1 Schip, allerdings nicht über ihr Maximum an Schips hinaus. Ausnahme: Die Zuhörer bekommen auch dann einen Schip, wenn sie …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Predigt%20der%20Gemeinschaft",
       "costPerLevel": 20
     },
     {
@@ -98009,6 +101957,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "QS ausgewählte Zuhörer können 1 Stunde lang eine einzige Stufe Furcht ignorieren. Nach Ablauf der Stunde wirkt die Stufe wieder. Die Wirkung wurde lediglich …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Predigt%20der%20Zuversicht",
       "costPerLevel": 12
     },
     {
@@ -98020,6 +101971,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "QS ausgewählte Zuhörer können das Ergebnis eines ausgewählten eigenen W20-Wurfs innerhalb der nächsten 24 Stunden um 1 nach unten korrigieren. Dies kann auch dazu …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Predigt%20des%20Gottvertrauens",
       "costPerLevel": 20
     },
     {
@@ -98031,6 +101985,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Für QS ausgewählte Zuhörer kann die Heldin ein Zeichen setzen (z. B. durch eine flammende Rede oder die Interpretation eines vermeintlichen göttlichen Zeichens), das …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Predigt%20des%20Wohlgefallens",
       "costPerLevel": 25
     },
     {
@@ -98042,6 +101999,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "QS ausgewählten Zuhörern unterlaufen keine Patzer mehr, gleich ob bei Fertigkeits- oder anderen Proben. Gewürfelte Patzer werden wie einfache misslungene Proben behandelt. Diese Fähigkeit …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Predigt%20wider%20Missgeschicke",
       "costPerLevel": 25
     },
     {
@@ -98053,6 +102013,14 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Für eine Kriegerin aus Prem sinken die Erschwernisse beim Kampf im Wasser (siehe Regelwerk Seite 239) um bis zu 4. Bei bestätigten Patzern im …",
+      "prerequisites": [
+        "GE 13",
+        "Körperbeherrschung 4",
+        "Schwimmen 4",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Prem-Stil",
       "costPerLevel": 10
     },
     {
@@ -98064,6 +102032,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Ein Priester des Weins kann aus Zustandsstufen Berauscht und Erregung göttliche Entrückung erfahren. Jeweils 3 Stufen dieser Zustandsstufen kann er in 1 Stufe Entrückung …",
+      "prerequisites": [
+        "Tradition (Levthankult)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Priester%20des%20Weins",
       "costPerLevel": 15
     },
     {
@@ -98075,6 +102048,14 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki",
+        "weitere Voraussetzung laut Regelwiki",
+        "höchstens 1 passende Auswahl",
+        "Nicht kombinierbar mit einem sekundären Patron aus der gleichen Gruppe"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Prim%C3%A4rer%20Patron",
       "variableCost": true
     },
     {
@@ -98086,6 +102067,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Prinzipisten sind es gewohnt, auf formelle Hilfsmittel zu verzichten. Die Erschwernis für das Auslassen von Gebet und/oder Geste (siehe Regelwerk Seite 310) sinkt daher …",
+      "prerequisites": [
+        "Tradition (Praioskirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Prinzipisten",
       "costPerLevel": 15
     },
     {
@@ -98097,6 +102083,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Liturgien mit der Zielkategorie Untote erhalten +2 FP.",
+      "prerequisites": [
+        "Tradition (Boronkirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Propheten%20des%20Todes",
       "costPerLevel": 8
     },
     {
@@ -98108,6 +102099,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Schicksalspunkte",
       "maxLevel": 1,
+      "shortDescription": "Eine Heldin mit dieser Sonderfertigkeit kann einem anderen Abenteurer Karten legen, aus dem Teesatz lesen oder auf andere Weise die Zukunft deuten. Dies ist …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Prophezeiung",
       "costPerLevel": 5
     },
     {
@@ -98119,6 +102113,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Diese Sonderfertigkeit kann dazu eingesetzt werden, um einen Gegner zu provozieren. Die Wirkung betrifft nur einen einzigen Gegner, der in Hör- und Sichtweite sein …",
+      "prerequisites": [
+        "Einschüchtern 8",
+        "Überreden 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Provozieren",
       "costPerLevel": 12
     },
     {
@@ -98130,6 +102130,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch diese SF bekommt der Held das neue Anwendungsgebiet Prunkkleider herstellen in Stoffbearbeitung und kann fortan Kleidung wie Geweihtenornate, Magierroben und besondere höfische Kleidung …",
+      "prerequisites": [
+        "Stoffbearbeitung 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Prunkkleidung%20herstellen",
       "costPerLevel": 2
     },
     {
@@ -98141,6 +102146,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Die Hexe kann spüren, was ein Objekt 'durchlebt' hat. Das Objekt darf nicht größer sein als eine Tasse und nicht mehr als 5 Stein …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Psychometrie",
       "costPerLevel": 10
     },
     {
@@ -98152,6 +102160,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin bekommt im Talent Gaukeleien das neue Anwendungsgebiet Feuerwerk. Mit dieser Sonderfertigkeit ist sie in der Lage, Feuerwerkskörper so aufzustellen und vorzubereiten, dass …",
+      "prerequisites": [
+        "Alchimie 4",
+        "Gaukeleien 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Pyromantiker",
       "costPerLevel": 5
     },
     {
@@ -98163,6 +102177,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Zauber von Anwendern dieser Sonderfertigkeit verfügen gegenüber Zaubern des Merkmals Antimagie eine um 1 höhere QS (bis zu einem Maximum von 6).",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Qabalya-Magie",
       "costPerLevel": 15
     },
     {
@@ -98174,6 +102191,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 3,
+      "shortDescription": "Beim Spannen des Bogens, also bei der 1. Aktion des Ladens, muss der Querschuss angekündigt werden. Pro Stufe der Sonderfertigkeit kann der Schuss +1 …",
+      "prerequisites": [
+        "KK 13/15/17 je nach Stufe"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Querschuss",
       "costPerLevel": 10
     },
     {
@@ -98185,6 +102207,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Wer über den Rabengarde-Stil verfügt, der erhält durch die Sonderfertigkeit Anführer (siehe Regelwerk Seite 215) zusätzlich einen Bonus von +1 AT oder +1 VW …",
+      "prerequisites": [
+        "KK 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Rabengarde-Stil",
       "costPerLevel": 12
     },
     {
@@ -98196,6 +102223,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Vampir verwandelt sich innerhalb von 2 Aktionen in einen stattlichen Kohlraben (Werte siehe Aventurisches Götterwirken Seite 156), wobei wei- ße wie schwarze Exemplare …",
+      "prerequisites": [
+        "Status Kind der Nacht"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Rabengefieder",
       "costPerLevel": 20
     },
     {
@@ -98207,6 +102239,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Vampir verwandelt sich innerhalb von 2 Aktionen in einen Schwarm Raben (Werte siehe Regelwerk Seite 362). Die Anzahl der Raben entspricht der Höhe …",
+      "prerequisites": [
+        "Status Kind der Nacht"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Rabenschwarm%20des%20Unheils",
       "costPerLevel": 15
     },
     {
@@ -98218,6 +102255,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Eine Rabenschwester kann bei einer Probe auf ein Gesellschaftstalent 4 AsP ausgeben, um einen einzigen 1W20 der Probe noch einmal neu zu würfeln. Das …",
+      "prerequisites": [
+        "Tradition (Hexen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Rabenschwestern%20(Seherin%20von%20Heute%20und%20Morgen)",
       "costPerLevel": 12
     },
     {
@@ -98229,6 +102271,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Eine Rächerin Lycosas kann jedes Gift unter dem Einsatz von 4 AsP aufladen und so dessen Giftstufe einmalig um 1 erhöhen (bis zu einem …",
+      "prerequisites": [
+        "Tradition (Hexen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=R%C3%A4cherinnen%20Lycosas%20(Schwarze%20Witwe)",
       "costPerLevel": 10
     },
     {
@@ -98240,6 +102287,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Radscha-Anhänger können Schmerzen deutlich besser ertragen als andere. Durch diese Sonderfertigkeit wird eine neue Einsatzmöglichkeit für das Talent Willenskraft erworben. Sobald Radscha-Anhänger eine Stufe …",
+      "prerequisites": [
+        "Tradition (Rahjakirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Radscha-Anh%C3%A4nger",
       "costPerLevel": 15
     },
     {
@@ -98251,6 +102303,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Wer über den Rahjakavalier-Stil verfügt, der kann mit 1 freien Aktion zu Beginn des Kampfes einen kulturschaffenden Gegner auswählen und eine Vergleichsprobe auf Einschüchtern …",
+      "prerequisites": [
+        "GE 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Rahjakavalier-Stil",
       "costPerLevel": 12
     },
     {
@@ -98262,6 +102319,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held hat die Lehren des Rahjasutras verinnerlicht. Proben auf Betören (Liebeskünste) gelten bei Gelingen der Probe als um 1 QS besser (bis zu …",
+      "prerequisites": [
+        "Betören 4",
+        "Menschenkenntnis 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Rahjasutra-Kenntnisse",
       "costPerLevel": 3
     },
     {
@@ -98273,6 +102336,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin bekommt eine neue Einsatzmöglichkeit im Talent Heilkunde Seele. Sie kann eine erotische und heilende Nacktmassage an einem Kulturschaffenden durchführen. Dazu legt die …",
+      "prerequisites": [
+        "Erotikmasseur/in",
+        "Heilkunde Seele 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Rahjasutra-Masseur%2Fin",
       "costPerLevel": 10
     },
     {
@@ -98284,6 +102353,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Ein Rahjasutra-Meister kann bis zu dreimal während des Liebesspiels Rahjasutra-Stellungen einsetzen (siehe Seite 100).",
+      "prerequisites": [
+        "Tradition (Rahjakirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Rahjasutra-Meister",
       "costPerLevel": 15
     },
     {
@@ -98295,6 +102369,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch eine Berührung kann der Levthanpriester bei einem Kulturschaffenden eine Stufe Betäubung gegen eine Stufe Schmerz tauschen oder umgekehrt. Der Einsatz dieser Fähigkeit dauert …",
+      "prerequisites": [
+        "Tradition (Levthankult)",
+        "verfuehrungdeswidders"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Rausch%20der%20Keule",
       "costPerLevel": 12
     },
     {
@@ -98306,6 +102386,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch eine Berührung kann der Levthanpriester dafür sorgen, dass ein beliebiges Rauschmittel 1 zusätzliche Stufe Betäubung verursacht, gleich wie die Giftprobe des Rauschmittels verläuft. …",
+      "prerequisites": [
+        "rauschderkeule",
+        "langanhaltenderrausch"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Rausch%20der%20Lustbarkeiten",
       "costPerLevel": 12
     },
     {
@@ -98317,6 +102403,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Nandusgeweihte kann ein Wissenstalent benennen, das seinen Forschungsschwerpunkt darstellt. Das Wissenstalent lässt sich, nachdem es festgelegt wurde, nicht mehr ändern. Dieses Talent erhält …",
+      "prerequisites": [
+        "Wissensdurst",
+        "Zweiter Anlauf",
+        "höchstens 1 passende Auswahl"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Recherchegesp%C3%BCr",
       "variableCost": true,
       "suggestedCost": 1
     },
@@ -98329,6 +102422,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin erhält ein neues Anwendungsgebiet im Talent Handel (Buchprüfung). Sie kann in Rechnungsbüchern und entsprechenden Unterlagen Unterschlagungen und ähnliche Betrügereien leichter entdecken als …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Rechnungswesen",
       "costPerLevel": 3
     },
     {
@@ -98340,6 +102436,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Reisende können bei Zaubern der Verbreitung Hexen immer eine Modifikation mehr durchführen, als sie eigentlich durch den FW des Zaubers dürften.",
+      "prerequisites": [
+        "Tradition (Hexen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Reisende%20(Fahrende%20Schwester)",
       "costPerLevel": 15
     },
     {
@@ -98351,6 +102452,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Nach einer gelungenen und unverteidigten AT darf der Spieler des Helden eine Probe auf Kraftakt (Ziehen & Zerren) ablegen. Nach der Probe kann er …",
+      "prerequisites": [
+        "KK 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Rei%C3%9Fangriff",
       "costPerLevel": 15
     },
     {
@@ -98362,6 +102468,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin kann versuchen, ihren Gegner zu reizen. Dazu muss ihr eine um 4 erschwerte AT gelingen und sie muss mindestens 1 SP bei …",
+      "prerequisites": [
+        "MU 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Reizen",
       "costPerLevel": 15
     },
     {
@@ -98373,6 +102484,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "In der ersten KR eines jeden Kampfes erhält der Held nach Wahl des Spielers entweder einen Bonus von +1 AT oder +2 VW. Außerdem …",
+      "prerequisites": [
+        "GE 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Rhodenstein-Stil",
       "costPerLevel": 12
     },
     {
@@ -98384,6 +102500,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Vampir verwandelt sich innerhalb von 2 Aktionen in eine Riesenfledermaus (Werte siehe Seite 206). Der neue Körper des Vampirs weist den Schaden Der …",
+      "prerequisites": [
+        "Status Kind der Finsternis"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Riesenfledermaus%20des%20Schreckens",
       "costPerLevel": 20
     },
     {
@@ -98395,6 +102516,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Nach einer erfolgreichen Parade, die für den Kämpfer um 2 erschwert ist, kann er sofort einen Passierschlag gegen seinen Angreifer ausführen. Das Manöver Riposte …",
+      "prerequisites": [
+        "GE 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Riposte",
       "costPerLevel": 40
     },
     {
@@ -98406,6 +102532,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann bis zu 4 Punkte Erschwernis bei einer Probe auf FK ignorieren. Liegen die Erschwernisse darüber, so kann er diese 4 Punkte …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Riskanter%20Schuss",
       "costPerLevel": 15
     },
     {
@@ -98417,6 +102546,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Kämpft der Held beritten gegen Fußkämpfer, erhöht sich die aus der vorteilhaften Position resultierende Erleichterung auf AT um 2 (siehe Regelwerk Seite 238/240). Außerdem …",
+      "prerequisites": [
+        "MU 13",
+        "Berittener Kampf",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Ritter%20des%20alten%20Wegs-Stil",
       "costPerLevel": 12
     },
     {
@@ -98428,6 +102564,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Ein Ritter des neuen Pfades bekommt einen Bonus von +1 TP bei Nahkampfangriffen, wenn er sich auf dem Rücken eines Reittiers befindet. Zudem sind …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "MU 13",
+        "Berittener Kampf"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Ritter%20des%20neuen%20Pfades-Stil",
       "costPerLevel": 12
     },
     {
@@ -98439,6 +102582,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Wer über den Rommilys-Stil verfügt, der kann seinen Kampfgefährten durch die Sonderfertigkeit Anführer (siehe Regelwerk Seite 215) zusätzlich 3 Punkte AT oder 2 Punkte …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "MU 13",
+        "Anführer"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Rommilys-Stil",
       "costPerLevel": 10
     },
     {
@@ -98450,6 +102600,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Eine Rondrageweihte mit dieser Sonderfertigkeit, versteht sich besonders gut darin, jemanden zu schützen Sie kann einem Kulturschaffenden in Angriffsdistanz einen Bonus von 1 bis …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "Eigenschaft 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Rondras%20Schutz-Stil",
       "costPerLevel": 15
     },
     {
@@ -98461,6 +102617,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Ein Rondrageweihter vermag Rondrakämme schnell und präzise zu führen. Dadurch verbessert sich der PA-Abzug von AT/PA-Modifikatoren bei diesen Waffen um 1. Bei einem Bestätigungswurf …",
+      "prerequisites": [
+        "Eigenschaft 13",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Rondras%20Trutz-Stil",
       "costPerLevel": 10
     },
     {
@@ -98472,6 +102634,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDD",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Für einen Helden mit diesem Kampfstil sind Proben auf Selbstbeherrschung (Handlungsfähigkeit bewahren) und Willenskraft (Bedrohungen standhalten oder Einschüchtern widerstehen) während eines Kampfes um +1 …",
+      "prerequisites": [
+        "MU 13",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Rosenritter-Stil",
       "costPerLevel": 20
     },
     {
@@ -98483,6 +102651,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Helden können Pferde, Ponys und andere Nutztiere gesünder und jünger wirken lassen, als sie sind. Der Held erhält durch diese Sonderfertigkeit eine Einsatzmöglichkeit im …",
+      "prerequisites": [
+        "Handel 4",
+        "Tierkunde 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Rosst%C3%A4uscher",
       "costPerLevel": 4
     },
     {
@@ -98494,6 +102668,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Gegen Flüche der Roten Jungfern ist die SK und ZK des Opfers um 1 gesenkt.",
+      "prerequisites": [
+        "Tradition (Hexen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Rote%20Jungfern%20(Schwarze%20Witwen)",
       "costPerLevel": 15
     },
     {
@@ -98505,6 +102684,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Mithilfe dieser Sonderfertigkeit kann eine Geweihte die Erschwernis von 1 durch Wiederholungsproben bei Liturgien ignorieren. Misslingt die Liturgie erneut, kann die Heldin wie üblich …",
+      "prerequisites": [
+        "Geweihter",
+        "KL 13",
+        "Leiteigenschaft 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Routinierte%20Liturgiewiederholung",
       "costPerLevel": 10
     },
     {
@@ -98516,6 +102702,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Eine Behandlung zur Versorgung von Wunden mit Heilkunde Wunden (Heilung fördern) dauert lediglich 5 Minuten (anstatt 15 Minuten).",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Routinierte%20Wundversorgung",
       "costPerLevel": 8
     },
     {
@@ -98527,6 +102716,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Mit Hilfe dieser SF kann ein Zauberer die Erschwernis von 1 durch Wiederholungsproben bei Zaubern ignorieren. Misslingt der Spruch erneut, kann der Held wie …",
+      "prerequisites": [
+        "KL 13",
+        "Leiteigenschaft 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Routinierte%20Zauberwiederholung",
       "costPerLevel": 10
     },
     {
@@ -98538,6 +102733,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Schüsse ins Kampfgetümmel (siehe Regelwerk Seite 242) sind für den Helden nicht mehr um 2 erschwert.",
+      "prerequisites": [
+        "FF 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=R%C3%BCckendeckung",
       "costPerLevel": 12
     },
     {
@@ -98549,8 +102749,16 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AE",
       "category": "Magie",
       "maxLevel": 3,
-      "variableCost": true,
-      "suggestedCost": 5
+      "shortDescription": "Bei Stufe I/II/III kann der Zauberer Elementargeister/Dschinne/Elementare Meister im Rudel beschwören.",
+      "prerequisites": [
+        "MU 15/16/17 je nach Stufe"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Rudelbeschw%C3%B6rung%20(Elementare)",
+      "costByLevel": [
+        15,
+        20,
+        25
+      ]
     },
     {
       "id": "rudelerschaffungchimaeren",
@@ -98561,8 +102769,16 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AT",
       "category": "Magie",
       "maxLevel": 3,
-      "variableCost": true,
-      "suggestedCost": 5
+      "shortDescription": "Bei Stufe I/II/III kann der Zauberer winzige/kleine/mittelgroße Transmutationen im Rudel erschaffen. Es muss nur 1 Probe auf CHIMAEROFORM abgelegt werden, aber alle Kosten für …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Rudelerschaffung%20(Chim%C3%A4ren)",
+      "costByLevel": [
+        20,
+        25,
+        30
+      ]
     },
     {
       "id": "rudelerschaffunguntote",
@@ -98573,8 +102789,17 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "ANE",
       "category": "Magie",
       "maxLevel": 3,
-      "variableCost": true,
-      "suggestedCost": 5
+      "shortDescription": "Bei Stufe I/II/III kann der Zauberer primitive/einfache/komplexe Untote im Rudel erschaffen.",
+      "prerequisites": [
+        "MU 15/16/17 je nach Stufe",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Rudelerschaffung%20(Untote)",
+      "costByLevel": [
+        10,
+        15,
+        20
+      ]
     },
     {
       "id": "rufdesvampirs",
@@ -98585,6 +102810,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Kulturschaffende oder Vampire, die bereits mindestens einmal eine Stufe Sikaryan-Verlust durch den Vampir erlitten haben, können durch diese Sonderfertigkeit gerufen werden. Der Vampir muss …",
+      "prerequisites": [
+        "Status Kind der Finsternis, Kind der Nacht oder Lamijah"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Ruf%20des%20Vampirs",
       "costPerLevel": 15
     },
     {
@@ -98596,8 +102826,15 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 2,
-      "variableCost": true,
-      "suggestedCost": 10
+      "shortDescription": "Die angegriffenen Gegner dürfen auf den Angriff getrennt reagieren. Die erste Attacke ist um 2, die zweite um 6 und die dritte um 10 …",
+      "prerequisites": [
+        "GE 15/17/19 je nach Stufe"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Rundumschlag",
+      "costByLevel": [
+        25,
+        35
+      ]
     },
     {
       "id": "runenhandwerker",
@@ -98608,6 +102845,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDGDG",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Meisterarbeit: Setzt eine Runenhandwerkerin eine Zauberrune langsam ein, erhält sie +1 FP bei der Handwerksprobe (bis zu einem Maximum von 18 FP). Träge: Setzt …",
+      "prerequisites": [
+        "Tradition (Runenschöpfer)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Runenschöpferprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Runenhandwerker",
       "variableCost": true
     },
     {
@@ -98619,6 +102862,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held ist durch diese Sonderfertigkeit in der Lage, komplexere Rüstungen anzufertigen. Durch diese Sonderfertigkeit erlangt der Held das neue Anwendungsgebiet Rüstungsherstellung in den …",
+      "prerequisites": [
+        "je nach verwendetem Rüstungsmaterial: Holzbearbeitung 8, Lederbearbeitung 8, Metallbearbeitung 8 oder Stoffbearbeitung 8 Für den Erwerb dieser SF ist mindestens eines der genannten Talente wichtig. Man kann allerdings die SF nur für eine Rüstung einsetzen, wenn man auch die Voraussetzung des Talents erfüllt, das für die Anfertigung der Rüstung notwendig ist."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=R%C3%BCstungsbau",
       "costPerLevel": 15
     },
     {
@@ -98630,6 +102878,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Lassen sich Säer beim Wirken von Liturgien Zeit, so wird die Liturgie machtvoller. Setzen sie die Liturgiemodifikation Liturgiedauer erhöhen oder Zeremoniedauer erhöhen ein, so …",
+      "prerequisites": [
+        "Tradition (Perainekirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=S%C3%A4er%20der%20G%C3%BCtigen",
       "costPerLevel": 10
     },
     {
@@ -98641,6 +102894,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AE",
       "category": "Magie",
       "maxLevel": 3,
+      "shortDescription": "Diese Sonderfertigkeit kann die Erschwernisse neutraler und des gegensätzlichen Elements bei der Fokusregel Meister der Sechse abbauen. Jedes Mal wenn der Held die AP …",
+      "prerequisites": [
+        "Leiteigenschaft undefined"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sahib%20al'Sitta",
       "costPerLevel": 15
     },
     {
@@ -98652,6 +102910,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Zauber mit dem Merkmal Einfluss, welche die Salonlöwin benutzt, um ihr Gegenüber freundlich zu stimmen oder zu betören, erhalten +1 FP. Darunter fallen beispielsweise …",
+      "prerequisites": [
+        "Tradition (Hexen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Salonl%C3%B6winnen%20(Sch%C3%B6ne%20der%20Nacht)",
       "costPerLevel": 15
     },
     {
@@ -98663,6 +102926,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Bei Mirakeln, die Kampftechniken einen Bonus verleihen, bekommen Salutaristen zusätzlich +1 PA. Der Kleine Schutzsegen (siehe Regelwerk Seite 323) eines Salutaristen hat einen Radius …",
+      "prerequisites": [
+        "Tradition (Rondrakirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Salutaristen",
       "costPerLevel": 10
     },
     {
@@ -98674,6 +102942,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Ein passiver Teilnehmer des Liebesspiels, der durch die Sexpraktik Samenspiele mit Ejakulat begossen wurde oder durch diese Sonderfertigkeit Samen erhalten hat, kann einen weiteren …",
+      "prerequisites": [
+        "Betören 8",
+        "Willenskraft 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Samentausch",
       "costPerLevel": 12
     },
     {
@@ -98685,6 +102959,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Mit dieser Sonderfertigkeit kann der Held erfolgreicher Nahrung sammeln. Begibt er sich auf die Suche, kann er bei einer erfolgreichen Probe auf Pflanzenkunde um …",
+      "prerequisites": [
+        "Pflanzenkunde 4",
+        "Wildnisleben 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sammler",
       "costPerLevel": 2
     },
     {
@@ -98696,6 +102976,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "In beengter Umgebung werden mittlere Waffen wie kurze behandelt. Zudem erleidet ein Kämpfer mit dem Sappeur-Stil eine Stufe geringere Erschwernisse durch Sichtmodifkatoren. Stufe III …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "IN 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sappeur-Stil",
       "costPerLevel": 10
     },
     {
@@ -98707,6 +102993,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Eine Heldin mit dieser Sonderfertigkeit kann 1 freie Aktion pro KR aufwenden, um einen ausgewählten Kulturschaffenden die ganze Zeit zu beleidigen und ihn davon …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "MU 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sarvinio%20della%20Monte-Stil",
       "costPerLevel": 10
     },
     {
@@ -98718,6 +103010,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Mittels einer Berührung können Satori ein Mirakel auf einen anderen Kulturschaffenden wirken, der dann statt des Geweihten von einer Verbesserung seiner Talente profitiert. Als …",
+      "prerequisites": [
+        "Tradition (Hesindekirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Satori",
       "costPerLevel": 15
     },
     {
@@ -98729,6 +103026,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Im Gänsebeutel befindet sich jeden Tag eine kleine Mahlzeit in Form von Eiern, Brot, Hartwurst und Käse, die als Tagesration ausreicht. Die Nahrung füllt …",
+      "prerequisites": [
+        "Tradition (Traviakirche)",
+        "Kleine Mahlzeit",
+        "Kräftigende Mahlzeit"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=S%C3%A4ttigende%20Mahlzeit",
       "costPerLevel": 5
     },
     {
@@ -98740,6 +103044,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Führt der Kämpfer des Scanlail ni Uinin-Stils einen Kusliker Säbel, ein Kurzschwert oder ein Havener Messer zusammen mit einem Faustschild, dann erleidet sein Gegner …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "GE 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scanlail%20ni%20Uinin-Stil",
       "costPerLevel": 12
     },
     {
@@ -98751,6 +103061,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Gegen Wesen mit mindestens RS 2 richtet der Korspieß +1 SP an.",
+      "prerequisites": [
+        "Tradition (Korkirche)",
+        "Verteidigungslücke"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scharfe%20Krallen",
       "costPerLevel": 8
     },
     {
@@ -98762,8 +103078,16 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 2,
-      "variableCost": true,
-      "suggestedCost": 5
+      "shortDescription": "Die SF erlaubt es der Heldin, aus den Modifikatoren Distanz, Größe und Bewegung resultierende Erschwernisse teilweise zu ignorieren (siehe Regelwerk Seite 241). Bei Stufe …",
+      "prerequisites": [
+        "IN 15/17/19 je nach Stufe",
+        "Präziser Schuss/Wurf"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scharfsch%C3%BCtze",
+      "costByLevel": [
+        15,
+        20
+      ]
     },
     {
       "id": "schicksalsmacht",
@@ -98774,6 +103098,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Schicksalspunkte",
       "maxLevel": 1,
+      "shortDescription": "Wer über Schicksalsmacht verfügt, kann nicht nur eine Anwendung von Schicksalspunkten bei einer Probe unterstützen, sondern beliebig viele Schips einsetzen und Anwendungen kombinieren (siehe …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schicksalsmacht",
       "costPerLevel": 15
     },
     {
@@ -98785,6 +103112,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held ist in der Lage, das richtige Holz für Schiffe auszuwählen, Schiffe zu entwerfen und zu bauen (nicht jedoch Boote). Durch die Sonderfertigkeit …",
+      "prerequisites": [
+        "Boote & Schiffe 8",
+        "Holzbearbeitung 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schiffsbauer",
       "costPerLevel": 10
     },
     {
@@ -98796,6 +103129,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Besitzer dieser Sonderfertigkeit können ihre SK als Rüstungsschutz gegen Zauber und Liturgien einsetzen, die Trefferpunkte verursachen oder LeP abziehen. Der Schutz wirkt nur gegen …",
+      "prerequisites": [
+        "Geweihter",
+        "Leiteigenschaft 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schild%20des%20Glaubens",
       "costPerLevel": 15
     },
     {
@@ -98807,6 +103146,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Eine Schildkämpferin mit dieser SF kann zusammen mit einem weiteren Schildkämpfer, der sich maximal einen halben Schritt neben ihr befinden darf, eine Schilddeckung aufbauen. …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schilddeckung",
       "costPerLevel": 5
     },
     {
@@ -98818,6 +103160,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Bis zu 3 ausgewählte Ziele in einem Radius von 4 Schritt um den Swafnirgeweihten erhalten gegen Fernkampfangriffe einen Bonus von +1 bei der Schild-PA. …",
+      "prerequisites": [
+        "Wall der Schilde",
+        "Wall der Angst"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schildmeer",
       "costPerLevel": 15
     },
     {
@@ -98829,6 +103177,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Das Schildschlag-Manöver kann nur gegen einen Gegner mit dem Status Liegend eingesetzt werden. Der Attackewert des Helden mit dem Schild ist bei diesem Manöver …",
+      "prerequisites": [
+        "KK 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schildschlag",
       "costPerLevel": 5
     },
     {
@@ -98840,6 +103193,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Hierzu wird eine Attacke gegen den Schild durchgeführt, gegen die der Gegner mit einer Parade mit dem Schild oder Ausweichen verteidigen darf. Für eine …",
+      "prerequisites": [
+        "KK 13",
+        "Wuchtschlag 1"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schildspalter",
       "costPerLevel": 15
     },
     {
@@ -98851,6 +103210,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Nach einer erfolgreichen und unparierten Schild-AT stolpert der Getroffene 1W3 Schritte zurück. Für den Verteidiger ist eine gelungene Vergleichsprobe auf Körperbeherrschung (Balance) gegen Kraftakt …",
+      "prerequisites": [
+        "KK 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schildsto%C3%9F",
       "costPerLevel": 8
     },
     {
@@ -98862,6 +103226,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Gegenstände bis zu 100 Strukturpunkten werden bei einer Berührung durch den Ingerimmshammer zerstört. Waffen und Rüstungen sind davon ausgenommen. Der Einsatz dieser Fähigkeit verursacht …",
+      "prerequisites": [
+        "werkzeugderbestaendigkeit",
+        "hammerderschwere"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schlag%20der%20Zerst%C3%B6rung",
       "costPerLevel": 12
     },
     {
@@ -98873,6 +103243,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "A",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Priester erhält einen RS von 2, der mit allen anderen Rüstungen kombinierbar ist. Die Wirkung hält 5 KR lang an. Der Einsatz dieser …",
+      "prerequisites": [
+        "Wandelstab",
+        "Giftbiss"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schlangenhaut",
       "costPerLevel": 12
     },
     {
@@ -98884,6 +103260,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Schleier kann bei Fesselungen von Kulturschaffenden verwendet werden. Dies führt dazu, dass Proben auf Körperbeherrschung (Entwinden) nicht nur um 2 erschwert sind, sondern …",
+      "prerequisites": [
+        "Tradition (Rahjakirche)",
+        "schleierderreinheit"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schleier%20der%20Fesselung",
       "costPerLevel": 5
     },
     {
@@ -98895,6 +103277,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Solange die Rahjageweihte den Schleier trägt, perlt Regen an ihr ab, sie erleidet keinen Sonnenbrand und Schmutz haftet nicht an ihrem Körper.",
+      "prerequisites": [
+        "Tradition (Rahjakirche)",
+        "schleierderfesselung"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schleier%20der%20Reinheit",
       "costPerLevel": 3
     },
     {
@@ -98906,6 +103294,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Rahjageweihte kann den Schleier über einen schlafenden Kulturschaffenden legen und einen Eindruck davon erhalten, was dieser träumt. Sie kann seine Träume leicht beeinflussen …",
+      "prerequisites": [
+        "schleierderfesselung",
+        "schleierderunempfindlichkeit"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schleier%20der%20Tr%C3%A4ume",
       "costPerLevel": 8
     },
     {
@@ -98917,6 +103311,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Immer, wenn die Rahjageweihte körperlichen Schaden erleidet, fängt der Schleier diesen auf. Der Schleier kann bis zu 5 SP abfangen. Sind die 'LeP' des …",
+      "prerequisites": [
+        "schleierderfesselung",
+        "schleierdertraeume"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schleier%20der%20Unempfindlichkeit",
       "costPerLevel": 20
     },
     {
@@ -98928,6 +103328,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Rahjageweihte bekommt bei Gesellschaftstalenten, außer auf Einschüchtern und Willenskraft, einen Bonus von +3 FW (statt +2). Der Einsatz dieser Fähigkeit verursacht 1 Stufe …",
+      "prerequisites": [
+        "schleierderreinheit",
+        "schleierdesbegehrens"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schleier%20der%20Verf%C3%BChrung",
       "costPerLevel": 20
     },
     {
@@ -98939,6 +103345,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Segnet die Rahjageweihte den Schleier und gibt ihn anschließend an einen Kulturschaffenden, der den Schleier als Glücksbringer bei sich tragen muss, sorgt der Zeremonialgegenstand …",
+      "prerequisites": [
+        "schleierderreinheit",
+        "schleierderverfuehrung"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schleier%20gcdes%20Begehrens",
       "costPerLevel": 10
     },
     {
@@ -98950,6 +103362,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Wer die Sonderfertigkeit Schleiertanz beherrscht, der kann über das Talent Tanzen (exotische Tänze) Schleiertänze aufführen. Bestimmte Arten von Schleiertänzen gelten als Berufsgeheimnisse.",
+      "prerequisites": [
+        "Tanzen 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schleiertanz",
       "costPerLevel": 3
     },
     {
@@ -98961,6 +103378,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch die Sonderfertigkeit wird eine Einsatzmöglichkeit für das Talent Selbstbeherrschung (Handlungsfähigkeit bewahren) erworben. Der Held legt, sobald er Schmerz erleidet, eine Probe auf Selbstbeherrschung …",
+      "prerequisites": [
+        "Selbstbeherrschung 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schmerzen%20unterdr%C3%BCcken",
       "costPerLevel": 20
     },
     {
@@ -98972,6 +103394,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Bei einem Treffer mit dem Korspieß, der SP verursacht, kann der Spieler des Korgeweihten beschließen, dass er statt des ausgewürfelten Schadens nur 1 SP …",
+      "prerequisites": [
+        "Verteidigungslücke",
+        "Kampfesmut"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schmerzhafter%20Hieb",
       "costPerLevel": 15
     },
     {
@@ -98983,6 +103411,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Erleidet der Held mindestens 1 Stufe Schmerz, so bekommt er einen Bonus auf seine TP in Höhe seiner aktuellen Schmerzstufe. Der Bonus hält bis …",
+      "prerequisites": [
+        "MU 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schmerzwut",
       "costPerLevel": 12
     },
     {
@@ -98994,6 +103427,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin bekommt das neue Anwendungsgebiet Schmuck herstellen in den Talenten Holz-, Metall- und Steinbearbeitung. Sie kann fortan Schmuck anfertigen. Für komplexe Schmuckstücke benötigt …",
+      "prerequisites": [
+        "Holzbearbeitung oder Lederbearbeitung oder Metallbearbeitung oder Steinbearbeitung 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schmuck%20herstellen",
       "costPerLevel": 2
     },
     {
@@ -99005,6 +103443,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held ist in der Lage, Schnaps zu destillieren. Mit dieser Sonderfertigkeit erwirbt der Held im Talent Lebensmittelbearbeitung das neue Anwendungsgebiet Schnapsbrennen.",
+      "prerequisites": [
+        "Alchimie 4",
+        "Lebensmittelbearbeitung 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schnapsbrennerei",
       "costPerLevel": 2
     },
     {
@@ -99016,6 +103460,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Das Nachladen von Bögen und das Bereitmachen von Wurfwaffen verkürzen sich um 1 Aktion. Das Nachladen von Armbrüsten dauert nur die Hälfte der angegebenen …",
+      "prerequisites": [
+        "FF 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schnellladen%20(Armbr%C3%BCste)",
       "costPerLevel": 5
     },
     {
@@ -99027,6 +103476,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Das Nachladen von Bögen und das Bereitmachen von Wurfwaffen verkürzen sich um 1 Aktion. Das Nachladen von Armbrüsten dauert nur die Hälfte der angegebenen …",
+      "prerequisites": [
+        "FF 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schnellladen%20(B%C3%B6gen)",
       "costPerLevel": 20
     },
     {
@@ -99038,6 +103492,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Das Nachladen von Schleudern verkürzt sich um 1 Aktion. Die SF funktioniert ansonsten genauso wie die übrigen Schnellladen-Sonderfertigkeiten (siehe Regelwerk Seite 249).",
+      "prerequisites": [
+        "FF 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schnellladen%20(Schleudern)",
       "costPerLevel": 5
     },
     {
@@ -99049,6 +103508,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Das Nachladen von Bögen und das Bereitmachen von Wurfwaffen verkürzen sich um 1 Aktion. Das Nachladen von Armbrüsten dauert nur die Hälfte der angegebenen …",
+      "prerequisites": [
+        "FF 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schnellladen%20(Wurfwaffen)",
       "costPerLevel": 10
     },
     {
@@ -99060,6 +103524,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Beherrscht ein Abenteurer die Sonderfertigkeit Schnellschreiber, so kann er Gespräche mitschreiben, ohne dass wesentliche Informationen verloren gehen. Er benutzt dabei jedoch ein Verfahren, um …",
+      "prerequisites": [
+        "Held muss mindestens eine Schrift und die gesprochene Sprache beherrschen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schnellschreiber",
       "costPerLevel": 2
     },
     {
@@ -99071,6 +103540,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Anstatt 1 Aktion aufzuwenden, reicht 1 freie Aktion aus, um eine Waffe zu ziehen.",
+      "prerequisites": [
+        "FF 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schnellziehen",
       "costPerLevel": 10
     },
     {
@@ -99082,6 +103556,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Wer über diese Sonderfertigkeit verfügt, kann vor dem Wirken eines Zaubers mit dem Merkmal Illusion entscheiden, ob der Zauber eine 50 % längere Wirkungsdauer …",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Akademie%20der%20Erscheinungen%20zu%20Grangor",
       "costPerLevel": 10
     },
     {
@@ -99093,6 +103572,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Abgänger der Akademie werden gezielt dazu ausgebildet, die Verteidigungen des Geistes zu überwinden. Sie können daher bei Zaubern des Merkmals Einfluss 1 Punkt der …",
+      "prerequisites": [
+        "passender Zauberstil",
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Akademie%20der%20Geistigen%20Kraft%20zu%20Fasar",
       "costPerLevel": 25
     },
     {
@@ -99104,6 +103589,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Diese Sonderfertigkeit erlaubt es, die Modifikation Zauberdauer senken ohne eine Erschwernis von 1 durchzuführen, allerdings erhöhen sich dadurch die Kosten auch um 4 AsP. …",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Akademie%20der%20Geistreisen%20zu%20Belhanka",
       "costPerLevel": 12
     },
     {
@@ -99115,6 +103605,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Wer über diese Sonderfertigkeit verfügt, kann vor dem Wirken eines Zaubers mit dem Merkmal Einfluss entscheiden, ob der Zauber eine 50 % längere Wirkungsdauer …",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Akademie%20der%20Herrschaft%20zu%20Elenvina",
       "costPerLevel": 10
     },
     {
@@ -99126,6 +103621,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Vertreter des Puniner Zauberstils sind in jeder Spielart der Magie versiert. Sie erhalten bei einer gelungenen Probe auf Magiekunde +2 FP (bis zu einem …",
+      "prerequisites": [
+        "passender Zauberstil",
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Akademie%20der%20Hohen%20Magie%20zu%20Punin",
       "costPerLevel": 20
     },
     {
@@ -99137,6 +103638,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Garether Schüler werden vornehmlich darauf vorbereitet, magische Schilde einzusetzen. Setzen sie einen Zauber der Klasse Magisches Schild ein, erhalten sie bei einer gelungenen Probe …",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Akademie%20der%20Magischen%20R%C3%BCstung%20zu%20Gareth",
       "costPerLevel": 15
     },
     {
@@ -99148,6 +103654,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Die Offenheit gegenüber anderen Traditionen erlaubt es, bestimmte Fremdzauber mit geringeren Schwierigkeiten anzuwenden. Wird z. B. ein Zauber aus der Tradition der Elfen gewirkt, …",
+      "prerequisites": [
+        "passender Zauberstil",
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Akademie%20der%20Verformungen%20zu%20Lowangen",
       "costPerLevel": 12
     },
     {
@@ -99159,6 +103671,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Der Methumiser Magier bekommt beim Einsatz von Zaubern des Merkmals Hellsicht +1 FP, wenn er die Modifikation Zauberdauer erhöhen einsetzt (bis zu einem Maximum …",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Akademie%20des%20Magischen%20Wissens%20zu%20Methumis",
       "costPerLevel": 12
     },
     {
@@ -99170,6 +103687,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Abgänger der Akademie fürchten sich dank ihres militärischen Drills vor kaum etwas. Durch die Sonderfertigkeit wird eine neue Einsatzmöglichkeit für das Talent Willenskraft (Bedrohungen …",
+      "prerequisites": [
+        "passender Zauberstil",
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Akademie%20Schwert%20und%20Stab%20zu%20Gareth",
       "costPerLevel": 15
     },
     {
@@ -99181,6 +103704,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Zauber, die auf die Zielkategorie Objekte wirken, haben für Nostrianer eine Erleichterung von 1.",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Akademie%20von%20Licht%20und%20Dunkelheit%20zu%20Nostria",
       "costPerLevel": 15
     },
     {
@@ -99192,6 +103720,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Wagenhalter Magier sparen bei Zaubersprüchen mit der Zielkategorie Kulturschaffende 1 AsP ein (die Kosten betragen jedoch mindestens 1 AsP). Diese Fähigkeit ist kompatibel zu …",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Akademie%20zu%20Wagenhalt",
       "costPerLevel": 15
     },
     {
@@ -99203,6 +103736,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Zauber mit dem Merkmal Heilung, die verlorene LeP und/oder AsP zurückbringen, benötigen in der Kategorie Zauberdauer eine Stufe weniger Zeit (dies gilt nicht als …",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Anatomischen%20Akademie%20zu%20Vinsalt",
       "costPerLevel": 12
     },
     {
@@ -99214,6 +103752,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Ein Zauberer der Bannakademie von Fasar kann bei einem Zauber ganz auf Formeln und Gesten verzichten, ohne dafür eine Erschwernis zu erleiden, allerdings erleidet …",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Bannakademie%20von%20Fasar",
       "costPerLevel": 20
     },
     {
@@ -99225,6 +103768,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Stellt ein Khunchomer Magier ein magisches Artefakt her, so ist die Wirkungsdauer des darin wirkenden Spruchs um 25 % erhöht. Zudem sind Proben zur …",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Drachenei-Akademie%20zu%20Khunchom",
       "costPerLevel": 15
     },
     {
@@ -99236,6 +103784,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Dämonen aus Thargunitoths Gefolge erfüllen Brabaker Magiern einen zusätzlichen Dienst, Geister erfüllen 1 zusätzliche Bitte und das Erschaffen von Untoten ist um 1 erleichtert. …",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Dunklen%20Halle%20der%20Geister%20zu%20Brabak",
       "costPerLevel": 15
     },
     {
@@ -99247,6 +103800,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDD",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Wendet ein Qabaloth der Erben der Gräber die Modifikation Zauberdauer verlängern auf einen Zauber des Merkmals Hellsicht an, erhält er dafür eine Erleichterung von …",
+      "prerequisites": [
+        "Tradition (Qabalyamagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Erben%20der%20Gr%C3%A4ber",
       "costPerLevel": 12
     },
     {
@@ -99258,6 +103816,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Kusliker Schüler werden vornehmlich darauf vorbereitet, gegnerische Magie zu bannen. Setzen sie einen Zauber der Klasse Merkmalsbann ein, erhalten sie bei einer gelungenen Probe …",
+      "prerequisites": [
+        "passender Zauberstil",
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Halle%20der%20Antimagie%20zu%20Kuslik",
       "costPerLevel": 15
     },
     {
@@ -99269,6 +103833,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Magier aus Al'Anfa können Zauber mit dem Merkmal Antimagie, die gleichzeitig auch die Reichweite selbst aufweisen (beispielsweise den Ablativum oder den Gardianum), automatisch mit …",
+      "prerequisites": [
+        "passender Zauberstil",
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Halle%20der%20Erleuchtung%20zu%20Al'Anfa",
       "costPerLevel": 10
     },
     {
@@ -99280,6 +103850,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Schüler der Halle der Macht können sich beim Zaubern und beim Einsatz der Modifikation Erzwingen dazu entscheiden, eine Erleichterung von 2 statt 1 zu …",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Halle%20der%20Macht%20zu%20Lowangen",
       "costPerLevel": 15
     },
     {
@@ -99291,6 +103866,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Zauber mit den Merkmalen Objekt und Verwandlung kosten den Kusliker Magier 1 AsP weniger (bis zu einem Minimum von 1 AsP).",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Halle%20der%20Metamorphosen%20zu%20Kuslik",
       "costPerLevel": 12
     },
     {
@@ -99302,6 +103882,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Zauber mit dem Merkmal Elementar, die einem der Elemente Luft, Wasser oder Eis zugeordnet werden können, erhalten eine Erleichterung von 1.",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Halle%20der%20Winde%20zu%20Olport",
       "costPerLevel": 12
     },
     {
@@ -99313,6 +103898,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Ein Magier aus Norburg kann drei Fremdzauber des Merkmals Heilung auswählen und sie wie Zauber der Verbreitung Gildenmagier behandeln.",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Halle%20des%20Lebens%20zu%20Norburg",
       "costPerLevel": 20
     },
     {
@@ -99324,6 +103914,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Zauber mit dem Merkmal Objekt kosten 1 AsP weniger (bis zu einem Minimum von 1 AsP). Außerdem muss ein Festumer nur 3 statt 4 …",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Halle%20des%20Quecksilbers%20zu%20Festum",
       "costPerLevel": 15
     },
     {
@@ -99335,6 +103930,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Alle TP oder SP verursachenden Zauber richten bei einem Bethaner grundsätzlich 2 TP bzw. SP mehr an.",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Halle%20des%20Vollendeten%20Kampfes%20zu%20Bethana",
       "costPerLevel": 20
     },
     {
@@ -99346,6 +103946,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Dämonen erfüllen Yol-Ghurmaker Magiern einen zusätzlichen Dienst und das Beschwören von Dämonen ist um 1 erleichtert. Zudem sind Paktproben mit einem Erzdämon für einen …",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Heptagonakademie%20zu%20Yol-Ghurmak",
       "costPerLevel": 25
     },
     {
@@ -99357,6 +103962,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDSO",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Zauber der Merkmale Hellsicht und Sphären kosten Schüler Kalliomathëas 1 AsP weniger (die Kosten betragen jedoch mindestens 1 AsP). Diese Fähigkeit ist kompatibel zu …",
+      "prerequisites": [
+        "passender Zauberstil",
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Kalliomath%C3%ABa%20Dorikeikos%20von%20Sorabis",
       "costPerLevel": 12
     },
     {
@@ -99368,6 +103979,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Schülerinnen der Khelbara ay Baburia können Heilzauber kostensparender erzwingen, allerdings löst dies beim Ziel Schmerzen aus. Alle Zauber mit dem Merkmal Heilung können mit …",
+      "prerequisites": [
+        "passender Zauberstil",
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Khelbara%20ay%20Baburia",
       "costPerLevel": 10
     },
     {
@@ -99379,6 +103996,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Zauber der Merkmale Hellsicht und Sphären kosten Schüler Kiranyas 1 AsP weniger (die Kosten betragen jedoch mindestens 1 AsP). Diese Fähigkeit ist kompatibel zu …",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Kiranya%20von%20Kutaki",
       "costPerLevel": 12
     },
     {
@@ -99390,6 +104012,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Zauber mit dem Merkmal Antimagie sind um 1 erleichtert. Zudem kosten Zauber, die TP oder SP verursachen und gegen Wesen mit AsP-Vorrat gerichtet sind, …",
+      "prerequisites": [
+        "Tradition (Qabalyamagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Nachtwinde",
       "costPerLevel": 20
     },
     {
@@ -99401,6 +104028,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Der Kenner dieser Sonderfertigkeit muss sich für eines der sechs Elemente entscheiden. Zauber mit dem Merkmal Elementar, die auf diesem Element beruhen, sind um …",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Pentagramm-Akademie%20zu%20Rashdul",
       "costPerLevel": 20
     },
     {
@@ -99412,6 +104044,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Der Kenner dieser Sonderfertigkeit kann 7 Zauber mit dem Merkmal Dämonisch auswählen, diese Zauber sind um 1 erleichtert zu wirken und kosten 1 AsP …",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Rashduler%20D%C3%A4monologen",
       "costPerLevel": 20
     },
     {
@@ -99423,6 +104060,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Setzen Perricumer Magier einen Zauber der Klasse Wesensbann ein, erhalten sie bei einer gelungenen Probe +2 FP (bis zu einem Maximum von 18 FP). …",
+      "prerequisites": [
+        "passender Zauberstil",
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Schule%20der%20Austreibung%20zu%20Perricum",
       "costPerLevel": 12
     },
     {
@@ -99434,6 +104077,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Zauber des Merkmals Einfluss sind entweder um 1 erleichtert, oder Kosten 2 AsP weniger (bis zu einem Minimum von 1 AsP). Der Zauberer kann …",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Schule%20der%20Beherrschung%20zu%20Neersand",
       "costPerLevel": 15
     },
     {
@@ -99445,6 +104093,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Anwender des Stils sind nicht leicht aus der Fassung zu bringen. Durch die Sonderfertigkeit wird eine neue Einsatzmöglichkeit für das Talent Willenskraft (Bedrohungen standhalten) …",
+      "prerequisites": [
+        "passender Zauberstil",
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Schule%20der%20Hellsicht%20zu%20Thorwal",
       "costPerLevel": 15
     },
     {
@@ -99456,6 +104110,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Dämonen aus Agrimoths Gefolge erfüllen Mirhamer Magiern einen zusätzlichen Dienst und das Erschaffen von Golems ist um 1 erleichtert. Zudem sind Proben zur Herstellung …",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Schule%20der%20variablen%20Form%20zu%20Mirham",
       "costPerLevel": 15
     },
     {
@@ -99467,6 +104126,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Anwender des Stils sind besonders geschult darin, sich selbst zu verwandeln. Alle Zauber mit dem Merkmal Verwandlung und der Reichweite selbst können eine zusätzliche …",
+      "prerequisites": [
+        "passender Zauberstil",
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Schule%20der%20Vierfachen%20Verwandlung%20zu%20Sinoda",
       "costPerLevel": 10
     },
     {
@@ -99478,6 +104143,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Anwender des Gerasimer Stils sind es gewohnt, auf formelle Hilfsmittel zu verzichten. Die Erschwernis für das Auslassen von Formel und/oder Geste (siehe Regelwerk Seite …",
+      "prerequisites": [
+        "passender Zauberstil",
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Schule%20des%20Direkten%20Weges%20zu%20Gerasim",
       "costPerLevel": 15
     },
     {
@@ -99489,6 +104160,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Zorganer Magiern fällt es leichter, sich der scharlatanischen Magie zu bedienen. Werden Zauber aus der Tradition Scharlatane gewirkt, entfällt die sonst übliche Erschwernis von …",
+      "prerequisites": [
+        "passender Zauberstil",
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Schule%20des%20Seienden%20Scheins%20zu%20Zorgan",
       "costPerLevel": 12
     },
     {
@@ -99500,6 +104177,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Ein Schüler Gevendars kann sich aussuchen, ob er bei der Modifikation Reichweite erhöhen eine Erschwernis von 1 erhält, oder ihn der Zauber 4 zusätzliche …",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Sevastana%20Gevendar",
       "costPerLevel": 10
     },
     {
@@ -99511,6 +104193,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Zauber mit dem Merkmal Antimagie sind um 1 erleichtert. Zudem richten Zauber, die TP oder SP verursachen und gegen Chimären, Daimonide, Dämonen, Geister, Golems …",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Shanada%20von%20Ben-Oni",
       "costPerLevel": 15
     },
     {
@@ -99522,6 +104209,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit lernt eine Scholarin eine neue Einsatzmöglichkeit für das Talent Sternkunde. Eine Tochter Niobaras kann während der Nachtstunden, wenn sie einen freien …",
+      "prerequisites": [
+        "passender Zauberstil",
+        "Tradition (Qabalyamagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20T%C3%B6chter%20Niobaras",
       "costPerLevel": 10
     },
     {
@@ -99533,6 +104226,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Zauber mit dem Merkmal Elementar, die einem der Elemente Luft, Erz oder Feuer zugeordnet werden können, erhalten eine Erleichterung von 1.",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20der%20Zauberschule%20des%20Kalifen%20zu%20Mherwed",
       "costPerLevel": 12
     },
     {
@@ -99544,6 +104242,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "BKAM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Zauber des Magiers, die Feuer erzeugen (beispielsweise der IGNIFAXIUS), richten beim Ziel +2 TP an.",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20des%20Agrimeton",
       "costPerLevel": 12
     },
     {
@@ -99555,6 +104258,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Alrik Dagabor lehrt seinen Schüler das besonders rasche Wirken von Magie, da das Abenteuerleben manchmal schnelles Handeln erfordert. Dies erlaubt es, die Modifikation Zauberdauer …",
+      "prerequisites": [
+        "passender Zauberstil",
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20des%20Alrik%20Dagabor",
       "costPerLevel": 10
     },
     {
@@ -99566,6 +104275,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Wenn ein Kenner dieser Sonderfertigkeit die Zaubermodifikation Erzwingen einsetzt, so erhält er bei Gelingen des Zaubers +1 FP (bis zu einem Maximum von 18 …",
+      "prerequisites": [
+        "passender Zauberstil",
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20des%20Demirion%20Ophenos",
       "costPerLevel": 10
     },
     {
@@ -99577,6 +104292,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Wenn ein Kenner dieser Sonderfertigkeit einen Feuerzauber mit dem Merkmal Elementar wirkt, kann er sich aussuchen, ob er eine Probe auf Magiekunde (Rituale oder …",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20des%20Halib%20abu'l%20Ketab",
       "costPerLevel": 12
     },
     {
@@ -99588,6 +104308,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Lässt sich ein Schüler des Hesindius Lichtblicks beim Wirken von Magie Zeit, so wird seine Magie machtvoller. Setzt er die Zaubermodifikation Zauberdauer erhöhen ein, …",
+      "prerequisites": [
+        "passender Zauberstil",
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20des%20Hesindius%20Lichtblick",
       "costPerLevel": 10
     },
     {
@@ -99599,6 +104325,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Ein Zauberer aus dem Informations-Institut zu Rommilys kann bei einem Zauber Geste oder Formel weglassen, ohne dafür eine Erschwernis zu erleiden, allerdings erleidet er …",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20des%20Informations-Instituts%20zu%20Rommilys",
       "costPerLevel": 12
     },
     {
@@ -99610,6 +104341,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Bei Zaubern, die TP oder SP verursachen und bei denen zur Schadensbestimmung mindestens 1W6 gewürfelt werden muss, können Andergaster Magier einen W6 nochmal würfeln …",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20des%20Kampfseminars%20zu%20Andergast",
       "costPerLevel": 20
     },
     {
@@ -99621,6 +104357,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Der Kenner dieser Sonderfertigkeit muss sich für eines der sechs Elemente entscheiden. Zauber mit dem Merkmal Elementar, die auf diesem Element beruhen, kosten 2 …",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20des%20Konzils%20der%20Elemente%20zu%20Drakonia",
       "costPerLevel": 20
     },
     {
@@ -99632,6 +104373,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Ein Magier des Kreises der Einfühlung kann drei Zauber der Verbreitung Elfen auswählen und sie wie Zauber der Verbreitung Gildenmagier behandeln.",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20des%20Kreises%20der%20Einf%C3%BChlung",
       "costPerLevel": 20
     },
     {
@@ -99643,6 +104389,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Neben dem Fremdzauber, den Gildenmagier bei der Heldenerschaffung in ihre eigene Tradition überführen konnten (siehe Regelwerk Seite 275), darf ein Honinger Magier einen weiteren …",
+      "prerequisites": [
+        "Tradition (Gildenmagier)",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20des%20Magierkollegs%20zu%20Honingen%20(Harmoniezauberei)",
       "costPerLevel": 15
     },
     {
@@ -99654,6 +104406,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Neben dem Fremdzauber, den Gildenmagier bei der Heldenerschaffung in ihre eigene Tradition überführen konnten (siehe Regelwerk Seite 275), darf ein Honinger Magier einen weiteren …",
+      "prerequisites": [
+        "Tradition (Gildenmagier)",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20des%20Magierkollegs%20zu%20Honingen%20(Matrixzauberei)",
       "costPerLevel": 15
     },
     {
@@ -99665,6 +104423,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Dämonen und Elementare erfüllen Schülern des Rafim einen zusätzlichen Dienst nach ihrer Beschwörung (bis zu einem Maximum von 6 Diensten).",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20des%20Rafim%20Bey",
       "costPerLevel": 20
     },
     {
@@ -99676,6 +104439,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Die Donnerbacher sind Spezialisten der klassischen Heilmagie. Für jeweils 5 volle LeP, die ein Zauber mit dem Merkmal Heilung wiedergibt, bekommt das Ziel des …",
+      "prerequisites": [
+        "passender Zauberstil",
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20des%20Seminars%20der%20elfischen%20Verst%C3%A4ndigung%20und%20nat%C3%BCrlichen%20Heilung%20zu%20Donnerbach",
       "costPerLevel": 10
     },
     {
@@ -99687,6 +104456,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Rivaner Magier sparen bei Zaubersprüchen mit der Zielkategorie Kulturschaffende 1 AsP ein (die Kosten betragen jedoch mindestens 1 AsP). Diese Fähigkeit ist kompatibel zu …",
+      "prerequisites": [
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20des%20Stoerrebrandt-Kollegs%20zu%20Riva",
       "costPerLevel": 15
     },
     {
@@ -99698,6 +104472,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Zaubersprüche des Merkmals Elementar erhalten bei Gelingen +1 FP (bis zu einem Maximum von 18 FP).",
+      "prerequisites": [
+        "passender Zauberstil",
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scholar%20des%20Vadif%20sal%20Karim",
       "costPerLevel": 10
     },
     {
@@ -99709,6 +104489,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Gefühlsbetont: Die Katzenhexe kann unter dem Einfluss passender Gefühle eine Erleichterung von maximal 3 erhalten (statt 2). Kesselscheu: Stellt eine Katzenhexe etwas mit dem …",
+      "prerequisites": [
+        "Tradition (Hexen)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Schwesternschaftsprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scho%CC%88ne%20der%20Nacht",
       "variableCost": true
     },
     {
@@ -99720,6 +104506,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Lieblingsspielzeug: Das Schelmenspielzeug eines Schöpfers verfügt über 3 zusätzliche Volumenpunkte. Unstet: Schöpfer können einen Zauber weniger zu einem Schelmentrick umwandeln, als ihre Tradition angibt …",
+      "prerequisites": [
+        "Tradition (Schelme)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Schelmenprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Scho%CC%88pfer",
       "variableCost": true
     },
     {
@@ -99731,6 +104523,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held beherrscht das entsprechende Alphabet. Für jede Schrift muss die Sonderfertigkeit einzeln erworben werden.",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki",
+        "kein Blind"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schrift",
       "variableCost": true
     },
     {
@@ -99742,6 +104540,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Sonderfertigkeit Schriftstellerei kann für verschiedene Fachbereiche gewählt werden: Liebesroman, Poesie, Hetzschriften, Kriminalgeschichten, Märchen und Romane oder Fachpublikationen. Durch die jeweilige SF wird ein …",
+      "prerequisites": [
+        "passende Schrift, passende Sprache III",
+        "Talent je nach Fachbereich (Betören 4 für Liebesroman, Etikette 4 für Poesie, Bekehren & Überzeugen 4 für Hetzschriften, Gassenwissen 4 für Kriminalgeschichten, Überreden 4 für Märchen & Romane, das passende Wissenstalent 4 für Fachpublikationen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schriftstellerei",
       "costPerLevel": 2
     },
     {
@@ -99753,6 +104557,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Rondrageweihte erhält beim Kampf mit dem Rondrakamm +1 PA.",
+      "prerequisites": [
+        "Tradition (Rondrakirche)",
+        "Blitz-Schlag"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schutz%20der%20L%C3%B6win",
       "costPerLevel": 8
     },
     {
@@ -99764,6 +104574,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Die Geweihte kann einen Kulturschaffenden segnen, der gegen übernatürliche Angriffe wie Zauber und Liturgien +2 RS erhält. Dieser RS ist mit anderem RS kombinierbar, …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schutz%20der%20Unsterblichen",
       "costPerLevel": 15
     },
     {
@@ -99775,6 +104588,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Wenn ein Kulturschaffender mit Ausnahme der Ifirngeweihten selbst den Mantel trägt, kann er keine Stufen von Betäubung und Paralyse durch Unterkühlung oder andere durch …",
+      "prerequisites": [
+        "Warmer Mantel",
+        "Erholsamer Schlaf"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schutz%20gegen%20K%C3%A4lte",
       "costPerLevel": 12
     },
     {
@@ -99786,6 +104605,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "DSK",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Auf Kleidung gemalt, oder besser noch in den Stoff gewebt, vermag dieses Ahnenzeichen den Träger vor Fernkampfangriffen zu schützen. Alle Proben auf Fernkampfangriffe gegen …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schutz%20wider%20Pfeilhagel",
       "costPerLevel": 8
     },
     {
@@ -99797,6 +104619,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Praiosgeweihte erhält gegenüber jeglichem magischen Schaden +1 RS. Dieser RS ist mit anderem RS kombinierbar, wenn dieser auch gegen den magischen Schaden angewandt …",
+      "prerequisites": [
+        "Zepter der Furcht",
+        "Bollwerk wider Zauberei"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schutz%20wider%20Schadensmagie",
       "costPerLevel": 10
     },
     {
@@ -99808,6 +104636,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Rondrageweihte erhält gegenüber bestimmten Wesen +1 RS. Dieser RS ist mit anderem RS kombinierbar, wenn dieser auch gegen die Wesen angewandt werden kann. …",
+      "prerequisites": [
+        "Schutz der Löwin",
+        "Beistand der Unbesiegten"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schutz%20wider%20Unheiliges",
       "costPerLevel": 12
     },
     {
@@ -99819,6 +104653,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Vorsichtig: Schwarzmagier beschäftigen sich häufig mit den gefährlichsten Spielarten ihrer Kunst und sind daher geübt darin, konzentriert und vorsichtig zu agieren. Unterläuft einem Schwarzmagier …",
+      "prerequisites": [
+        "Der Held wurde an einer Akademie oder von einem privaten Lehrmeister der Schwarzen Gilde unterrichtet und gehört der Gilde an.",
+        "Tradition (Gildenmagier)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Gildenprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schwarze%20Gilde",
       "variableCost": true
     },
     {
@@ -99830,6 +104671,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Todesmutig: Durch die Sonderfertigkeit wird eine neue Einsatzmöglichkeit für das Talent Willenskraft (Bedrohungen standhalten) erworben. Sobald eine Heldin eine Stufe Furcht erleidet, darf ihre …",
+      "prerequisites": [
+        "Tradition (Hexen)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Schwesternschaftsprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schwarze%20Witwe",
       "variableCost": true
     },
     {
@@ -99841,6 +104688,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Fremdwissen: Fremdzauber (allerdings nur Zaubersprüche) sind für die Schlangenhexen nur um 1 statt um 2 erschwert. Flugschwäche: Um ihr Fluggerät zu aktivieren, müssen Schlangenhexen …",
+      "prerequisites": [
+        "Tradition (Hexen)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Schwesternschaftsprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schwester%20des%20Wissens",
       "variableCost": true
     },
     {
@@ -99852,6 +104705,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Der Held muss eine um 2 erschwerte AT ausführen. Bei einem Treffer erleidet der Gegner +1 TP. Entstehen so 4 oder mehr SP, muss …",
+      "prerequisites": [
+        "KK 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schwinger",
       "costPerLevel": 8
     },
     {
@@ -99863,6 +104721,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Um einen Feind in den Schwitzkasten zu nehmen, muss die Heldin ihren Widersacher zuvor im Haltegriff haben. In der nächsten KR würfelt die Spielerin …",
+      "prerequisites": [
+        "KK 13",
+        "Haltegriff"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Schwitzkasten",
       "costPerLevel": 10
     },
     {
@@ -99874,6 +104738,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Auf einem Wasserfahrzeug muss ein Seekrieger nur 1 freie Aktion aufwenden, um gegenüber seinen Gegnern in eine vorteilhafte Position zu gelangen (siehe Regelwerk Seite …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "GE 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Seekrieger-Stil",
       "costPerLevel": 8
     },
     {
@@ -99885,6 +104755,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Seelenkennen: Zauber, die auf Zwerge gewirkt werden, kosten 1 AsP weniger (bei einem Minimum von 1 AsP). Zudem können sie Erschwernisse bei ihren Zaubern …",
+      "prerequisites": [
+        "Tradition (Geoden)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Zibiljaprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Seelenhirten",
       "variableCost": true
     },
     {
@@ -99896,6 +104772,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann eine unglaubliche (teilweise erlogene) Geschichte erzählen, die seine Zuhörer aber möglicherweise glauben. Nach Wahl kann der Held statt Überreden auch Sagen …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Seemannsgarn",
       "costPerLevel": 8
     },
     {
@@ -99907,6 +104786,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDSK",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Kämpft der Held beritten gegen Fußkämpfer, erhöht sich die aus der vorteilhaften Position resultierende Erleichterung auf AT um 2 (siehe Regelwerk Seite 238/240). Aufgrund …",
+      "prerequisites": [
+        "MU 13",
+        "weitere Voraussetzung laut Regelwiki",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Seenritter-Stil",
       "costPerLevel": 12
     },
     {
@@ -99918,6 +104804,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDS",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Wirkt auf den Seesoldaten die Sonderfertigkeit Anführer oder Anpeitscher, erhöhen sich alle entsprechenden Boni auf die Kampfwerte um zusätzlich 1 Punkt. Seesoldaten erhalten bei …",
+      "prerequisites": [
+        "GE 13",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Seesoldaten-Stil",
       "costPerLevel": 8
     },
     {
@@ -99929,6 +104821,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Segnungen mit einer QS von 1 können aufgehoben werden. Dies kostet 1 KaP und 1 freie Aktion.",
+      "prerequisites": [
+        "Geweihter"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Segnungsbruch",
       "costPerLevel": 2
     },
     {
@@ -99940,6 +104837,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Wenn eine Liturgie oder Zeremonie nicht durch eine Modifikation verändert wird, erhalten Seher der Seele beim Wirken +1 FP (bis zu einem Maximum von …",
+      "prerequisites": [
+        "Tradition (Boronkirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Seher%20der%20Seele",
       "costPerLevel": 25
     },
     {
@@ -99951,6 +104853,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Seher des verborgenen Pfades können bei der Schicksalspunkte-Sonderfertigkeit Zeichen des Schicksals Schips im Verhältnis 1 zu 1 übertragen (siehe Seite 90).",
+      "prerequisites": [
+        "Tradition (Aveskirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Seher%20des%20verborgenen%20Pfades",
       "costPerLevel": 10
     },
     {
@@ -99962,6 +104869,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Heseherinnen: Zauber mit dem Merkmal Hellsicht kosten Rabenhexen immer 1 AsP weniger (mindestens jedoch 1 AsP). Bei misslungenen Zaubern mit diesem Merkmal zahlt die …",
+      "prerequisites": [
+        "Tradition (Hexen)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Schwesternschaftsprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Seherin%20von%20Heute%20und%20Morgen",
       "variableCost": true
     },
     {
@@ -99973,6 +104886,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Elfenharmonie: Zauber, die ein Sehnender auf andere Elfen wirkt (auch auf den Sehnenden selbst), sind um 1 erleichtert und kosten 1 AsP weniger (bis …",
+      "prerequisites": [
+        "Spezies Elfen",
+        "Tradition (Elfen)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Elfenprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sehnende",
       "variableCost": true
     },
     {
@@ -99984,6 +104904,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held bekommt im Talent Fesseln das neue Anwendungsgebiet Seile herstellen. Damit kann er fortan Seile drehen. Es gibt jedoch komplexe Seile, die ein …",
+      "prerequisites": [
+        "Fesseln 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Seile%20herstellen",
       "costPerLevel": 2
     },
     {
@@ -99995,6 +104920,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki",
+        "höchstens 1 passende Auswahl",
+        "Nicht kombinierbar mit einem primären Patron aus der gleichen Gruppe"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sekund%C3%A4rer%20Patron",
       "variableCost": true
     },
     {
@@ -100006,6 +104938,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held bekommt einen Bonus auf die Stufe seines sozialen Standes von 1 (bis zu einem Maximum von 5), wenn es um regeltechnischen Auswirkungen …",
+      "prerequisites": [
+        "Etikette 8",
+        "kein Nachteil %1"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Selbstbewusstes%20Auftreten",
       "costPerLevel": 10
     },
     {
@@ -100017,6 +104955,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Ist der Zauberer von einem Zauber des Merkmals Einfluss betroffen, der Zustandsstufen von Betäubung, Furcht, Schmerz oder Verwirrung verursacht, so kann er mit einer …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Selbstkontrolle",
       "costPerLevel": 20
     },
     {
@@ -100028,6 +104969,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Wer über diese Sonderfertigkeit verfügt, kann vor dem Wirken eines Zaubers mit dem Merkmal Verwandlung mit der Reichweite selbst entscheiden, ob der Zauber eine …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Selbstverzauberer",
       "costPerLevel": 10
     },
     {
@@ -100039,6 +104983,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Bei der Pflege von Kranken sinkt das Ansteckungsrisiko für die Perainegeweihte um 10 % (bis zu einem Minimum von 5 %).",
+      "prerequisites": [
+        "Tradition (Perainekirche)",
+        "Pflanzenkonservierung"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Seuchenhandschuh",
       "costPerLevel": 5
     },
     {
@@ -100050,6 +105000,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Ein Al'Anfaner Sexualmagier kann bei Zaubern, die bei ihm Erregung erzeugen würden bis zu 2 Stufen abziehen. Richtet also ein Zauber 3 Stufen Erregung …",
+      "prerequisites": [
+        "passender Zauberstil",
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sexualscholar%20aus%20Al'Anfa",
       "costPerLevel": 8
     },
     {
@@ -100061,6 +105017,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Für 8 AsP kann ein Engasaler Sexualmagier durch Masturbation doch den ekstatischen Höhepunkt erreichen.",
+      "prerequisites": [
+        "passender Zauberstil",
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sexualscholar%20aus%20Engasal",
       "costPerLevel": 10
     },
     {
@@ -100072,6 +105034,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Zauber, die in einem Ziel Liebe, Begehren, Verlangen, sexuelle Gelüste und ähnliche Gefühle auslösen, lösen beim Ziel für QS Tage 2 Stufen Begehren nach …",
+      "prerequisites": [
+        "passender Zauberstil",
+        "Tradition (Gildenmagier)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sexualscholar%20aus%20Fasar",
       "costPerLevel": 12
     },
     {
@@ -100083,6 +105051,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Stab unterstützt den Avesgeweihten dabei, einen sicheren Stand auf unwegsamem Gelände zu erlangen (beispielsweise auf Schnee- und Eisflächen, durch knie- und hüfthohe Gewässer …",
+      "prerequisites": [
+        "wegdesstabtraegers",
+        "gegenwehrdesstabtraegers"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sicherer%20Schritt%20des%20Stabtr%C3%A4gers",
       "costPerLevel": 8
     },
     {
@@ -100094,6 +105068,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Vampir spürt Sikaryan-Quellen in seiner Nähe. Jedes Wesen, das über Sikaryan verfügt, kann von dem Vampir ohne Probe wahrgenommen werden. Die Reichweite beträgt …",
+      "prerequisites": [
+        "Status Kind der Finsternis, Kind der Nacht oder Lamijah"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sikaryan-Gesp%C3%BCr",
       "costPerLevel": 5
     },
     {
@@ -100105,6 +105084,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch eine Berührung kann der Phexgeweihte spüren, ob ein Geldstück auch seinem Wert entspricht oder ob es ein Produkt der Falschmünzerei ist. Gleiches gilt …",
+      "prerequisites": [
+        "Gespür für Geld",
+        "Ehrliche Geschäfte"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sinn%20f%C3%BCr%20den%20Wert",
       "costPerLevel": 3
     },
     {
@@ -100116,6 +105101,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit bekommt die Heldin eine neue Einsatzmöglichkeit im Talent Tanzen. Sie kann einen sinnlichen Tanz aufführen. Dazu legt ihre Spielerin eine Probe …",
+      "prerequisites": [
+        "Betören 4",
+        "Tanzen 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sinnlicher%20Tanz",
       "costPerLevel": 8
     },
     {
@@ -100127,6 +105118,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Hüter der Chronik: Die Wirkungsdauer von Chronikzaubern erhöht sich um 50 %. Kraftsog: Zibiljarituale kosten zusätzlich 1 AsP.",
+      "prerequisites": [
+        "Tradition (Zibiljas)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Zibiljaprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sippenh%C3%BCterinnen",
       "variableCost": true
     },
     {
@@ -100138,6 +105135,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDS",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Für einen Windhager Sippenkrieger gilt beim Einsatz einer Windhager Schleuder eine veränderte Reichweite: 10/35/80 Schritt statt 5/25/60. Kämpft ein Windhager Sippenkrieger mit einer Cruaghairm …",
+      "prerequisites": [
+        "GE 13",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sippenkrieger-Stil%20des%20Windhags",
       "costPerLevel": 15
     },
     {
@@ -100149,6 +105152,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Abenteurerin hat Kenntnisse von Skiern und weiß auch, wie man sie benutzt. Durch die Sonderfertigkeit Skifahren erlangt sie das neue Anwendungsgebiet Skifahren im …",
+      "prerequisites": [
+        "Körperbeherrschung 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Skifahren",
       "costPerLevel": 4
     },
     {
@@ -100160,6 +105168,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Ein Smutje kann Erschwernisse beim Talent Lebensmittelbearbeitung (Backen, Braten & Sieden) von bis zu 2 aufgrund mangelnder Zutaten ignorieren. Der Rest der Erschwernis gilt …",
+      "prerequisites": [
+        "Lebensmittelbearbeitung 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Smutje",
       "costPerLevel": 3
     },
     {
@@ -100171,6 +105184,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Mit Einsatz dieser Sonderfertigkeit können Flüche sofort ausgelöst werden, wodurch die Hexe nicht 24 Stunden warten muss (siehe Seite 51).",
+      "prerequisites": [
+        "Tradition (Hexen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sofortiger%20Fluch",
       "costPerLevel": 25
     },
     {
@@ -100182,6 +105200,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Statt Sikaryan-Punkte durch seine Kräfte vom Opfer auf sich zu transferieren, kann sich der Vampir auch dazu entscheiden, stattdessen dem Opfer AsP zu rauben. …",
+      "prerequisites": [
+        "Status Kind der Finsternis",
+        "der Vampir muss einer magischen Tradition angehören"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sog%20des%20Purpurnen",
       "costPerLevel": 10
     },
     {
@@ -100193,6 +105217,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Eine Sonnenlegionärin mit dieser Sonderfertigkeit versteht sich besonders gut darin, jemanden zu schützen. Sie kann einem Kulturschaffenden in Angriffsdistanz einen Bonus von 1 bis …",
+      "prerequisites": [
+        "KK 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sonnenlegion-Stil",
       "costPerLevel": 12
     },
     {
@@ -100204,6 +105233,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Einige Gesellschaftstalente, die für die Arbeit der Heldin von großer Bedeutung sind, gehen ihr deutlich leichter von der Hand. Für jedes Talent, für das …",
+      "prerequisites": [
+        "höchstens 3 passende Auswahlen"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Soziale%20Kompetenz",
       "variableCost": true
     },
     {
@@ -100215,6 +105249,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Sollten zwei Kämpfer gleichzeitig eine Waffe mit der Reichweite überlang führen, können sie einen gemeinsamen Angriff gegen ein Ziel durchführen, beide mit einer um …",
+      "prerequisites": [
+        "GE 15",
+        "KK 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Spie%C3%9Fgespann",
       "costPerLevel": 12
     },
     {
@@ -100226,6 +105266,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Beim Beschwören oder Exorzieren von Geistern erhalten die Spiritualistinnen eine Erleichterung von 1.",
+      "prerequisites": [
+        "Tradition (Hexen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Spiritualistinnen%20(Seherin%20von%20Heute%20und%20Morgen)",
       "costPerLevel": 10
     },
     {
@@ -100237,6 +105282,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Spitzel des Fuchses bekommen bei Proben auf Überreden, Verkleiden und bei Liturgien und Zeremonien, in denen es darum geht, dass sie sich für jemand …",
+      "prerequisites": [
+        "Tradition (Phexkirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Spitzel%20des%20Fuchses",
       "costPerLevel": 15
     },
     {
@@ -100248,8 +105298,16 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 3,
-      "variableCost": true,
-      "suggestedCost": 2
+      "shortDescription": "Der Held spricht die entsprechende Sprache.",
+      "prerequisites": [
+        "Je die Vorgängerstufe der Sonderfertigkeit (Ausnahme: Stufe I)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sprache",
+      "costByLevel": [
+        2,
+        4,
+        6
+      ]
     },
     {
       "id": "sprachederblumen",
@@ -100260,6 +105318,14 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann die Sprache der Blumen verstehen und anwenden.",
+      "prerequisites": [
+        "Götter & Kulte 6",
+        "Malen & Zeichnen 6",
+        "kein Nachteil %1",
+        "Einweisung durch eine Dornrose"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sprache%20der%20Blumen",
       "costPerLevel": 2
     },
     {
@@ -100271,6 +105337,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Kenntnis und Anwendung einer Sprachspezialisierung kann einem Helden unter Umständen eine Erleichterung von 1 bei Proben auf Überreden (Aufschwatzen) einbringen, sofern sein Gegenüber …",
+      "prerequisites": [
+        "entsprechende Sprache auf Stufe III"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sprachspezialisierung",
       "costPerLevel": 1
     },
     {
@@ -100282,6 +105353,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Efferdgeweihte kann seinen Efferdbart als Sprunghilfe benutzen und so die Distanz, auf die er noch keine Probe ablegen muss, auf 6 Schritt erhöhen. …",
+      "prerequisites": [
+        "flugdesdreizacks",
+        "machtdesdreizacks"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sprung%20mit%20dem%20Dreizack",
       "costPerLevel": 12
     },
     {
@@ -100293,6 +105370,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDSK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Befindet sich das Reittier im Galopp und ein Gegner zu Fuß befindet sich innerhalb der Angriffsdistanz, so kann die Heldin entscheiden, von ihrem Pferd …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sprung%20vom%20Reittier",
       "costPerLevel": 15
     },
     {
@@ -100304,6 +105386,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Mit 1 freien Aktion kann ein Spieler vor einer AT eine Probe auf Körperbeherrschung (Springen) ablegen. Der Abenteurer braucht für das Manöver einen Abstand …",
+      "prerequisites": [
+        "GE 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sprungangriff",
       "costPerLevel": 20
     },
     {
@@ -100315,6 +105402,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Die AT für einen Sprungtritt ist für die Heldin um 2 erschwert, dafür erhöhen sich die TP um 1W6. Wenn das Manöver misslingt, steht …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sprungtritt",
       "costPerLevel": 20
     },
     {
@@ -100326,6 +105416,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Die Probe auf FK ist um 2 erschwert. Dafür wird bei Bestimmung des Schadens ein weiterer W6 zu den Trefferpunkten addiert.",
+      "prerequisites": [
+        "KK 15",
+        "Präziser Schuss/Wurf 2"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sprungwurf",
       "costPerLevel": 20
     },
     {
@@ -100337,6 +105433,14 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Wer die Sonderfertigkeit Staatskunst besitzt, der kennt viele Schriften und Theorien, die sich mit der Staatslehre beschäftigen. Proben auf Geschichtswissen, die sich auf politische …",
+      "prerequisites": [
+        "Bekehren & Überzeugen 6",
+        "Etikette 8",
+        "Geschichtswissen 8",
+        "Überreden 6"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Staatskunst",
       "costPerLevel": 12
     },
     {
@@ -100348,6 +105452,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Während der Regenerationsphase kann sich die Geweihte entscheiden, statt dem W6 einen festen Wert von 4 in die Berechnung der KaP-Regeneration einzubeziehen (zuzüglich aller …",
+      "prerequisites": [
+        "Geweihter"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Stabile%20Regeneration",
       "costPerLevel": 10
     },
     {
@@ -100359,6 +105468,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Bei der Sonderfertigkeit Drohgebärden (siehe Aventurisches Kompendium Seite 105) muss der Held nur 1 freie Aktion statt einer regulären Aktion aufwenden.",
+      "prerequisites": [
+        "passender Kampfstil",
+        "MU 13",
+        "drohgebaerden"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Stammeskrieger-Stil",
       "costPerLevel": 15
     },
     {
@@ -100370,6 +105486,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 3,
+      "shortDescription": "Wer diese Sonderfertigkeit beherrscht, kann nach einem Orgasmus die dadurch entstandenen Erschwernisse für die Proben auf Selbstbeherrschung und Betören (Liebeskünste) pro Stufe um 1 …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Standhaftigkeit",
       "costPerLevel": 3
     },
     {
@@ -100381,6 +105500,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Der Geweihte verharrt in einer Position, ruft seine Gottheit an und konzentriert sich. Niedere Dämonen können den Geweihten nicht berühren oder direkt angreifen, so …",
+      "prerequisites": [
+        "MU 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=St%C3%A4rke%20des%20Glaubens",
       "costPerLevel": 10
     },
     {
@@ -100392,6 +105516,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Zunächst muss der Spieler des Vampirs eine Körperliche Eigenschaft (FF, GE, KO, KK) auswählen. Danach wird eine Probe auf Willenskraft abgelegt. Sollte die Probe …",
+      "prerequisites": [
+        "Status Kind der Finsternis, Kind der Nacht oder Lamijah"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=St%C3%A4rke%20des%20untoten%20Leibs",
       "costPerLevel": 10
     },
     {
@@ -100403,6 +105532,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Segnungen gelten als mit 2 QS bestanden",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Starke%20Segnungen",
       "costPerLevel": 2
     },
     {
@@ -100414,6 +105546,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Zaubertricks gelten als mit 2 QS bestanden.",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Starke%20Zaubertricks",
       "costPerLevel": 2
     },
     {
@@ -100425,6 +105562,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Segnungen mit einer QS von 2 können aufgehoben werden. Dies kostet 1 KaP (+ KaP in Höhe einer eventuell vorhandenen Stufe der SF Hauptsegnung …",
+      "prerequisites": [
+        "Geweihter",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Starker%20Segnungsbruch",
       "costPerLevel": 4
     },
     {
@@ -100436,6 +105579,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Schamane erhält bis zu 5 LeP dazu (bis zu seinem Maximum). Diese Fähigkeit kann nur unter freiem Himmel bei Sonnenschein eingesetzt werden, der …",
+      "prerequisites": [
+        "magieentzugmoha"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=St%C3%A4rkung%20der%20Sonne",
       "costPerLevel": 20
     },
     {
@@ -100447,6 +105595,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Wer über diese Sonderfertigkeit verfügt, hat gelernt anderen Menschen Angst einzuflößen. Proben auf Einschüchtern gelten bei Gelingen der Probe als um 1 QS besser …",
+      "prerequisites": [
+        "Einschüchtern 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Stechender%20Blick",
       "costPerLevel": 10
     },
     {
@@ -100458,6 +105611,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit kann die Scharlatanin einen Zauberstecken verzaubern und einen einzigen Steckenzauber auf ihn legen. Das Ritual selbst dauert 5 Minuten und muss …",
+      "prerequisites": [
+        "Tradition (Scharlatane)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Steckenverzauberung",
       "costPerLevel": 5
     },
     {
@@ -100469,6 +105627,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held bekommt durch die Sonderfertigkeit Stellmacherei im Talent Holzbearbeitung das neue Anwendungsgebiet Räder herstellen.",
+      "prerequisites": [
+        "Fahrzeuge 4",
+        "Holzbearbeitung 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Stellmacherei",
       "costPerLevel": 4
     },
     {
@@ -100480,6 +105644,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Verursacht die Marbogeweihte gegen ein Lebewesen mindestens 6 SP mit einem einzigen Angriff, so kann sie entscheiden, die SP auf die Hälfte zu reduzieren …",
+      "prerequisites": [
+        "Tradition (Marbokult)",
+        "Stich der Stärkung"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Stich%20der%20Furcht",
       "costPerLevel": 12
     },
     {
@@ -100491,6 +105661,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Marbogeweihte fügt sich mit dem Marbodolch 2 SP zu. Sie erhält dadurch für die nächste Probe auf ein Körpertalent eine Erleichterung von +1 …",
+      "prerequisites": [
+        "Tradition (Marbokult)",
+        "Stich der Furcht"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Stich%20der%20St%C3%A4rkung",
       "costPerLevel": 15
     },
     {
@@ -100502,6 +105678,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Werden bei einem Lebewesen durch den Marbodolch SP verursacht, kann die Priesterin die gleiche Anzahl an LeP ihrer Lebensenergie gutschreiben (bis zu ihrem Maximum). …",
+      "prerequisites": [
+        "Stich der Stärkung",
+        "Stich des langsamen Todes"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Stich%20der%20Vampirin",
       "costPerLevel": 20
     },
     {
@@ -100513,6 +105695,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "In einem Radius von 8 Schritt um die Marbogeweihte erleiden alle Lebewesen mit SK 2 oder niedriger Tagträume und Visionen, die für sie äußert …",
+      "prerequisites": [
+        "Stich der Furcht",
+        "Stich des Scheintodes"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Stich%20der%20Vision",
       "costPerLevel": 15
     },
     {
@@ -100524,6 +105712,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Richtet die Marbogeweihte mit ihrem Marbodolch bei einem Lebewesen mit einem einzigen Angriff mindestens 7 SP an, so verliert der Gegner am Ende der …",
+      "prerequisites": [
+        "Stich der Stärkung",
+        "Stich der Vampirin"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Stich%20des%20langsamen%20Todes",
       "costPerLevel": 12
     },
     {
@@ -100535,6 +105729,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Ein freiwilliges Ziel, auch die Marbogeweihte selbst, kann sich 2 SP zufügen und fällt dann für 6 Stunden in einen komatösen Schlaf, bei dem …",
+      "prerequisites": [
+        "Stich der Furcht",
+        "Stich der Vision"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Stich%20des%20Scheintodes",
       "costPerLevel": 15
     },
     {
@@ -100546,6 +105746,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Der Geweihte ist dazu in der Lage, durch eine Meditation bei sich selbst Zustandsstufen von Paralyse abzubauen. Der Spieler des Geweihten legt eine Probe …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Stille%20Andacht",
       "costPerLevel": 12
     },
     {
@@ -100557,6 +105760,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Der Geweihte ist dazu in der Lage, durch eine Meditation bei sich selbst Zustandsstufen von Betäubung abzubauen. Der Spieler des Geweihten legt eine Probe …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Stille%20Meditation",
       "costPerLevel": 15
     },
     {
@@ -100568,6 +105774,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDSO",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Stille Wanderer können Gesten und Gebete für ihre Liturgien weglassen, ohne dafür eine Erschwernis zu erleiden. Für Zeremonien ist dies nicht möglich.",
+      "prerequisites": [
+        "Tradition (Aveskirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Stille%20Wanderer",
       "costPerLevel": 20
     },
     {
@@ -100579,6 +105790,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Der Geweihte ist dazu in der Lage, durch eine Meditation bei sich selbst Zustandsstufen von Verwirrung abzubauen. Der Spieler des Geweihten legt eine Probe …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Stilles%20Gebet",
       "costPerLevel": 20
     },
     {
@@ -100590,6 +105804,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Das Manöver Sturmangriff kann nur durchgeführt werden, wenn der Angreifer eine Anlaufstrecke von mindestens 4 Schritt hat und über eine GS von mindestens 4 …",
+      "prerequisites": [
+        "MU 13",
+        "Vorstoß",
+        "Wuchtschlag 1"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sturmangriff",
       "costPerLevel": 25
     },
     {
@@ -100601,6 +105822,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "UT",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Ein ohrenbetäubender Hornstoß wirft ein Ziel der Größenkategorie mittel oder kleiner 3 Schritt zurück und verursacht für 5 Kampfrunden den Status Taub (siehe Regelwerk …",
+      "prerequisites": [
+        "Donnerndes Horn",
+        "Treibendes Horn"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sturmhorn",
       "costPerLevel": 15
     },
     {
@@ -100612,6 +105839,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Rechercheproben in Bibliotheken dauern für die Sucher der Erkenntnis 25 % weniger lang. Bei Rätseln oder bei der Bewältigung von unvorhergesehenen Problemen können sie …",
+      "prerequisites": [
+        "Tradition (Nanduskirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sucher%20der%20Erkenntnis",
       "costPerLevel": 15
     },
     {
@@ -100623,6 +105855,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Sumuglaube: Wenden mindestens 3 bzw. 6 Sumugläubige bei einem Ritual des Sumen genauso viele Aktionen auf, wie für die Ritualdauer notwendig sind, erhält der …",
+      "prerequisites": [
+        "Der Held ist ein Mehrer der Macht oder ein Sumudiener.",
+        "Tradition (Druiden)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Denkschulenprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sumen",
       "variableCost": true
     },
     {
@@ -100634,6 +105873,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDSK",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Wenden mindestens 3 bzw. 6 Sumugläubige bei einem Ritual des Sumen genauso viele Aktionen auf, wie für die Ritualdauer notwendig sind, erhält der Druide …",
+      "prerequisites": [
+        "Tradition (Druiden)",
+        "passende Kultur (z. B. Andergast)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sumen",
       "costPerLevel": 10
     },
     {
@@ -100645,6 +105890,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Sumpfhexen sind darin gut, ihren Mitmenschen Angst einzujagen. Sie können für 4 AsP und 1 Aktion eine Vergleichsprobe auf Einschüchtern (Drohung) gegen Willenskraft (Einschüchtern …",
+      "prerequisites": [
+        "Tradition (Hexen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sumpfhexen%20(Tochter%20der%20Erde)",
       "costPerLevel": 12
     },
     {
@@ -100656,6 +105906,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDSK",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Lebensbund: Wenden Sumudiener Fertigkeitsproben auf Tiere oder Elementare an, so sind CH-Teilproben um 1 erleichtert. Dies können die Sumudiener z. B. benutzen, um Zauber …",
+      "prerequisites": [
+        "Der Held wurde von einem Druiden dieser Denkschule ausgebildet.",
+        "Tradition (Druiden)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Denkschulenprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Sumudiener",
       "variableCost": true
     },
     {
@@ -100667,6 +105924,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AAN",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit ist der Held in der Lage, das Elixier Synärethikon (siehe Seite 143) zu brauen und bei der Veredelung eines Golems einzusetzen. …",
+      "prerequisites": [
+        "Magiekunde 14",
+        "passende Tradition"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Syn%C3%A4rethiker",
       "costPerLevel": 10
     },
     {
@@ -100678,6 +105941,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Innerhalb eines Radius von 10 Schritt um die Heldin herum, verlieren alle Personen Boni auf AT, FK, PA oder AW, die sie durch eine …",
+      "prerequisites": [
+        "Kriegskunst 6"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Taktik%20Durchbrechen",
       "costPerLevel": 15
     },
     {
@@ -100689,6 +105957,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann zu Beginn einer KR eine Probe auf Kriegskunst ablegen. Das Ablegen dieser Probe kostet 1 Aktion. Bei Gelingen kann er QS/2 …",
+      "prerequisites": [
+        "Kriegskunst 8",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Taktische%20Befehle",
       "costPerLevel": 20
     },
     {
@@ -100700,6 +105974,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Durch die komplexen Bewegungsabläufe macht es der Kenner des Tannhaus-Stils dem Gegner schwer, ihn anzugreifen. Der Gegner erleidet eine Erschwernis von 1 auf seine …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "GE 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Tannhaus-Stil",
       "costPerLevel": 15
     },
     {
@@ -100711,6 +105991,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Durch die Sonderfertigkeit erwirbt der Geweihte eine neue Einsatzmöglichkeit für das Talent Bekehren & Überzeugen. Der Held kann mittels Bekehren & Überzeugen seine Gefährten …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Tapferkeit%20der%20Unsterblichen",
       "costPerLevel": 15
     },
     {
@@ -100722,6 +106005,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Führt der Tarisharim zwei Waffen, so ist die Verteidigung des Gegners zusätzlich um -1 erschwert.",
+      "prerequisites": [
+        "GE 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Tarisharim-Stil",
       "costPerLevel": 12
     },
     {
@@ -100733,6 +106021,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Sonderfertigkeit bekommt die Heldin das neue Anwendungsgebiet Tätowierungen im Talent Malen & Zeichnen. Sie kann Tätowierungen stechen und die dazugehörigen Farben anrühren. …",
+      "prerequisites": [
+        "Malen & Zeichnen 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=T%C3%A4towierer",
       "costPerLevel": 2
     },
     {
@@ -100744,6 +106037,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin kann durch diese Sonderfertigkeit mittels Gaukeleien einen herausragenden Trick aufführen, der maximal QS Zuschauer ablenkt. Diese müssen zu Beginn des Tricks freiwillig …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=T%C3%A4uschung%20der%20Zuschauer",
       "costPerLevel": 10
     },
     {
@@ -100755,6 +106051,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Verfügt ein Held über diesen Kampfstil, erhält er durch jegliche Sonderfertigkeit, die ihm einen Bonus auf PA verleiht, einen weiteren Bonus von +1 PA. …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "KK 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Thorwal-Stil",
       "costPerLevel": 12
     },
     {
@@ -100766,6 +106068,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Wenn die um 2 erschwerte AT des Helden gelingt, die Verteidigung des Gegners misslingt und mindestens 1 SP verursacht wird, ist die Waffe tief …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Tiefe%20Wunde",
       "costPerLevel": 10
     },
     {
@@ -100777,6 +106082,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Um einen Tiefschlag auszuführen, muss dem Abenteurer eine um 4 erschwerte AT gelingen. Bei einem unverteidigten gelungenen Angriff bekommt er einen Bonus von +2 …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Tiefschlag",
       "costPerLevel": 10
     },
     {
@@ -100788,6 +106096,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Wirkt der Held einen Zauber mit dem Merkmal Einfluss oder Hellsicht auf Tiere, sind seine Proben um 1 erleichtert. Dieser Bonus gilt nur bei …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Tierfl%C3%BCsterer",
       "costPerLevel": 8
     },
     {
@@ -100799,6 +106110,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch diese Fähigkeit erlangt die Ifirngeweihte eine neue Einsatzmöglichkeit in Tierkunde. Sie kann ein einzelnes Wildtier mit einer Vergleichsprobe zwischen Tierkunde (Wildtiere) gegen dessen …",
+      "prerequisites": [
+        "Haltbare Trophäen",
+        "Jägermantel"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Tierfreundschaft",
       "costPerLevel": 10
     },
     {
@@ -100810,6 +106127,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Schamane kann sich selbst Kraft verleihen. Er erhält einen Bonus von +2 KK und +4 Kraftakt-FW. Die Wirkungsdauer beträgt 5 Minuten. Der Einsatz …",
+      "prerequisites": [
+        "Freundschaft des Tieres"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Tierische%20Kraft",
       "costPerLevel": 10
     },
     {
@@ -100821,6 +106143,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Schamane kann sich selbst Kraft verleihen. Er erhält einen Bonus von +2 KK und +4 Kraftakt-FW. Die Wirkungsdauer beträgt 5 Minuten. Der Einsatz …",
+      "prerequisites": [
+        "keulenweihe",
+        "Freundschaft des Tieres"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Tierische%20Kraft",
       "costPerLevel": 10
     },
     {
@@ -100832,6 +106160,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Schamane kann sich selbst Kraft verleihen. Er erhält einen Bonus von +2 KK und +4 Kraftakt-FW. Die Wirkungsdauer beträgt 5 Minuten. Der Einsatz …",
+      "prerequisites": [
+        "keulenweihe",
+        "Härte der Keule"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Tierische%20Kraft",
       "costPerLevel": 10
     },
     {
@@ -100843,6 +106177,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "A",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Schamane kann sich selbst Kraft verleihen. Er erhält einen Bonus von +2 KK und +4 Kraftakt-FW. Die Wirkungsdauer beträgt 5 Minuten. Der Einsatz …",
+      "prerequisites": [
+        "Freundschaft des Tieres"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Tierische%20Kraft",
       "costPerLevel": 10
     },
     {
@@ -100854,6 +106193,14 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDGDG",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Um im Kampf gegen Ghule, Oger und Orks in eine Vorteilhafte Position zu gelangen, benötigt die Heldin nur 1 freie Aktion, und ihre Probe …",
+      "prerequisites": [
+        "Eigenschaft 13",
+        "passender Kampfstil",
+        "Tradition (Animisten in der Ausprägung Tierkrieger)",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Tierkrieger-Stil",
       "costPerLevel": 12
     },
     {
@@ -100865,6 +106212,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Der Tierpriester erhält bei allen Fertigkeitsproben, die sich mit Tieren und der Wildnis befassen, gleich ob profaner oder karmaler Art, +1 FP (bis zu …",
+      "prerequisites": [
+        "Sonderfertigkeit Tradition (eine Schamanentradition)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Tierpriester",
       "costPerLevel": 18
     },
     {
@@ -100876,6 +106228,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch die Sonderfertigkeit erwirbt der Held eine Einsatzmöglichkeit für Tierkunde. Der Held kann mittels des Talents Tierkunde nun Tierstimmen imitieren.",
+      "prerequisites": [
+        "Tierkunde 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Tierstimmen%20imitieren",
       "costPerLevel": 5
     },
     {
@@ -100887,6 +106244,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Proben auf Tierkunde, um ein Tier abzurichten oder zu dressieren, sind um 1 erleichtert. Sollten Proben abgelegt werden, um zu überprüfen, ob ein Tier …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Tierverbundenheit",
       "costPerLevel": 10
     },
     {
@@ -100898,6 +106258,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Heilerinnen: Krötenhexen erhalten +1 FP für alle Zauber mit dem Merkmal Heilung und können bei allen durch Alchimie hergestellten Tränken und Elixieren, die eine …",
+      "prerequisites": [
+        "Tradition (Hexen)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Schwesternschaftsprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Tochter%20der%20Erde",
       "variableCost": true
     },
     {
@@ -100909,6 +106275,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDD",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Gefestigte Choreographie: Proben auf Selbstbeherrschung (Störungen ignorieren), um die Wirkung eines Zaubertanzes aufrechtzuerhalten, sind für eine Tochter der Inszenierung um +2 erleichtert. Vorstellung mit …",
+      "prerequisites": [
+        "Tradition (Zaubertänzer)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Zaubertänzerprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=T%C3%B6chter%20der%20Inszenierung",
       "variableCost": true
     },
     {
@@ -100920,6 +106292,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Eine Tochter des Kessels kann alle Hexenkessel-Zubereitungen bereits in 20 Minuten statt in 1 Stunde zubereiten.",
+      "prerequisites": [
+        "Tradition (Hexen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=T%C3%B6chter%20des%20Kessels%20(Tochter%20der%20Erde)",
       "costPerLevel": 15
     },
     {
@@ -100931,6 +106308,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Mit der SF Tod von Links verfällt der PA-Bonus einer Parierwaffe, dafür bekommt die Heldin einen Bonus von +2 TP für die Parierwaffe. Zu …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Tod%20von%20Links",
       "costPerLevel": 10
     },
     {
@@ -100942,6 +106322,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Die Attacke für den Todesstoß ist um 2 erschwert. Dafür wird zur Bestimmung des Schadens ein weiterer W6 zu den Trefferpunkten hinzuaddiert. Wenn das …",
+      "prerequisites": [
+        "MU 15",
+        "Präziser Stich 3",
+        "Vorstoß"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Todessto%C3%9F",
       "costPerLevel": 30
     },
     {
@@ -100953,6 +106340,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held ist in der Lage, Töpferwaren herzustellen. Mit dieser Sonderfertigkeit erwirbt der Held im Talent Steinbearbeitung das neue Anwendungsgebiet Töpferarbeiten.",
+      "prerequisites": [
+        "Steinbearbeitung 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=T%C3%B6pfern",
       "costPerLevel": 2
     },
     {
@@ -100964,6 +106356,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "",
+      "prerequisites": [
+        "Geweihter",
+        "höchstens 1 passende Auswahl"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Tradition",
       "variableCost": true
     },
     {
@@ -100975,6 +106373,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "",
+      "prerequisites": [
+        "Zauberer",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Tradition",
       "variableCost": true
     },
     {
@@ -100986,6 +106390,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Verlässlichkeit der Lehre: Durch die ständige Anwendung von Liturgien nach altbewährtem Muster haben die Traditionalisten gelernt, karmale Wirkungen besonders effektvoll einzusetzen. Wenn eine Liturgie …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki",
+        "modernesichtweise"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Traditionelle%20Denkrichtung",
       "variableCost": true
     },
     {
@@ -100997,6 +106407,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHH",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Wann immer es bei einer Probe auf Boote & Schiffe, Fahrzeuge, Fliegen, Kraftakt oder Reiten um den Transport von Personen oder Lasten geht, erhält …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Transporteur",
       "costPerLevel": 8
     },
     {
@@ -101008,6 +106421,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Intuitive Magie: Teilproben auf IN bei Zibiljarituale sind um 1 erleichtert und alle Zibiljarituale kosten 1 AsP weniger (bis zu einem Minimum von 1 …",
+      "prerequisites": [
+        "Tradition (Zibiljas)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Zibiljaprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Traumdeuterinnen",
       "variableCost": true
     },
     {
@@ -101019,6 +106438,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Karma",
       "maxLevel": 3,
+      "shortDescription": "Für jede Stufe dieser Sonderfertigkeit kann der Geweihte in einer Traumwelt (siehe Seite 61) alle seine Eigenschaften (inklusive RS und TP) um 1 erhöhen. …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki",
+        "Leiteigenschaft undefined",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Traumweber",
       "costPerLevel": 10
     },
     {
@@ -101030,6 +106456,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 3,
+      "shortDescription": "Für jede Stufe dieser Sonderfertigkeit kann der Zauberer in einer Traumwelt alle seine Eigenschaften (inklusive RS und TP) um 1 erhöhen. Er muss keine …",
+      "prerequisites": [
+        "Zauberer",
+        "Leiteigenschaft undefined",
+        "traumgestalt"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Traumzauberei",
       "costPerLevel": 10
     },
     {
@@ -101041,6 +106474,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "UT",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Klang des Horns verleiht maximal 6 vom Priester ausgewählten Wesen (Kampfgefährten, Seeungeheuer, Tiere, etc.) in Seh- und Hörweite +1 AT und +1 FK …",
+      "prerequisites": [
+        "Donnerndes Horn",
+        "Sturmhorn"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Treibendes%20Horn",
       "costPerLevel": 10
     },
     {
@@ -101052,6 +106491,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Für 8 AsP kann eine Tsatuara-Anhängerinn einen sexuellen Vorteil von jemandem rauben, mit dem sie den gewöhnlichen Beischlaf oder das Liebesspiel durchgeführt hat (alle …",
+      "prerequisites": [
+        "passender Zauberstil",
+        "Tradition (Tsatuara-Anhängerinnen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Tsatuara-Anh%C3%A4ngerin",
       "costPerLevel": 10
     },
     {
@@ -101063,6 +106508,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Sonderfertigkeit gibt dem Helden eine Einsatzmöglichkeit in Etikette bei Turnieren. Der Held kann mittels Proben auf Etikette (Benehmen) auch höhergestellte Turnierteilnehmer fordern und …",
+      "prerequisites": [
+        "Etikette 8",
+        "Heraldik",
+        "Lanzenangriff"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Turnierkenntnis",
       "costPerLevel": 3
     },
     {
@@ -101074,6 +106526,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Während eines Turniers kann die Heldin in den Disziplinen Ring- und Schildstechen sowie Tjoste jeweils einen beliebigen eigenen Würfelwurf wiederholen, bei welchem das für …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki",
+        "Reiten 14"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Turnierreiterei",
       "costPerLevel": 10
     },
     {
@@ -101085,6 +106543,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Zauber des Merkmals Dämonisch erhalten bei einer gelungenen Probe +1 FP (bis zu einem Maximum von 18 FP).",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=%C3%9Cberragender%20D%C3%A4monologe",
       "costPerLevel": 25
     },
     {
@@ -101096,6 +106557,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Der Geweihte kann eine Stufe eines der folgenden Zustände an einen anderen Kulturschaffenden abgeben: Betäubung, Furcht, Paralyse oder Schmerz. Dazu muss er das Ziel …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=%C3%9Cbertr%C3%A4ger%20des%20Leids",
       "costPerLevel": 15
     },
     {
@@ -101107,6 +106571,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Durch Berührung kann der Zauberer eigene Astralenergie im Verhältnis 3 zu 1 auf ein anderes Lebewesen übertragen, das selbst magischbegabt sein muss. Jeder Astralpunkt …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=%C3%9Cbertragung%20der%20Astralkr%C3%A4fte",
       "costPerLevel": 15
     },
     {
@@ -101118,6 +106585,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Durch Berührung kann der Zauberer eigene Lebensenergie im Verhältnis 3 zu 1 auf ein anderes Lebewesen übertragen. Jeder Lebenspunkt erfordert 1 Aktion. Um den …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=%C3%9Cbertragung%20der%20Lebenskraft",
       "costPerLevel": 15
     },
     {
@@ -101129,6 +106599,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Wer über diese Sonderfertigkeit verfügt, kann vor dem Wirken eines Zaubers mit dem Merkmal Telekinese entscheiden, ob der Zauber eine 50 % längere Wirkungsdauer …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Umfassende%20Telekinese",
       "costPerLevel": 15
     },
     {
@@ -101140,6 +106613,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Gelingt eine um 2 erschwerte AT und misslingt die Verteidigung, verursacht der Angriff der Heldin zwar nur TP/2, allerdings muss der Gegner eine Probe …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Umrennen",
       "costPerLevel": 8
     },
     {
@@ -101151,6 +106627,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Für das Umwickeln wird eine Attacke gegen die Waffe durchgeführt, gegen die der Gegner mit einer Parade mit der Waffe oder Ausweichen verteidigen darf. …",
+      "prerequisites": [
+        "KK 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Umwickeln",
       "costPerLevel": 10
     },
     {
@@ -101162,6 +106643,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Ein Kämpfer der Unauer Schule erhält einen Bonus von +2 auf seine Verteidigung. Allerdings muss er an Ort und Stelle verharren und darf sich …",
+      "prerequisites": [
+        "IN 13",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Unauer%20Schule",
       "costPerLevel": 10
     },
     {
@@ -101173,6 +106660,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Wendet der Held das Talent Taschendiebstahl (Ablenkungen oder Person bestehlen) an, erhält er eine Erleichterung von 1.",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Unauff%C3%A4lliger%20Griff",
       "costPerLevel": 8
     },
     {
@@ -101184,6 +106674,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Der Anwender dieser Sonderfertigkeit kann unter Einsatz von 8 AsP folgende Status mittels einer freien Aktion von sich nehmen (dies muss sofort entschieden werden, …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Unaufhaltsamkeit",
       "costPerLevel": 12
     },
     {
@@ -101195,6 +106688,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Bei Einsatz der Sexpraktik Coitus (passiv) erhält die Heldin auf Betören (Liebeskünste) eine Begabung.",
+      "prerequisites": [
+        "Person mit Vagina",
+        "Körperbeherrschung 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Uners%C3%A4ttliche%20Stute",
       "costPerLevel": 8
     },
     {
@@ -101206,6 +106705,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Schicksalspunkte",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann während den nächsten 24 Stunden so oft ein Liebesspiel beginnen, wie er möchte. Diese Fähigkeit kostet 1 Schip pro Einsatz. Voraussetzungen …",
+      "prerequisites": [
+        "Zeugung durch ekstatischen Höhepunkt"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Unersch%C3%B6pfliche%20Lust",
       "costPerLevel": 20
     },
     {
@@ -101217,6 +106721,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Durch die Sonderfertigkeit erwirbt der Held eine Einsatzmöglichkeit für das Talent Kriegskunst. Im Kampf gegen ein bestimmtes Ungeheuer kann er 1 Aktion aufwenden, um …",
+      "prerequisites": [
+        "Tierkunde 8",
+        "Kriegskunst 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Ungeheuer-Taktik",
       "costPerLevel": 5
     },
     {
@@ -101228,6 +106738,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Einige Wissenstalente, die für die Arbeit des Helden von großer Bedeutung sind, gehen ihm deutlich leichter von der Hand. Für jedes Talent, für das …",
+      "prerequisites": [
+        "höchstens 3 passende Auswahlen"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Universalgenie",
       "variableCost": true
     },
     {
@@ -101239,6 +106754,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Für Unscheinbare gelten nicht die Regeln für zu viel Metall der Sonderfertigkeit Tradition (Druiden), sondern die allgemeinen Regeln zum Bann des Eisens (siehe Regelwerk …",
+      "prerequisites": [
+        "Tradition (Druiden)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Unscheinbare",
       "costPerLevel": 20
     },
     {
@@ -101250,8 +106770,15 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 2,
-      "variableCost": true,
-      "suggestedCost": 5
+      "shortDescription": "Für jede Stufe dieser SF kann die Heldin eine Stufe Nachteile durch Nahkampfreichweiten gegen Gegner mit längeren Waffen ignorieren (siehe Regelwerk Seite 231). Mit …",
+      "prerequisites": [
+        "GE 13/15/17 je nach Stufe"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Unterlaufen",
+      "costByLevel": [
+        10,
+        15
+      ]
     },
     {
       "id": "unterminieren",
@@ -101262,6 +106789,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held erwirbt eine neue Einsatzmöglichkeit im Talent Steinbearbeitung. Er kann fortan sichere Tunnel graben, ohne dass diese einstürzen, oder sie gezielt einstürzen lassen, …",
+      "prerequisites": [
+        "Rechnen 6",
+        "Steinbearbeitung 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Unterminieren",
       "costPerLevel": 10
     },
     {
@@ -101273,6 +106806,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin verfügt über ein angeborenes Gespür, in Städten ausgezeichnete Unterschlüpfe zu finden. Mithilfe einer Probe auf Gassenwissen (Ortseinschätzung) kann sie einen Unterschlupf in …",
+      "prerequisites": [
+        "Gassenwissen 6"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Unterschlupf%20finden",
       "costPerLevel": 10
     },
     {
@@ -101284,6 +106822,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Untote, die durch einen Zauberer mit dieser Fähigkeit erschaffen werden, können eine zusätzliche Verbesserung oder Wesensfähigkeit bekommen.",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Untotenmeister",
       "costPerLevel": 10
     },
     {
@@ -101295,6 +106836,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Gesegnete und geweihte Materialien verursachen bei Untoten (Hirnlose) Schaden, ganz so, als seien diese Dämonen (siehe Regelwerk Seite 316). Üblicherweise sind Untote (Hirnlose) davon …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Untotenschreck",
       "costPerLevel": 3
     },
     {
@@ -101306,6 +106852,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Zauber des Merkmals Verwandlung erhalten bei einer gelungenen Probe +1 FP (bis zu einem Maximum von 18 FP).",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Un%C3%BCbertroffener%20Verwandler",
       "costPerLevel": 25
     },
     {
@@ -101317,6 +106866,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Wer über diese Sonderfertigkeit verfügt, kann nicht so leicht durch Illusions- oder Unsichtbarkeitsmagie getäuscht werden. Proben auf Sinnesschärfe (Suchen oder Wahrnehmen), um einen Zauber …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Unverstellter%20Blick",
       "costPerLevel": 10
     },
     {
@@ -101328,6 +106880,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Schicksalspunkte",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin muss sich 4 Aktionen lang konzentrieren, um die Fähigkeit zu aktivieren. Sie bekommt eine Erleichterung von 1 auf Bekehren & Überzeugen (öffentliche …",
+      "prerequisites": [
+        "Zeugung durch ekstatischen Höhepunkt"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Unwiderstehlich",
       "costPerLevel": 15
     },
     {
@@ -101339,6 +106896,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Diese Sonderfertigkeit erfordert materielle Komponenten wie Salben, Schröpfgläser und Akupunkturnadeln pro Behandlung im Wert von 3 Silbertalern. Zauber, die dem Ziel direkt Lebensenergie zurückgeben …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Urtulamidische%20Heilmagie",
       "costPerLevel": 15
     },
     {
@@ -101350,6 +106910,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Umgehung: Vagabunden können eine um 1 höhere SK/ ZK bei ihren Opfern umgehen, als dies ihre Tradition in Zusammenhang mit Vorteilen und Sonderfertigkeiten üblicherweise …",
+      "prerequisites": [
+        "Tradition (Schelme)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Schelmenprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Vagabund",
       "variableCost": true
     },
     {
@@ -101361,6 +106927,14 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Bei jedem Schuss mit dem Elfenbogen kann sich eine Heldin mit dieser Sonderfertigkeit vor dem Schuss zwischen zwei Optionen entscheiden: +1 TP oder die …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "IN 15",
+        "FF 13",
+        "Spezies Elfen"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Valaria-Stil",
       "costPerLevel": 15
     },
     {
@@ -101372,6 +106946,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Erleidet ein Held den Status Überrascht, so kann er sich verteidigen und erleidet nur eine Erschwernis von -2 auf Verteidigungen.",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Verbesserte%20Aufmerksamkeit",
       "costPerLevel": 12
     },
     {
@@ -101383,6 +106962,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Wie bei der Sonderfertigkeit Fokussierung sind Proben auf Selbstbeherrschung (Störungen ignorieren) erleichtert, wenn der Held in seiner Konzentration beim Wirken von Liturgien gestört wird. …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Verbesserte%20Fokussierung",
       "costPerLevel": 8
     },
     {
@@ -101394,6 +106978,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Gelingt die um 2 erschwerte AT und misslingt die Verteidigung, richtet der Angriff 1W3 TP an. Außerdem muss der Getroffene eine Probe auf Selbstbeherrschung …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Verbesserter%20Bet%C3%A4ubungsschlag",
       "costPerLevel": 15
     },
     {
@@ -101405,6 +106994,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Der Verbesserte Doppelangriff muss im Beidhändigen Kampf angewandt werden. Die erste AT des Helden ist um 2 erschwert, die zweite AT um 2 erleichtert. …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Verbesserter%20Doppelangriff",
       "costPerLevel": 25
     },
     {
@@ -101416,6 +107010,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Um einen Feind in den Verbesserten Schwitzkasten zu nehmen, muss die Heldin ihren Widersacher zuvor im Haltegriff haben. In der nächsten KR würfelt die …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Verbesserter%20Schwitzkasten",
       "costPerLevel": 15
     },
     {
@@ -101427,8 +107026,16 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 3,
-      "variableCost": true,
-      "suggestedCost": 5
+      "shortDescription": "Jede Stufe der Sonderfertigkeit erhöht Ausweichen um 1. Um die Sonderfertigkeit nutzen zu können, darf der Held maximal normale Kleidung tragen.",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Verbessertes%20Ausweichen",
+      "costByLevel": [
+        15,
+        20,
+        25
+      ]
     },
     {
       "id": "verbessertesunterlaufen",
@@ -101439,6 +107046,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Ein Abenteurer kann mit dieser SF das Manöver Unterlaufen mit Spezialmanövern kombinieren.",
+      "prerequisites": [
+        "Unterlaufen"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Verbessertes%20Unterlaufen",
       "costPerLevel": 10
     },
     {
@@ -101450,6 +107062,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Ein Zauberer kann Anstelle von AsP auch LeP für die Zauberkosten aufwenden. Es muss jedoch pro Zauber mindestens 1 AsP aufgewendet werden. Dies ist …",
+      "prerequisites": [
+        "MU 12"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Verbotene%20Pforten",
       "costPerLevel": 10
     },
     {
@@ -101461,6 +107078,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Levthanpriester kann bei Proben auf Betören Erschwernisse um 1 senken (bis zu einem Minimum von +/-0).",
+      "prerequisites": [
+        "Tradition (Levthankult)",
+        "rauschderkeule"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Verf%C3%BChrung%20des%20Widders",
       "costPerLevel": 10
     },
     {
@@ -101472,6 +107095,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Wer in der Kunst der Verführung bewandert ist, der hat es deutlich leichter beim Werben um eine andere Person. Proben auf Betören (Anbändeln) gelten …",
+      "prerequisites": [
+        "Betören 10",
+        "Etikette 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Verf%C3%BChrungskunst",
       "costPerLevel": 5
     },
     {
@@ -101483,6 +107112,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann mit Proben auf das Talent Handel (Feilschen) pro Netto-QS den Preis um 20 % zu seinen Gunsten verändern (kein Maximum, wie …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Verhandlungsgeschick",
       "costPerLevel": 15
     },
     {
@@ -101494,6 +107126,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDGDG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Verkünder des Schicksals stärken die Moral ihrer Verbündeten. Alle Verbündeten (und der Geweihte selbst), sofern sie in einem Radius von 16 Schritt um den …",
+      "prerequisites": [
+        "Tradition (Swafnirkirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Verk%C3%BCnder%20des%20Schicksals",
       "costPerLevel": 15
     },
     {
@@ -101505,6 +107142,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Wendet die Heldin 1 Aktion auf, kann sie die Länge ihrer Waffe um eine Kategorie verkürzen. Eine lange Waffe wird dadurch zu einer mittleren, …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Verk%C3%BCrzte%20Waffenf%C3%BChrung",
       "costPerLevel": 10
     },
     {
@@ -101516,6 +107156,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Bei Einsatz der Sexpraktik Fellatio (aktiv) erhält die Heldin auf Betören (Liebeskünste) eine Begabung.",
+      "prerequisites": [
+        "Selbstbeherrschung 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Verschlingen%20des%20Python",
       "costPerLevel": 8
     },
     {
@@ -101527,6 +107172,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Beim Erschaffen von Chimären und Daimoniden wird beim Ritual Chimaeroform als Zielkategorie Kulturschaffende hinzugefügt.",
+      "prerequisites": [
+        "chimaeroform",
+        "eventuell Sonderfertigkeit Daimonidenkonstrukteur"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Verschmelzung%20von%20Kulturschaffenden",
       "costPerLevel": 15
     },
     {
@@ -101538,6 +107189,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AT",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Beim Erschaffen von Daimoniden wird beim Ritual CHIMAEROFORM als Zielkategorie Objekte hinzugefügt. Es kann keine fortpflanzungsfähige Komponente gewählt werden, wenn gleichzeitig ein Objekt Teil …",
+      "prerequisites": [
+        "chimaeroform",
+        "daimonidenkonstrukteur"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Verschmelzung%20von%20Objekten",
       "costPerLevel": 20
     },
     {
@@ -101549,6 +107206,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AT",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Beim Erschaffen von Chimären und Daimoniden werden beim Ritual CHIMAEROFORM die Zielkategorien Chimären und Daimonide hinzugefügt.",
+      "prerequisites": [
+        "chimaeroform 18",
+        "eventuell Sonderfertigkeit Daimonidenkonstrukteur"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Verschmelzung%20von%20Transmutationen",
       "costPerLevel": 25
     },
     {
@@ -101560,6 +107223,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Beim Erschaffen von Chimären und Daimoniden wird beim Ritual Chimaeroform als Zielkategorie Chimären und Daimonide hinzugefügt.",
+      "prerequisites": [
+        "chimaeroform",
+        "eventuell Sonderfertigkeit Daimonidenkonstrukteur"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Verschmelzung%20von%20%C3%BCbernat%C3%BCrlichen%20Wesen",
       "costPerLevel": 15
     },
     {
@@ -101571,6 +107240,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Verborgen: Verschwiege Schwestern erleiden, wenn sie Gesten oder Formeln weglassen, jeweils nur eine Erschwernis von 1. Emotional: Die Eulenhexe müssen, wenn sie sich in …",
+      "prerequisites": [
+        "Tradition (Hexen)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Schwesternschaftsprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Verschwiegene%20Schwester",
       "variableCost": true
     },
     {
@@ -101582,6 +107257,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Wann immer der Held durch das Liebesspiel SP erleidet, wird der Schaden halbiert.",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Versierte%2Fr%20Masochist%2Fin",
       "costPerLevel": 5
     },
     {
@@ -101593,6 +107271,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Fügt die Heldin einem anderen Teilnehmer des Liebesspiels eine Schmerzstufe durch eine Sexpraktik zu, so kann der Spieler der Heldin entscheiden, dass der Teilnehmer …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Versierte%2Fr%20Sadist%2Fin",
       "costPerLevel": 5
     },
     {
@@ -101604,6 +107285,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Zauber des Merkmals Hellsicht, mit denen der Held in die Gedanken- und Gefühlswelt von andere Wesen eindringen kann (z. B. Blick in die Gedanken) …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Verst%C3%A4ndigungszauberer",
       "costPerLevel": 10
     },
     {
@@ -101615,6 +107299,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin verfügt über ein angeborenes Gespür, in der Wildnis ausgezeichnete Verstecke zu finden. Mithilfe einer Probe auf Wildnisleben (Lagersuche) kann sie ein Versteck …",
+      "prerequisites": [
+        "Wildnisleben 6"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Verstecke%20finden",
       "costPerLevel": 10
     },
     {
@@ -101626,6 +107315,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Der Held führt eine Waffe verborgen hinter dem Rücken oder auf andere Weise nur schwer einsehbar für den Gegner bei sich. Zieht er die …",
+      "prerequisites": [
+        "Verbergen 6",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Versteckte%20Klinge",
       "costPerLevel": 12
     },
     {
@@ -101637,6 +107332,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Mit dieser Sonderfertigkeit kann man für die aktuelle Kampfrunde seinen Verteidigungswert um 4 erhöhen. Dafür kann man diese Kampfrunde keine Aktionen mehr ausführen. Verteidigungshaltung …",
+      "prerequisites": [
+        "IN 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Verteidigungshaltung",
       "costPerLevel": 10
     },
     {
@@ -101648,6 +107348,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Bei einem Treffer mit dem Korspieß, der SP verursacht, kann der Spieler des Korgeweihten beschließen, dass er statt des ausgewürfelten Schadens nur 1 SP …",
+      "prerequisites": [
+        "Tradition (Korkirche)",
+        "Scharfe Krallen"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Verteidigungsl%C3%BCcke",
       "costPerLevel": 10
     },
     {
@@ -101659,6 +107365,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Eine Heldin, die über diese SF verfügt, kann bei Verwendung des Manövers Eisenhagel verschiedene Ziele mit ihren Wurfwaffen angreifen.",
+      "prerequisites": [
+        "Eisenhagel"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Verteilter%20Eisenhagel",
       "costPerLevel": 10
     },
     {
@@ -101670,6 +107381,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talente",
       "maxLevel": 1,
+      "shortDescription": "Andere Kulturschaffende vertrauen der Heldin, sodass sie bei Vergleichsproben bei Gesellschaftstalenten (außer bei Einschüchtern, Menschenkenntnis und Willenskraft) +1 FP erhält.",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Vertrauensw%C3%BCrdig",
       "costPerLevel": 15
     },
     {
@@ -101681,6 +107395,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Mit dieser Sonderfertigkeit ist es der Hexe möglich, mit einem Vertrautentier ein starkes emotionales und magisches Band zu schließen. Erwirbt sie diese Sonderfertigkeit bei …",
+      "prerequisites": [
+        "%1 (gegebenenfalls andere Tradition)",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Vertrautenbindung",
       "costPerLevel": 20
     },
     {
@@ -101692,6 +107412,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Viehzucht ist eine Einsatzmöglichkeit des Talents Tierkunde. Möchte eine Heldin sich als Züchterin versuchen und ihren eigenen kleinen Bauernhof betreiben, ist diese Sonderfertigkeit unerlässlich. …",
+      "prerequisites": [
+        "Tierkunde 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Viehzucht",
       "costPerLevel": 2
     },
     {
@@ -101703,6 +107428,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Ein Zauberer kann Artefakte mit bis zu 9 Ladungen herstellen (siehe Regelwerk Seite 267).",
+      "prerequisites": [
+        "arcanovi 14",
+        "Magiekunde 12",
+        "Sagen & Legenden 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Vielfache%20Ladung",
       "costPerLevel": 12
     },
     {
@@ -101714,6 +107446,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Vigilanten können die Modifikation Liturgiedauer senken ohne eine Erschwernis von 1 durchzuführen, allerdings sinkt bei diesem Einsatz der FW in der Liturgie um 2. …",
+      "prerequisites": [
+        "Tradition (Rondrakirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Vigilanten",
       "costPerLevel": 10
     },
     {
@@ -101725,6 +107462,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Ein Held mit dieser Sonderfertigkeit erleidet bei mehrfachen Verteidigungen in einer KR nicht Erschwernisse von jeweils 3, sondern nur von jeweils 2 (siehe Regelwerk …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "GE 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Vinsalt-Stil",
       "costPerLevel": 20
     },
     {
@@ -101736,6 +107479,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Diese Vision kann die Heldin jederzeit empfangen, was 5 Minuten dauert. In dieser Zeit erleidet sie den Status Handlungsunfähig. Die Vision, die sie wahrnimmt, …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Vision%20der%20Bestimmung",
       "costPerLevel": 20
     },
     {
@@ -101747,6 +107493,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Diese Vision kann der Held jederzeit empfangen, was 30 Minuten dauert. In dieser Zeit erleidet er den Status Handlungsunfähig. Der Held bekommt 2 Stufen …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Vision%20der%20Entr%C3%BCckung",
       "costPerLevel": 15
     },
     {
@@ -101758,6 +107507,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Während der Regenerationsphase kann die Heldin Träume und Zeichen ihrer Gottheit empfangen. Gelingt die Probe auf Götter & Kulte (eigene Gottheit), so ist die …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Vision%20der%20Gottheit",
       "costPerLevel": 20
     },
     {
@@ -101769,6 +107521,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Diese Vision kann der Held jederzeit empfangen, was 2 Stunden dauert. In dieser Zeit erleidet er den Status Handlungsunfähig. Der Held bekommt durch die …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Vision%20des%20Schicksals",
       "costPerLevel": 30
     },
     {
@@ -101780,6 +107535,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Während der Regenerationsphase kann die Heldin Visionen empfangen, die für die Verbindung zwischen ihr selbst und ihrer Gottheit stehen. Für 12 Stunden bekommt sie …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Vision%20des%20Wahren%20Glaubens",
       "costPerLevel": 15
     },
     {
@@ -101791,6 +107549,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Ungehemmt: Visionäre müssen keine Gesten zur Ausführung ihrer Schelmentricks ausführen. Missgeschicke: 19er werden bei Proben auf Schelmentricks in Hinsicht auf die Bestimmung eines Patzers …",
+      "prerequisites": [
+        "Tradition (Schelme)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Schelmenprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Vision%C3%A4r",
       "variableCost": true
     },
     {
@@ -101802,6 +107566,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Zauber des Merkmals Elementar erhalten bei einer gelungenen Probe +1 FP (bis zu einem Maximum von 18 FP).",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Vollendeter%20Elementarist",
       "costPerLevel": 25
     },
     {
@@ -101813,6 +107580,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Zauber des Merkmals Einfluss erhalten bei einer gelungenen Probe +1 FP (bis zu einem Maximum von 18 FP).",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Vollkommener%20Beherrscher",
       "costPerLevel": 25
     },
     {
@@ -101824,6 +107594,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Um an einem Gegner vorbeizuziehen, muss eine um 4 erschwerte AT gelingen. Gelingt sie, gleich ob verteidigt oder nicht, so genießt der Held bis …",
+      "prerequisites": [
+        "GE 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Vorbeiziehen",
       "costPerLevel": 15
     },
     {
@@ -101835,6 +107610,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin kann einen Orgasmus vortäuschen. Beim gewöhnlichen Beischlaf hat dies keine regeltechnische Wirkung. Beim Liebesspiel kann diese Sonderfertigkeit als Verführungshandlung eingesetzt werden. Die …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Vorget%C3%A4uschter%20Orgasmus",
       "costPerLevel": 5
     },
     {
@@ -101846,6 +107624,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Mit dieser Sonderfertigkeit kann man seinen Attackewert für die aktuelle Kampfrunde um 2 erhöhen. Dafür kann man diese Kampfrunde keine Verteidigung mehr ausführen. Ein …",
+      "prerequisites": [
+        "GE 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Vorsto%C3%9F",
       "costPerLevel": 10
     },
     {
@@ -101857,6 +107640,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Zauber des Merkmals Hellsicht erhalten bei einer gelungenen Probe +1 FP (bis zu einem Maximum von 18 FP).",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Vortrefflicher%20Hellseher",
       "costPerLevel": 25
     },
     {
@@ -101868,6 +107654,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Schicksalspunkte",
       "maxLevel": 1,
+      "shortDescription": "Erleidet ein Held den Status Überrascht, kann er einen Schip ausgeben, um den Status sofort aufzuheben.",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wachsamkeit%20verbessern",
       "costPerLevel": 10
     },
     {
@@ -101879,6 +107668,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Zauber in der Tradition der Hexen sind nur um 1 erschwert und können modifiziert werden.",
+      "prerequisites": [
+        "Tradition (Druiden)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=W%C3%A4chter%20der%20G%C3%B6ttin",
       "costPerLevel": 20
     },
     {
@@ -101890,6 +107684,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Nur Schmiede, die sich mit dem Herstellen von Waffen auseinandergesetzt haben, sind auch in der Lage, richtige Waffen anzufertigen. Durch diese Sonderfertigkeit erlangt der …",
+      "prerequisites": [
+        "je nach verwendetem Waffenmaterial: Holzbearbeitung 8, Metallbearbeitung 8 oder Steinbearbeitung 8 Für den Erwerb dieser SF ist mindestens eines der genannten Talente wichtig. Man kann die SF allerdings nur für eine Waffe einsetzen, wenn man auch die Voraussetzung des Talents erfüllt, das für die Anfertigung der Waffe notwendig ist."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Waffenbau",
       "costPerLevel": 12
     },
     {
@@ -101901,6 +107700,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Mit dieser SF kann eine Abenteurerin eine Nahkampfwaffe, die sich eigentlich nicht als Wurfwaffe eignet, auf einen Gegner werfen und ihn erheblich verletzen. Der …",
+      "prerequisites": [
+        "KK 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Waffenwurf",
       "costPerLevel": 5
     },
     {
@@ -101912,6 +107716,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Solange die Geweihte in einer Position verharrt, ihre Gottheit anruft und sich konzentriert, können niedere Dämonen und Dämonen mit bis zu 5 Hörnern sie …",
+      "prerequisites": [
+        "Geweihter",
+        "weitere Voraussetzung laut Regelwiki",
+        "MU 17"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wahre%20St%C3%A4rke%20des%20Glaubens",
       "costPerLevel": 25
     },
     {
@@ -101923,6 +107734,14 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Solange die Geweihte in einer Position verharrt, ihre Gottheit anruft und sich konzentriert, können niedere Dämonen sie nicht berühren oder direkt wie auch indirekt …",
+      "prerequisites": [
+        "Geweihter",
+        "weitere Voraussetzung laut Regelwiki",
+        "MU 17",
+        "Leiteigenschaft 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wahrer%20Glaube",
       "costPerLevel": 20
     },
     {
@@ -101934,6 +107753,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AE",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Wer die Kenntnis des Wahren Namens eines Elementarwesens besitzt, für den sind Proben auf Fertigkeiten, um dieses zu beschwören oder zu bannen, um +1 …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wahrer%20Name%20(spezieller%20Elementar)",
       "variableCost": true
     },
     {
@@ -101945,6 +107767,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Einmal alle 24 Stunden kann die Wahrsagerin für sich selbst oder eine andere Person einen Blick in eine mögliche Zukunft werfen. Sie muss dazu …",
+      "prerequisites": [
+        "Tradition (Hexen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wahrsagerinnen%20(Fahrende%20Schwester)",
       "costPerLevel": 12
     },
     {
@@ -101956,6 +107783,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Eine Waldhexe erhält +1 FP bei Zaubern, solange sie sich in einem Wald aufhält.",
+      "prerequisites": [
+        "Tradition (Hexen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Waldhexen%20(Verschwiegene%20Schwester)",
       "costPerLevel": 20
     },
     {
@@ -101967,6 +107799,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Wenn eine Liturgie oder Zeremonie nicht durch eine Modifikation verändert wird, erhalten Waldläufer beim Wirken +1 FP (bis zu einem Maximum von 18 FP).",
+      "prerequisites": [
+        "Tradition (Firunkirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Waldl%C3%A4ufer",
       "costPerLevel": 25
     },
     {
@@ -101978,6 +107815,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDSK",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Der Held bekommt einen Bonus von +2 TP bei Nahkampfangriffen, wenn er sich auf dem Rücken eines Reittiers befindet. Außerdem zählt Wald bei Verfolgungsjagden …",
+      "prerequisites": [
+        "MU 13",
+        "weitere Voraussetzung laut Regelwiki",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Waldritter-Stil",
       "costPerLevel": 12
     },
     {
@@ -101989,6 +107833,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Bis zu 3 ausgewählte Ziele in einem Radius von 4 Schritt um den Swafnirgeweihten erhalten gegen Fernkampfangriffe einen Bonus von +1 bei der Schild-PA. …",
+      "prerequisites": [
+        "Wall der Schilde",
+        "Schildmeer"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wall%20der%20Angst",
       "costPerLevel": 15
     },
     {
@@ -102000,6 +107850,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Bis zu 3 ausgewählte Ziele in einem Radius von 4 Schritt um den Swafnirgeweihten erhalten gegen Fernkampfangriffe einen Bonus von +1 bei der Schild-PA. …",
+      "prerequisites": [
+        "Tradition (Swafnirkirche)",
+        "Flukenschlag"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wall%20der%20Schilde",
       "costPerLevel": 12
     },
     {
@@ -102011,6 +107867,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Zauber, die TP oder SP verursachen, oder LeP senken, sind gegen die Hesindegeweihte um 1 erschwert.",
+      "prerequisites": [
+        "Tradition (Hesindekirche)",
+        "Wissenssammlung"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wall%20gegen%20Schadensmagie",
       "costPerLevel": 12
     },
     {
@@ -102022,6 +107884,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "A",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Zauber, die TP oder SP verursachen oder LeP senken, sind gegen den Priester um –1 erschwert.",
+      "prerequisites": [
+        "Tradition (H'Szint-Kult)",
+        "Wandelstab"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wall%20gegen%20Schadensmagie",
       "costPerLevel": 12
     },
     {
@@ -102033,6 +107901,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "A",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Priester kann über sich und eine Person, die er während des gesamten Vorgangs berühren muss, eine Tarnung legen. Proben auf Sinnesschärfe, um die …",
+      "prerequisites": [
+        "Tradition (H'Szint-Kult)",
+        "Wall gegen Schadensmagie"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wandelstab",
       "costPerLevel": 12
     },
     {
@@ -102044,6 +107918,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Affektzauberei: In einem Kampf gewirkte Zauber können nach Wunsch des Spielers eine Erleichterung von 1 erhalten, aber dafür müssen 4 zusätzliche AsP investiert werden …",
+      "prerequisites": [
+        "Spezies Elfen",
+        "Tradition (Elfen)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Elfenprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wanderer",
       "variableCost": true
     },
     {
@@ -102055,6 +107936,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Liturgien und Zeremonien, die darauf abzielen, Eis und Schnee zu beherrschen oder zu formen, erhalten bei Gelingen +2 FP (bis zu einem Maximum von …",
+      "prerequisites": [
+        "Tradition (Firunkirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wanderer",
       "costPerLevel": 8
     },
     {
@@ -102066,6 +107952,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Mit dieser Sonderfertigkeit ist die Heldin in der Lage, Wandmalereien ordentlich auszuführen. Sie kennt die richtigen Farben, Mischverhältnisse, hat Ahnung von den Eigenschaften des …",
+      "prerequisites": [
+        "Malen & Zeichnen 4",
+        "Steinbearbeitung 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wandmalerei",
       "costPerLevel": 2
     },
     {
@@ -102077,6 +107969,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Ifirngeweihte kann ihren Mantel einem Kulturschaffenden anziehen. Solange der Kulturschaffende den Mantel trägt, verdoppelt sich das Intervall, in dem er eine Unterkühlungsstufe bekommen …",
+      "prerequisites": [
+        "Tradition (Ifirnkirche)",
+        "Haltbare Trophäen"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Warmer%20Mantel",
       "costPerLevel": 8
     },
     {
@@ -102088,6 +107986,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "UT",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Das Horn füllt sich mit eiskaltem, klaren Tiefseewasser, in dem der Priester die Zukunft lesen kann. Wenn er diese Prophezeiung gegenüber einem anderen Kulturschaffenden …",
+      "prerequisites": [
+        "Wasser der Vorbereitung",
+        "Wasser der Klarheit"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wasser%20der%20Hellsicht",
       "costPerLevel": 30
     },
     {
@@ -102099,6 +108003,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "UT",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Das Horn füllt sich mit frischem Trinkwasser. Wer das Wasser trinkt, kann eine Stufe Verwirrung und eine Stufe Furcht abbauen. Der Einsatz dieser Fähigkeit …",
+      "prerequisites": [
+        "Wasser der Vorbereitung",
+        "Wasser der Hellsicht"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wasser%20der%20Klarheit",
       "costPerLevel": 12
     },
     {
@@ -102110,6 +108020,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "UT",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Das Horn füllt sich mit salzigem Wasser, der Priester benetzt seinen Körper damit. Dadurch erhält er Numinorus Hilfe für eine unmittelbar bevorstehende Aufgabe. Die …",
+      "prerequisites": [
+        "Tradition (Numinorukult)",
+        "Donnerndes Horn"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wasser%20der%20Vorbereitung",
       "costPerLevel": 12
     },
     {
@@ -102121,6 +108037,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Wer über diesen Stil verfügt, kann bei der Sonderfertigkeit Erholsames Bad den 1W6-Wurf zur Bestimmung, ob es ein zusätzlicher LeP regeneriert wird bei Misslingen …",
+      "prerequisites": [
+        "Heilkunde Seele 4",
+        "Heilkunde Wunden 8",
+        "Erholsames Bad"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20der%20Baderin",
       "costPerLevel": 8
     },
     {
@@ -102132,6 +108055,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin erhält bei Musizieren und Singen eine Erleichterung von 1.",
+      "prerequisites": [
+        "Musizieren 8",
+        "Singen 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20der%20Bardin",
       "costPerLevel": 10
     },
     {
@@ -102143,6 +108072,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin erhält bei Gaukeleien eine Erleichterung von 1. Zudem kann sie, wie unter der Schicksalspunkte Sonderfertigkeit, um ein Ergebnis zu verbessern (siehe Regelwerk …",
+      "prerequisites": [
+        "Gaukeleien 8",
+        "Körperbeherrschung 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20der%20Gauklerin",
       "costPerLevel": 8
     },
     {
@@ -102154,6 +108089,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin muss ein Wissenstalent, das für ihre Profession eine tragende Rolle spielt, mit Erwerb dieses Stils auswählen und erhält darin eine Erleichterung von …",
+      "prerequisites": [
+        "ausgewähltes Talent FW 8",
+        "höchstens 1 passende Auswahl"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20der%20Gelehrten",
       "variableCost": true
     },
     {
@@ -102165,6 +108106,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDGDG",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Die Godi kann einer Gruppe von bis zu 6 Zuhörenden die Zukunft voraussagen. Sie legt dazu eine Probe auf Sagen & Legenden ab. Für …",
+      "prerequisites": [
+        "Sagen & Legenden 6"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20der%20Godi",
       "costPerLevel": 12
     },
     {
@@ -102176,6 +108122,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Eine Heldin mit dieser Sonderfertigkeit lässt die LeP nach einer Probe auf Heilkunde Wunden (Stabilisieren) bei einem Patienten bei der Letzten Rettung vor dem …",
+      "prerequisites": [
+        "Heilkunde Wunden 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20der%20Heilerin",
       "costPerLevel": 10
     },
     {
@@ -102187,6 +108138,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin muss beim Erwerb dieser Sonderfertigkeit eine passende Geländekunde aus Dschungel-, Steppen- oder Wüstenkundig auswählen. Die Erleichterung dieser Geländekunde erhöht sich um 1 …",
+      "prerequisites": [
+        "Wildnisleben 8",
+        "weitere Voraussetzung laut Regelwiki",
+        "höchstens 1 passende Auswahl"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20der%20Karawanenf%C3%BChrerin",
       "costPerLevel": 15
     },
     {
@@ -102198,6 +108156,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin bekommt eine Erleichterung von 1 auf Handel (Buchhaltung oder Geldwechsel). Sie benötigt zudem bei allem im Zusammenhang mit Buchhaltung, Buchführung und Buchprüfung …",
+      "prerequisites": [
+        "Handel 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20der%20Kontoristin",
       "costPerLevel": 8
     },
     {
@@ -102209,6 +108172,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin kann ein Talent, das zur Anwendung ihrer Kunst entscheidend ist, mit Erwerb dieses Stils aussuchen und fortan damit Geld verdienen (siehe Aventurisches …",
+      "prerequisites": [
+        "ausgewähltes Talent FW 8",
+        "höchstens 1 passende Auswahl"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20der%20K%C3%BCnstlerin",
       "variableCost": true
     },
     {
@@ -102220,6 +108189,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Eine Heldin mit diesem Talentstil verdoppelt die Erleichterungen in Bekehren & Überzeugen, Etikette und Überreden gegenüber Personen mit niedrigeren Sozialen Stand (siehe Regelwerk Seite …",
+      "prerequisites": [
+        "Etikette 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20der%20Patrizierin",
       "costPerLevel": 15
     },
     {
@@ -102231,6 +108205,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDSO",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "In jeder Region, für welche sie die Sonderfertigkeit Geländekunde erworben hat, erhält die Heldin bei Proben auf Pflanzenkunde eine zusätzliche Erleichterung von +1 (insgesamt …",
+      "prerequisites": [
+        "Pflanzenkunde 8",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20der%20Pflanzenkundlerin",
       "costPerLevel": 5
     },
     {
@@ -102242,6 +108222,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Wer mit einer Heldin zu tun hat, die über diesen Talentstil verfügt, dessen Proben auf Willenskraft (Betören widerstehen) sind um 1 erschwert.",
+      "prerequisites": [
+        "Betören 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20der%20Prostituierten",
       "costPerLevel": 12
     },
     {
@@ -102253,6 +108238,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin kennt sich hervorragend damit aus, jemanden zu überfallen und auszurauben. Proben auf Verbergen (sich Verstecken) und Einschüchtern (Drohung) sind um 1 erleichtert.",
+      "prerequisites": [
+        "Einschüchtern 6",
+        "Verbergen 6"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20der%20R%C3%A4uberin",
       "costPerLevel": 12
     },
     {
@@ -102264,6 +108255,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDGDG",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Der Held erhält bei Singen (Bardenballade) und Sagen & Legenden (Thorwal) eine Erleichterung von +1.",
+      "prerequisites": [
+        "Singen 7"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20der%20Sangara",
       "costPerLevel": 8
     },
     {
@@ -102275,6 +108271,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Verfügt eine Heldin über diese Sonderfertigkeit, ist sie besonders gut darin, Gerüchte aufzuschnappen, andere zu bezirzen und bei Verhandlungen einen Preisnachlass oder Trinkgeld zu …",
+      "prerequisites": [
+        "Betören 8",
+        "Gassenwissen 4",
+        "Handel 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20der%20Schankmagd",
       "costPerLevel": 5
     },
     {
@@ -102286,6 +108289,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Einmal in einem Kampf kann die Schaukämpferin entscheiden anstatt TP durch einen waffenlosen Angriff, durch ihren Gegner 1 Stufe Betäubung abzubekommen. Die Spielerin der …",
+      "prerequisites": [
+        "Kampftechnik 10"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20der%20Schauk%C3%A4mpferin",
       "costPerLevel": 10
     },
     {
@@ -102297,6 +108305,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDDD",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Bei einer gelungenen Probe Metallbearbeitung erhält der Held +1 FP (bis zu einem Maximum von 18 FP). Außerdem benötigt der Held bei Erfolgs- und …",
+      "prerequisites": [
+        "Metallbearbeitung 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20der%20Schmiedin",
       "costPerLevel": 12
     },
     {
@@ -102308,6 +108321,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHH",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin erhält bei Proben auf Verbergen (Gegenstände verbergen) eine Erleichterung von +1.",
+      "prerequisites": [
+        "Verbergen 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20der%20Schmugglerin",
       "costPerLevel": 5
     },
     {
@@ -102319,6 +108337,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Die Schreiberin kann Texte 25 % schneller lesen und verfassen als regulär dafür notwendig ist. Diese Ersparnis ist kumulativ mit anderen Sonderfertigkeiten, die zu …",
+      "prerequisites": [
+        "Schrift",
+        "Sprache"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20der%20Schreiberin",
       "costPerLevel": 5
     },
     {
@@ -102330,6 +108354,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin erhält bei Körperbeherrschung (Balance) eine Erleichterung von 1.",
+      "prerequisites": [
+        "Körperbeherrschung 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20der%20Seefahrerin",
       "costPerLevel": 5
     },
     {
@@ -102341,6 +108370,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDGDG",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin erhält bei Musizieren, Singen (Bardenballade) und Sagen & Legenden (Thorwal) eine Erleichterung von +1.",
+      "prerequisites": [
+        "Musizieren 7",
+        "Singen 7"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20der%20Skaldin",
       "costPerLevel": 10
     },
     {
@@ -102352,6 +108387,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Verfügt die Heldin über diesen Talentstil, so ist sie geschickt darin, andere zu beschatten und dabei nicht aufzufallen. Bei Proben auf Sinnesschärfe, um sie …",
+      "prerequisites": [
+        "Gassenwissen 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20der%20Spitzelin",
       "costPerLevel": 12
     },
     {
@@ -102363,6 +108403,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Proben auf Malen & Zeichnen, um Tätowierungen zu stechen, sind um 1 erleichtert.",
+      "prerequisites": [
+        "Malen & Zeichnen 8",
+        "Tätowierer"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20der%20T%C3%A4towiererin",
       "costPerLevel": 5
     },
     {
@@ -102374,6 +108420,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDF",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin kann mit Erwerb dieses Stils ein Talent aussuchen, das für ihr Handwerk wichtig ist, und fortan damit Geld verdienen (siehe Aventurisches Kompendium …",
+      "prerequisites": [
+        "ausgewähltes Talent FW 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20der%20Wandergesellin",
       "variableCost": true
     },
     {
@@ -102385,6 +108436,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Eine Heldin mit dieser Sonderfertigkeit kann ihrer Herrin durch eine Probe auf Etikette (Dienen & Gehorchen) QS/2 Erleichterungen in Höhe von 1 Punkt bei …",
+      "prerequisites": [
+        "Etikette 8",
+        "Leibdiener"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20der%20Zofe",
       "costPerLevel": 8
     },
     {
@@ -102396,6 +108453,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Ein Held mit diesem Talentstil verdoppelt die Erleichterungen in Bekehren & Überzeugen, Einschüchtern, Etikette (Benehmen) und Überreden (Schmeicheln) gegenüber Personen mit niedrigeren Sozialen Stand …",
+      "prerequisites": [
+        "Etikette 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20des%20Adligen",
       "costPerLevel": 15
     },
     {
@@ -102407,6 +108469,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Wer über diesen Stil verfügt, kann bei der Sonderfertigkeit Kräutermischung den 1W6-Wurf zur Bestimmung, ob es ein zusätzlicher LeP regeneriert wird, bei Misslingen wiederholen. …",
+      "prerequisites": [
+        "Pflanzenkunde 8",
+        "kraeutermischung"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20des%20Apothekers",
       "costPerLevel": 8
     },
     {
@@ -102418,6 +108486,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Bei Verfolgungsjagden bekommt der Bote bei seiner Fertigkeitsprobe, um zu entkommen oder den Gegner einzuholen, eine Erleichterung von 1. Außerdem gilt für ihn die …",
+      "prerequisites": [
+        "Orientierung 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20des%20Boten",
       "costPerLevel": 8
     },
     {
@@ -102429,6 +108502,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Ein Held mit dieser Sonderfertigkeit erhält bei der Jagd mit Fallen eine Erleichterung von 1 bei Proben auf Tierkunde (Wildtiere).",
+      "prerequisites": [
+        "Fährtensuchen 8",
+        "Tierkunde 6"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20des%20Fallenstellers",
       "costPerLevel": 8
     },
     {
@@ -102440,6 +108519,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDDD",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Ein Held mit dieser Sonderfertigkeit erhält bei Proben auf Schwimmen oder Fischen & Angeln eine Erleichterung von +1.",
+      "prerequisites": [
+        "Schwimmen 6",
+        "Fischen & Angeln 6"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20des%20Fischers",
       "costPerLevel": 12
     },
     {
@@ -102451,6 +108536,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Verfügt ein Held über diese Sonderfertigkeit, kennt er sich im Umgang mit Fleischerbeilen und Schlachtermessern so gut aus, dass sie in seinen Händen 1 …",
+      "prerequisites": [
+        "Lebensmittelbearbeitung 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20des%20Fleischers",
       "costPerLevel": 5
     },
     {
@@ -102462,6 +108552,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDF",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Proben auf Geographie (Kosch), Geschichtswissen (Kosch), Rechtskunde (Kosch) und Sagen & Legenden (Kosch) sind für jemanden mit diesem Talentstil um +1 erleichtert.",
+      "prerequisites": [
+        "Kultur Mittelreich",
+        "Rechtskunde 6"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20des%20Greven",
       "costPerLevel": 5
     },
     {
@@ -102473,6 +108569,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Der Held bekommt eine Erleichterung von 1 auf Handel (Feilschen oder Geldwechsel). Außerdem benötigt der Held bei Erfolgs- und Sammelproben auf Rechnen nur die …",
+      "prerequisites": [
+        "Handel 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20des%20H%C3%A4ndlers",
       "costPerLevel": 10
     },
     {
@@ -102484,6 +108585,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Ein Held mit diesem Talentstil verdoppelt die Erleichterungen in Betören (Anbändeln), Etikette und Überreden gegenüber Personen mit niedrigerem Sozialen Stand (siehe Regelwerk Seite 338) …",
+      "prerequisites": [
+        "Etikette 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20des%20H%C3%B6flings",
       "costPerLevel": 12
     },
     {
@@ -102495,6 +108601,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Verfügt ein Held über diese Sonderfertigkeit, kennt er sich im Umgang mit der Holzfälleraxt so gut aus, dass sie in seinen Händen 1 Punkt …",
+      "prerequisites": [
+        "Holzbearbeitung 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20des%20Holzf%C3%A4llers",
       "costPerLevel": 5
     },
     {
@@ -102506,6 +108617,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Ein Held mit dieser Sonderfertigkeit erhält bei der Pirschjagd eine Erleichterung von 1 bei Proben auf Tierkunde (Wildtiere).",
+      "prerequisites": [
+        "Fährtensuchen 6",
+        "Tierkunde 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20des%20J%C3%A4gers",
       "costPerLevel": 8
     },
     {
@@ -102517,6 +108634,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDSO",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Die Heldin bekommt eine Erleichterung von +1 auf Geographie (Kartographie). Sie benötigt zudem für das Zeichnen einer Karte nur die Hälfte der Zeit, die …",
+      "prerequisites": [
+        "Malen & Zeichnen 8",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20des%20Kartographen",
       "costPerLevel": 8
     },
     {
@@ -102528,6 +108651,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDF",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Der Held erhält bei Proben auf Mechanik eine Erleichterung von +1. Zudem kann er, wie unter der Schicksalspunkte-Sonderfertigkeit, um ein Ergebnis zu verbessern (siehe …",
+      "prerequisites": [
+        "Mechanik 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20des%20Mechanikus",
       "costPerLevel": 12
     },
     {
@@ -102539,6 +108667,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Proben auf Steinbearbeitung, um Erkenntnisse über Bodenschätze einzuholen, sind um 1 erleichtert.",
+      "prerequisites": [
+        "Steinbearbeitung 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20des%20Prospektors",
       "costPerLevel": 5
     },
     {
@@ -102550,6 +108683,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDSO",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Der Held kennt sich hervorragend mit der Jagd nach Banditen und Räubern aus. Proben auf Sinnesschärfe (Hinterhalt entdecken) und Willenskraft (Einschüchtern widerstehen) sind um …",
+      "prerequisites": [
+        "Sinnesschärfe 4",
+        "Willenskraft 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20des%20Rechtswahrers",
       "costPerLevel": 10
     },
     {
@@ -102561,6 +108700,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDGDG",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Wenn der Held 1 Stunde lang in einer Art Meditation eines seiner Handwerkstalente durchführt, die er normalerweise für das Herstellen von Runen einsetzt, und …",
+      "prerequisites": [
+        "passende Tradition",
+        "Singen 6"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20des%20Runensch%C3%B6pfers",
       "costPerLevel": 8
     },
     {
@@ -102572,6 +108717,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHH",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Proben auf Sinnesschärfe, um versteckte Fallen, verborgene Durchgänge oder Geheimfächer aufzuspüren, sind für den Helden um +1 erleichtert. Diese Erleichterung ist mit dem Vorteil …",
+      "prerequisites": [
+        "Sagen & Legenden 4",
+        "Sinnesschärfe 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20des%20Schatzsuchers",
       "costPerLevel": 15
     },
     {
@@ -102583,6 +108734,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Die Probe auf das jeweilige Schriftstellerei-Talent, ist für den Schriftsteller um 1 erleichtert.",
+      "prerequisites": [
+        "Schriftstellerei"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20des%20Schriftstellers",
       "costPerLevel": 10
     },
     {
@@ -102594,6 +108750,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Legt der Avesgeweihte seinen Avesstab vor eine Weggabelung, zeigt ihm der Stab an, welcher der kürzere Weg zu seinem angestrebten Ziel ist, nicht jedoch, …",
+      "prerequisites": [
+        "Tradition (Aveskirche)",
+        "Glückskind"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20des%20Stabtr%C3%A4gers",
       "costPerLevel": 5
     },
     {
@@ -102605,6 +108767,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Ein Held mit diesem Talentstil kann einmal pro Tag eine einzelne Teilprobe seiner Wahl in einem der Talente Gassenwissen, Überreden und Verbergen nochmal würfeln. …",
+      "prerequisites": [
+        "Gassenwissen 8",
+        "Überreden 8",
+        "Verbergen 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20des%20Streuners",
       "costPerLevel": 12
     },
     {
@@ -102616,6 +108785,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GMHDD",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Proben auf Tanzen sind um +1 erleichtert. Außerdem erhält der Held einen Bonus von +1 auf AW, solange er nicht unter Stufen des Zustands …",
+      "prerequisites": [
+        "Tanzen 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20des%20T%C3%A4nzers",
       "costPerLevel": 20
     },
     {
@@ -102627,6 +108801,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Bei gelungenen Proben auf Taschendiebstahl und Verbergen (Gegenstände verbergen oder sich Verstecken) erhält der Held +1 FP (bis zu einem Maximum von 18 FP).",
+      "prerequisites": [
+        "Taschendiebstahl 8",
+        "Verbergen 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20des%20Taschendiebes",
       "costPerLevel": 8
     },
     {
@@ -102638,6 +108818,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Talentstile",
       "maxLevel": 1,
+      "shortDescription": "Bei einer gelungenen Probe Holzbearbeitung (Tischlerarbeiten oder Zimmermannsarbeiten) erhält der Held +1 FP (bis zu einem Maximum von 18 FP). Außerdem benötigt der Held …",
+      "prerequisites": [
+        "Holzbearbeitung 8"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weg%20des%20Zimmermanns",
       "costPerLevel": 5
     },
     {
@@ -102649,6 +108834,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Wer über diese Sonderfertigkeit verfügt, der kennt in Städten viele Abkürzungen durch dunkle Gassen. Bei der Bestimmung, wie lange man für eine bestimmte Strecke …",
+      "prerequisites": [
+        "Gassenwissen 6",
+        "Orientierung 8",
+        "%1 in der jeweiligen Stadt"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wegabk%C3%BCrzungen%20kennen",
       "costPerLevel": 8
     },
     {
@@ -102660,6 +108852,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Wer über diese Sonderfertigkeit verfügt, der kennt viele Pfade und Wege, um seine Reise in der Wildnis abzukürzen. Bei der Bestimmung, wie lange man …",
+      "prerequisites": [
+        "Orientierung 8",
+        "Wildnisleben 6",
+        "%1 in der jeweiligen Gegend"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wegkenntnis",
       "costPerLevel": 8
     },
     {
@@ -102671,6 +108870,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Spieler des Nandusgeweihten legt eine Probe auf ein Wissenstalent ab. Ein einzelner, zuhörender Schüler in Hör- und Sichtreichweite bekommt bei Gelingen QS Erleichterungen …",
+      "prerequisites": [
+        "Meisterhafter Lehrmeister",
+        "Inspirierender Unterricht"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weisheit%20des%20Lehrers",
       "costPerLevel": 10
     },
     {
@@ -102682,6 +108887,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Die Hexe kann eine Weissagung aussprechen. Diese ist immer mit einem guten und einem schlechten Omen verbunden. Das freiwillige Ziel, für das die Weissagung …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weissagung",
       "costPerLevel": 15
     },
     {
@@ -102693,6 +108901,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Ehrbar: Weißmagier gelten unter den Zauberkundigen Aventuriens als besonders wahrheitsliebend und ehrbar. Man vertraut ihnen in größerem Maße und stellt ihr Wort nur selten …",
+      "prerequisites": [
+        "Der Held wurde an einer Akademie oder von einem privaten Lehrmeister der Weißen Gilde unterrichtet und gehört der Gilde an.",
+        "Tradition (Gildenmagier)",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Gildenprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wei%C3%9Fe%20Gilde",
       "variableCost": true
     },
     {
@@ -102704,6 +108919,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Der Kenner dieser Sonderfertigkeit muss sich für eines der sechs Elemente entscheiden. Zauber mit dem Merkmal Elementar und die auf diesem Element beruhen, sind …",
+      "prerequisites": [
+        "Tradition (Druiden)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wei%C3%9Fe%20Leute",
       "costPerLevel": 20
     },
     {
@@ -102715,6 +108935,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Bei Einsatz des um 2 erschwerten Manövers gilt der Held bis zum Ende der KR in einer Nahkampfreichweite, die eine Stufe höher ist, als …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weiter%20Schwung",
       "costPerLevel": 15
     },
     {
@@ -102726,6 +108949,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Würfe mit Waffen der Kampftechniken Wurfwaffen haben in der Reichweitenkategorie weit eine um 50 % höhere Reichweite. Beispielsweise würde ein Wurfspeer mit einer Reichweite …",
+      "prerequisites": [
+        "FF 13",
+        "KK 15",
+        "Präziser Schuss/Wurf 1"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Weitwurf",
       "costPerLevel": 10
     },
     {
@@ -102737,6 +108967,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Ein mit diesem Ingerimmshammer erschaffener Gegenstand weist die doppelte Anzahl an Strukturpunkten auf.",
+      "prerequisites": [
+        "Tradition (Ingerimmkirche)",
+        "Brandschutz"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Werkzeug%20der%20Best%C3%A4ndigkeit",
       "costPerLevel": 8
     },
     {
@@ -102748,6 +108984,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann sehr präzise Schätzungen abgeben, wie viel ein Artefakt, ein Edelstein oder der Schatz im Hort eines Drachen wert ist. Die Schätzung …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Werte%20sch%C3%A4tzen",
       "costPerLevel": 3
     },
     {
@@ -102759,6 +108998,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch die Sonderfertigkeit wird das neue Anwendungsgebiet Wettervorhersage des Talents Wildnisleben erworben. Der Held kann das Talent von nun an nutzen, um das Wetter …",
+      "prerequisites": [
+        "Wildnisleben 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wettervorhersage",
       "costPerLevel": 2
     },
     {
@@ -102770,6 +109014,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Wiedergeborene erhalten gegenüber Liturgien und Zaubern des Merkmals Einfluss einen Bonus von +1 SK.",
+      "prerequisites": [
+        "Tradition (Tsakirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wiedergeborene",
       "costPerLevel": 12
     },
     {
@@ -102781,6 +109030,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Mittels einer Berührung können Wildgänse ein Mirakel auf einen anderen Kulturschaffenden wirken, der dann statt des Geweihten von einer Verbesserung seiner Talente profitiert. Als …",
+      "prerequisites": [
+        "Tradition (Traviakirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wildg%C3%A4nse",
       "costPerLevel": 15
     },
     {
@@ -102792,6 +109046,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Liturgien und Zeremonien, die während und für eine Jagd gewirkt werden, erhalten bei Gelingen +2 FP (bis zu einem Maximum von 18 FP).",
+      "prerequisites": [
+        "Tradition (Firunkirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wildh%C3%BCter",
       "costPerLevel": 8
     },
     {
@@ -102803,6 +109062,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Zauber, die dazu gedacht sind, Schaden zu verursachen, erhalten +1 FP. Darunter fallen beispielsweise Zauber wie die HEXENKRALLEN oder die HEXENGALLE.",
+      "prerequisites": [
+        "Tradition (Hexen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wildkatzen%20(Sch%C3%B6ne%20der%20Nacht)",
       "costPerLevel": 10
     },
     {
@@ -102814,6 +109078,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Zauber, die auf Tiere oder Pflanzen wirken, erhalten eine Erleichterung von 1. Zudem spart der Wildnisläufer 1 AsP ein (bis zu einem Minimum von …",
+      "prerequisites": [
+        "Tradition (Elfen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wildnisl%C3%A4ufer",
       "costPerLevel": 12
     },
     {
@@ -102825,6 +109094,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Proben auf Überreden (Herausreden, Manipulieren oder Schmeicheln) gegen den Praiosgeweihten sind um 1 erschwert.",
+      "prerequisites": [
+        "Licht des Götterfürsten",
+        "Bewahrung des Eids"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wille%20zur%20Wahrheit",
       "costPerLevel": 12
     },
     {
@@ -102836,6 +109111,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "DSK",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Dieses Ahnenzeichen kann auf Segeltuch eingewebt oder aufgemalt werden. Es lockt freie Elementarwesen des Windes an, die dem Schiff zu größerer Geschwindigkeit verhelfen. Die …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Windfang",
       "costPerLevel": 8
     },
     {
@@ -102847,6 +109125,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Die Spielerin sagt vor der Reaktion ihrer Heldin an, dass sie ein Windmühlen-Manöver durchführen will. Die PA ist dabei um 2 erschwert. Die Abenteurerin …",
+      "prerequisites": [
+        "Eigenschaft 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Windm%C3%BChle",
       "costPerLevel": 25
     },
     {
@@ -102858,6 +109141,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Wenn die Heldin sich in einem Wald aufhält, bekommt sie durch diesen Stil einen Bonus von +1 PA. Außerdem sind Passierschläge gegen sie um …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "GE 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Winhall-Stil",
       "costPerLevel": 10
     },
     {
@@ -102869,6 +109158,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Schicksalspunkte",
       "maxLevel": 1,
+      "shortDescription": "Setzt der Spieler des Helden 1 Schip ein, so sollte der Meister ihm einen kleinen Hinweis oder ein Zeichen zukommen lassen. Der Hinweis oder …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wink%20des%20Schicksals",
       "costPerLevel": 12
     },
     {
@@ -102880,6 +109172,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held ist in der Lage, Wein zu keltern. Mit dieser Sonderfertigkeit erwirbt der Held im Talent Lebensmittelbearbeitung das neue Anwendungsgebiet Winzerei.",
+      "prerequisites": [
+        "Lebensmittelbearbeitung 4",
+        "Pflanzenkunde 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Winzerei",
       "costPerLevel": 2
     },
     {
@@ -102891,8 +109189,15 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 2,
-      "variableCost": true,
-      "suggestedCost": 10
+      "shortDescription": "Die angegriffenen Gegner dürfen auf den Angriff getrennt reagieren. Die erste Attacke ist um 2, die zweite um 4 und die dritte um 6 …",
+      "prerequisites": [
+        "GE 15/17/19 je nach Stufe"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wirbelangriff",
+      "costByLevel": [
+        25,
+        35
+      ]
     },
     {
       "id": "wissenderradschauschtammar",
@@ -102903,6 +109208,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Der Zauberer kann eine Liturgie oder Zeremonie der Tradition Rahjakirche oder Levthankult als Zauberspruch bei Liturgien bzw. als Ritual bei Zeremonien erschaffen. Die regeltechnischen …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wissen%20der%20Radscha%20Uschtammar",
       "costPerLevel": 10
     },
     {
@@ -102914,6 +109222,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Die Hexe hat durch ein höheres Verständnis fremder Magie weniger Schwierigkeiten, Zaubersprüche anderer Traditionen zu verändern. Bei Zaubern aus einer anderen Tradition können Modifikationen …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wissensaustausch",
       "costPerLevel": 20
     },
     {
@@ -102925,6 +109236,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Nandusgeweihte kann ein Wissenstalent benennen, das seinen Forschungsschwerpunkt darstellt. Das Wissenstalent lässt sich, nachdem es festgelegt wurde, nicht mehr ändern. Dieses Talent erhält …",
+      "prerequisites": [
+        "Tradition (Nanduskirche)",
+        "Meisterhafter Lehrmeister"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wissensdurst",
       "variableCost": true,
       "suggestedCost": 1
     },
@@ -102937,6 +109254,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die Hesindegeweihte erinnert sich immer daran, was sie im Buch der Schlange niedergeschrieben hat, selbst wenn sie die entsprechende Seite nicht aufgeschlagen hat.",
+      "prerequisites": [
+        "Tradition (Hesindekirche)",
+        "Wall gegen Schadensmagie"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wissenssammlung",
       "costPerLevel": 3
     },
     {
@@ -102948,6 +109271,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Diese Sonderfertigkeit eröffnet eine neue Einsatzmöglichkeit für das Talent Heilkunde Seele. Die Geweihte kann mit einem Kulturschaffenden 1 Minute reden und versuchen, Zustandsstufen von …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wohlklang%20der%20Seele",
       "costPerLevel": 15
     },
     {
@@ -102959,6 +109285,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "",
+      "prerequisites": [
+        "Freundschaft des Tieres"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wolfskraft",
       "costPerLevel": 12
     },
     {
@@ -102970,6 +109301,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Verfügt ein Abenteurer über die SF Wuchtiger Wurf, aktiviert er für Wurfwaffen die Schadensschwelle KK 14. Mit jedem KK-Punkt über 14 richtet er +1 …",
+      "prerequisites": [
+        "KK 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wuchtiger%20Wurf",
       "costPerLevel": 15
     },
     {
@@ -102981,8 +109317,16 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 3,
-      "variableCost": true,
-      "suggestedCost": 5
+      "shortDescription": "Die Attacke wird um 2 pro Stufe der Sonderfertigkeit erschwert. Bei Erfolg werden die Trefferpunkte um 2 pro Stufe der Sonderfertigkeit erhöht.",
+      "prerequisites": [
+        "KK 13/15/17 je nach Stufe"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wuchtschlag",
+      "costByLevel": [
+        15,
+        20,
+        25
+      ]
     },
     {
       "id": "wulfgarstil",
@@ -102993,6 +109337,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Wird ein Gegner von jemandem mit diesem Stil mit einer Wurfaxt beworfen, so sind Proben auf Ausweichen um zusätzlich 2 erschwert.",
+      "prerequisites": [
+        "passender Kampfstil",
+        "FF 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wulfgar-Stil",
       "costPerLevel": 10
     },
     {
@@ -103004,6 +109354,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Hierzu muss er ihn zuerst in einen Haltegriff bekommen (siehe Sonderfertigkeit Haltegriff). So lange der Gegner festgehalten wird, leidet er unter den Status Fixiert …",
+      "prerequisites": [
+        "GE undefined",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Wurf",
       "costPerLevel": 10
     },
     {
@@ -103015,6 +109371,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Um einen Gegner in den Würgegriff zu nehmen, muss die Heldin ihren Widersacher zuvor im Haltegriff haben. In der nächsten KR würfelt die Spielerin …",
+      "prerequisites": [
+        "Schwitzkasten"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=W%C3%BCrgegriff",
       "costPerLevel": 5
     },
     {
@@ -103026,6 +109387,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Ein Xorloscher Krieger muss im Kampf gegen Wesen des Typus Drachen oder solche der Größenkategorie riesig nur 1 freie Aktion aufwenden, um gegenüber seinem …",
+      "prerequisites": [
+        "passender Kampfstil",
+        "KK 13",
+        "Spezies Zwerge"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Xorlosch-Stil",
       "costPerLevel": 10
     },
     {
@@ -103037,6 +109405,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Durch die Sonderfertigkeit wird das neue Anwendungsgebiet Zahlenmystik des Talents Rechnen erworben. Der Held kennt die Mysterien der Zahlen und vermag in ihnen geheime …",
+      "prerequisites": [
+        "Rechnen 8",
+        "Sagen & Legenden 4"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Zahlenmystik",
       "costPerLevel": 2
     },
     {
@@ -103048,6 +109422,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "WdV",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Held bekommt einen Bonus von 2 FP bei Proben auf Betören (Liebeskünste), wenn er die Sexpraktiken Mammalverkehr oder Reiben & Streicheln einsetzt.",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Z%C3%A4rtliche%2Fr%20Liebhaber%2Fin",
       "costPerLevel": 10
     },
     {
@@ -103059,6 +109436,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Der Zauberer kann jeden seiner gewirkten Zauber zu einem beliebigen Zeitpunkt der Wirkungsdauer beenden. Er muss also nicht bis zum Ende der Wirkungsdauer warten, …",
+      "prerequisites": [
+        "Leiteigenschaft 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Zauber%20abbrechen",
       "costPerLevel": 12
     },
     {
@@ -103070,6 +109452,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann die Wirkung eines Zauberspruchs kurz unterdrücken, um sie erst einige Augenblicke später zu entfesseln. Der Spieler muss beim Würfeln der Zauberprobe …",
+      "prerequisites": [
+        "Leiteigenschaft 17",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Zauber%20bereithalten",
       "costPerLevel": 20
     },
     {
@@ -103081,6 +109469,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 2,
+      "shortDescription": "Bis zu Stufe der SF +1 Zauberer der gleichen Tradition können ihre Kräfte für einen Zauber vereinigen, wenn sie sich berühren. Alle Beteiligten müssen …",
+      "prerequisites": [
+        "Leiteigenschaft undefined"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Zauber%20b%C3%BCndeln",
       "costPerLevel": 15
     },
     {
@@ -103092,6 +109485,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann einen Zauberspruch in seiner Wirkung einmalig unterbrechen und zu einem anderen Zeitpunkt wieder aktivieren. Die Unterbrechung kostet ihn 1 freie Aktion. …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Zauber%20unterbrechen",
       "costPerLevel": 20
     },
     {
@@ -103103,6 +109501,15 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AAN",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Ein Zauberer, der über diese Sonderfertigkeit verfügt, kann 1 Zauberspruch (max. Steigerungsfaktor C, kein Merkmal Heilung oder Sphären) an je 1 animiertes Konstrukt (Golem, …",
+      "prerequisites": [
+        "Zauberer",
+        "Magiekunde 8",
+        "steinwandle 12",
+        "Alchimie 12",
+        "animatio 12"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Zauberbindung",
       "costPerLevel": 20
     },
     {
@@ -103114,6 +109521,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Zauber mit Reichweite selbst, die nur auf den Zauberer selbst wirken, und die Kampfwerte verbessern (AT, PA, FK, AW, TP und/oder INI), wirken um …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Zauberk%C3%A4mpfer",
       "costPerLevel": 25
     },
     {
@@ -103125,6 +109535,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM3",
       "category": "Prägungen",
       "maxLevel": 1,
+      "shortDescription": "Zauberfokussierung: Zauber (nicht jedoch Animistenkräfte) sind um 1 erleichtert. Kraftverlust: Zauber, kosten bei ihrem Einsatz zusätzlich 2 AsP.",
+      "prerequisites": [
+        "Tradition Animisten",
+        "Jeder Spieler kann für seinen Helden eine einzige passende Animistenprägung wählen."
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Zauberkrieger",
       "variableCost": true
     },
     {
@@ -103136,6 +109552,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Der Zauberer kann innerhalb von 5 Aktionen 8/12/16 AsP in einen Gegenstand von der Größe eines Dolches/Schwertes/einer Zweihandwaffe und mit einem Gewicht von bis …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Zauberobjekte",
       "costPerLevel": 15
     },
     {
@@ -103147,6 +109566,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM1",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Mit dieser Sonderfertigkeit kann der Abenteurer über insgesamt zwei Zauberstile verfügen.",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Zauberstil-Kombination",
       "costPerLevel": 50
     },
     {
@@ -103158,6 +109580,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AM2",
       "category": "Zauberstile",
       "maxLevel": 1,
+      "shortDescription": "Der Zauberweber spart bei allen Zaubern der Verbreitungen allgemein und Elfen 1 AsP (bis zu einem Minimum von 1 AsP). Außerdem spart er einen …",
+      "prerequisites": [
+        "Tradition (Elfen)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Zauberweber",
       "costPerLevel": 15
     },
     {
@@ -103169,6 +109596,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Der Held verfügt durch diese Sonderfertigkeit im Talent Malen & Zeichnen über das neue Anwendungsgebiet Zauberzeichen malen.",
+      "prerequisites": [
+        "FF 12"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Zauberzeichen",
       "costPerLevel": 20
     },
     {
@@ -103180,6 +109612,9 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "DSK",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Das Zeichen der Angst kann an einen Baum oder einen Felsen aufgetragen werden. Man muss nicht wissen, was das Zeichen ist, man muss es …",
+      "prerequisites": [],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Zeichen%20der%20Angst",
       "costPerLevel": 8
     },
     {
@@ -103191,6 +109626,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Avesgeweihte kann einen Kulturschaffenden segnen. Dieser kann in den nächsten 24 Stunden einen Schicksalspunkt zurückbekommen, wenn dessen Effekt ihm keinen Vorteil verschafft hat …",
+      "prerequisites": [
+        "Glückskind",
+        "Macht des Schicksals"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Zeichen%20der%20Vorsehung",
       "costPerLevel": 20
     },
     {
@@ -103202,6 +109643,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Schicksalspunkte",
       "maxLevel": 1,
+      "shortDescription": "Der Geweihte kann auf einen anderen Kulturschaffenden, auf dem der Geburtssegen oder die Initiation des Pantheons des Geweihten liegt, Schicksalspunkte übertragen (im Verhältnis 2 …",
+      "prerequisites": [
+        "weitere Voraussetzung laut Regelwiki",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Zeichen%20des%20Schicksals",
       "costPerLevel": 10
     },
     {
@@ -103213,6 +109660,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Der Praiosgeweihte kann auf bis zu 32 Schritt Entfernung ein Ziel benennen. Dieses erleidet 1 Stufe Furcht. Nur folgende Wesen können davon betroffen sein: …",
+      "prerequisites": [
+        "Tradition (Praioskirche)",
+        "Licht des Götterfürsten"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Zepter%20der%20Furcht",
       "costPerLevel": 12
     },
     {
@@ -103224,6 +109677,13 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Ein Geweihter, der die Zeremonie Objektweihe (siehe Regelwerk Seite 333) auf einen passenden Gegenstand wirkt, kann damit einen Zeremonialgegenstand herstellen. Der Zeremonialgegenstand wird durch …",
+      "prerequisites": [
+        "Geweihter",
+        "objektweihe",
+        "Leiteigenschaft 17"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Zeremonialgegenst%C3%A4nde%20herstellen",
       "costPerLevel": 30
     },
     {
@@ -103235,6 +109695,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Bei Angriffen gegen Objekte erhält der Held +1W6 TP zu seinem üblichen Schaden hinzu.",
+      "prerequisites": [
+        "KK 15"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Zertr%C3%BCmmern",
       "costPerLevel": 5
     },
     {
@@ -103246,6 +109711,14 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "O",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Ein Kämpfer mit Zholochai-Stil erhält einen Bonus von +1 auf AT, wenn er Orkwaffen führt.",
+      "prerequisites": [
+        "passender Kampfstil",
+        "MU 13",
+        "Spezies orks",
+        "Wesenszug Zholochai"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Zholochai-Stil",
       "costPerLevel": 15
     },
     {
@@ -103257,6 +109730,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AE",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann Elementare durch einen Beschwörerzirkel herbeirufen.",
+      "prerequisites": [
+        "passendes Ritual FW 10"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Zirkelmeister%20(Elementare)",
       "costPerLevel": 20
     },
     {
@@ -103268,6 +109746,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AT",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann Transmutationen in einem Chimärologenzirkel erschaffen. Die AsP von FW in CHIMAEROFORM / 4 (abgerundet) zusätzlichen Personen können in das Ritual einfließen. …",
+      "prerequisites": [
+        "chimaerenmeister",
+        "chimaeroform 10"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Zirkelmeister%20(Transmutationen)",
       "costPerLevel": 20
     },
     {
@@ -103279,6 +109763,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "ANE",
       "category": "Magie",
       "maxLevel": 1,
+      "shortDescription": "Der Held kann Untote durch einen Nekromantenzirkel (siehe Seite 139) erschaffen.",
+      "prerequisites": [
+        "nekromant",
+        "toteshandle 10"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Zirkelmeister%20(Untote)",
       "costPerLevel": 20
     },
     {
@@ -103290,6 +109780,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "GRW",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Die Attacke ist um 4 erschwert. Gegen diesen Angriff kann verteidigt werden. Ist die Verteidigung misslungen, stürzt der Gegner und erleidet den Status Liegend. …",
+      "prerequisites": [
+        "KK 13"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Zu%20Fall%20bringen",
       "costPerLevel": 20
     },
     {
@@ -103301,6 +109796,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Liturgiestile",
       "maxLevel": 1,
+      "shortDescription": "Zugvögel können eine Liturgie oder Zeremonie der Tradition Phexkirche und eine Liturgie oder Zeremonie der Tradition Rahjakirche erlernen und so nutzen, als wäre sie …",
+      "prerequisites": [
+        "Tradition (Aveskirche)"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Zugv%C3%B6gel",
       "costPerLevel": 15
     },
     {
@@ -103312,6 +109812,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Mit einer einfachen Berührung und 1 Aktion kann der Geweihte niederhöllische Essenzen wieder in die 7. Sphäre zurückschicken. Die Sonderfertigkeit reicht aus, um beispielsweise …",
+      "prerequisites": [
+        "Geweihter"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Zur%C3%BCck%20in%20die%20Niederh%C3%B6llen",
       "costPerLevel": 2
     },
     {
@@ -103323,6 +109828,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Der Geweihte kann innerhalb einer Aktion zwei Segnungen gleichzeitig anwenden. Er kann mit der Sonderfertigkeit zwei Segnungen auf eine Person gleichzeitig wirken oder jeweils …",
+      "prerequisites": [
+        "Geweihter"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Zwei%20Segnungen%20gleichzeitig",
       "costPerLevel": 3
     },
     {
@@ -103334,6 +109844,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK2",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Dieses Spezialmanöver kann im berittenen Kampf verwendet werden. Der Held kann den zweifachen Angriff einsetzen, wenn sich zwei Gegner in Angriffsdistanz befinden und sich …",
+      "prerequisites": [
+        "GE 15",
+        "weitere Voraussetzung laut Regelwiki"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Zweifacher%20Angriff",
       "costPerLevel": 12
     },
     {
@@ -103345,6 +109861,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG2",
       "category": "Karma",
       "maxLevel": 1,
+      "shortDescription": "Die karmale Kraft im Körper des Geweihten ist so stark, dass waffenlose Angriffe mit der Kampftechnik Raufen als zweifachgeweihte Angriffe gelten. Dies bedeutet, dass …",
+      "prerequisites": [
+        "Leiteigenschaft 15",
+        "Geweihter Karmalleib"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Zweifachgeweihter%20Karmalleib",
       "costPerLevel": 15
     },
     {
@@ -103356,6 +109878,11 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampf",
       "maxLevel": 1,
+      "shortDescription": "Verfügt der Held über diese SF, kann er vom Rücken eines Reittiers aus eine Zweihandwaffe führen und einsetzen. Allerdings sind diese Attacken um 4 …",
+      "prerequisites": [
+        "Berittener Kampf"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Zweih%C3%A4ndiger%20Reiterkampf",
       "costPerLevel": 5
     },
     {
@@ -103367,6 +109894,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AG",
       "category": "Allgemein",
       "maxLevel": 1,
+      "shortDescription": "Die erste Wiederholungsprobe bei Wissenstalenten ist für den Nandusgeweihten nicht erschwert. Die zweite Wiederholungsprobe ist um 1 erschwert, die dritte um 2 usw.",
+      "prerequisites": [
+        "Wissensdurst",
+        "Recherchegespür"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Zweiter%20Anlauf",
       "costPerLevel": 5
     },
     {
@@ -103378,6 +109911,12 @@ export const GRW_CHARACTER_DATA = {
       "sourceShortLabel": "AK",
       "category": "Kampfstile",
       "maxLevel": 1,
+      "shortDescription": "Wendet die Heldin das Manöver Haltegriff an, ist eine Verteidigung des Gegners gegen diesen Angriff um 2 erschwert.",
+      "prerequisites": [
+        "KK 13",
+        "passender Kampfstil"
+      ],
+      "regelwikiUrl": "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Zyklop%C3%A4isches%20Ringen",
       "costPerLevel": 10
     }
   ],

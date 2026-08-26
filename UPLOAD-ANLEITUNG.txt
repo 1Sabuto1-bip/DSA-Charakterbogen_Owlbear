@@ -1,10 +1,19 @@
-DSA-CHARAKTERBOGEN – UPDATE 0.13.0
+DSA-CHARAKTERBOGEN – UPDATE 0.14.0
 =================================
 
-Dieser Stand baut auf Version 0.12.0 auf und korrigiert den Generator-Reset,
-die AP-Berechnung der Professionspakete und den Professionskatalog.
+Dieser Stand baut auf Version 0.13.0 auf und ergänzt Regelwiki-Kurzinfos
+für die Sonderfertigkeiten des Charaktergenerators.
 
-Neu in 0.13.0:
+Neu in 0.14.0:
+- kleiner Info-Knopf neben jeder Sonderfertigkeit
+- Hover am Mac sowie Antippen/Klicken auf Touch-Geräten
+- Kurzbeschreibung, Voraussetzungen, AP-Kosten, Stufen, Quelle und Seite
+- Link zur passenden Suche im offiziellen DSA-Regelwiki
+- Kurzbeschreibungen für 1.237 von 1.243 Sonderfertigkeiten
+- strukturierte Voraussetzungen für 1.031 Sonderfertigkeiten
+- gestaffelte AP-Kosten wie bei Finte I-III werden korrekt addiert
+
+Bereits in 0.13.0:
 - "Neu beginnen" stellt das AP-Konto vollständig auf den gewählten Erfahrungsgrad zurück
 - alle Eigenschaften beginnen nach dem Reset wieder bei 8
 - Kulturpaket und Profession sind nach dem Reset abgewählt
@@ -58,12 +67,12 @@ Bereits enthalten:
 - Stufe und freie Ausprägung eines Vor- oder Nachteils können bearbeitet werden
 - Einträge können hinzugefügt und entfernt werden
 - vorhandene Owlbear-Sicherungen werden beim Laden automatisch ergänzt
-- sichtbare Versionsnummer 0.13.0 zur Cache-Kontrolle
+- sichtbare Versionsnummer 0.14.0 zur Cache-Kontrolle
 
 UPLOAD
 ------
 1. Diese ZIP-Datei auf dem Mac doppelt anklicken.
-2. Den entpackten Ordner "github-update-v0.13.0" öffnen.
+2. Den entpackten Ordner "github-update-v0.14.0" öffnen.
 3. Im GitHub-Repository auf "Add file" und "Upload files" klicken:
    https://github.com/1Sabuto1-bip/DSA-Charakterbogen_Owlbear
 4. ALLE Inhalte des geöffneten Ordners in das Upload-Fenster ziehen.
@@ -79,7 +88,7 @@ OWLBEAR
 -------
 Nach dem Upload Owlbear vollständig neu laden. Falls noch eine andere Version
 erscheint, die Erweiterung im Profil entfernen und neu installieren mit:
-https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/manifest.json?v=0130
+https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/manifest.json?v=0140
 
 BEDIENUNG
 ---------

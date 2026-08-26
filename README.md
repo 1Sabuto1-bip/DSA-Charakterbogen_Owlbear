@@ -3,6 +3,10 @@
 Ein eigenständig gestalteter, interaktiver DSA-5-Heldenbogen als Owlbear-Rodeo-Erweiterung.
 Der aktuelle Prototyp importiert Optolith-JSON-Dateien der Version 1.5.x und TDC-Helden aus The Dark Aid X.
 
+## Version 0.14.0 – Regelwiki-Infos für Sonderfertigkeiten
+
+Im Generator besitzt jede Sonderfertigkeit jetzt einen kleinen **i-Knopf**. Am Mac öffnet sich die Kurzinfo beim Darüberfahren mit der Maus; per Klick bleibt sie geöffnet. Auf iPad und anderen Touch-Geräten öffnet sie sich durch Antippen. Das Fenster zeigt eine kompakte Wirkungsinformation, Voraussetzungen, AP-Kosten beziehungsweise Stufenkosten, Kategorie, Quelle und Seite sowie einen Link zur Suche im offiziellen DSA-Regelwiki. Für 1.237 der 1.243 Sonderfertigkeiten ist eine Kurzbeschreibung und für 1.031 eine strukturierte Voraussetzungsliste verfügbar. Gestaffelte Kosten wie bei **Finte I–III** werden nun ebenfalls korrekt berechnet.
+
 ## Version 0.13.0 – vollständiger AP-Reset und erweiterte Professionen
 
 **Neu beginnen** setzt jetzt auch das AP-Konto vollständig zurück: Eigenschaften beginnen wieder bei 8, Kulturpaket und Profession sind abgewählt und sämtliche eigenen Auswahlen sowie Einkäufe sind leer. Die Professionspakete berechnen ihre bereits enthaltenen Pflichtvorteile und Traditionen nicht mehr doppelt. Der Generator enthält nun 564 Professionspakete und Varianten aus 35 Quellen, aufgeteilt in die fünf durchsuchbaren Gruppen **Weltliche**, **Kämpfer**, **Ordensleute**, **Zauberer** und **Geweihte**. Neuere Regelwiki-Pakete wie Shindai, Adoru-Magier, Klingensängerin und Zauberweber der Shakagra, Tahayaschamanin sowie Ojomyaa sind ebenfalls enthalten.
@@ -27,6 +31,7 @@ Auf der Startseite kann ein neuer Held nach dem DSA5-Grundregelwerk (dritte Aufl
 - Startkapital, Reich/Arm, Mengen, Ausgaben, Restgeld und Gesamtgewicht automatisch berechnen
 - gekaufte Waffen und Rüstungen mit TP, Kampftechnik, AT/PA, RS, BE und weiteren Katalogwerten in den Bogen übernehmen
 - Gruppen- und Quellenfilter für 564 Professionspakete sowie 1.243 allgemeine, Kampf- und Magie-Sonderfertigkeiten
+- Info-Knopf mit Kurzbeschreibung, Voraussetzungen, Kosten, Quelle und Regelwiki-Link bei allen Sonderfertigkeiten im Generator
 - zusätzliche Kulturen, magische Traditionen und Professionszauber aus den drei Magiebänden
 - zwergische Geoden, elfische Professionen, Hexen, Druiden, Animisten, Zibiljas und weitere Magiebegabte
 - Optolith-JSON, DarkAid-TDC und eigene Owlbear-Sicherungen importieren

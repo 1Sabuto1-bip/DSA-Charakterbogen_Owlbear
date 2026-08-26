@@ -439,9 +439,10 @@ export const generatorSpecialAbilityCost = (selection: GeneratorSpecialAbilitySe
   const definition = getGeneratorSpecialAbilityDefinition(selection.id);
   if (!definition) return 0;
   const level = Math.max(1, Math.min(Number(definition.maxLevel ?? 1), selection.level));
-  return "costPerLevel" in definition
-    ? Number(definition.costPerLevel) * level
-    : Math.max(0, selection.costOverride);
+  if ("costByLevel" in definition) return (definition.costByLevel as readonly number[])
+    .slice(0, level)
+    .reduce((sum: number, cost: number) => sum + Number(cost), 0);
+  return "costPerLevel" in definition ? Number(definition.costPerLevel) * level : Math.max(0, selection.costOverride);
 };
 
 export interface RequiredProfessionComponents {
@@ -650,7 +651,7 @@ export const buildGeneratedCharacter = (draft: GeneratorDraft): CharacterSheetSt
   const required = getRequiredProfessionComponents(draft);
   const magical = profession.magical === true || species.id === "elfen";
   const sheet = createManualState(draft.name, { species: manualSpeciesFor(species.id), magical });
-  sheet.hero.clientVersion = "Regelwerksgenerator 0.13";
+  sheet.hero.clientVersion = "Regelwerksgenerator 0.14";
   sheet.hero.el = experience.id;
   sheet.hero.rv = race.id;
   sheet.hero.c = culture.id;

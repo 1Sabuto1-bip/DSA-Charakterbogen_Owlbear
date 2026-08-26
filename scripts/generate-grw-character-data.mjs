@@ -394,6 +394,9 @@ const disadvantages = [...traitMap.values()].filter((entry) => entry.kind === "d
 const cleanSpecialAbility = (entry) => {
   const numericCost = typeof entry.cost === "number" ? Math.abs(entry.cost) : undefined;
   const suggestedCost = typeof entry.cost === "object" && Number.isFinite(entry.cost?.ap) ? Math.abs(entry.cost.ap) : undefined;
+  const costByLevel = entry.cost?.type === "level" && Number(entry.maxlevel) > 0
+    ? Array.from({ length: Number(entry.maxlevel) }, (_, index) => Math.abs(Number(entry.cost.bonus ?? 0) + Number(entry.cost.ap ?? 0) * (index + 1)))
+    : [];
   return {
     id: entry.id,
     name: entry.name,
@@ -403,10 +406,89 @@ const cleanSpecialAbility = (entry) => {
     sourceShortLabel: entry.source.shortLabel,
     category: entry.category,
     maxLevel: Number(entry.maxlevel ?? 1),
-    ...(numericCost === undefined ? { variableCost: true, ...(suggestedCost ? { suggestedCost } : {}) } : { costPerLevel: numericCost }),
+    shortDescription: shortRuleDescription(entry.rulesdescription),
+    prerequisites: asArray(entry.prerequisites).map(prerequisiteLabel).filter(Boolean),
+    regelwikiUrl: `https://dsa.ulisses-regelwiki.de/suche.html?keywords=${encodeURIComponent(entry.name)}`,
+    ...(costByLevel.length
+      ? { costByLevel }
+      : numericCost === undefined
+        ? { variableCost: true, ...(suggestedCost ? { suggestedCost } : {}) }
+        : { costPerLevel: numericCost }),
   };
 };
 const specialAbilityMap = new Map();
+const plainText = (value) => String(value ?? "")
+  .replace(/<br\s*\/?>/gi, " ")
+  .replace(/<[^>]+>/g, " ")
+  .replace(/&nbsp;/gi, " ")
+  .replace(/&amp;/gi, "&")
+  .replace(/\s+/g, " ")
+  .trim();
+
+const shortRuleDescription = (value) => {
+  const words = plainText(value).split(" ").filter(Boolean);
+  if (!words.length) return "";
+  return `${words.slice(0, 24).join(" ")}${words.length > 24 ? " …" : ""}`;
+};
+
+const combatTechniqueNames = Object.fromEntries(load("combattechniques.json").map((entry) => [entry.id, entry.name]));
+const spellNames = Object.fromEntries(sources.flatMap((source) => loadSource(source, "spells.json")).map((entry) => [entry.id, entry.name]));
+const chantNames = Object.fromEntries(sources.flatMap((source) => loadSource(source, "chants.json")).map((entry) => [entry.id, entry.name]));
+const speciesNames = Object.fromEntries(load("species.json").map((entry) => [entry.id, entry.name]));
+const cultureNames = Object.fromEntries(cultureData.map((entry) => [entry.id, entry.name]));
+const traitNames = Object.fromEntries([...traitMap.values()].map((entry) => [entry.id, entry.name]));
+
+const prerequisiteLabel = (entry) => {
+  if (!entry || typeof entry !== "object") return "";
+  if (typeof entry.description === "string") return plainText(entry.description);
+  const attributeName = attributeCodes[entry.attribute] ?? entry.attribute;
+  if (entry.type === "attributelevel") {
+    if (Number.isFinite(entry.bonus) && Number.isFinite(entry.level)) {
+      const values = Array.from({ length: 3 }, (_, index) => Number(entry.bonus) + Number(entry.level) * (index + 1));
+      return `${attributeName ?? "Eigenschaft"} ${values.join("/")} je nach Stufe`;
+    }
+    return `${attributeName ?? "Eigenschaft"} ${entry.level}`;
+  }
+  if (entry.skill && entry.level != null) return `${skillNames[entry.skill] ?? entry.skill} ${entry.level}`;
+  if (Array.isArray(entry.skills) && entry.level != null) return `${entry.skills.map((id) => skillNames[id] ?? id).join(" oder ")} ${entry.level}`;
+  if (entry.type === "skilllevelsum") return `${(entry.skills ?? []).map((id) => skillNames[id] ?? id).join(" + ")} zusammen ${entry.levelsum}`;
+  if (entry.type === "primaryattributelevel") return `Leiteigenschaft ${entry.level}`;
+  if (entry.type === "combattechniquelevel") return `${entry.range === "ranged" ? "Fernkampftechnik" : "Kampftechnik"} ${entry.level}`;
+  if (entry.type === "specialability" && entry.specialabilities) return specialAbilityNames[entry.specialabilities] ?? entry.specialabilities;
+  if (entry.type === "specialabilitylevel" && entry.specialabilityvalues) {
+    return `${specialAbilityNames[entry.specialabilityvalues.ruleelement] ?? entry.specialabilityvalues.ruleelement} ${entry.specialabilityvalues.level}`;
+  }
+  if (entry.type === "specialabilitylevelbylevel" && entry.specialabilities) return specialAbilityNames[entry.specialabilities] ?? entry.specialabilities;
+  if (entry.type === "fightingstyle") return `passender ${entry.group === "zauberstile" ? "Zauberstil" : entry.group === "liturgiestile" ? "Liturgiestil" : "Kampfstil"}`;
+  if (entry.type === "disadvantage" && entry.disadvantages) {
+    const id = typeof entry.disadvantages === "string" ? entry.disadvantages : entry.disadvantages.ruleelement;
+    return `${entry.musthave === false ? "kein " : ""}${traitNames[id] ?? id}`;
+  }
+  if (entry.type === "disadvantagesignature") {
+    const signature = entry.disadvantagesignatures;
+    const id = signature?.ruleelement;
+    const variantId = signature?.variant?.id?.id;
+    return `${entry.musthave === false ? "kein " : ""}${traitNames[id] ?? id}${variantId ? ` (${skillNames[variantId] ?? variantId})` : ""}`;
+  }
+  if (entry.type === "specialabilitysignature") {
+    const signature = entry.specialabilitysignatures;
+    const variantId = signature?.variant?.id?.id;
+    const tradition = traditionData.get(variantId) ?? blessedTraditionData.get(variantId);
+    return tradition?.name ? `Tradition (${tradition.name})` : "passende Tradition";
+  }
+  if ((entry.type === "spelllevel" || entry.type === "spell") && entry.spells) return `${spellNames[entry.spells] ?? entry.spells}${entry.level != null ? ` ${entry.level}` : ""}`;
+  if ((entry.type === "chantlevel" || entry.type === "chant") && (entry.chants || entry.chantvalues)) {
+    const id = entry.chants ?? entry.chantvalues?.ruleelement;
+    const level = entry.level ?? entry.chantvalues?.level;
+    return `${chantNames[id] ?? id}${level != null ? ` ${level}` : ""}`;
+  }
+  if (entry.type === "species") return `Spezies ${speciesNames[entry.species] ?? entry.species}`;
+  if (entry.type === "culture") return `Kultur ${cultureNames[entry.cultures] ?? entry.cultures}`;
+  if (entry.type === "maxcount" || entry.type === "maxcountgroup") return `höchstens ${entry.maxcount} passende Auswahl${entry.maxcount === 1 ? "" : "en"}`;
+  if (entry.type === "selectable") return "passende Auswahl";
+  return "weitere Voraussetzung laut Regelwiki";
+};
+
 for (const entry of allSpecialAbilities) {
   if (!entry.id || !entry.name) continue;
   if (!specialAbilityMap.has(entry.id)) specialAbilityMap.set(entry.id, cleanSpecialAbility(entry));

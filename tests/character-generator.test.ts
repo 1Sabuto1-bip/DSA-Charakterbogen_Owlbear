@@ -116,6 +116,19 @@ describe("DSA5-Regelwerksgenerator", () => {
     expect(generatorSpecialAbilityCost({ id: variable!.id, level: 1, variant: "Auswahl", costOverride: 7 })).toBe(7);
   });
 
+  it("liefert Kurzinfo, Voraussetzungen und Regelwiki-Link für Sonderfertigkeiten", () => {
+    const abrichten = GRW_SPECIAL_ABILITIES.find((entry) => entry.id === "abrichter");
+    expect(abrichten?.shortDescription).toContain("Abrichten");
+    expect(abrichten?.prerequisites).toContain("Tierkunde 8");
+    expect(abrichten?.regelwikiUrl).toBe("https://dsa.ulisses-regelwiki.de/suche.html?keywords=Abrichter");
+  });
+
+  it("berechnet gestaffelte Sonderfertigkeitskosten bis zur gewählten Stufe", () => {
+    const finte = GRW_SPECIAL_ABILITIES.find((entry) => entry.id === "finte");
+    expect(finte && "costByLevel" in finte ? finte.costByLevel : undefined).toEqual([15, 20, 25]);
+    expect(generatorSpecialAbilityCost({ id: "finte", level: 3, variant: "", costOverride: 0 })).toBe(60);
+  });
+
   it("berechnet feste Vor- und Nachteile mit Stufen", () => {
     expect(generatorTraitCost("advantage", { id: "hohelebenskraft", level: 3, variant: "", costOverride: 0 })).toBe(18);
     expect(generatorTraitCost("disadvantage", { id: "niedrigelebenskraft", level: 3, variant: "", costOverride: 0 })).toBe(-12);

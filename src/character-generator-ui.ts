@@ -31,6 +31,7 @@ import {
   validateGeneratorDraft,
 } from "./character-generator";
 import { ATTRIBUTES, COMBAT_TECHNIQUES, ITEM_GROUPS } from "./data";
+import { attachSpecialAbilityInfoListeners } from "./special-ability-info";
 import type { CharacterSheetState } from "./types";
 import type { GeneratorDraft, GeneratorShopCategory, GeneratorShopItem, GeneratorSpecialAbilitySelection, GeneratorTraitKind, GeneratorTraitSelection } from "./character-generator";
 
@@ -283,12 +284,38 @@ export class CharacterGeneratorUI {
     </section>`;
   }
 
+  private specialAbilityCostLabel(definition: NonNullable<ReturnType<typeof getGeneratorSpecialAbilityDefinition>>): string {
+    if ("costByLevel" in definition) {
+      const costs = definition.costByLevel as readonly number[];
+      return `${costs.join("/")} AP für Stufe I–${costs.length}`;
+    }
+    if ("costPerLevel" in definition) return `${definition.costPerLevel} AP${definition.maxLevel > 1 ? " je Stufe" : ""}`;
+    return `variabel${"suggestedCost" in definition ? ` · Richtwert ${definition.suggestedCost} AP` : ""}`;
+  }
+
+  private renderSpecialAbilityInfo(definition: NonNullable<ReturnType<typeof getGeneratorSpecialAbilityDefinition>>): string {
+    const prerequisites = definition.prerequisites.length
+      ? `<ul>${definition.prerequisites.map((entry) => `<li>${escapeHtml(entry)}</li>`).join("")}</ul>`
+      : `<span>Keine Voraussetzungen in den eingebundenen Daten hinterlegt.</span>`;
+    return `<div class="generator-sa-info">
+      <button type="button" class="generator-sa-info__button" data-generator-sa-info aria-label="Informationen zu ${escapeHtml(definition.name)}" aria-expanded="false">i</button>
+      <div class="generator-sa-info__popover" role="tooltip">
+        <strong>${escapeHtml(definition.name)}</strong>
+        <em>${escapeHtml(definition.category)} · ${escapeHtml(this.specialAbilityCostLabel(definition))}</em>
+        <p>${escapeHtml(definition.shortDescription || "Eine kurze Regelbeschreibung ist in den eingebundenen Daten noch nicht verfügbar.")}</p>
+        <b>Voraussetzungen</b>${prerequisites}
+        <small>${escapeHtml(definition.sourceLabel)} · Seite ${definition.page}</small>
+        <a href="${escapeHtml(definition.regelwikiUrl)}" target="_blank" rel="noopener noreferrer">Im DSA-Regelwiki nachschlagen ↗</a>
+      </div>
+    </div>`;
+  }
+
   private renderSelectedSpecialAbility(selected: GeneratorSpecialAbilitySelection): string {
     const definition = getGeneratorSpecialAbilityDefinition(selected.id);
     if (!definition) return "";
     const variable = "variableCost" in definition && definition.variableCost;
     return `<div class="generator-selected-trait">
-      <div><strong>${escapeHtml(definition.name)}</strong><small>${generatorSpecialAbilityCost(selected) || "?"} AP · ${definition.sourceShortLabel}</small></div>
+      <div class="generator-selected-trait__title"><span><strong>${escapeHtml(definition.name)}</strong><small>${generatorSpecialAbilityCost(selected) || "?"} AP · ${definition.sourceShortLabel}</small></span>${this.renderSpecialAbilityInfo(definition)}</div>
       ${definition.maxLevel > 1 ? `<label><span>Stufe</span><input data-generator-selected-sa="${selected.id}" data-field="level" type="number" min="1" max="${definition.maxLevel}" value="${selected.level}" /></label>` : ""}
       ${variable ? `<label class="generator-trait-variant"><span>Ausprägung</span><input data-generator-selected-sa="${selected.id}" data-field="variant" type="text" value="${escapeHtml(selected.variant)}" placeholder="Auswahl eintragen" /></label><label><span>AP-Wert</span><input data-generator-selected-sa="${selected.id}" data-field="cost" type="number" min="0" value="${selected.costOverride || ("suggestedCost" in definition ? definition.suggestedCost : "")}" placeholder="0" /></label>` : ""}
       <button data-generator-remove-sa="${selected.id}" title="Entfernen">×</button>
@@ -306,7 +333,7 @@ export class CharacterGeneratorUI {
       && (!search || normalizeSearch(`${entry.name} ${entry.category} ${entry.sourceLabel}`).includes(search))).slice(0, 36);
     return `<section class="generator-page">
       <p class="eyebrow">Schritt 8</p><h2>Sonderfertigkeiten ergänzen</h2>
-      <p class="generator-lead">${GRW_SPECIAL_ABILITIES.length} allgemeine, Kampf- und Magie-Sonderfertigkeiten aus den fünf Regelbänden sind hinterlegt. Bereits im Professionspaket enthaltene Einträge werden automatisch übernommen.</p>
+      <p class="generator-lead">${GRW_SPECIAL_ABILITIES.length} allgemeine, Kampf- und Magie-Sonderfertigkeiten aus den eingebundenen Quellen sind hinterlegt. Bereits im Professionspaket enthaltene Einträge werden automatisch übernommen. Das <b>i</b> zeigt eine Kurzinfo und führt zum passenden Regelwiki-Eintrag.</p>
       <div class="generator-filter-row">
         <label class="generator-search"><span>Sonderfertigkeit suchen</span><input id="generator-sa-search" type="search" value="${escapeHtml(this.specialAbilitySearch)}" placeholder="z. B. Abrichter, Finte, Zauberstil …" /></label>
         <label class="generator-field"><span>Bereich</span><select id="generator-sa-category"><option value="all">Alle Bereiche</option>${categories.map((entry) => `<option value="${entry}" ${this.specialAbilityCategory === entry ? "selected" : ""}>${entry}</option>`).join("")}</select></label>
@@ -315,8 +342,8 @@ export class CharacterGeneratorUI {
       <div class="generator-special-abilities-layout">
         <div class="generator-trait-results">${filtered.map((entry) => {
           const already = selectedIds.has(entry.id);
-          const cost = "costPerLevel" in entry ? `${entry.costPerLevel} AP${entry.maxLevel > 1 ? "/Stufe" : ""}` : "AP/Ausprägung eintragen";
-          return `<button data-generator-add-sa="${entry.id}" ${already ? "disabled" : ""}><span><strong>${escapeHtml(entry.name)}</strong><small>${entry.category} · ${entry.sourceShortLabel} S. ${entry.page} · ${cost}</small></span><b>${already ? "✓" : "+"}</b></button>`;
+          const cost = this.specialAbilityCostLabel(entry);
+          return `<article class="generator-sa-result"><button data-generator-add-sa="${entry.id}" ${already ? "disabled" : ""}><span><strong>${escapeHtml(entry.name)}</strong><small>${entry.category} · ${entry.sourceShortLabel} S. ${entry.page} · ${cost}</small></span><b>${already ? "✓" : "+"}</b></button>${this.renderSpecialAbilityInfo(entry)}</article>`;
         }).join("") || `<div class="empty-state">Keine Sonderfertigkeit gefunden.</div>`}</div>
         <div class="generator-selected-traits"><h3>Gewählt (${this.draft.specialAbilities.length})</h3>${this.draft.specialAbilities.map((entry) => this.renderSelectedSpecialAbility(entry)).join("") || `<div class="empty-state">Noch keine zusätzlichen Sonderfertigkeiten gewählt.</div>`}</div>
       </div>
@@ -573,6 +600,7 @@ export class CharacterGeneratorUI {
     });
     bindValue("#generator-sa-source", (value) => { this.specialAbilitySource = value; });
     bindValue("#generator-sa-category", (value) => { this.specialAbilityCategory = value; });
+    attachSpecialAbilityInfoListeners();
     document.querySelectorAll<HTMLButtonElement>("[data-generator-add-sa]").forEach((button) => button.addEventListener("click", () => {
       const id = button.dataset.generatorAddSa;
       if (!id || this.draft.specialAbilities.some((entry) => entry.id === id)) return;
