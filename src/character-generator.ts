@@ -1,16 +1,21 @@
 import { ATTRIBUTES, COMBAT_TECHNIQUES, COMBAT_TECHNIQUE_RULES, TALENTS, suggestInventoryGroup } from "./data";
-import { DARKAID_ITEM_DATA, DARKAID_MAGIC_BY_SOURCE_ID } from "./darkaid-data";
+import { DARKAID_MAGIC_BY_SOURCE_ID } from "./darkaid-data";
+import { ARMORY_ITEM_CATALOG, COMPLETE_ARMORY_ITEM_INFO } from "./armory-catalog";
 import { GRW_CHARACTER_DATA } from "./grw-character-data";
 import { improvementCostForTarget } from "./advancement";
 import { createManualState, getAttributeValues } from "./importer";
 import { getDefaultPrimaryWeaponId } from "./combat";
+import { AVAILABLE_EQUIPMENT_PACKAGES, EQUIPMENT_PACKAGE_BY_ID, EQUIPMENT_PACKAGES } from "./equipment-package-data";
+import { ALL_SPELLS, normalizeMagicName } from "./spell-catalog";
 import type {
   AttributeCode,
   BiographyTrait,
   CharacterSheetState,
   CombatItemKind,
+  ImprovementCost,
   ManualSpecies,
   OptolithItem,
+  SpellDefinition,
 } from "./types";
 
 export type GeneratorTraitKind = "advantage" | "disadvantage";
@@ -34,7 +39,7 @@ export interface GeneratorPurchase {
   amount: number;
 }
 
-export type GeneratorShopCategory = "weapons" | "armor" | "equipment";
+export type GeneratorShopCategory = "weapons" | "armor" | "helmets" | "equipment";
 
 export interface GeneratorShopItem {
   catalogId: string;
@@ -42,6 +47,7 @@ export interface GeneratorShopItem {
   kindLabel: string;
   itemKind: CombatItemKind;
   item: Partial<OptolithItem> & { name: string; price: number };
+  info?: import("./armory-data").ArmoryItemInfo;
 }
 
 export interface GeneratorShoppingBalance {
@@ -70,6 +76,9 @@ export interface GeneratorDraft {
   advantages: GeneratorTraitSelection[];
   disadvantages: GeneratorTraitSelection[];
   specialAbilities: GeneratorSpecialAbilitySelection[];
+  talentIncreases: Record<string, number>;
+  magicallyGifted: boolean;
+  spellIncreases: Record<string, number>;
   purchases: GeneratorPurchase[];
 }
 
@@ -85,6 +94,8 @@ export interface GeneratorBalance {
   requiredDisadvantages: number;
   disadvantages: number;
   specialAbilities: number;
+  talents: number;
+  spells: number;
   spent: number;
   remaining: number;
   advantageLimit: number;
@@ -146,7 +157,8 @@ export const GENERATOR_STEPS = [
   "Profession",
   "Vor- & Nachteile",
   "Sonderfertigkeiten",
-  "Ausrüstung",
+  "Rüstkammer",
+  "Talente & Zauber",
   "Prüfen",
 ] as const;
 
@@ -159,17 +171,30 @@ export const GRW_ADVANTAGES = GRW_CHARACTER_DATA.advantages;
 export const GRW_DISADVANTAGES = GRW_CHARACTER_DATA.disadvantages;
 export const GRW_SPECIAL_ABILITIES = GRW_CHARACTER_DATA.specialAbilities;
 export const GENERATOR_SOURCES = GRW_CHARACTER_DATA.sources;
+export { AVAILABLE_EQUIPMENT_PACKAGES, EQUIPMENT_PACKAGES };
+
+const isGeneratorImprovementCost = (value: string): value is ImprovementCost => ["A", "B", "C", "D"].includes(value);
+
+/** Zauber mit vollständigem Steigerungsfaktor; nicht steigerbare Platzhalter bleiben außen vor. */
+export const GENERATOR_SPELLS: readonly SpellDefinition[] = ALL_SPELLS
+  .filter((definition) => isGeneratorImprovementCost(definition.improvementCost));
+
+const generatorSpellById = Object.fromEntries(GENERATOR_SPELLS.map((entry) => [entry.id, entry])) as Record<string, SpellDefinition>;
+const generatorSpellByName = Object.fromEntries(GENERATOR_SPELLS.map((entry) => [normalizeMagicName(entry.name), entry])) as Record<string, SpellDefinition>;
+
+export const getGeneratorSpellDefinition = (id: string): SpellDefinition | undefined => generatorSpellById[id];
 
 const shopKind = (catalogId: string): Pick<GeneratorShopItem, "category" | "kindLabel" | "itemKind"> | undefined => {
   if (catalogId.startsWith("meleeweapon:")) return { category: "weapons", kindLabel: "Nahkampfwaffe", itemKind: "melee" };
   if (catalogId.startsWith("rangedweapon:")) return { category: "weapons", kindLabel: "Fernkampfwaffe", itemKind: "ranged" };
   if (catalogId.startsWith("shield:")) return { category: "weapons", kindLabel: "Schild", itemKind: "shield" };
   if (catalogId.startsWith("armor:")) return { category: "armor", kindLabel: "Rüstung", itemKind: "armor" };
+  if (catalogId.startsWith("helmet:")) return { category: "helmets", kindLabel: "Helm", itemKind: "helmet" };
   if (catalogId.startsWith("equipment:")) return { category: "equipment", kindLabel: "Ausrüstung", itemKind: "equipment" };
   return undefined;
 };
 
-export const GENERATOR_SHOP_ITEMS: readonly GeneratorShopItem[] = Object.entries(DARKAID_ITEM_DATA)
+export const GENERATOR_SHOP_ITEMS: readonly GeneratorShopItem[] = Object.entries(ARMORY_ITEM_CATALOG)
   .flatMap(([catalogId, item]) => {
     const kind = shopKind(catalogId);
     const name = typeof item.name === "string" ? item.name.trim() : "";
@@ -179,6 +204,7 @@ export const GENERATOR_SHOP_ITEMS: readonly GeneratorShopItem[] = Object.entries
       catalogId,
       ...kind,
       item: { ...item, name, price },
+      info: COMPLETE_ARMORY_ITEM_INFO[catalogId],
     }];
   })
   .sort((a, b) => a.item.name.localeCompare(b.item.name, "de"));
@@ -251,6 +277,9 @@ export const createGeneratorDraft = (): GeneratorDraft => {
     advantages: [],
     disadvantages: [],
     specialAbilities: [],
+    talentIncreases: {},
+    magicallyGifted: false,
+    spellIncreases: {},
     purchases: [],
   };
   normalizeGeneratorDraft(draft);
@@ -271,6 +300,95 @@ export const getGeneratorCulture = (draft: GeneratorDraft): Culture =>
 
 export const getGeneratorProfession = (draft: GeneratorDraft): Profession =>
   professionById[draft.professionId] ?? EMPTY_PROFESSION;
+
+export const isGeneratorMagicAutomatic = (draft: GeneratorDraft): boolean =>
+  getGeneratorProfession(draft).magical === true || getGeneratorSpecies(draft).id === "elfen";
+
+export const isGeneratorMagicallyGifted = (draft: GeneratorDraft): boolean =>
+  Boolean(draft.magicallyGifted) || isGeneratorMagicAutomatic(draft);
+
+const canonicalProfessionSpell = (sourceId: string): SpellDefinition | undefined => {
+  const sourceDefinition = DARKAID_MAGIC_BY_SOURCE_ID[sourceId];
+  if (!sourceDefinition) return undefined;
+  return generatorSpellByName[normalizeMagicName(sourceDefinition.name)];
+};
+
+export const getGeneratorBaseSpellValues = (draft: GeneratorDraft): Record<string, number> => {
+  const values: Record<string, number> = {};
+  for (const entry of getGeneratorProfession(draft).spells) {
+    const definition = canonicalProfessionSpell(entry.id);
+    if (definition) values[definition.id] = Math.max(values[definition.id] ?? 0, entry.level);
+  }
+  return values;
+};
+
+export const getGeneratorSpellValue = (draft: GeneratorDraft, spellId: string): number => {
+  const base = getGeneratorBaseSpellValues(draft)[spellId] ?? 0;
+  return Math.max(base, Number(draft.spellIncreases?.[spellId]) || 0);
+};
+
+export const getGeneratorSpellCount = (draft: GeneratorDraft): number => new Set([
+  ...Object.keys(getGeneratorBaseSpellValues(draft)),
+  ...Object.keys(draft.spellIncreases ?? {}),
+]).size;
+
+export const generatorSpellCostFor = (draft: GeneratorDraft, spellId: string): number => {
+  const definition = generatorSpellById[spellId];
+  if (!definition || !isGeneratorImprovementCost(definition.improvementCost)) return 0;
+  const base = getGeneratorBaseSpellValues(draft)[spellId] ?? 0;
+  const manuallyActivated = Object.prototype.hasOwnProperty.call(draft.spellIncreases ?? {}, spellId);
+  const target = Math.max(base, Math.trunc(Number(draft.spellIncreases?.[spellId]) || 0));
+  let cost = base === 0 && manuallyActivated ? improvementCostForTarget(definition.improvementCost, 1) : 0;
+  for (let value = base + 1; value <= target; value += 1) cost += improvementCostForTarget(definition.improvementCost, value);
+  return cost;
+};
+
+export const generatorSpellNextCost = (draft: GeneratorDraft, spellId: string): number => {
+  const definition = generatorSpellById[spellId];
+  if (!definition || !isGeneratorImprovementCost(definition.improvementCost)) return 0;
+  const base = getGeneratorBaseSpellValues(draft)[spellId] ?? 0;
+  const manuallyActivated = Object.prototype.hasOwnProperty.call(draft.spellIncreases ?? {}, spellId);
+  if (base === 0 && !manuallyActivated) return improvementCostForTarget(definition.improvementCost, 1);
+  return improvementCostForTarget(definition.improvementCost, getGeneratorSpellValue(draft, spellId) + 1);
+};
+
+export const generatorSpellCost = (draft: GeneratorDraft): number => Object.keys(draft.spellIncreases ?? {})
+  .reduce((sum, spellId) => sum + generatorSpellCostFor(draft, spellId), 0);
+
+export const getGeneratorBaseTalentValues = (draft: GeneratorDraft): Record<string, number> => {
+  const values = Object.fromEntries(TALENTS.map((entry) => [entry.id, 0])) as Record<string, number>;
+  const culture = getGeneratorCulture(draft);
+  const profession = getGeneratorProfession(draft);
+  if (draft.useCulturePackage) {
+    for (const entry of culture.packageSkills) {
+      const id = GRW_CHARACTER_DATA.skillIds[entry.id as keyof typeof GRW_CHARACTER_DATA.skillIds];
+      if (id) values[id] = (values[id] ?? 0) + entry.level;
+    }
+  }
+  for (const entry of profession.skills) {
+    const id = GRW_CHARACTER_DATA.skillIds[entry.id as keyof typeof GRW_CHARACTER_DATA.skillIds];
+    if (id) values[id] = (values[id] ?? 0) + entry.level;
+  }
+  return values;
+};
+
+export const getGeneratorTalentValue = (draft: GeneratorDraft, talentId: string): number => {
+  const base = getGeneratorBaseTalentValues(draft)[talentId] ?? 0;
+  return Math.max(base, Number(draft.talentIncreases?.[talentId]) || base);
+};
+
+export const generatorTalentCostFor = (draft: GeneratorDraft, talentId: string, targetValue?: number): number => {
+  const definition = TALENTS.find((entry) => entry.id === talentId);
+  if (!definition) return 0;
+  const base = getGeneratorBaseTalentValues(draft)[talentId] ?? 0;
+  const target = Math.max(base, Math.trunc(targetValue ?? getGeneratorTalentValue(draft, talentId)));
+  let cost = 0;
+  for (let value = base + 1; value <= target; value += 1) cost += improvementCostForTarget(definition.improvementCost, value);
+  return cost;
+};
+
+export const generatorTalentCost = (draft: GeneratorDraft): number => Object.keys(draft.talentIncreases ?? {})
+  .reduce((sum, talentId) => sum + generatorTalentCostFor(draft, talentId), 0);
 
 const choiceKey = (profession: Profession, choiceId: string): string => `${profession.id}:${choiceId}`;
 
@@ -310,6 +428,27 @@ export const normalizeGeneratorDraft = (draft: GeneratorDraft): void => {
     if (!changed) break;
   }
   const profession = getGeneratorProfession(draft);
+  const baseTalents = getGeneratorBaseTalentValues(draft);
+  const normalizedTalentIncreases: Record<string, number> = {};
+  for (const [talentId, rawTarget] of Object.entries(draft.talentIncreases ?? {})) {
+    if (!TALENTS.some((entry) => entry.id === talentId)) continue;
+    const base = baseTalents[talentId] ?? 0;
+    const target = Math.max(base, Math.min(experience.skillmaximum, Math.trunc(Number(rawTarget) || base)));
+    if (target > base) normalizedTalentIncreases[talentId] = target;
+  }
+  draft.talentIncreases = normalizedTalentIncreases;
+  draft.magicallyGifted = Boolean(draft.magicallyGifted);
+  const baseSpells = getGeneratorBaseSpellValues(draft);
+  const normalizedSpellIncreases: Record<string, number> = {};
+  if (isGeneratorMagicallyGifted(draft)) {
+    for (const [spellId, rawTarget] of Object.entries(draft.spellIncreases ?? {})) {
+      if (!generatorSpellById[spellId]) continue;
+      const base = baseSpells[spellId] ?? 0;
+      const target = Math.max(base, Math.min(experience.skillmaximum, Math.trunc(Number(rawTarget) || 0)));
+      if (base === 0 || target > base) normalizedSpellIncreases[spellId] = target;
+    }
+  }
+  draft.spellIncreases = normalizedSpellIncreases;
   for (const choice of profession.combatChoices) {
     const key = choiceKey(profession, choice.id);
     const allowed = new Set(choice.options.map((entry) => entry.id));
@@ -360,6 +499,40 @@ export const calculateGeneratorShopping = (draft: GeneratorDraft): GeneratorShop
   };
 };
 
+export const getEquipmentPackageBalance = (packageId: string): Pick<GeneratorShoppingBalance, "spentSilver" | "itemCount" | "totalWeight"> | undefined => {
+  const definition = EQUIPMENT_PACKAGE_BY_ID[packageId];
+  if (!definition || definition.unavailableReason) return undefined;
+  let spentSilver = 0;
+  let itemCount = 0;
+  let totalWeight = 0;
+  for (const packageItem of definition.items) {
+    const shopItem = shopItemById[packageItem.catalogId];
+    if (!shopItem) continue;
+    spentSilver += shopItem.item.price * packageItem.amount;
+    totalWeight += Number(shopItem.item.weight ?? 0) * packageItem.amount;
+    itemCount += packageItem.amount;
+  }
+  return {
+    spentSilver: Math.round(spentSilver * 100) / 100,
+    itemCount,
+    totalWeight: Math.round(totalWeight * 1000) / 1000,
+  };
+};
+
+export const addEquipmentPackageToDraft = (draft: GeneratorDraft, packageId: string): boolean => {
+  const definition = EQUIPMENT_PACKAGE_BY_ID[packageId];
+  const packageBalance = getEquipmentPackageBalance(packageId);
+  if (!definition || !packageBalance || packageBalance.spentSilver > calculateGeneratorShopping(draft).remainingSilver + 0.0001) return false;
+  for (const packageItem of definition.items) {
+    if (!shopItemById[packageItem.catalogId]) continue;
+    const existing = draft.purchases.find((entry) => entry.catalogId === packageItem.catalogId);
+    if (existing) existing.amount += packageItem.amount;
+    else draft.purchases.push({ ...packageItem });
+  }
+  normalizeGeneratorDraft(draft);
+  return true;
+};
+
 const purseFromSilver = (silver: number): Partial<Record<"d" | "s" | "h" | "k", string>> => {
   let kreuzer = Math.max(0, Math.round(silver * 100));
   const d = Math.floor(kreuzer / 1000);
@@ -378,7 +551,7 @@ const buildPurchasedItems = (draft: GeneratorDraft): Record<string, OptolithItem
     const shopItem = shopItemById[purchase.catalogId];
     if (!shopItem) return [];
     const id = generatorItemId(purchase.catalogId);
-    const fallbackGroup = shopItem.itemKind === "armor" ? 4 : shopItem.itemKind === "ranged" ? 2 : shopItem.itemKind === "equipment" ? 7 : 1;
+    const fallbackGroup = shopItem.itemKind === "armor" || shopItem.itemKind === "helmet" ? 4 : shopItem.itemKind === "ranged" ? 2 : shopItem.itemKind === "equipment" ? 7 : 1;
     const group = shopItem.itemKind === "equipment"
       ? suggestInventoryGroup(shopItem.item.name, Number(shopItem.item.gr ?? fallbackGroup))
       : fallbackGroup;
@@ -504,6 +677,8 @@ export const calculateGeneratorBalance = (draft: GeneratorDraft): GeneratorBalan
   const requiredAdvantageLimit = required.advantages.reduce((sum, entry) => sum + entry.cost, 0);
   const requiredDisadvantageLimit = required.disadvantages.reduce((sum, entry) => sum + entry.cost, 0);
   const specialAbilities = draft.specialAbilities.reduce((sum, entry) => sum + generatorSpecialAbilityCost(entry), 0);
+  const talents = generatorTalentCost(draft);
+  const spells = isGeneratorMagicallyGifted(draft) ? generatorSpellCost(draft) : 0;
   const breakdown = {
     budget: experience.ap,
     species: species.ap,
@@ -516,9 +691,11 @@ export const calculateGeneratorBalance = (draft: GeneratorDraft): GeneratorBalan
     requiredDisadvantages: 0,
     disadvantages,
     specialAbilities,
+    talents,
+    spells,
   };
   const spent = breakdown.species + breakdown.attributes + breakdown.culture + breakdown.profession
-    + advantages + disadvantages + specialAbilities;
+    + advantages + disadvantages + specialAbilities + talents + spells;
   return {
     ...breakdown,
     spent,
@@ -547,6 +724,29 @@ export const validateGeneratorDraft = (draft: GeneratorDraft): GeneratorValidati
   if (balance.remaining < 0) errors.push(`Es fehlen ${Math.abs(balance.remaining)} AP.`);
   if (balance.advantageLimit > 80) errors.push("Für Vorteile dürfen höchstens 80 AP ausgegeben werden.");
   if (balance.disadvantageLimit > 80) errors.push("Aus Nachteilen dürfen höchstens 80 AP gewonnen werden.");
+  for (const talent of TALENTS) {
+    const value = getGeneratorTalentValue(draft, talent.id);
+    if (value > experience.skillmaximum) errors.push(`${talent.name} darf bei diesem Erfahrungsgrad höchstens ${experience.skillmaximum} erreichen.`);
+  }
+  if (isGeneratorMagicallyGifted(draft)) {
+    const spellCount = getGeneratorSpellCount(draft);
+    if (spellCount > experience.maxnumberofspellsliturgies) {
+      errors.push(`Bei diesem Erfahrungsgrad dürfen höchstens ${experience.maxnumberofspellsliturgies} Zauber und Rituale aktiviert sein.`);
+    }
+    for (const spellId of new Set([...Object.keys(getGeneratorBaseSpellValues(draft)), ...Object.keys(draft.spellIncreases)])) {
+      const definition = generatorSpellById[spellId];
+      const value = getGeneratorSpellValue(draft, spellId);
+      if (definition && value > experience.skillmaximum) {
+        errors.push(`${definition.name} darf bei diesem Erfahrungsgrad höchstens FW ${experience.skillmaximum} erreichen.`);
+      }
+    }
+    const hasWizardAdvantage = getGeneratorSpecies(draft).id === "elfen"
+      || profession.requiredAdvantages.some((entry) => entry.id === "zauberer")
+      || draft.advantages.some((entry) => entry.id === "zauberer");
+    if (draft.magicallyGifted && !hasWizardAdvantage) {
+      warnings.push("Für eine frei gewählte magische Begabung fehlen noch der Vorteil „Zauberer“ und eine passende magische Tradition.");
+    }
+  }
   if (balance.remaining > 10) warnings.push(`${balance.remaining} AP sind noch nicht verteilt. Nach Regelwerk dürfen höchstens 10 AP übrig bleiben.`);
   const shopping = calculateGeneratorShopping(draft);
   if (shopping.remainingSilver < 0) errors.push(`Für den Einkauf fehlen ${Math.abs(shopping.remainingSilver).toLocaleString("de-DE")} Silbertaler.`);
@@ -649,9 +849,9 @@ export const buildGeneratedCharacter = (draft: GeneratorDraft): CharacterSheetSt
   const culture = getGeneratorCulture(draft);
   const profession = getGeneratorProfession(draft);
   const required = getRequiredProfessionComponents(draft);
-  const magical = profession.magical === true || species.id === "elfen";
+  const magical = isGeneratorMagicallyGifted(draft);
   const sheet = createManualState(draft.name, { species: manualSpeciesFor(species.id), magical });
-  sheet.hero.clientVersion = "Regelwerksgenerator 0.14";
+  sheet.hero.clientVersion = "Regelwerksgenerator 0.18.0";
   sheet.hero.el = experience.id;
   sheet.hero.rv = race.id;
   sheet.hero.c = culture.id;
@@ -671,6 +871,9 @@ export const buildGeneratedCharacter = (draft: GeneratorDraft): CharacterSheetSt
     const id = GRW_CHARACTER_DATA.skillIds[entry.id as keyof typeof GRW_CHARACTER_DATA.skillIds];
     if (id) sheet.hero.talents[id] = (sheet.hero.talents[id] ?? 0) + entry.level;
   }
+  for (const [talentId, target] of Object.entries(draft.talentIncreases)) {
+    if (talentId in sheet.hero.talents) sheet.hero.talents[talentId] = Math.max(sheet.hero.talents[talentId] ?? 0, target);
+  }
   sheet.hero.ct = Object.fromEntries(Object.keys(COMBAT_TECHNIQUES).map((id) => [id, 6]));
   for (const entry of selectedCombat(draft, profession)) {
     const id = GRW_CHARACTER_DATA.combatIds[entry.id as keyof typeof GRW_CHARACTER_DATA.combatIds];
@@ -678,9 +881,12 @@ export const buildGeneratedCharacter = (draft: GeneratorDraft): CharacterSheetSt
   }
   sheet.hero.spells = {};
   for (const entry of profession.spells) {
-    const definition = DARKAID_MAGIC_BY_SOURCE_ID[entry.id];
+    const definition = canonicalProfessionSpell(entry.id) ?? DARKAID_MAGIC_BY_SOURCE_ID[entry.id];
     const id = definition?.id ?? `DARKAID_SPELL_${entry.id}`;
     sheet.hero.spells[id] = entry.level;
+  }
+  for (const [spellId, target] of Object.entries(draft.spellIncreases)) {
+    if (generatorSpellById[spellId]) sheet.hero.spells[spellId] = Math.max(sheet.hero.spells[spellId] ?? 0, target);
   }
   sheet.hero.cantrips = profession.spellSelections.flatMap((choice) =>
     (draft.spellChoices[choiceKey(profession, choice.id)] ?? []).map((id) => `DARKAID_CANTRIP_${id}`));

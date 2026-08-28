@@ -3,6 +3,34 @@
 Ein eigenständig gestalteter, interaktiver DSA-5-Heldenbogen als Owlbear-Rodeo-Erweiterung.
 Der aktuelle Prototyp importiert Optolith-JSON-Dateien der Version 1.5.x und TDC-Helden aus The Dark Aid X.
 
+## Version 0.18.0 – Magiebegabung und Zaubersteigerung
+
+Im ersten Generatorschritt lässt sich jetzt festlegen, ob der Held magisch begabt ist. Elfische Herkünfte und magische Professionen aktivieren diese Einstellung automatisch. Nur bei wirksamer Magiebegabung erweitert sich der vorletzte Reiter zu **Talente & Zauber**: enthaltene Professionszauber können von ihrem Startwert aus gesteigert, weitere Zauber und Rituale aus dem vollständigen Katalog gesucht, aktiviert und anschließend erhöht werden. AP-Kosten, Fertigkeitswert-Maximum und die erlaubte Anzahl aktivierter Zauber des Erfahrungsgrads werden live geprüft.
+
+In der Rüstkammer erscheinen nur noch die sechs Ausrüstungspakete, für die eine vollständige kaufbare Inhaltsliste vorliegt. Die vier leeren Regelwiki-Verweise werden nicht mehr als funktionslose Karten angezeigt.
+
+## Version 0.17.2 – adaptive Reiter nach Safari-Prinzip
+
+Die Schrittleiste passt sich jetzt ohne horizontales Scrollen an die verfügbare Fensterbreite an. Wie bei einer kompakten Safari-Tableiste wird der aktive Schritt breiter und zeigt Nummer sowie Bezeichnung; die übrigen Schritte ziehen sich bei wenig Platz auf ihre nummerierten Kreise zusammen. Im breiten Direktstart werden alle Bezeichnungen eingeblendet. Eine leicht transparente, abgerundete Darstellung mit klar hervorgehobenem aktivem Tab sorgt für eine ruhige, zusammenhängende Oberfläche.
+
+## Version 0.17.1 – überlappende Schrittleiste
+
+Die zehn Reiter des Charaktergenerators bilden nun eine überlappende, horizontal fortlaufende Schrittfolge. Jeder Reiter besitzt einen deutlich sichtbaren nummerierten Kreis; erledigte, aktuelle und kommende Schritte sind farblich unterscheidbar. In schmalen Owlbear- und iPad-Fenstern bleibt die Beschriftung erhalten, die Leiste lässt sich seitlich scrollen und zentriert den aktuellen Schritt automatisch.
+
+## Version 0.17.0 – Talentsteigerung und Ausrüstungspakete
+
+Der Charaktergenerator besitzt direkt vor dem Prüfschritt einen neuen Reiter **Talente steigern**. Er startet bei den bereits aus Kultur und Profession übernommenen Fertigkeitswerten, berechnet nur die zusätzlich gewählten Punkte nach der jeweiligen Steigerungsspalte und beachtet das Talentmaximum des Erfahrungsgrads. Die AP werden sofort vom gemeinsamen Konto abgezogen und die Zielwerte in den erzeugten Heldenbogen übernommen.
+
+In der Rüstkammer lassen sich sechs vollständig hinterlegte Ausrüstungspakete mit einem Klick kaufen: **Abenteurerpaket, Adligenpaket, Höhlenforscherpaket, Reisepaket, Stadtpaket** und **Wildnispaket**. Die enthaltenen Gegenstände landen einzeln im Warenkorb und bleiben dort bearbeitbar. Bürger-, Geweihten-, Hexen- und Magierpaket werden ebenfalls aufgeführt, aber klar als noch nicht kaufbar gekennzeichnet, solange ihre verlinkten Regelwiki-Detailseiten keine Inhaltslisten veröffentlichen. Der Info-Knopf steht im normalen Rüstkammerkatalog nun einheitlich direkt rechts neben **Kaufen**.
+
+## Version 0.16.0 – Helme, neues Info-Symbol und Druckvorbereitung
+
+Die Rüstkammer enthält nun alle 16 Helme der aktuellen Regelwiki-Übersicht als eigene Kategorie. Helme werden mit Rüstungstyp, Kopf-RS, Preis, Gewicht, Vorteil, Nachteil, Zusatzregel, Quelle und direktem Regelwiki-Link angezeigt und getrennt von Ganzkörperrüstungen in den Heldenbogen übernommen. Das bisher gezeichnete `i` wurde überall durch das gewünschte Bildsymbol ersetzt. Ein zentrales Grafikregister und ein versioniertes Druckdatenmodell bereiten zusätzliche Gestaltungselemente und einen späteren druckbaren Heldenbogen vor; eine Druckschaltfläche ist bewusst noch nicht aktiviert.
+
+## Version 0.15.0 – Rüstkammer mit Regelwiki-Informationen
+
+Der bisherige Ausrüstungsschritt heißt jetzt **Rüstkammer**. Mehr als 1.500 kaufbare Waffen, Schilde, Rüstungen und Ausrüstungsgegenstände sind durchsuchbar. Ein kreisrunder **i-Knopf** zeigt alle vorhandenen Spielwerte, Preis, Gewicht, Herstellungskomplexität, besondere Regelmerkmale sowie Quelle und Seite. Zusätzlich führen Links zur passenden Suche und zur jeweiligen Übersicht im offiziellen DSA-Regelwiki. Dieselben Informationen stehen auch bei der Waffen- und Rüstungssuche im fertigen Heldenbogen zur Verfügung. Die Darstellung des Info-Knopfs wurde für Safari, Maus und Touch korrigiert.
+
 ## Version 0.14.0 – Regelwiki-Infos für Sonderfertigkeiten
 
 Im Generator besitzt jede Sonderfertigkeit jetzt einen kleinen **i-Knopf**. Am Mac öffnet sich die Kurzinfo beim Darüberfahren mit der Maus; per Klick bleibt sie geöffnet. Auf iPad und anderen Touch-Geräten öffnet sie sich durch Antippen. Das Fenster zeigt eine kompakte Wirkungsinformation, Voraussetzungen, AP-Kosten beziehungsweise Stufenkosten, Kategorie, Quelle und Seite sowie einen Link zur Suche im offiziellen DSA-Regelwiki. Für 1.237 der 1.243 Sonderfertigkeiten ist eine Kurzbeschreibung und für 1.031 eine strukturierte Voraussetzungsliste verfügbar. Gestaffelte Kosten wie bei **Finte I–III** werden nun ebenfalls korrekt berechnet.
@@ -25,9 +53,15 @@ Auf der Startseite kann ein neuer Held nach dem DSA5-Grundregelwerk (dritte Aufl
 
 ## Enthaltene Funktionen
 
-- geführter Charaktergenerator mit 564 Professionspaketen und Varianten aus 35 Quellen
+- geführter Charaktergenerator in zehn Schritten mit 564 Professionspaketen und Varianten aus 35 Quellen
+- Magiebegabung im Konzept wählen; elfische Herkunft und magische Professionen werden automatisch erkannt
+- gemeinsamer Schritt für Talente und über 400 steigerbare Zauber/Rituale mit Aktivierung, AP-Kosten und Erfahrungsgrad-Grenzen
+- Talentsteigerung mit Ausgangswerten aus Kultur und Profession, AP-Kosten und Erfahrungsgrad-Maximum
 - Generatorentwurf mit **Neu beginnen** vollständig und nach Sicherheitsabfrage zurücksetzen
-- abschließender Ausrüstungseinkauf mit mehr als 1.500 bepreisten Inventar-, Waffen-, Schild- und Rüstungseinträgen
+- abschließende Rüstkammer mit mehr als 1.500 bepreisten Inventar-, Waffen-, Schild-, Helm- und Rüstungseinträgen
+- sechs kaufbare Ausrüstungspakete mit einzeln aufgelöstem Warenkorbinhalt; leere Pakete werden ausgeblendet
+- 16 Helme als eigener Bereich mit Kopf-RS und kompakten Regelwiki-Informationen
+- bildbasierte Info-Schaltflächen mit Werten, Quelle, Seite und Regelwiki-Link in Rüstkammer und Kampfmenü
 - Startkapital, Reich/Arm, Mengen, Ausgaben, Restgeld und Gesamtgewicht automatisch berechnen
 - gekaufte Waffen und Rüstungen mit TP, Kampftechnik, AT/PA, RS, BE und weiteren Katalogwerten in den Bogen übernehmen
 - Gruppen- und Quellenfilter für 564 Professionspakete sowie 1.243 allgemeine, Kampf- und Magie-Sonderfertigkeiten
@@ -59,8 +93,8 @@ Auf der Startseite kann ein neuer Held nach dem DSA5-Grundregelwerk (dritte Aufl
 - im manuellen Modus 541 unterschiedliche Zauber und Rituale aus dem gemeinsamen Optolith-/DarkAid-Katalog durchsuchen und mit einem Klick importieren
 - für 533 Katalogeinträge die hinterlegte 3W20-Probe anzeigen; Einträge ohne Quelldaten-Probe klar kennzeichnen
 - 97 Zaubertricks separat hinzufügen, bearbeiten und entfernen
-- Kampftechniken, Waffen und Rüstungen anzeigen
-- Waffen und Rüstungen über eine durchsuchbare Bibliothek aus dem integrierten DarkAid-Regelkatalog übernehmen oder frei anlegen
+- Kampftechniken, Waffen, Helme und Rüstungen anzeigen
+- Waffen, Helme und Rüstungen über eine durchsuchbare Bibliothek übernehmen oder frei anlegen
 - eine Primärwaffe auswählen und daraus AT/FK, PA und Ausweichen regelgerecht berechnen
 - Initiative mit Basiswert, Rüstungs- und Situationsmodifikator direkt im Kampfbereich würfeln; kontrastreiche Anzeige und gut sichtbarer Würfelknopf
 - nur für den GM sichtbarer Gruppenmonitor mit LeP, AsP, KaP, Schicksalspunkten, Eigenschaften sowie AT/FK, PA, AW und INI aller verbundenen Helden
@@ -80,9 +114,14 @@ Auf der Startseite kann ein neuer Held nach dem DSA5-Grundregelwerk (dritte Aufl
 - private Notizen speichern
 - einen kompakten Ressourcenstand mit einem Owlbear-Charaktertoken verknüpfen
 - Spielstand oder die ursprünglichen Optolith-/DarkAid-Daten wieder exportieren
+- vorbereitetes, versioniertes Druckdatenmodell mit getrennten Bereichen für Waffen, Rüstungen, Helme und Inventar
+- zentrales Grafikregister für künftige Porträts, Wappen, Rahmenelemente und Druckdekorationen
 
 Der vollständige Bogen wird im lokalen Browserspeicher abgelegt. Am verknüpften Token werden nur
 eine kleine Zusammenfassung, die aktuellen Ressourcen, Eigenschaften und Kampfgrundwerte gespeichert.
+
+Das verwendete Info-Symbol wurde über die vom Projektinhaber angegebene
+[Flaticon-Bildadresse](https://cdn-icons-png.flaticon.com/512/61/61093.png) eingebunden und wird für den Betrieb lokal mit ausgeliefert.
 
 Die Namenskataloge für Vor- und Nachteile verbinden die DarkAid-kompatiblen Kennungen mit den
 vollständigen Auswahllisten der offiziellen

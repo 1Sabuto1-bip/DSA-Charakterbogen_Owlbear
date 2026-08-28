@@ -149,10 +149,12 @@ export interface CarryingOverview {
 export const calculateCarryingOverview = (sheet: CharacterSheetState): CarryingOverview => {
   const items = Object.values(sheet.hero.belongings?.items ?? {});
   const inventoryWeight = items.reduce((sum, item) => sum + itemWeight(item.weight, item.amount), 0);
-  const equippedArmor = items.filter((item) =>
-    inferCombatItemKind(item) === "armor" && item.equipped !== false,
-  );
-  const ignoredArmorWeight = equippedArmor.reduce(
+  const equippedWearables = items.filter((item) => {
+    const kind = inferCombatItemKind(item);
+    return (kind === "armor" || kind === "helmet") && item.equipped !== false;
+  });
+  const equippedArmor = equippedWearables.filter((item) => inferCombatItemKind(item) === "armor");
+  const ignoredArmorWeight = equippedWearables.reduce(
     (sum, item) => sum + itemWeight(item.weight, item.amount),
     0,
   );

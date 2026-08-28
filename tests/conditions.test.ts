@@ -28,17 +28,18 @@ describe("conditions and carrying capacity", () => {
     expect(overview.cargoEncumbrance).toBe(1);
   });
 
-  it("does not count equipped armor twice and applies encumbrance reduction", () => {
+  it("does not count equipped armor or helmets twice and applies encumbrance reduction", () => {
     const state = createManualState("Arbosch", { species: "dwarf" });
     state.hero.attr.values.find((entry) => entry.id === "ATTR_8")!.value = 10;
     state.hero.belongings!.items = {
       pack: { id: "pack", name: "Gepäck", weight: 24, amount: 1, itemKind: "equipment" },
       armor: { id: "armor", name: "Kettenhemd", weight: 10, amount: 1, itemKind: "armor", enc: 2, equipped: true },
+      helmet: { id: "helmet", name: "Topfhelm", weight: 2.5, amount: 1, itemKind: "helmet", equipped: true },
     };
     state.runtime.conditions.encumbranceReduction = 1;
     const overview = calculateCarryingOverview(state);
-    expect(overview.inventoryWeight).toBe(34);
-    expect(overview.ignoredArmorWeight).toBe(10);
+    expect(overview.inventoryWeight).toBe(36.5);
+    expect(overview.ignoredArmorWeight).toBe(12.5);
     expect(overview.countedWeight).toBe(24);
     expect(overview.cargoEncumbrance).toBe(1);
     expect(overview.armorEncumbrance).toBe(2);

@@ -1,10 +1,76 @@
-DSA-CHARAKTERBOGEN – UPDATE 0.14.0
+DSA-CHARAKTERBOGEN – UPDATE 0.18.0
 =================================
 
-Dieser Stand baut auf Version 0.13.0 auf und ergänzt Regelwiki-Kurzinfos
-für die Sonderfertigkeiten des Charaktergenerators.
+Dieser Stand baut auf Version 0.17.2 auf und ergänzt die Magiebegabung sowie
+die Zaubersteigerung direkt im Charaktergenerator.
 
-Neu in 0.14.0:
+Neu in 0.18.0:
+- Auswahl "nicht magisch / magisch begabt" in Schritt 1 (Konzept)
+- elfische Herkunft und magische Professionen aktivieren Magiebegabung automatisch
+- der vorletzte Reiter heißt bei Magiebegabten "Talente & Zauber"
+- Professionszauber starten mit ihren enthaltenen Fertigkeitswerten
+- weitere Zauber und Rituale sind durchsuchbar, aktivierbar und steigerbar
+- Aktivierungs- und Steigerungskosten werden vom gemeinsamen AP-Konto abgezogen
+- Fertigkeitswert und Anzahl aktivierter Zauber folgen dem Erfahrungsgrad
+- bei nicht magisch Begabten bleibt der Zauberbereich vollständig ausgeblendet
+- leere Ausrüstungspakete werden in der Rüstkammer nicht mehr angezeigt
+- 76 erfolgreiche automatisierte Tests
+
+Bereits in 0.17.2:
+- adaptive Schrittleiste nach dem Prinzip der Safari-Tabs
+
+Enthalten in 0.17.2:
+- alle zehn Tabs passen sich gemeinsam an die verfügbare Breite an
+- keine horizontale Scrollleiste mehr
+- aktiver Tab wird automatisch breiter und zeigt Nummer plus Bezeichnung
+- inaktive Tabs werden bei wenig Platz zu kompakten nummerierten Kreisen
+- im breiten Direktstart erscheinen alle Bezeichnungen
+- Safari-inspirierte, leicht transparente und abgerundete Darstellung
+- vollständige Tastaturbeschriftung und Tooltips für kompakte Tabs
+- 73 erfolgreiche automatisierte Tests
+
+Bereits in 0.17.1:
+- überlappende Reiter als klar erkennbare Schrittfolge
+- nummerierte Kreise 1 bis 10 bleiben immer sichtbar
+- erledigte, aktuelle und kommende Schritte sind farblich unterscheidbar
+- Beschriftungen bleiben auch in schmalen Owlbear- und iPad-Fenstern erhalten
+- horizontales Scrollen statt zusammengedrückter oder fehlerhafter Reiter
+- der aktuelle Schritt wird automatisch in der Leiste zentriert
+- 73 erfolgreiche automatisierte Tests
+
+Bereits in 0.17.0:
+- neuer vorletzter Generator-Reiter "Talente steigern"
+- alle 59 Talente durchsuchbar und punktweise steigerbar
+- Ausgangswerte aus Kultur- und Professionspaket werden automatisch berücksichtigt
+- AP-Kosten nach Steigerungsspalte und Maximum des Erfahrungsgrads
+- Zielwerte und übrige AP werden in den fertigen Heldenbogen übernommen
+- sechs kaufbare Ausrüstungspakete: Abenteurer, Adlige, Höhlenforscher,
+  Reise, Stadt und Wildnis
+- Paketbestandteile werden einzeln in den Warenkorb gelegt und bleiben bearbeitbar
+- Bürger-, Geweihten-, Hexen- und Magierpaket sind sichtbar als derzeit ohne
+  veröffentlichte Regelwiki-Inhaltsliste gekennzeichnet
+- Info-Knopf im Rüstkammerkatalog einheitlich direkt rechts neben "Kaufen"
+- 73 erfolgreiche automatisierte Tests
+
+Bereits in 0.16.0:
+- alle 16 Helme der offiziellen Regelwiki-Übersicht als eigene Kategorie
+- Kopf-RS, Rüstungstyp, Preis, Gewicht, Vorteil, Nachteil und Zusatzregeln
+- Helme werden getrennt von Ganzkörperrüstungen in den Heldenbogen übernommen
+- das bisherige i-Zeichen wurde überall durch das gewünschte Bildsymbol ersetzt
+- zentrales Grafikregister für spätere Gestaltungselemente
+- versioniertes Druckdatenmodell für einen späteren druckbaren Heldenbogen
+- noch keine sichtbare Druckschaltfläche; das Layout kann später ergänzt werden
+
+Bereits in 0.15.0:
+- der Generator-Schritt "Ausrüstung" heißt jetzt "Rüstkammer"
+- über 1.500 kaufbare Waffen, Schilde, Rüstungen und Ausrüstungsgegenstände
+- Info-Knopf mit Preis, Gewicht, Kampf- und Rüstungswerten
+- Herstellungskomplexität, besondere Regelmerkmale, Quelle und Seite
+- direkte Links zur Regelwiki-Suche und zur passenden Rüstkammer-Übersicht
+- Infofenster auch in der Waffen- und Rüstungssuche des fertigen Heldenbogens
+- Info-Knopf wird in Safari zuverlässig als echter Kreis dargestellt
+
+Bereits in 0.14.0:
 - kleiner Info-Knopf neben jeder Sonderfertigkeit
 - Hover am Mac sowie Antippen/Klicken auf Touch-Geräten
 - Kurzbeschreibung, Voraussetzungen, AP-Kosten, Stufen, Quelle und Seite
@@ -26,7 +92,7 @@ Bereits in 0.13.0:
 Bereits enthalten:
 - sichtbarer Knopf "Neu beginnen" mit Sicherheitsabfrage
 - vollständiger Reset des Generatorentwurfs einschließlich Einkauf
-- neuer Generator-Schritt "Ausrüstung"
+- Generator-Schritt "Rüstkammer"
 - Suche und Filter für Inventar, Waffen, Schilde und Rüstungen
 - mehr als 1.500 kaufbare Einträge aus dem integrierten Ausrüstungskatalog
 - Startkapital 750 Silbertaler; Reich/Arm ändern es automatisch um 250 S je Stufe
@@ -43,7 +109,7 @@ Bereits enthalten:
 - Inventar, ausgerüstete Rüstung und zusätzliche Last werden getrennt berechnet
 - Tragkraftmodifikator, weitere Belastung und Belastungsreduktion einstellbar
 - Zustände und Tragkraft erscheinen im GM-Gruppenmonitor und auf der Kartenanzeige
-- Charaktergenerator in neun übersichtlichen Schritten
+- Charaktergenerator in zehn übersichtlichen Schritten
 - Erfahrungsgrad und regelgerechtes AP-Konto
 - Mensch, Halbelf, Elf und Zwerg mit passenden Eigenschaftsmaxima
 - 12 Herkunftsvarianten und 40 Kulturpakete
@@ -67,12 +133,12 @@ Bereits enthalten:
 - Stufe und freie Ausprägung eines Vor- oder Nachteils können bearbeitet werden
 - Einträge können hinzugefügt und entfernt werden
 - vorhandene Owlbear-Sicherungen werden beim Laden automatisch ergänzt
-- sichtbare Versionsnummer 0.14.0 zur Cache-Kontrolle
+- sichtbare Versionsnummer 0.18.0 zur Cache-Kontrolle
 
 UPLOAD
 ------
 1. Diese ZIP-Datei auf dem Mac doppelt anklicken.
-2. Den entpackten Ordner "github-update-v0.14.0" öffnen.
+2. Den entpackten Ordner "github-update-v0.18.0" öffnen.
 3. Im GitHub-Repository auf "Add file" und "Upload files" klicken:
    https://github.com/1Sabuto1-bip/DSA-Charakterbogen_Owlbear
 4. ALLE Inhalte des geöffneten Ordners in das Upload-Fenster ziehen.
@@ -88,7 +154,7 @@ OWLBEAR
 -------
 Nach dem Upload Owlbear vollständig neu laden. Falls noch eine andere Version
 erscheint, die Erweiterung im Profil entfernen und neu installieren mit:
-https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/manifest.json?v=0140
+https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/manifest.json?v=0180
 
 BEDIENUNG
 ---------
@@ -97,10 +163,19 @@ automatisch im Browser gespeichert. Nach dem letzten Prüfschritt wird der
 Held als normaler interaktiver Bogen geöffnet. Noch nicht ausgegebene AP
 können anschließend im Reiter "Steigern" verteilt werden.
 
-Im Schritt "Ausrüstung" Gegenstände suchen, nach Waffen/Rüstungen/Inventar
+Im vorletzten Generator-Reiter "Talente & Zauber" werden die Werte aus Kultur
+und Profession als Ausgangspunkt angezeigt. Mit Plus und Minus können weitere
+Punkte verteilt werden; AP-Konto und Höchstwert werden sofort geprüft. Der
+Zauberbereich erscheint nur, wenn in Schritt 1 Magiebegabung gewählt wurde oder
+Herkunft beziehungsweise Profession sie automatisch vorgeben.
+
+Im Schritt "Rüstkammer" Gegenstände suchen, nach Waffen/Rüstungen/Helmen/Inventar
 filtern und mit "Kaufen" in den Warenkorb legen. Der Generator verhindert
 Einkäufe über dem Startkapital. Mit "Neu beginnen" oben rechts lässt sich
 der gesamte Entwurf nach einer Sicherheitsabfrage zurücksetzen.
+
+Über "Ausrüstungspakete" lassen sich veröffentlichte Pakete vollständig in den
+Warenkorb übernehmen. Jeder Bestandteil bleibt danach einzeln änderbar.
 
 Nach dem Laden eines vorhandenen Helden den Reiter "Biografie" öffnen. Dort können
 Spezies, Kultur und Profession korrigiert sowie Vor- und Nachteile gesucht,

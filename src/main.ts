@@ -11,7 +11,8 @@ import {
   TALENT_BY_ID,
 } from "./data";
 import { CANTRIPS, SPELL_BY_ID } from "./magic-data";
-import { DARKAID_ITEM_DATA, DARKAID_MAGIC_BY_ID, DARKAID_MAGIC_BY_SOURCE_ID } from "./darkaid-data";
+import { DARKAID_MAGIC_BY_ID, DARKAID_MAGIC_BY_SOURCE_ID } from "./darkaid-data";
+import { ARMORY_ITEM_CATALOG, COMPLETE_ARMORY_ITEM_INFO } from "./armory-catalog";
 import { ALL_SPELLS, ALL_SPELL_BY_ID } from "./spell-catalog";
 import {
   BIOGRAPHY_CULTURES,
@@ -23,6 +24,7 @@ import { ensureHeroBiography, findBiographyEntry } from "./biography";
 import { CharacterGeneratorUI } from "./character-generator-ui";
 import { GRW_SPECIAL_ABILITIES } from "./character-generator";
 import { attachSpecialAbilityInfoListeners } from "./special-ability-info";
+import { renderInfoIcon } from "./ui-assets";
 import {
   combatTechniqueMaximum,
   improvementCostForTarget,
@@ -87,7 +89,7 @@ const root = document.querySelector<HTMLDivElement>("#app");
 if (!root) throw new Error("App container not found");
 
 const bridge = new OwlbearBridge();
-const APP_VERSION = "0.14.0";
+const APP_VERSION = "0.18.0";
 let state: CharacterSheetState | null = loadState();
 const generatorUI = new CharacterGeneratorUI();
 let generatorOpen = false;
@@ -123,8 +125,8 @@ const asNumber = (value: string, fallback = 0): number => {
 const formatNumber = (value: number): string =>
   new Intl.NumberFormat("de-DE", { maximumFractionDigits: 2 }).format(value);
 
-const COMBAT_CATALOG = Object.entries(DARKAID_ITEM_DATA)
-  .filter(([id]) => /^(meleeweapon|rangedweapon|shield|armor):/.test(id))
+const COMBAT_CATALOG = Object.entries(ARMORY_ITEM_CATALOG)
+  .filter(([id]) => /^(meleeweapon|rangedweapon|shield|armor|helmet):/.test(id))
   .map(([id, item]) => ({ id, item }))
   .sort((a, b) => (a.item.name ?? a.id).localeCompare(b.item.name ?? b.id, "de"));
 
@@ -159,16 +161,71 @@ const combatKindLabel = (kind: CombatItemKind): string => ({
   ranged: "Fernkampfwaffe",
   shield: "Schild",
   armor: "Rüstung",
+  helmet: "Helm",
   equipment: "Gegenstand",
 })[kind];
 
 const combatCatalogSummary = (item: Partial<OptolithItem>): string => {
   const kind = inferCombatItemKind(item as OptolithItem);
   if (kind === "armor") return `RS ${item.pro ?? 0} · BE ${item.enc ?? 0}`;
+  if (kind === "helmet") return `Kopf-RS ${item.zoneProtection ?? "–"} · ${item.armorType ?? "Helm"}`;
   const damage = `${item.damageDiceNumber ?? 1}W${item.damageDiceSides ?? 6}${Number(item.damageFlat ?? 0) >= 0 ? "+" : ""}${item.damageFlat ?? 0}`;
   const technique = COMBAT_TECHNIQUES[item.combatTechnique ?? ""] ?? "ohne Kampftechnik";
   if (kind === "ranged") return `${damage} TP · ${technique} · RW ${item.rangeShort ?? 0}/${item.rangeMedium ?? 0}/${item.rangeLong ?? 0}`;
   return `${damage} TP · ${technique} · AT/PA ${Number(item.at ?? 0) >= 0 ? "+" : ""}${item.at ?? 0}/${Number(item.pa ?? 0) >= 0 ? "+" : ""}${item.pa ?? 0}`;
+};
+
+const renderCombatArmoryInfo = (catalogId: string, item: Partial<OptolithItem>): string => {
+  const info = COMPLETE_ARMORY_ITEM_INFO[catalogId];
+  const kind = inferCombatItemKind(item as OptolithItem);
+  const facts: Array<[string, string]> = [
+    ["Art", combatKindLabel(kind)],
+    ...(typeof item.price === "number" ? [["Preis", `${formatNumber(item.price)} S`] as [string, string]] : []),
+    ...(typeof item.weight === "number" ? [["Gewicht", `${formatNumber(item.weight)} Stein`] as [string, string]] : []),
+    ...(item.damageDiceSides ? [["Trefferpunkte", `${item.damageDiceNumber ?? 1}W${item.damageDiceSides}${Number(item.damageFlat ?? 0) >= 0 ? "+" : ""}${item.damageFlat ?? 0}`] as [string, string]] : []),
+    ...(item.combatTechnique ? [["Kampftechnik", COMBAT_TECHNIQUES[item.combatTechnique] ?? item.combatTechnique] as [string, string]] : []),
+    ...(typeof item.at === "number" || typeof item.pa === "number" ? [["AT/PA-Modifikator", `${Number(item.at ?? 0) >= 0 ? "+" : ""}${item.at ?? 0} / ${Number(item.pa ?? 0) >= 0 ? "+" : ""}${item.pa ?? 0}`] as [string, string]] : []),
+    ...(typeof item.pro === "number" ? [["Rüstungsschutz", String(item.pro)] as [string, string]] : []),
+    ...(typeof item.enc === "number" ? [["Belastung", String(item.enc)] as [string, string]] : []),
+    ...(item.armorType ? [["Rüstungstyp", String(item.armorType)] as [string, string]] : []),
+    ...(item.armorZone ? [["Trefferzone", String(item.armorZone)] as [string, string]] : []),
+    ...(typeof item.zoneProtection === "number" ? [["RS der Zone", String(item.zoneProtection)] as [string, string]] : []),
+    ...(typeof item.movementPenalty === "number" ? [["GS-Modifikator", String(item.movementPenalty)] as [string, string]] : []),
+    ...(typeof item.initiativePenalty === "number" ? [["INI-Modifikator", String(item.initiativePenalty)] as [string, string]] : []),
+    ...(typeof item.reloadTime === "number" ? [["Ladezeit", `${item.reloadTime} Aktion${item.reloadTime === 1 ? "" : "en"}`] as [string, string]] : []),
+    ...(typeof item.rangeShort === "number" ? [["Reichweiten", `${item.rangeShort}/${item.rangeMedium ?? "–"}/${item.rangeLong ?? "–"}`] as [string, string]] : []),
+    ...(info?.complexity ? [["Herstellung", info.complexity] as [string, string]] : []),
+  ];
+  const specialRules = [
+    info?.hasSpecialAdvantage ? "besonderer Vorteil" : "",
+    info?.hasSpecialDisadvantage ? "besonderer Nachteil" : "",
+    info?.hasAdditionalRules ? "Zusatzregeln" : "",
+  ].filter(Boolean);
+  const name = item.name ?? catalogId;
+  const source = info
+    ? `${info.sourceLabel}${info.pages.length ? ` · Seite ${info.pages.join(", ")}` : ""}`
+    : "Integrierter DarkAid-Ausrüstungskatalog";
+  const regelwikiUrl = info?.regelwikiUrl
+    ?? `https://dsa.ulisses-regelwiki.de/suche.html?keywords=${encodeURIComponent(name)}`;
+  const detailedRules = [
+    info?.ruleNote ? `<p><b>Hinweis:</b> ${escapeHtml(info.ruleNote)}</p>` : "",
+    info?.advantageText ? `<p><b>Helmvorteil:</b> ${escapeHtml(info.advantageText)}</p>` : "",
+    info?.disadvantageText ? `<p><b>Helmnachteil:</b> ${escapeHtml(info.disadvantageText)}</p>` : "",
+  ].filter(Boolean).join("");
+  return `<div class="generator-sa-info armory-info">
+    <button type="button" class="generator-sa-info__button" data-generator-sa-info aria-label="Rüstkammer-Informationen zu ${escapeHtml(name)}" aria-expanded="false">${renderInfoIcon()}</button>
+    <div class="generator-sa-info__popover armory-info__popover" role="tooltip">
+      <strong>${escapeHtml(name)}</strong>
+      <em>${escapeHtml(combatKindLabel(kind))} · ${escapeHtml(info?.sourceShortLabel ?? "Katalog")}</em>
+      ${info?.shortDescription ? `<p>${escapeHtml(info.shortDescription)}</p>` : ""}
+      <dl class="armory-info__facts">${facts.map(([label, value]) => `<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>`).join("")}</dl>
+      ${detailedRules || (specialRules.length ? `<p><b>Besondere Regeln:</b> ${escapeHtml(specialRules.join(" · "))}. Die genaue Wirkung steht im Regelwiki.</p>` : "")}
+      ${info?.derivedValues ? `<small>Preis und Gewicht wurden nach dem Kopf-Multiplikator der Trefferzonen-Regel aus dem angegebenen Rüstungstyp berechnet.</small>` : ""}
+      <small>${escapeHtml(source)}</small>
+      <a href="${escapeHtml(regelwikiUrl)}" target="_blank" rel="noopener noreferrer">Gegenstand im DSA-Regelwiki suchen ↗</a>
+      <a href="${escapeHtml(info?.categoryUrl ?? "https://dsa.ulisses-regelwiki.de/ruestkammer.html")}" target="_blank" rel="noopener noreferrer">Rüstkammer-Übersicht öffnen ↗</a>
+    </div>
+  </div>`;
 };
 
 const getDarkAidMagicDefinition = (id: string) => {
@@ -520,7 +577,7 @@ const renderBiographySpecialAbilities = (traits: BiographyTrait[]): string => {
       ? `<ul>${definition.prerequisites.map((entry) => `<li>${escapeHtml(entry)}</li>`).join("")}</ul>`
       : `<span>Keine Voraussetzungen in den eingebundenen Daten hinterlegt.</span>`;
     return `<div class="generator-sa-info">
-      <button type="button" class="generator-sa-info__button" data-generator-sa-info aria-label="Informationen zu ${escapeHtml(definition.name)}" aria-expanded="false">i</button>
+      <button type="button" class="generator-sa-info__button" data-generator-sa-info aria-label="Informationen zu ${escapeHtml(definition.name)}" aria-expanded="false">${renderInfoIcon()}</button>
       <div class="generator-sa-info__popover" role="tooltip">
         <strong>${escapeHtml(definition.name)}</strong>
         <em>${escapeHtml(definition.category)} · ${escapeHtml(cost)}</em>
@@ -808,6 +865,26 @@ const renderArmorEditor = (key: string, item: OptolithItem): string => `<article
   </div>
 </article>`;
 
+const renderHelmetEditor = (key: string, item: OptolithItem): string => `<article class="combat-editor combat-editor--helmet">
+  <div class="combat-editor__header">
+    <span class="weapon-icon">◉</span>
+    <label><span>Name</span><input class="combat-name-input" data-combat-key="${escapeHtml(key)}" data-combat-field="name" value="${escapeHtml(item.name)}" /></label>
+    <span class="combat-kind">Helm</span>
+    <button class="inventory-delete" data-delete-combat="${escapeHtml(key)}" title="${escapeHtml(item.name)} löschen">×</button>
+  </div>
+  <div class="combat-editor__grid">
+    ${combatInput(key, "zoneProtection", item.zoneProtection, "RS Kopf", { max: 20 })}
+    <label class="combat-field"><span>Rüstungstyp</span><select data-combat-key="${escapeHtml(key)}" data-combat-field="armorType">
+      ${["Lederrüstung", "Kettenrüstung", "Plattenrüstung"].map((type) => `<option value="${type}" ${item.armorType === type ? "selected" : ""}>${type}</option>`).join("")}
+    </select></label>
+    ${combatInput(key, "amount", item.amount ?? 1, "Anzahl", { max: 99 })}
+    ${combatInput(key, "weight", item.weight, "Gewicht", { max: 999, step: 0.01 })}
+    ${combatInput(key, "price", item.price, "Preis (S)", { max: 999999, step: 0.01 })}
+    <label class="combat-field combat-field--check"><input data-combat-key="${escapeHtml(key)}" data-combat-field="equipped" type="checkbox" ${item.equipped === false ? "" : "checked"} /><span>getragen</span></label>
+    <label class="combat-field combat-field--notes"><span>Notizen / Helmregeln</span><textarea data-combat-key="${escapeHtml(key)}" data-combat-field="notes">${escapeHtml(item.notes ?? "")}</textarea></label>
+  </div>
+</article>`;
+
 const renderCombat = (sheet: CharacterSheetState): string => {
   const isManual = sheet.source === "manual";
   const techniqueIds = isManual ? Object.keys(COMBAT_TECHNIQUES) : Object.keys(sheet.hero.ct ?? {});
@@ -820,8 +897,9 @@ const renderCombat = (sheet: CharacterSheetState): string => {
     .map(([key, item]) => ({ key, item, kind: inferCombatItemKind(item) }))
     .filter((entry) => entry.kind !== "equipment")
     .sort((a, b) => a.item.name.localeCompare(b.item.name, "de"));
-  const weapons = combatItems.filter((entry) => entry.kind !== "armor");
+  const weapons = combatItems.filter((entry) => entry.kind !== "armor" && entry.kind !== "helmet");
   const armor = combatItems.filter((entry) => entry.kind === "armor");
+  const helmets = combatItems.filter((entry) => entry.kind === "helmet");
   const conditions = calculateConditionOverview(sheet);
   const overview = calculateCombatOverview(
     sheet.hero,
@@ -871,14 +949,14 @@ const renderCombat = (sheet: CharacterSheetState): string => {
       </div>
       <article class="combat-add-panel">
         <div class="combat-library-search">
-          <label for="weapon-catalog-search"><span>Waffe oder Rüstung suchen</span></label>
-          <div class="search-input"><span>⌕</span><input id="weapon-catalog-search" type="search" value="${escapeHtml(weaponCatalogSearch)}" placeholder="z. B. Langschwert, Bogen, Kettenhemd …" autocomplete="off" /></div>
+          <label for="weapon-catalog-search"><span>Waffe, Rüstung oder Helm suchen</span></label>
+          <div class="search-input"><span>⌕</span><input id="weapon-catalog-search" type="search" value="${escapeHtml(weaponCatalogSearch)}" placeholder="z. B. Langschwert, Kettenhemd, Topfhelm …" autocomplete="off" /></div>
           <small>${query ? `${catalogMatches.length}${catalogMatches.length === 24 ? "+" : ""} Treffer angezeigt` : `${COMBAT_CATALOG.length} Vorlagen durchsuchbar`}</small>
         </div>
         ${query ? `<div class="combat-search-results">
           ${catalogMatches.map(({ id, item }) => `<article class="combat-search-result">
             <span class="combat-search-result__kind">${escapeHtml(combatKindLabel(inferCombatItemKind(item as OptolithItem)))}</span>
-            <div><strong>${escapeHtml(item.name ?? id)}</strong><small>${escapeHtml(combatCatalogSummary(item))}</small></div>
+            <div><div class="combat-search-result__title"><strong>${escapeHtml(item.name ?? id)}</strong>${renderCombatArmoryInfo(id, item)}</div><small>${escapeHtml(combatCatalogSummary(item))}</small></div>
             <button class="secondary-button" data-import-combat-template="${escapeHtml(id)}">Importieren</button>
           </article>`).join("") || '<div class="empty-state">Keine passende Waffe oder Rüstung gefunden.</div>'}
         </div>` : '<div class="combat-search-hint">Suchbegriff eingeben und den passenden Eintrag mit einem Klick importieren.</div>'}
@@ -888,6 +966,7 @@ const renderCombat = (sheet: CharacterSheetState): string => {
           <button class="secondary-button" data-add-combat-kind="ranged">+ Fernkampf</button>
           <button class="secondary-button" data-add-combat-kind="shield">+ Schild</button>
           <button class="secondary-button" data-add-combat-kind="armor">+ Rüstung</button>
+          <button class="secondary-button" data-add-combat-kind="helmet">+ Helm</button>
         </div>
       </article>
 
@@ -897,6 +976,10 @@ const renderCombat = (sheet: CharacterSheetState): string => {
       <div class="section-title section-title--resources"><div><p class="eyebrow">Schutz</p><h2>Rüstungen</h2></div></div>
       <div class="armor-editor-list">
         ${armor.map(({ key, item }) => renderArmorEditor(key, item)).join("") || '<div class="empty-state">Noch keine Rüstung eingetragen.</div>'}
+      </div>
+      <div class="section-title section-title--resources"><div><p class="eyebrow">Trefferzone Kopf</p><h2>Helme</h2></div><span class="section-hint">Trefferzonen-Regeln erforderlich</span></div>
+      <div class="helmet-editor-list">
+        ${helmets.map(({ key, item }) => renderHelmetEditor(key, item)).join("") || '<div class="empty-state">Noch kein Helm eingetragen.</div>'}
       </div>
     </section>
   `;
@@ -1955,6 +2038,7 @@ const attachSheetListeners = (): void => {
       ranged: { name: "Neue Fernkampfwaffe", gr: 2, combatTechnique: "CT_2", damageDiceNumber: 1, damageDiceSides: 6, damageFlat: 4, reloadTime: 1, rangeShort: 10, rangeMedium: 50, rangeLong: 100, ammunition: "" },
       shield: { name: "Neuer Schild", gr: 1, combatTechnique: "CT_10", damageDiceNumber: 1, damageDiceSides: 6, damageFlat: 0, at: -4, pa: 1, reach: 1 },
       armor: { name: "Neue Rüstung", gr: 4, pro: 2, enc: 1, movementPenalty: 0, initiativePenalty: 0 },
+      helmet: { name: "Neuer Helm", gr: 4, armorZone: "Kopf", armorType: "Plattenrüstung", zoneProtection: 6 },
       equipment: { name: "Neuer Gegenstand", gr: 7 },
     };
     const createdItem: OptolithItem = {
@@ -1972,7 +2056,7 @@ const attachSheetListeners = (): void => {
       createdItem.damageBonusAttribute = primaryAttributes[0];
     }
     state.hero.belongings.items[id] = createdItem;
-    if (kind !== "armor" && kind !== "equipment" && !state.runtime.combat.primaryWeaponId) {
+    if (kind !== "armor" && kind !== "helmet" && kind !== "equipment" && !state.runtime.combat.primaryWeaponId) {
       state.runtime.combat.primaryWeaponId = id;
     }
     persist();
@@ -1992,10 +2076,10 @@ const attachSheetListeners = (): void => {
   document.querySelectorAll<HTMLButtonElement>("[data-import-combat-template]").forEach((button) => {
     button.addEventListener("click", () => {
       const catalogId = button.dataset.importCombatTemplate;
-      const template = catalogId ? DARKAID_ITEM_DATA[catalogId] : undefined;
+      const template = catalogId ? ARMORY_ITEM_CATALOG[catalogId] : undefined;
       if (!catalogId || !template) return;
       const prefix = catalogId.split(":", 1)[0];
-      const kind: CombatItemKind = prefix === "armor" ? "armor" : prefix === "rangedweapon" ? "ranged" : prefix === "shield" ? "shield" : "melee";
+      const kind: CombatItemKind = prefix === "armor" ? "armor" : prefix === "helmet" ? "helmet" : prefix === "rangedweapon" ? "ranged" : prefix === "shield" ? "shield" : "melee";
       weaponCatalogSearch = "";
       addCombatItem(kind, template);
       showToast(`„${template.name ?? "Kampfgegenstand"}“ wurde importiert.`);
@@ -2065,7 +2149,7 @@ const attachSheetListeners = (): void => {
       const field = input.dataset.combatField;
       const item = key ? state.hero.belongings?.items?.[key] : undefined;
       if (!item || !field) return;
-      if (["name", "ammunition", "notes", "combatTechnique", "damageBonusAttribute"].includes(field)) {
+      if (["name", "ammunition", "notes", "combatTechnique", "damageBonusAttribute", "armorType"].includes(field)) {
         (item as Record<string, unknown>)[field] = input.value.trim();
         if (field === "name" && !item.name) item.name = "Unbenannter Kampfgegenstand";
       } else if (field === "equipped" && input instanceof HTMLInputElement) {

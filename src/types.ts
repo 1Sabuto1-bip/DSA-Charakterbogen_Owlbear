@@ -12,7 +12,7 @@ export type AttributeCode = "MU" | "KL" | "IN" | "CH" | "FF" | "GE" | "KO" | "KK
 
 export type ImprovementCost = "A" | "B" | "C" | "D" | "E";
 
-export type CombatItemKind = "melee" | "ranged" | "shield" | "armor" | "equipment";
+export type CombatItemKind = "melee" | "ranged" | "shield" | "armor" | "helmet" | "equipment";
 
 export type ManualSpecies = "human" | "halfelf" | "elf" | "dwarf";
 
@@ -75,6 +75,9 @@ export interface OptolithItem {
   length?: number;
   movementPenalty?: number;
   initiativePenalty?: number;
+  armorZone?: "Kopf" | "Torso" | "Arme" | "Beine";
+  armorType?: string;
+  zoneProtection?: number;
   notes?: string;
   equipped?: boolean;
   [key: string]: unknown;

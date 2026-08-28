@@ -1,8 +1,8 @@
 {
   "name": "Aventurischer Heldenbogen",
-  "version": "0.14.0",
+  "version": "0.18.0",
   "manifest_version": 1,
-  "description": "Interaktiver DSA-5-Heldenbogen mit Regelwerksgenerator, Ausrüstungseinkauf, Zuständen, Tragkraft, Kampf und GM-Übersicht",
+  "description": "Interaktiver DSA-5-Heldenbogen mit Regelwerksgenerator, Rüstkammer, Zuständen, Tragkraft, Kampf und GM-Übersicht",
   "author": "Alexander Hoffmann",
   "action": {
     "title": "Heldenbogen",

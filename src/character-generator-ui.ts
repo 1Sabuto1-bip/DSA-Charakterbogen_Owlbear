@@ -8,6 +8,10 @@ import {
   GRW_RACES,
   GRW_SPECIAL_ABILITIES,
   GENERATOR_SHOP_ITEMS,
+  GENERATOR_SPELLS,
+  AVAILABLE_EQUIPMENT_PACKAGES,
+  EQUIPMENT_PACKAGES,
+  addEquipmentPackageToDraft,
   buildGeneratedCharacter,
   calculateGeneratorBalance,
   calculateGeneratorShopping,
@@ -16,7 +20,11 @@ import {
   generatorCombatChoiceName,
   generatorProfessionSummary,
   generatorSpecialAbilityCost,
+  generatorSpellCostFor,
+  generatorSpellNextCost,
+  generatorTalentCostFor,
   generatorTraitCost,
+  getEquipmentPackageBalance,
   getGeneratorAttributeMaximum,
   getGeneratorCulture,
   getGeneratorExperience,
@@ -25,13 +33,22 @@ import {
   getGeneratorSpecies,
   getGeneratorSpecialAbilityDefinition,
   getGeneratorShopItem,
+  getGeneratorBaseTalentValues,
+  getGeneratorBaseSpellValues,
+  getGeneratorSpellCount,
+  getGeneratorSpellValue,
+  getGeneratorTalentValue,
   getGeneratorTraitDefinition,
   getRequiredProfessionComponents,
+  isGeneratorMagicAutomatic,
+  isGeneratorMagicallyGifted,
   normalizeGeneratorDraft,
   validateGeneratorDraft,
 } from "./character-generator";
-import { ATTRIBUTES, COMBAT_TECHNIQUES, ITEM_GROUPS } from "./data";
+import { ATTRIBUTES, COMBAT_TECHNIQUES, ITEM_GROUPS, TALENTS } from "./data";
+import { improvementCostForTarget } from "./advancement";
 import { attachSpecialAbilityInfoListeners } from "./special-ability-info";
+import { renderInfoIcon } from "./ui-assets";
 import type { CharacterSheetState } from "./types";
 import type { GeneratorDraft, GeneratorShopCategory, GeneratorShopItem, GeneratorSpecialAbilitySelection, GeneratorTraitKind, GeneratorTraitSelection } from "./character-generator";
 
@@ -68,6 +85,9 @@ const loadDraft = (): GeneratorDraft => {
       advantages: Array.isArray(parsed.advantages) ? parsed.advantages : [],
       disadvantages: Array.isArray(parsed.disadvantages) ? parsed.disadvantages : [],
       specialAbilities: Array.isArray(parsed.specialAbilities) ? parsed.specialAbilities : [],
+      talentIncreases: parsed.talentIncreases && typeof parsed.talentIncreases === "object" ? parsed.talentIncreases : {},
+      magicallyGifted: Boolean(parsed.magicallyGifted),
+      spellIncreases: parsed.spellIncreases && typeof parsed.spellIncreases === "object" ? parsed.spellIncreases : {},
       purchases: Array.isArray(parsed.purchases) ? parsed.purchases : [],
     } as GeneratorDraft;
     normalizeGeneratorDraft(draft);
@@ -103,6 +123,8 @@ export class CharacterGeneratorUI {
   specialAbilityCategory = "all";
   shopSearch = "";
   shopCategory: GeneratorShopCategory | "all" = "all";
+  talentSearch = "";
+  spellSearch = "";
 
   reset(): void {
     this.draft = createGeneratorDraft();
@@ -116,6 +138,8 @@ export class CharacterGeneratorUI {
     this.specialAbilityCategory = "all";
     this.shopSearch = "";
     this.shopCategory = "all";
+    this.talentSearch = "";
+    this.spellSearch = "";
     this.persist();
   }
 
@@ -138,12 +162,21 @@ export class CharacterGeneratorUI {
         <div><dt>Vorteile</dt><dd>−${balance.requiredAdvantages + balance.advantages}</dd></div>
         <div><dt>Nachteile</dt><dd>+${Math.abs(balance.requiredDisadvantages + balance.disadvantages)}</dd></div>
         ${balance.specialAbilities ? `<div><dt>Sonderfertigkeiten</dt><dd>−${balance.specialAbilities}</dd></div>` : ""}
+        ${balance.talents ? `<div><dt>Talentsteigerungen</dt><dd>−${balance.talents}</dd></div>` : ""}
+        ${balance.spells ? `<div><dt>Zauber</dt><dd>−${balance.spells}</dd></div>` : ""}
       </dl>
       <small>Grenzen: Vorteile ${balance.advantageLimit}/80 · Nachteile ${balance.disadvantageLimit}/80</small>
     </aside>`;
   }
 
   private renderConcept(): string {
+    const magical = isGeneratorMagicallyGifted(this.draft);
+    const automaticMagic = isGeneratorMagicAutomatic(this.draft);
+    const automaticReason = getGeneratorSpecies(this.draft).id === "elfen"
+      ? "Die gewählte elfische Herkunft ist automatisch magisch begabt."
+      : getGeneratorProfession(this.draft).magical === true
+        ? `Die Profession „${this.draft.sex === "f" ? getGeneratorProfession(this.draft).femaleName : getGeneratorProfession(this.draft).name}“ setzt Magiebegabung voraus.`
+        : "";
     return `<section class="generator-page">
       <p class="eyebrow">Schritt 1</p><h2>Was möchtest du spielen?</h2>
       <p class="generator-lead">Lege zuerst Name und Grundidee fest. Alles bleibt als Entwurf in diesem Browser gespeichert.</p>
@@ -154,6 +187,11 @@ export class CharacterGeneratorUI {
           <option value="m" ${this.draft.sex === "m" ? "selected" : ""}>männlich</option>
           <option value="f" ${this.draft.sex === "f" ? "selected" : ""}>weiblich</option>
         </select></label>
+        <fieldset class="generator-magic-choice generator-field--wide"><legend>Magische Begabung</legend>
+          <label class="generator-magic-option ${!magical ? "generator-magic-option--selected" : ""}"><input data-generator-magical type="radio" name="generator-magical" value="no" ${!magical ? "checked" : ""} ${automaticMagic ? "disabled" : ""} /><span><strong>Nicht magisch begabt</strong><small>Im Steigerungsschritt werden nur Talente angezeigt.</small></span></label>
+          <label class="generator-magic-option ${magical ? "generator-magic-option--selected" : ""}"><input data-generator-magical type="radio" name="generator-magical" value="yes" ${magical ? "checked" : ""} ${automaticMagic ? "disabled" : ""} /><span><strong>Magisch begabt</strong><small>Zauber und Rituale können im Steigerungsschritt aktiviert und erhöht werden.</small></span></label>
+          ${automaticReason ? `<p class="generator-magic-note">✦ ${escapeHtml(automaticReason)}</p>` : ""}
+        </fieldset>
         <label class="generator-field generator-field--wide"><span>Konzept und Motivation</span><textarea id="generator-concept" rows="7" placeholder="Herkunft, Ziele, Stärken, Schwächen …">${escapeHtml(this.draft.concept)}</textarea></label>
       </div>
       <div class="generator-rule-note"><strong>Regelgrundlage</strong><span>DSA5-Regelwiki und die im Katalog genannten Quellenbände</span></div>
@@ -298,7 +336,7 @@ export class CharacterGeneratorUI {
       ? `<ul>${definition.prerequisites.map((entry) => `<li>${escapeHtml(entry)}</li>`).join("")}</ul>`
       : `<span>Keine Voraussetzungen in den eingebundenen Daten hinterlegt.</span>`;
     return `<div class="generator-sa-info">
-      <button type="button" class="generator-sa-info__button" data-generator-sa-info aria-label="Informationen zu ${escapeHtml(definition.name)}" aria-expanded="false">i</button>
+      <button type="button" class="generator-sa-info__button" data-generator-sa-info aria-label="Informationen zu ${escapeHtml(definition.name)}" aria-expanded="false">${renderInfoIcon()}</button>
       <div class="generator-sa-info__popover" role="tooltip">
         <strong>${escapeHtml(definition.name)}</strong>
         <em>${escapeHtml(definition.category)} · ${escapeHtml(this.specialAbilityCostLabel(definition))}</em>
@@ -358,9 +396,64 @@ export class CharacterGeneratorUI {
     if (item.combatTechnique) details.push(COMBAT_TECHNIQUES[item.combatTechnique] ?? item.combatTechnique);
     if (typeof item.pro === "number") details.push(`RS ${item.pro}`);
     if (typeof item.enc === "number") details.push(`BE ${item.enc}`);
+    if (entry.itemKind === "helmet" && typeof item.zoneProtection === "number") details.push(`Kopf-RS ${item.zoneProtection}`);
     if (entry.itemKind === "equipment") details.push(ITEM_GROUPS[item.gr ?? 0] ?? "Inventar");
     if (typeof item.weight === "number") details.push(formatWeight(item.weight));
     return details.join(" · ");
+  }
+
+  private renderArmoryInfo(entry: GeneratorShopItem): string {
+    const item = entry.item;
+    const info = entry.info;
+    const facts: Array<[string, string]> = [
+      ["Art", entry.kindLabel],
+      ["Preis", formatSilver(item.price)],
+      ...(typeof item.weight === "number" ? [["Gewicht", formatWeight(item.weight)] as [string, string]] : []),
+      ...(item.damageDiceSides ? [["Trefferpunkte", `${item.damageDiceNumber ?? 1}W${item.damageDiceSides}${Number(item.damageFlat ?? 0) >= 0 ? "+" : ""}${item.damageFlat ?? 0}`] as [string, string]] : []),
+      ...(item.combatTechnique ? [["Kampftechnik", COMBAT_TECHNIQUES[item.combatTechnique] ?? item.combatTechnique] as [string, string]] : []),
+      ...(typeof item.at === "number" || typeof item.pa === "number" ? [["AT/PA-Modifikator", `${Number(item.at ?? 0) >= 0 ? "+" : ""}${item.at ?? 0} / ${Number(item.pa ?? 0) >= 0 ? "+" : ""}${item.pa ?? 0}`] as [string, string]] : []),
+      ...(typeof item.pro === "number" ? [["Rüstungsschutz", String(item.pro)] as [string, string]] : []),
+      ...(typeof item.enc === "number" ? [["Belastung", String(item.enc)] as [string, string]] : []),
+      ...(item.armorType ? [["Rüstungstyp", String(item.armorType)] as [string, string]] : []),
+      ...(item.armorZone ? [["Trefferzone", String(item.armorZone)] as [string, string]] : []),
+      ...(typeof item.zoneProtection === "number" ? [["RS der Zone", String(item.zoneProtection)] as [string, string]] : []),
+      ...(typeof item.movementPenalty === "number" ? [["GS-Modifikator", String(item.movementPenalty)] as [string, string]] : []),
+      ...(typeof item.initiativePenalty === "number" ? [["INI-Modifikator", String(item.initiativePenalty)] as [string, string]] : []),
+      ...(typeof item.reloadTime === "number" ? [["Ladezeit", `${item.reloadTime} Aktion${item.reloadTime === 1 ? "" : "en"}`] as [string, string]] : []),
+      ...(typeof item.rangeShort === "number" ? [["Reichweiten", `${item.rangeShort}/${item.rangeMedium ?? "–"}/${item.rangeLong ?? "–"}`] as [string, string]] : []),
+      ...(typeof item.length === "number" ? [["Länge", `${item.length} Halbfinger`] as [string, string]] : []),
+      ...(info?.complexity ? [["Herstellung", info.complexity] as [string, string]] : []),
+    ];
+    const specialRules = [
+      info?.hasSpecialAdvantage ? "besonderer Vorteil" : "",
+      info?.hasSpecialDisadvantage ? "besonderer Nachteil" : "",
+      info?.hasAdditionalRules ? `Zusatzregeln${info.propertyNames.length ? ` (${info.propertyNames.join(", ")})` : ""}` : "",
+    ].filter(Boolean);
+    const source = info
+      ? `${info.sourceLabel}${info.pages.length ? ` · Seite ${info.pages.join(", ")}` : ""}`
+      : "Integrierter DarkAid-Ausrüstungskatalog";
+    const regelwikiUrl = info?.regelwikiUrl
+      ?? `https://dsa.ulisses-regelwiki.de/suche.html?keywords=${encodeURIComponent(item.name)}`;
+    const categoryUrl = info?.categoryUrl ?? "https://dsa.ulisses-regelwiki.de/ruestkammer.html";
+    const detailedRules = [
+      info?.ruleNote ? `<p><b>Hinweis:</b> ${escapeHtml(info.ruleNote)}</p>` : "",
+      info?.advantageText ? `<p><b>Helmvorteil:</b> ${escapeHtml(info.advantageText)}</p>` : "",
+      info?.disadvantageText ? `<p><b>Helmnachteil:</b> ${escapeHtml(info.disadvantageText)}</p>` : "",
+    ].filter(Boolean).join("");
+    return `<div class="generator-sa-info armory-info">
+      <button type="button" class="generator-sa-info__button" data-generator-sa-info aria-label="Rüstkammer-Informationen zu ${escapeHtml(item.name)}" aria-expanded="false">${renderInfoIcon()}</button>
+      <div class="generator-sa-info__popover armory-info__popover" role="tooltip">
+        <strong>${escapeHtml(item.name)}</strong>
+        <em>${escapeHtml(entry.kindLabel)} · ${escapeHtml(info?.sourceShortLabel ?? "Katalog")}</em>
+        ${info?.shortDescription ? `<p>${escapeHtml(info.shortDescription)}</p>` : ""}
+        <dl class="armory-info__facts">${facts.map(([label, value]) => `<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>`).join("")}</dl>
+        ${detailedRules || (specialRules.length ? `<p><b>Besondere Regeln:</b> ${escapeHtml(specialRules.join(" · "))}. Die genaue Wirkung steht im Regelwiki.</p>` : `<p>Für diesen Eintrag sind keine zusätzlichen Sonderregeln im eingebundenen Datensatz markiert.</p>`)}
+        ${info?.derivedValues ? `<small>Preis und Gewicht wurden nach dem Kopf-Multiplikator der Trefferzonen-Regel aus dem angegebenen Rüstungstyp berechnet.</small>` : ""}
+        <small>${escapeHtml(source)}</small>
+        <a href="${escapeHtml(regelwikiUrl)}" target="_blank" rel="noopener noreferrer">Gegenstand im DSA-Regelwiki suchen ↗</a>
+        <a href="${escapeHtml(categoryUrl)}" target="_blank" rel="noopener noreferrer">Rüstkammer-Übersicht öffnen ↗</a>
+      </div>
+    </div>`;
   }
 
   private renderShopping(): string {
@@ -375,8 +468,8 @@ export class CharacterGeneratorUI {
       .filter((value): value is { purchase: GeneratorDraft["purchases"][number]; entry: GeneratorShopItem } => Boolean(value.entry))
       .sort((a, b) => a.entry.item.name.localeCompare(b.entry.item.name, "de"));
     return `<section class="generator-page">
-      <p class="eyebrow">Schritt 13</p><h2>Ausrüstung einkaufen</h2>
-      <p class="generator-lead">Suche im Ausrüstungskatalog nach Inventar, Waffen und Rüstungen. Die vollständigen Werte und das übrige Geld werden direkt in den fertigen Heldenbogen übernommen.</p>
+      <p class="eyebrow">Schritt 8</p><h2>Rüstkammer &amp; Ausrüstung</h2>
+      <p class="generator-lead">Suche in der Rüstkammer nach Inventar, Waffen, Schilden, Helmen und Rüstungen. Über das Info-Symbol siehst du Werte, Quelle und Regelwiki-Verweise; gekaufte Gegenstände und das übrige Geld werden in den fertigen Heldenbogen übernommen.</p>
       <div class="generator-shopping-balance ${shopping.remainingSilver < 0 ? "generator-shopping-balance--error" : ""}">
         <div><span>Startkapital</span><strong>${formatSilver(shopping.startingCapitalSilver)}</strong></div>
         <div><span>Ausgegeben</span><strong>${formatSilver(shopping.spentSilver)}</strong></div>
@@ -384,12 +477,33 @@ export class CharacterGeneratorUI {
         <div><span>Gewicht</span><strong>${formatWeight(shopping.totalWeight)}</strong></div>
       </div>
       <div class="generator-rule-note"><strong>Startkapital</strong><span>Standard sind 750 Silbertaler. Der Vorteil „Reich“ erhöht und der Nachteil „Arm“ senkt diesen Betrag automatisch um 250 Silbertaler je Stufe.</span></div>
+      <section class="generator-equipment-packages">
+        <div class="generator-section-heading"><div><h3>Ausrüstungspakete</h3><small>Ein Klick legt alle enthaltenen Gegenstände einzeln in den Einkauf.</small></div><a href="https://dsa.ulisses-regelwiki.de/ruestkammer/ausruestungspakete.html" target="_blank" rel="noopener noreferrer">Regelwiki-Übersicht ↗</a></div>
+        <div class="generator-equipment-package-grid">${AVAILABLE_EQUIPMENT_PACKAGES.map((definition) => {
+          const packageBalance = getEquipmentPackageBalance(definition.id);
+          const affordable = Boolean(packageBalance && packageBalance.spentSilver <= shopping.remainingSilver + 0.0001);
+          const price = definition.publishedPrice ?? packageBalance?.spentSilver;
+          const weight = definition.publishedWeight ?? packageBalance?.totalWeight;
+          const differsFromPublished = Boolean(packageBalance && definition.publishedWeight !== undefined
+            && Math.abs(packageBalance.totalWeight - definition.publishedWeight) > 0.0001);
+          return `<article class="generator-equipment-package">
+            <div><strong>${escapeHtml(definition.name)}</strong><small>${escapeHtml(definition.sourceShortLabel)}${definition.pages.length ? ` · S. ${definition.pages.join("/")}` : ""}</small></div>
+            <p>${definition.items.length} Positionen · ${definition.publishedPrice !== undefined || definition.publishedWeight !== undefined ? "Regelwiki: " : ""}${formatSilver(price ?? 0)} · ${formatWeight(weight ?? 0)}${differsFromPublished ? `<br />Warenkorb aus Einzelwerten: ${formatWeight(packageBalance!.totalWeight)}` : ""}</p>
+              <details><summary>Inhalt anzeigen</summary><ul>${definition.items.map((packageItem) => {
+                const entry = getGeneratorShopItem(packageItem.catalogId);
+                return `<li>${packageItem.amount > 1 ? `${packageItem.amount}× ` : ""}${escapeHtml(entry?.item.name ?? packageItem.catalogId)}</li>`;
+              }).join("")}</ul>${definition.note ? `<p>${escapeHtml(definition.note)}</p>` : ""}<a href="${escapeHtml(definition.regelwikiUrl)}" target="_blank" rel="noopener noreferrer">Quelle im Regelwiki ↗</a></details>
+              <button data-generator-buy-package="${escapeHtml(definition.id)}" ${affordable ? "" : "disabled"} title="${affordable ? "Gesamtes Paket kaufen" : "Nicht genug Geld"}">Paket hinzufügen</button>
+          </article>`;
+        }).join("")}</div>
+      </section>
       <div class="generator-filter-row generator-shop-filters">
         <label class="generator-search"><span>Gegenstand suchen</span><input id="generator-shop-search" type="search" value="${escapeHtml(this.shopSearch)}" placeholder="z. B. Dolch, Kettenhemd, Seil …" /></label>
         <label class="generator-field"><span>Bereich</span><select id="generator-shop-category">
           <option value="all" ${this.shopCategory === "all" ? "selected" : ""}>Alles</option>
           <option value="weapons" ${this.shopCategory === "weapons" ? "selected" : ""}>Waffen & Schilde</option>
           <option value="armor" ${this.shopCategory === "armor" ? "selected" : ""}>Rüstungen</option>
+          <option value="helmets" ${this.shopCategory === "helmets" ? "selected" : ""}>Helme</option>
           <option value="equipment" ${this.shopCategory === "equipment" ? "selected" : ""}>Inventar</option>
         </select></label>
       </div>
@@ -401,7 +515,7 @@ export class CharacterGeneratorUI {
             return `<article class="generator-shop-result">
               <div><strong>${escapeHtml(entry.item.name)}</strong><small>${escapeHtml(this.shopItemDetails(entry))}</small></div>
               <span>${formatSilver(entry.item.price)}</span>
-              <button data-generator-buy="${escapeHtml(entry.catalogId)}" ${affordable ? "" : "disabled"} title="${affordable ? "Kaufen" : "Nicht genug Geld"}">Kaufen</button>
+              <div class="generator-shop-result__actions"><button data-generator-buy="${escapeHtml(entry.catalogId)}" ${affordable ? "" : "disabled"} title="${affordable ? "Kaufen" : "Nicht genug Geld"}">Kaufen</button>${this.renderArmoryInfo(entry)}</div>
             </article>`;
           }).join("") || `<div class="empty-state">Kein passender Gegenstand gefunden.</div>`}</div>
           ${filtered.length === 60 ? `<small class="generator-result-limit">Die ersten 60 Treffer werden angezeigt. Verfeinere die Suche für weitere Ergebnisse.</small>` : ""}
@@ -409,12 +523,92 @@ export class CharacterGeneratorUI {
         <div class="generator-shopping-cart">
           <h3>Einkauf <small>${shopping.itemCount} Gegenstände</small></h3>
           <div class="generator-cart-list">${purchases.map(({ purchase, entry }) => `<article class="generator-cart-item">
-            <div><strong>${escapeHtml(entry.item.name)}</strong><small>${formatSilver(entry.item.price)} je Stück · ${formatSilver(entry.item.price * purchase.amount)}</small></div>
+            <div><div class="generator-shop-result__title"><strong>${escapeHtml(entry.item.name)}</strong>${this.renderArmoryInfo(entry)}</div><small>${formatSilver(entry.item.price)} je Stück · ${formatSilver(entry.item.price * purchase.amount)}</small></div>
             <div class="generator-cart-amount"><button data-generator-purchase-adjust="${escapeHtml(entry.catalogId)}" data-delta="-1" title="Ein Stück entfernen">−</button><b>${purchase.amount}</b><button data-generator-purchase-adjust="${escapeHtml(entry.catalogId)}" data-delta="1" ${Math.round(entry.item.price * 100) <= Math.round(shopping.remainingSilver * 100) ? "" : "disabled"} title="Ein Stück hinzufügen">+</button></div>
             <button class="generator-cart-remove" data-generator-remove-purchase="${escapeHtml(entry.catalogId)}" title="Aus Einkauf entfernen">×</button>
           </article>`).join("") || `<div class="empty-state">Noch nichts gekauft.</div>`}</div>
         </div>
       </div>
+    </section>`;
+  }
+
+  private renderTalents(): string {
+    const experience = getGeneratorExperience(this.draft);
+    const balance = calculateGeneratorBalance(this.draft);
+    const magical = isGeneratorMagicallyGifted(this.draft);
+    const baseValues = getGeneratorBaseTalentValues(this.draft);
+    const search = normalizeSearch(this.talentSearch);
+    const filtered = TALENTS.filter((talent) => !search || normalizeSearch(`${talent.name} ${talent.category} ${talent.check.join(" ")}`).includes(search));
+    const increasedCount = Object.keys(this.draft.talentIncreases).length;
+    return `<section class="generator-page">
+      <p class="eyebrow">Schritt 9</p><h2>${magical ? "Talente &amp; Zauber steigern" : "Talente erstmals steigern"}</h2>
+      <p class="generator-lead">Kultur- und Professionswerte sind bereits als Ausgangswerte eingerechnet. Hier kannst du die übrigen AP vor dem Anlegen des Helden gezielt auf alle 59 Talente${magical ? " sowie auf Zauber und Rituale" : ""} verteilen.</p>
+      <div class="generator-talent-summary">
+        <div><span>Ausgewählte Talente</span><strong>${increasedCount}</strong></div>
+        <div><span>Ausgegeben</span><strong>${balance.talents} AP</strong></div>
+        <div><span>Noch verfügbar</span><strong>${balance.remaining} AP</strong></div>
+        <div><span>Maximum</span><strong>FW ${experience.skillmaximum}</strong></div>
+      </div>
+      <label class="generator-search generator-talent-search"><span>Talent suchen</span><input id="generator-talent-search" type="search" value="${escapeHtml(this.talentSearch)}" placeholder="z. B. Klettern, Wissen, MU …" /></label>
+      <div class="generator-talent-list">${filtered.map((talent) => {
+        const base = baseValues[talent.id] ?? 0;
+        const value = getGeneratorTalentValue(this.draft, talent.id);
+        const spent = generatorTalentCostFor(this.draft, talent.id);
+        const nextCost = improvementCostForTarget(talent.improvementCost, value + 1);
+        const canIncrease = value < experience.skillmaximum && nextCost <= balance.remaining;
+        return `<article class="generator-talent-row ${value > base ? "generator-talent-row--increased" : ""}">
+          <div><strong>${escapeHtml(talent.name)}</strong><small>${escapeHtml(talent.category)} · ${talent.check.join("/")} · Spalte ${talent.improvementCost}</small></div>
+          <div class="generator-talent-origin"><span>Start</span><b>${base}</b></div>
+          <div class="generator-talent-controls"><button data-generator-talent-adjust="${talent.id}" data-delta="-1" ${value <= base ? "disabled" : ""} title="Um 1 senken">−</button><strong>${value}</strong><button data-generator-talent-adjust="${talent.id}" data-delta="1" ${canIncrease ? "" : "disabled"} title="${value >= experience.skillmaximum ? "Maximum erreicht" : canIncrease ? `Für ${nextCost} AP steigern` : "Nicht genug AP"}">+</button></div>
+          <div class="generator-talent-cost"><span>${spent ? `${spent} AP` : "enthalten"}</span><small>${value < experience.skillmaximum ? `nächster Punkt ${nextCost} AP` : "Maximum"}</small></div>
+        </article>`;
+      }).join("") || `<div class="empty-state">Kein passendes Talent gefunden.</div>`}</div>
+      ${magical ? this.renderSpellAdvancement(balance.remaining) : ""}
+      <div class="generator-rule-note"><strong>AP-Berechnung</strong><span>Berechnet wird nur die Steigerung oberhalb der bereits enthaltenen Kultur-, Professions- und Zauberwerte. Bei einem neuen Zauber kommt zuerst die Aktivierung hinzu. Spätere Steigerungen bleiben im fertigen Bogen weiterhin unter „Steigern“ möglich.</span></div>
+    </section>`;
+  }
+
+  private renderSpellAdvancement(remainingAp: number): string {
+    const experience = getGeneratorExperience(this.draft);
+    const baseValues = getGeneratorBaseSpellValues(this.draft);
+    const selectedIds = new Set([...Object.keys(baseValues), ...Object.keys(this.draft.spellIncreases)]);
+    const query = normalizeSearch(this.spellSearch);
+    const visible = GENERATOR_SPELLS
+      .filter((spell) => selectedIds.has(spell.id) || (query && normalizeSearch(`${spell.name} ${spell.kind} ${spell.check?.join(" ") ?? ""}`).includes(query)))
+      .sort((a, b) => Number(selectedIds.has(b.id)) - Number(selectedIds.has(a.id)) || a.name.localeCompare(b.name, "de"))
+      .slice(0, 60);
+    const spellCount = getGeneratorSpellCount(this.draft);
+    const balance = calculateGeneratorBalance(this.draft);
+    return `<section class="generator-spell-advancement">
+      <div class="generator-section-heading"><div><h3>Zauber &amp; Rituale</h3><small>Professionszauber sind enthalten; weitere Einträge werden zunächst aktiviert und können dann gesteigert werden.</small></div><strong>${spellCount}/${experience.maxnumberofspellsliturgies} aktiviert</strong></div>
+      <div class="generator-talent-summary">
+        <div><span>Zauber/Rituale</span><strong>${spellCount}</strong></div>
+        <div><span>Zusätzlich ausgegeben</span><strong>${balance.spells} AP</strong></div>
+        <div><span>Noch verfügbar</span><strong>${remainingAp} AP</strong></div>
+        <div><span>Maximum</span><strong>FW ${experience.skillmaximum}</strong></div>
+      </div>
+      <label class="generator-search generator-talent-search"><span>Zauber oder Ritual suchen</span><input id="generator-spell-search" type="search" value="${escapeHtml(this.spellSearch)}" placeholder="z. B. Axxeleratus, Balsam, Ritual …" /></label>
+      <div class="generator-talent-list">${visible.map((spell) => {
+        const base = baseValues[spell.id] ?? 0;
+        const manuallyActivated = Object.prototype.hasOwnProperty.call(this.draft.spellIncreases, spell.id);
+        const selected = base > 0 || manuallyActivated;
+        const value = getGeneratorSpellValue(this.draft, spell.id);
+        const spent = generatorSpellCostFor(this.draft, spell.id);
+        const nextCost = generatorSpellNextCost(this.draft, spell.id);
+        const canActivate = selected || spellCount < experience.maxnumberofspellsliturgies;
+        const canIncrease = canActivate && (!selected || value < experience.skillmaximum) && nextCost <= remainingAp;
+        const canDecrease = selected && (base === 0 || value > base);
+        const actionTitle = !selected
+          ? canActivate ? `Für ${nextCost} AP aktivieren` : `Höchstens ${experience.maxnumberofspellsliturgies} Zauber und Rituale`
+          : value >= experience.skillmaximum ? "Maximum erreicht" : `Für ${nextCost} AP steigern`;
+        return `<article class="generator-talent-row ${selected ? "generator-talent-row--increased" : ""}">
+          <div><strong>${escapeHtml(spell.name)}</strong><small>${escapeHtml(spell.kind)} · ${spell.check?.join("/") ?? "Probe nicht hinterlegt"} · Spalte ${spell.improvementCost}</small></div>
+          <div class="generator-talent-origin"><span>Start</span><b>${base}</b></div>
+          <div class="generator-talent-controls"><button data-generator-spell-adjust="${escapeHtml(spell.id)}" data-delta="-1" ${canDecrease ? "" : "disabled"} title="${base === 0 && value === 0 ? "Deaktivieren" : "Um 1 senken"}">−</button><strong>${selected ? value : "–"}</strong><button data-generator-spell-adjust="${escapeHtml(spell.id)}" data-delta="1" ${canIncrease ? "" : "disabled"} title="${escapeHtml(actionTitle)}">+</button></div>
+          <div class="generator-talent-cost"><span>${spent ? `${spent} AP` : selected ? "enthalten" : "nicht aktiviert"}</span><small>${!selected ? `Aktivierung ${nextCost} AP` : value < experience.skillmaximum ? `nächster Punkt ${nextCost} AP` : "Maximum"}</small></div>
+        </article>`;
+      }).join("") || `<div class="empty-state">${query ? "Kein passender Zauber gefunden." : "Noch keine Professionszauber vorhanden. Nutze die Suche, um einen Zauber oder ein Ritual zu aktivieren."}</div>`}</div>
+      ${visible.length === 60 ? `<small class="generator-result-limit">Die ersten 60 Treffer werden angezeigt. Verfeinere die Suche für weitere Ergebnisse.</small>` : ""}
     </section>`;
   }
 
@@ -433,14 +627,17 @@ export class CharacterGeneratorUI {
         <article><span>Erfahrungsgrad</span><strong>${experience.name}</strong><small>${experience.ap} AP</small></article>
         <article><span>Herkunft</span><strong>${race.name}</strong><small>${culture.name}${this.draft.useCulturePackage ? ` · Kulturpaket ${culture.packageAp} AP` : " · ohne Kulturpaket"}</small></article>
         <article><span>Profession</span><strong>${escapeHtml(this.draft.sex === "f" ? profession.femaleName : profession.name)}</strong><small>${generatorProfessionSummary(profession)}</small></article>
+        <article><span>Magische Begabung</span><strong>${isGeneratorMagicallyGifted(this.draft) ? "Ja" : "Nein"}</strong><small>${isGeneratorMagicAutomatic(this.draft) ? "durch Herkunft oder Profession vorgegeben" : "im Konzept gewählt"}</small></article>
         <article><span>Eigenschaften</span><strong>${Object.values(this.draft.attributes).reduce((sum, value) => sum + value, 0)} Punkte</strong><small>${ATTRIBUTES.map((entry) => `${entry.code} ${this.draft.attributes[entry.code]}`).join(" · ")}</small></article>
         <article><span>Zusätzliche Sonderfertigkeiten</span><strong>${this.draft.specialAbilities.length}</strong><small>${balance.specialAbilities} AP</small></article>
+        <article><span>Talentsteigerungen</span><strong>${Object.keys(this.draft.talentIncreases).length} Talente</strong><small>${balance.talents} AP zusätzlich ausgegeben</small></article>
+        ${isGeneratorMagicallyGifted(this.draft) ? `<article><span>Zauber &amp; Rituale</span><strong>${getGeneratorSpellCount(this.draft)} aktiviert</strong><small>${balance.spells} AP zusätzlich ausgegeben</small></article>` : ""}
         <article><span>AP-Bilanz</span><strong>${balance.remaining} AP übrig</strong><small>Vorteile ${balance.advantageLimit}/80 · Nachteile ${balance.disadvantageLimit}/80</small></article>
         <article><span>Ausrüstung</span><strong>${shopping.itemCount} Gegenstände</strong><small>${formatSilver(shopping.spentSilver)} ausgegeben · ${formatSilver(shopping.remainingSilver)} übrig · ${formatWeight(shopping.totalWeight)}</small></article>
       </div>
       ${validation.errors.length ? `<div class="generator-validation generator-validation--error"><strong>Noch zu korrigieren</strong><ul>${validation.errors.map((entry) => `<li>${escapeHtml(entry)}</li>`).join("")}</ul></div>` : ""}
       ${validation.warnings.length ? `<div class="generator-validation generator-validation--warning"><strong>Hinweise</strong><ul>${validation.warnings.map((entry) => `<li>${escapeHtml(entry)}</li>`).join("")}</ul></div>` : ""}
-      <div class="generator-rule-note"><strong>Nach dem Anlegen</strong><span>Der Held wird als normaler interaktiver Bogen geöffnet. Noch nicht verteilte AP kannst du im Reiter „Steigern“ ausgeben; Inventar, Waffen, Rüstung und Geld bleiben bearbeitbar.</span></div>
+      <div class="generator-rule-note"><strong>Nach dem Anlegen</strong><span>Der Held wird als normaler interaktiver Bogen geöffnet. Weitere AP kannst du weiterhin im Reiter „Steigern“ ausgeben; Inventar, Waffen, Rüstung und Geld bleiben bearbeitbar.</span></div>
     </section>`;
   }
 
@@ -455,12 +652,13 @@ export class CharacterGeneratorUI {
       this.renderTraits(),
       this.renderSpecialAbilities(),
       this.renderShopping(),
+      this.renderTalents(),
       this.renderReview(),
     ];
     const validation = validateGeneratorDraft(this.draft);
     return `<main class="generator-shell">
       <header class="generator-header"><div><p class="eyebrow">DSA 5 · erweiterter Professionskatalog</p><h1>Regelwerksgenerator</h1></div><div class="generator-header__actions"><button id="generator-reset" class="generator-reset-button" title="Gesamten Entwurf und das AP-Konto zurücksetzen">↺ Neu beginnen</button><button id="generator-close" class="icon-button" title="Generator schließen">×</button></div></header>
-      <nav class="generator-stepper" aria-label="Schritte der Heldenerschaffung">${GENERATOR_STEPS.map((label, index) => `<button data-generator-step="${index}" class="${index === this.draft.step ? "active" : index < this.draft.step ? "done" : ""}"><b>${index + 1}</b><span>${label}</span></button>`).join("")}</nav>
+      <nav class="generator-stepper" aria-label="Schritte der Heldenerschaffung">${GENERATOR_STEPS.map((label, index) => `<button data-generator-step="${index}" class="${index === this.draft.step ? "active" : index < this.draft.step ? "done" : ""}" aria-label="Schritt ${index + 1}: ${escapeHtml(label)}" title="${index + 1}. ${escapeHtml(label)}" ${index === this.draft.step ? `aria-current="step"` : ""}><b aria-hidden="true">${index + 1}</b><span>${label}</span></button>`).join("")}</nav>
       <div class="generator-workspace"><div class="generator-main">${pages[this.draft.step] ?? pages[0]}</div>${this.renderBalance()}</div>
       <footer class="generator-footer">
         <button id="generator-cancel" class="text-button">Entwurf schließen</button>
@@ -502,6 +700,11 @@ export class CharacterGeneratorUI {
     bindValue("#generator-name", (value) => { this.draft.name = value; }, "input");
     bindValue("#generator-concept", (value) => { this.draft.concept = value; }, "input");
     bindValue("#generator-sex", (value) => { this.draft.sex = value as GeneratorDraft["sex"]; });
+    document.querySelectorAll<HTMLInputElement>("[data-generator-magical]").forEach((input) => input.addEventListener("change", () => {
+      this.draft.magicallyGifted = input.value === "yes";
+      normalizeGeneratorDraft(this.draft);
+      rerender();
+    }));
     document.querySelectorAll<HTMLInputElement>("[data-generator-experience]").forEach((input) => input.addEventListener("change", () => { this.draft.experienceId = input.value; normalizeGeneratorDraft(this.draft); rerender(); }));
     bindValue("#generator-race", (value) => {
       this.draft.raceId = value;
@@ -651,6 +854,16 @@ export class CharacterGeneratorUI {
       normalizeGeneratorDraft(this.draft);
       rerender();
     }));
+    document.querySelectorAll<HTMLButtonElement>("[data-generator-buy-package]").forEach((button) => button.addEventListener("click", () => {
+      const packageId = button.dataset.generatorBuyPackage;
+      if (!packageId || !addEquipmentPackageToDraft(this.draft, packageId)) {
+        callbacks.notify("Das Paket ist nicht verfügbar oder das Startkapital reicht nicht aus.", "error");
+        return;
+      }
+      const definition = EQUIPMENT_PACKAGES.find((entry) => entry.id === packageId);
+      callbacks.notify(`${definition?.name ?? "Ausrüstungspaket"} wurde vollständig zum Einkauf hinzugefügt.`, "success");
+      rerender();
+    }));
     document.querySelectorAll<HTMLButtonElement>("[data-generator-purchase-adjust]").forEach((button) => button.addEventListener("click", () => {
       const catalogId = button.dataset.generatorPurchaseAdjust;
       const purchase = this.draft.purchases.find((item) => item.catalogId === catalogId);
@@ -666,6 +879,51 @@ export class CharacterGeneratorUI {
     document.querySelectorAll<HTMLButtonElement>("[data-generator-remove-purchase]").forEach((button) => button.addEventListener("click", () => {
       const index = this.draft.purchases.findIndex((item) => item.catalogId === button.dataset.generatorRemovePurchase);
       if (index >= 0) this.draft.purchases.splice(index, 1);
+      rerender();
+    }));
+    const talentSearch = document.querySelector<HTMLInputElement>("#generator-talent-search");
+    talentSearch?.addEventListener("input", () => {
+      this.talentSearch = talentSearch.value;
+      callbacks.refresh();
+      const refreshed = document.querySelector<HTMLInputElement>("#generator-talent-search");
+      refreshed?.focus();
+      refreshed?.setSelectionRange(this.talentSearch.length, this.talentSearch.length);
+    });
+    document.querySelectorAll<HTMLButtonElement>("[data-generator-talent-adjust]").forEach((button) => button.addEventListener("click", () => {
+      const talentId = button.dataset.generatorTalentAdjust;
+      const delta = Number(button.dataset.delta ?? 0);
+      if (!talentId || !delta) return;
+      const base = getGeneratorBaseTalentValues(this.draft)[talentId] ?? 0;
+      const current = getGeneratorTalentValue(this.draft, talentId);
+      const target = current + delta;
+      if (target <= base) delete this.draft.talentIncreases[talentId];
+      else this.draft.talentIncreases[talentId] = target;
+      normalizeGeneratorDraft(this.draft);
+      rerender();
+    }));
+    const spellSearch = document.querySelector<HTMLInputElement>("#generator-spell-search");
+    spellSearch?.addEventListener("input", () => {
+      this.spellSearch = spellSearch.value;
+      callbacks.refresh();
+      const refreshed = document.querySelector<HTMLInputElement>("#generator-spell-search");
+      refreshed?.focus();
+      refreshed?.setSelectionRange(this.spellSearch.length, this.spellSearch.length);
+    });
+    document.querySelectorAll<HTMLButtonElement>("[data-generator-spell-adjust]").forEach((button) => button.addEventListener("click", () => {
+      const spellId = button.dataset.generatorSpellAdjust;
+      const delta = Number(button.dataset.delta ?? 0);
+      if (!spellId || !delta) return;
+      const base = getGeneratorBaseSpellValues(this.draft)[spellId] ?? 0;
+      const current = getGeneratorSpellValue(this.draft, spellId);
+      const manuallyActivated = Object.prototype.hasOwnProperty.call(this.draft.spellIncreases, spellId);
+      if (delta > 0 && base === 0 && !manuallyActivated) this.draft.spellIncreases[spellId] = 0;
+      else if (delta < 0 && base === 0 && manuallyActivated && current === 0) delete this.draft.spellIncreases[spellId];
+      else {
+        const target = current + delta;
+        if (target <= base && base > 0) delete this.draft.spellIncreases[spellId];
+        else this.draft.spellIncreases[spellId] = Math.max(0, target);
+      }
+      normalizeGeneratorDraft(this.draft);
       rerender();
     }));
     document.querySelector("#generator-create")?.addEventListener("click", () => {

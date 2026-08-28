@@ -7,19 +7,34 @@ import {
   GRW_RACES,
   GRW_SPECIAL_ABILITIES,
   GENERATOR_SHOP_ITEMS,
+  GENERATOR_SPELLS,
+  AVAILABLE_EQUIPMENT_PACKAGES,
+  EQUIPMENT_PACKAGES,
+  addEquipmentPackageToDraft,
   buildGeneratedCharacter,
   calculateGeneratorBalance,
   calculateGeneratorShopping,
   createGeneratorDraft,
   generatorAttributeCost,
+  generatorTalentCostFor,
+  generatorSpellCostFor,
   generatorSpecialAbilityCost,
   generatorTraitCost,
   getGeneratorAttributeMaximum,
+  getEquipmentPackageBalance,
+  getGeneratorBaseTalentValues,
+  getGeneratorBaseSpellValues,
+  getGeneratorSpellCount,
+  isGeneratorMagicallyGifted,
   getRequiredProfessionComponents,
   normalizeGeneratorDraft,
   validateGeneratorDraft,
 } from "../src/character-generator";
 import { DARKAID_MAGIC_BY_SOURCE_ID } from "../src/darkaid-data";
+import { HELMET_COUNT } from "../src/helmet-data";
+import { buildPrintableCharacterData } from "../src/print-sheet";
+import { TALENTS } from "../src/data";
+import { improvementCostForTarget } from "../src/advancement";
 
 describe("DSA5-Regelwerksgenerator", () => {
   it("enthält den erweiterten Katalog aus allen fünf Regelwiki-Professionsgruppen", () => {
@@ -47,6 +62,77 @@ describe("DSA5-Regelwerksgenerator", () => {
       spent: 0,
       remaining: 1_100,
     });
+    expect(draft.talentIncreases).toEqual({});
+    expect(draft.magicallyGifted).toBe(false);
+    expect(draft.spellIncreases).toEqual({});
+  });
+
+  it("zeigt und speichert Zaubersteigerungen nur bei magisch Begabten", () => {
+    const draft = createGeneratorDraft();
+    const spell = GENERATOR_SPELLS.find((entry) => entry.id === "SPELL_1")!;
+    draft.spellIncreases[spell.id] = 1;
+    normalizeGeneratorDraft(draft);
+    expect(isGeneratorMagicallyGifted(draft)).toBe(false);
+    expect(draft.spellIncreases).toEqual({});
+
+    draft.magicallyGifted = true;
+    draft.spellIncreases[spell.id] = 0;
+    normalizeGeneratorDraft(draft);
+    expect(isGeneratorMagicallyGifted(draft)).toBe(true);
+    expect(draft.spellIncreases).toEqual({ [spell.id]: 0 });
+    expect(generatorSpellCostFor(draft, spell.id)).toBe(improvementCostForTarget("B", 1));
+    draft.spellIncreases[spell.id] = 1;
+    expect(generatorSpellCostFor(draft, spell.id)).toBe(improvementCostForTarget("B", 1) * 2);
+  });
+
+  it("aktiviert Magie durch elfische Herkunft oder magische Profession automatisch", () => {
+    const elf = createGeneratorDraft();
+    elf.raceId = "auelfen";
+    normalizeGeneratorDraft(elf);
+    expect(elf.magicallyGifted).toBe(false);
+    expect(isGeneratorMagicallyGifted(elf)).toBe(true);
+
+    const witch = createGeneratorDraft();
+    witch.professionId = "katzenhexe";
+    normalizeGeneratorDraft(witch);
+    expect(isGeneratorMagicallyGifted(witch)).toBe(true);
+    expect(getGeneratorSpellCount(witch)).toBeGreaterThan(0);
+  });
+
+  it("steigert enthaltene Professionszauber ohne erneute Aktivierungskosten", () => {
+    const draft = createGeneratorDraft();
+    draft.name = "Mirhiban";
+    draft.professionId = "katzenhexe";
+    normalizeGeneratorDraft(draft);
+    const [spellId, base] = Object.entries(getGeneratorBaseSpellValues(draft))[0];
+    const definition = GENERATOR_SPELLS.find((entry) => entry.id === spellId)!;
+    draft.spellIncreases[spellId] = base + 1;
+    normalizeGeneratorDraft(draft);
+    expect(generatorSpellCostFor(draft, spellId)).toBe(improvementCostForTarget(definition.improvementCost as "A" | "B" | "C" | "D", base + 1));
+    expect(calculateGeneratorBalance(draft).spells).toBe(generatorSpellCostFor(draft, spellId));
+    expect(buildGeneratedCharacter(draft).hero.spells?.[spellId]).toBe(base + 1);
+  });
+
+  it("steigert Talente im Generator vom Kultur- und Professionswert aus", () => {
+    const draft = createGeneratorDraft();
+    draft.name = "Alrik";
+    draft.professionId = "barde";
+    normalizeGeneratorDraft(draft);
+    const baseValues = getGeneratorBaseTalentValues(draft);
+    const talent = TALENTS.find((entry) => (baseValues[entry.id] ?? 0) > 0)!;
+    const base = baseValues[talent.id];
+    draft.talentIncreases[talent.id] = base + 1;
+    normalizeGeneratorDraft(draft);
+    expect(generatorTalentCostFor(draft, talent.id)).toBe(improvementCostForTarget(talent.improvementCost, base + 1));
+    expect(calculateGeneratorBalance(draft).talents).toBe(generatorTalentCostFor(draft, talent.id));
+    expect(buildGeneratedCharacter(draft).hero.talents[talent.id]).toBe(base + 1);
+  });
+
+  it("begrenzt Talentsteigerungen auf das Maximum des Erfahrungsgrads", () => {
+    const draft = createGeneratorDraft();
+    draft.talentIncreases.TAL_1 = 99;
+    normalizeGeneratorDraft(draft);
+    expect(draft.talentIncreases.TAL_1).toBe(10);
   });
 
   it("berechnet die Eigenschaftskosten über 14 korrekt", () => {
@@ -107,6 +193,7 @@ describe("DSA5-Regelwerksgenerator", () => {
     const spellIds = [...new Set(GRW_PROFESSIONS.flatMap((profession) => profession.spells.map((spell) => spell.id)))];
     expect(spellIds).toHaveLength(279);
     expect(spellIds.filter((id) => !DARKAID_MAGIC_BY_SOURCE_ID[id])).toEqual([]);
+    expect(spellIds.filter((id) => !["A", "B", "C", "D"].includes(DARKAID_MAGIC_BY_SOURCE_ID[id]?.improvementCost ?? ""))).toEqual([]);
   });
 
   it("berechnet feste und variable Sonderfertigkeiten", () => {
@@ -136,6 +223,7 @@ describe("DSA5-Regelwerksgenerator", () => {
 
   it("stellt einen durchsuchbaren Ausrüstungskatalog mit Preisen und Kampfwerten bereit", () => {
     expect(GENERATOR_SHOP_ITEMS.length).toBeGreaterThan(1_500);
+    expect(GENERATOR_SHOP_ITEMS.filter((entry) => entry.info).length).toBe(GENERATOR_SHOP_ITEMS.length);
     expect(GENERATOR_SHOP_ITEMS.find((entry) => entry.catalogId === "meleeweapon:dolch")?.item).toMatchObject({
       name: "Dolch",
       price: 45,
@@ -148,6 +236,73 @@ describe("DSA5-Regelwerksgenerator", () => {
       pro: 4,
       enc: 2,
     });
+    expect(GENERATOR_SHOP_ITEMS.find((entry) => entry.catalogId === "meleeweapon:dolch")?.info).toMatchObject({
+      sourceShortLabel: "GRW",
+      pages: ["366"],
+      regelwikiUrl: "https://dsa.ulisses-regelwiki.de/suche.html?keywords=Dolch",
+    });
+    expect(GENERATOR_SHOP_ITEMS.find((entry) => entry.catalogId === "armor:kettenhemd")?.info).toMatchObject({
+      sourceShortLabel: "AR",
+      pages: ["106", "151"],
+      hasSpecialAdvantage: true,
+      hasSpecialDisadvantage: true,
+    });
+  });
+
+  it("führt die Regelwiki-Ausrüstungspakete mit sechs kaufbaren Inhaltslisten", () => {
+    expect(EQUIPMENT_PACKAGES).toHaveLength(10);
+    expect(EQUIPMENT_PACKAGES.filter((entry) => !entry.unavailableReason)).toHaveLength(6);
+    expect(EQUIPMENT_PACKAGES.filter((entry) => entry.unavailableReason).map((entry) => entry.name)).toEqual([
+      "Bürgerpaket", "Geweihtenpaket", "Hexenpaket", "Magierpaket",
+    ]);
+    expect(AVAILABLE_EQUIPMENT_PACKAGES).toHaveLength(6);
+    expect(AVAILABLE_EQUIPMENT_PACKAGES.every((entry) => entry.items.length > 0 && !entry.unavailableReason)).toBe(true);
+    expect(getEquipmentPackageBalance("abenteurerpaket")).toMatchObject({ spentSilver: 575.5, totalWeight: 23.6 });
+    expect(getEquipmentPackageBalance("adligenpaket")).toMatchObject({ spentSilver: 446.8, totalWeight: 4.725 });
+    expect(getEquipmentPackageBalance("hoehlenforscherpaket")).toMatchObject({ spentSilver: 392, totalWeight: 34.225 });
+  });
+
+  it("legt ein gewähltes Ausrüstungspaket als einzelne Warenkorbpositionen an", () => {
+    const draft = createGeneratorDraft();
+    expect(addEquipmentPackageToDraft(draft, "stadtpaket")).toBe(true);
+    expect(draft.purchases.length).toBe(10);
+    expect(draft.purchases.find((entry) => entry.catalogId === "meleeweapon:messer")).toEqual({ catalogId: "meleeweapon:messer", amount: 1 });
+    expect(calculateGeneratorShopping(draft).spentSilver).toBe(getEquipmentPackageBalance("stadtpaket")?.spentSilver);
+  });
+
+  it("führt alle Regelwiki-Helme als eigene Rüstkammer-Kategorie", () => {
+    const helmets = GENERATOR_SHOP_ITEMS.filter((entry) => entry.category === "helmets");
+    expect(HELMET_COUNT).toBe(16);
+    expect(helmets).toHaveLength(16);
+    expect(helmets.find((entry) => entry.catalogId === "helmet:topfhelm")).toMatchObject({
+      kindLabel: "Helm",
+      itemKind: "helmet",
+      item: {
+        name: "Topfhelm",
+        price: 75,
+        weight: 2.5,
+        armorZone: "Kopf",
+        armorType: "Plattenrüstung",
+        zoneProtection: 6,
+      },
+      info: {
+        sourceShortLabel: "AR2",
+        pages: ["109"],
+        regelwikiUrl: "https://dsa.ulisses-regelwiki.de/topfhelm.html",
+      },
+    });
+  });
+
+  it("stellt Helme bereits getrennt für einen späteren Druckbogen bereit", () => {
+    const draft = createGeneratorDraft();
+    draft.name = "Arbosch";
+    draft.professionId = "barde";
+    draft.purchases = [{ catalogId: "helmet:zwergenhelm", amount: 1 }];
+    const printable = buildPrintableCharacterData(buildGeneratedCharacter(draft));
+    expect(printable.schemaVersion).toBe(1);
+    expect(printable.equipment.helmet).toHaveLength(1);
+    expect(printable.equipment.helmet[0]).toMatchObject({ name: "Zwergenhelm", kind: "helmet" });
+    expect(printable.visualSlots).toEqual({});
   });
 
   it("berechnet Startkapital sowie Reich und Arm regelkonform", () => {
