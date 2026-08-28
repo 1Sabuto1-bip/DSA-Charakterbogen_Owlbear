@@ -249,14 +249,19 @@ describe("DSA5-Regelwerksgenerator", () => {
     });
   });
 
-  it("führt die Regelwiki-Ausrüstungspakete mit sechs kaufbaren Inhaltslisten", () => {
-    expect(EQUIPMENT_PACKAGES).toHaveLength(10);
-    expect(EQUIPMENT_PACKAGES.filter((entry) => !entry.unavailableReason)).toHaveLength(6);
-    expect(EQUIPMENT_PACKAGES.filter((entry) => entry.unavailableReason).map((entry) => entry.name)).toEqual([
-      "Bürgerpaket", "Geweihtenpaket", "Hexenpaket", "Magierpaket",
-    ]);
+  it("führt ausschließlich die sechs kaufbaren Regelwiki-Ausrüstungspakete", () => {
+    expect(EQUIPMENT_PACKAGES).toHaveLength(6);
+    expect(EQUIPMENT_PACKAGES.every((entry) => entry.items.length > 0 && !entry.unavailableReason)).toBe(true);
     expect(AVAILABLE_EQUIPMENT_PACKAGES).toHaveLength(6);
     expect(AVAILABLE_EQUIPMENT_PACKAGES.every((entry) => entry.items.length > 0 && !entry.unavailableReason)).toBe(true);
+    expect(EQUIPMENT_PACKAGES.map((entry) => entry.id)).toEqual([
+      "abenteurerpaket",
+      "adligenpaket",
+      "hoehlenforscherpaket",
+      "reisepaket",
+      "stadtpaket",
+      "wildnispaket",
+    ]);
     expect(getEquipmentPackageBalance("abenteurerpaket")).toMatchObject({ spentSilver: 575.5, totalWeight: 23.6 });
     expect(getEquipmentPackageBalance("adligenpaket")).toMatchObject({ spentSilver: 446.8, totalWeight: 4.725 });
     expect(getEquipmentPackageBalance("hoehlenforscherpaket")).toMatchObject({ spentSilver: 392, totalWeight: 34.225 });
@@ -299,7 +304,7 @@ describe("DSA5-Regelwerksgenerator", () => {
     draft.professionId = "barde";
     draft.purchases = [{ catalogId: "helmet:zwergenhelm", amount: 1 }];
     const printable = buildPrintableCharacterData(buildGeneratedCharacter(draft));
-    expect(printable.schemaVersion).toBe(1);
+    expect(printable.schemaVersion).toBe(2);
     expect(printable.equipment.helmet).toHaveLength(1);
     expect(printable.equipment.helmet[0]).toMatchObject({ name: "Zwergenhelm", kind: "helmet" });
     expect(printable.visualSlots).toEqual({});

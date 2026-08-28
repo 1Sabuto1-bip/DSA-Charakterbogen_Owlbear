@@ -1,10 +1,35 @@
-DSA-CHARAKTERBOGEN – UPDATE 0.18.0
+DSA-CHARAKTERBOGEN – UPDATE 0.20.0
 =================================
 
-Dieser Stand baut auf Version 0.17.2 auf und ergänzt die Magiebegabung sowie
-die Zaubersteigerung direkt im Charaktergenerator.
+Dieser Stand baut auf Version 0.19.0 auf, bettet die gewünschten Schriften in
+den PDF-Heldenbogen ein und entfernt leere Ausrüstungspakete endgültig.
 
-Neu in 0.18.0:
+Neu in 0.20.0:
+- Andalus für Bogenkopf, Seitenüberschriften und Heldenname
+- Gentium Basic Regular für Fließtext, Tabellen und Listen
+- Gentium Basic Bold für Feldwerte und Hervorhebungen
+- Gentium Basic Italic für Notizen und Fußzeilen
+- alle vier TrueType-Dateien vollständig im PDF eingebettet
+- identische PDF-Schrift auf Mac, iPad und anderen Geräten ohne lokale Installation
+- Bürger-, Geweihten-, Hexen- und Magierpaket aus dem Laufzeitkatalog entfernt
+- in der Rüstkammer erscheinen nur noch die sechs tatsächlich kaufbaren Pakete
+- PDF- und Paketkatalog durch automatisierte Tests abgesichert
+- 79 erfolgreiche automatisierte Tests
+
+Bereits in 0.19.0:
+- eigener Knopf "PDF herunterladen" im letzten Generator-Schritt
+- echtes A4-PDF, vollständig im Browser erzeugt und ohne Druckdialog gespeichert
+- vier Grundseiten für Person, Talente, Kampf und Ausrüstung
+- Stammdaten, Eigenschaften, Ressourcen, AP, Vorteile, Nachteile und Sonderfertigkeiten
+- alle Talente und Kampftechniken sowie Waffen, Rüstungen, Helme und Zustände
+- Tragkraft, Inventar, Geldbeutel und freie Zeilen für handschriftliche Ergänzungen
+- automatische Zauberseite nur für magisch Begabte
+- automatische Liturgieseite nur für Geweihte
+- eigener, tintensparender Stil nach der Themenaufteilung des offiziellen Heldendokuments
+- PDF-Download lässt Generatorentwurf und interaktiven Bogen unverändert
+- 79 erfolgreiche automatisierte Tests
+
+Bereits in 0.18.0:
 - Auswahl "nicht magisch / magisch begabt" in Schritt 1 (Konzept)
 - elfische Herkunft und magische Professionen aktivieren Magiebegabung automatisch
 - der vorletzte Reiter heißt bei Magiebegabten "Talente & Zauber"
@@ -133,12 +158,12 @@ Bereits enthalten:
 - Stufe und freie Ausprägung eines Vor- oder Nachteils können bearbeitet werden
 - Einträge können hinzugefügt und entfernt werden
 - vorhandene Owlbear-Sicherungen werden beim Laden automatisch ergänzt
-- sichtbare Versionsnummer 0.18.0 zur Cache-Kontrolle
+- sichtbare Versionsnummer 0.20.0 zur Cache-Kontrolle
 
 UPLOAD
 ------
 1. Diese ZIP-Datei auf dem Mac doppelt anklicken.
-2. Den entpackten Ordner "github-update-v0.18.0" öffnen.
+2. Den entpackten Ordner "github-update-v0.20.0" öffnen.
 3. Im GitHub-Repository auf "Add file" und "Upload files" klicken:
    https://github.com/1Sabuto1-bip/DSA-Charakterbogen_Owlbear
 4. ALLE Inhalte des geöffneten Ordners in das Upload-Fenster ziehen.
@@ -154,7 +179,7 @@ OWLBEAR
 -------
 Nach dem Upload Owlbear vollständig neu laden. Falls noch eine andere Version
 erscheint, die Erweiterung im Profil entfernen und neu installieren mit:
-https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/manifest.json?v=0180
+https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/manifest.json?v=0200
 
 BEDIENUNG
 ---------
@@ -162,6 +187,10 @@ Auf der Startseite "Charaktergenerator öffnen" wählen. Der Entwurf wird
 automatisch im Browser gespeichert. Nach dem letzten Prüfschritt wird der
 Held als normaler interaktiver Bogen geöffnet. Noch nicht ausgegebene AP
 können anschließend im Reiter "Steigern" verteilt werden.
+
+Im letzten Schritt "Prüfen" kann mit "PDF herunterladen" ein druckbarer
+A4-Heldenbogen gespeichert werden. Der Entwurf bleibt dabei erhalten. Erst
+"Heldenbogen anlegen" öffnet den interaktiven Bogen und schließt den Generator.
 
 Im vorletzten Generator-Reiter "Talente & Zauber" werden die Werte aus Kultur
 und Profession als Ausgangspunkt angezeigt. Mit Plus und Minus können weitere

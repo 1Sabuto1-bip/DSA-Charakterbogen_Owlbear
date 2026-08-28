@@ -89,7 +89,7 @@ const root = document.querySelector<HTMLDivElement>("#app");
 if (!root) throw new Error("App container not found");
 
 const bridge = new OwlbearBridge();
-const APP_VERSION = "0.18.0";
+const APP_VERSION = "0.20.0";
 let state: CharacterSheetState | null = loadState();
 const generatorUI = new CharacterGeneratorUI();
 let generatorOpen = false;

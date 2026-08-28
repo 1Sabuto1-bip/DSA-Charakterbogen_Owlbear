@@ -70,17 +70,6 @@ export const EQUIPMENT_PACKAGE_ITEM_INFO: Record<string, ArmoryItemInfo> = {
 
 const item = (catalogId: string, amount = 1): EquipmentPackageItem => ({ catalogId, amount });
 
-const unavailable = (id: string, name: string): EquipmentPackageDefinition => ({
-  id,
-  name,
-  sourceLabel: "DSA-Regelwiki",
-  sourceShortLabel: "RW",
-  pages: [],
-  regelwikiUrl: `https://dsa.ulisses-regelwiki.de/ruestkammer/ausruestungspakete/${id}.html`,
-  items: [],
-  unavailableReason: "Die im Regelwiki verlinkte Detailseite enthält derzeit keine veröffentlichte Inhaltsliste.",
-});
-
 export const EQUIPMENT_PACKAGES: readonly EquipmentPackageDefinition[] = [
   {
     id: "abenteurerpaket",
@@ -121,9 +110,6 @@ export const EQUIPMENT_PACKAGES: readonly EquipmentPackageDefinition[] = [
       item("equipment:zunder"), item("equipment:zunderdose"),
     ],
   },
-  unavailable("buergerpaket", "Bürgerpaket"),
-  unavailable("geweihtenpaket", "Geweihtenpaket"),
-  unavailable("hexenpaket", "Hexenpaket"),
   {
     id: "hoehlenforscherpaket",
     name: "Höhlenforscherpaket",
@@ -143,7 +129,6 @@ export const EQUIPMENT_PACKAGES: readonly EquipmentPackageDefinition[] = [
       item("equipment:wolldecke"), item("equipment:wurfhaken"), item("equipment:zunder"), item("equipment:zunderdose"),
     ],
   },
-  unavailable("magierpaket", "Magierpaket"),
   {
     id: "reisepaket",
     name: "Reisepaket",
@@ -190,7 +175,7 @@ export const EQUIPMENT_PACKAGES: readonly EquipmentPackageDefinition[] = [
   },
 ];
 
-/** Nur Pakete mit einer veröffentlichten, kaufbaren Inhaltsliste. */
+/** Nur Pakete mit einer veröffentlichten, kaufbaren Inhaltsliste. Leer verlinkte Pakete sind nicht Teil des Laufzeitkatalogs. */
 export const AVAILABLE_EQUIPMENT_PACKAGES: readonly EquipmentPackageDefinition[] = EQUIPMENT_PACKAGES
   .filter((entry) => !entry.unavailableReason && entry.items.length > 0);
 

@@ -3,6 +3,18 @@
 Ein eigenständig gestalteter, interaktiver DSA-5-Heldenbogen als Owlbear-Rodeo-Erweiterung.
 Der aktuelle Prototyp importiert Optolith-JSON-Dateien der Version 1.5.x und TDC-Helden aus The Dark Aid X.
 
+## Version 0.20.0 – eingebettete Originalschriften und bereinigte Ausrüstungspakete
+
+Der herunterladbare Heldenbogen verwendet jetzt die mitgelieferten Schriften **Andalus** und **Gentium Basic**. Andalus gestaltet Titel, Seitenüberschriften und den Heldennamen; Gentium Basic wird in regulärer, fetter und kursiver Form für Felder, Tabellen, Listen und Notizen eingesetzt. Alle vier TrueType-Dateien werden vollständig in das erzeugte PDF eingebettet. Dadurch bleibt das Schriftbild auch auf Geräten erhalten, auf denen die Schriften nicht installiert sind.
+
+Die leeren Verweise auf **Bürgerpaket, Geweihtenpaket, Hexenpaket** und **Magierpaket** wurden aus dem Laufzeitkatalog entfernt. In der Rüstkammer werden ausschließlich die sechs Pakete mit einer tatsächlich hinterlegten kaufbaren Inhaltsliste angeboten.
+
+## Version 0.19.0 – druckbarer Heldenbogen als PDF
+
+Im letzten Generatorschritt steht jetzt **PDF herunterladen** zur Verfügung. Der Generator erstellt direkt im Browser einen eigenständigen, druckoptimierten A4-Heldenbogen mit Stammdaten, Eigenschaften, Ressourcen, AP-Bilanz, Vorteilen, Nachteilen, Sonderfertigkeiten, allen 59 Talenten, Kampftechniken, Waffen, Rüstungen, Helmen, Zuständen, Tragkraft, Inventar und Geldbeutel. Das Layout greift die klare Themenaufteilung des offiziellen Heldendokuments auf, verwendet aber eine eigenständige, tintensparende Gestaltung mit aventurischen Rahmen, grünen Tabellenköpfen und farbigen Eigenschaftssiegeln.
+
+Weltliche Figuren erhalten vier Grundseiten. Für magisch Begabte wird automatisch eine Seite für Zauber, Rituale, Zaubertricks und magische Sonderfertigkeiten ergänzt; Geweihte erhalten entsprechend eine Seite für Liturgien, Zeremonien, Segnungen und klerikale Sonderfertigkeiten. Der PDF-Download legt den interaktiven Heldenbogen noch nicht an und löscht den gespeicherten Entwurf nicht.
+
 ## Version 0.18.0 – Magiebegabung und Zaubersteigerung
 
 Im ersten Generatorschritt lässt sich jetzt festlegen, ob der Held magisch begabt ist. Elfische Herkünfte und magische Professionen aktivieren diese Einstellung automatisch. Nur bei wirksamer Magiebegabung erweitert sich der vorletzte Reiter zu **Talente & Zauber**: enthaltene Professionszauber können von ihrem Startwert aus gesteigert, weitere Zauber und Rituale aus dem vollständigen Katalog gesucht, aktiviert und anschließend erhöht werden. AP-Kosten, Fertigkeitswert-Maximum und die erlaubte Anzahl aktivierter Zauber des Erfahrungsgrads werden live geprüft.
@@ -54,6 +66,9 @@ Auf der Startseite kann ein neuer Held nach dem DSA5-Grundregelwerk (dritte Aufl
 ## Enthaltene Funktionen
 
 - geführter Charaktergenerator in zehn Schritten mit 564 Professionspaketen und Varianten aus 35 Quellen
+- eigenständigen, druckoptimierten A4-Heldenbogen im letzten Generatorschritt direkt als PDF herunterladen
+- Andalus und Gentium Basic vollständig in den PDF-Heldenbogen einbetten
+- bedingte PDF-Zusatzseiten für Zauber/Rituale beziehungsweise Liturgien/Zeremonien
 - Magiebegabung im Konzept wählen; elfische Herkunft und magische Professionen werden automatisch erkannt
 - gemeinsamer Schritt für Talente und über 400 steigerbare Zauber/Rituale mit Aktivierung, AP-Kosten und Erfahrungsgrad-Grenzen
 - Talentsteigerung mit Ausgangswerten aus Kultur und Profession, AP-Kosten und Erfahrungsgrad-Maximum
@@ -114,7 +129,7 @@ Auf der Startseite kann ein neuer Held nach dem DSA5-Grundregelwerk (dritte Aufl
 - private Notizen speichern
 - einen kompakten Ressourcenstand mit einem Owlbear-Charaktertoken verknüpfen
 - Spielstand oder die ursprünglichen Optolith-/DarkAid-Daten wieder exportieren
-- vorbereitetes, versioniertes Druckdatenmodell mit getrennten Bereichen für Waffen, Rüstungen, Helme und Inventar
+- versioniertes Druckdatenmodell mit getrennten Bereichen für Waffen, Rüstungen, Helme und Inventar
 - zentrales Grafikregister für künftige Porträts, Wappen, Rahmenelemente und Druckdekorationen
 
 Der vollständige Bogen wird im lokalen Browserspeicher abgelegt. Am verknüpften Token werden nur

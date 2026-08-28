@@ -10,7 +10,6 @@ import {
   GENERATOR_SHOP_ITEMS,
   GENERATOR_SPELLS,
   AVAILABLE_EQUIPMENT_PACKAGES,
-  EQUIPMENT_PACKAGES,
   addEquipmentPackageToDraft,
   buildGeneratedCharacter,
   calculateGeneratorBalance,
@@ -49,6 +48,7 @@ import { ATTRIBUTES, COMBAT_TECHNIQUES, ITEM_GROUPS, TALENTS } from "./data";
 import { improvementCostForTarget } from "./advancement";
 import { attachSpecialAbilityInfoListeners } from "./special-ability-info";
 import { renderInfoIcon } from "./ui-assets";
+import { downloadPrintableCharacterPdf } from "./print-pdf";
 import type { CharacterSheetState } from "./types";
 import type { GeneratorDraft, GeneratorShopCategory, GeneratorShopItem, GeneratorSpecialAbilitySelection, GeneratorTraitKind, GeneratorTraitSelection } from "./character-generator";
 
@@ -637,6 +637,10 @@ export class CharacterGeneratorUI {
       </div>
       ${validation.errors.length ? `<div class="generator-validation generator-validation--error"><strong>Noch zu korrigieren</strong><ul>${validation.errors.map((entry) => `<li>${escapeHtml(entry)}</li>`).join("")}</ul></div>` : ""}
       ${validation.warnings.length ? `<div class="generator-validation generator-validation--warning"><strong>Hinweise</strong><ul>${validation.warnings.map((entry) => `<li>${escapeHtml(entry)}</li>`).join("")}</ul></div>` : ""}
+      <div class="generator-print-preview">
+        <div class="generator-print-preview__mark" aria-hidden="true">PDF</div>
+        <div><strong>Druckbarer Heldenbogen</strong><span>Erstellt einen eigenständigen A4-Bogen mit Stammdaten, Talenten, Kampf und Rüstkammer. Seiten für Zauber oder Liturgien werden nur ergänzt, wenn dein Held sie benötigt.</span></div>
+      </div>
       <div class="generator-rule-note"><strong>Nach dem Anlegen</strong><span>Der Held wird als normaler interaktiver Bogen geöffnet. Weitere AP kannst du weiterhin im Reiter „Steigern“ ausgeben; Inventar, Waffen, Rüstung und Geld bleiben bearbeitbar.</span></div>
     </section>`;
   }
@@ -662,7 +666,7 @@ export class CharacterGeneratorUI {
       <div class="generator-workspace"><div class="generator-main">${pages[this.draft.step] ?? pages[0]}</div>${this.renderBalance()}</div>
       <footer class="generator-footer">
         <button id="generator-cancel" class="text-button">Entwurf schließen</button>
-        <div><button id="generator-previous" class="secondary-button" ${this.draft.step === 0 ? "disabled" : ""}>Zurück</button>${this.draft.step < GENERATOR_STEPS.length - 1 ? `<button id="generator-next" class="primary-button">Weiter</button>` : `<button id="generator-create" class="primary-button" ${validation.errors.length ? "disabled" : ""}>Heldenbogen anlegen</button>`}</div>
+        <div><button id="generator-previous" class="secondary-button" ${this.draft.step === 0 ? "disabled" : ""}>Zurück</button>${this.draft.step < GENERATOR_STEPS.length - 1 ? `<button id="generator-next" class="primary-button">Weiter</button>` : `<button id="generator-download-pdf" class="secondary-button" ${validation.errors.length ? "disabled" : ""}>PDF herunterladen</button><button id="generator-create" class="primary-button" ${validation.errors.length ? "disabled" : ""}>Heldenbogen anlegen</button>`}</div>
       </footer>
     </main>`;
   }
@@ -860,7 +864,7 @@ export class CharacterGeneratorUI {
         callbacks.notify("Das Paket ist nicht verfügbar oder das Startkapital reicht nicht aus.", "error");
         return;
       }
-      const definition = EQUIPMENT_PACKAGES.find((entry) => entry.id === packageId);
+      const definition = AVAILABLE_EQUIPMENT_PACKAGES.find((entry) => entry.id === packageId);
       callbacks.notify(`${definition?.name ?? "Ausrüstungspaket"} wurde vollständig zum Einkauf hinzugefügt.`, "success");
       rerender();
     }));
@@ -926,6 +930,14 @@ export class CharacterGeneratorUI {
       normalizeGeneratorDraft(this.draft);
       rerender();
     }));
+    document.querySelector("#generator-download-pdf")?.addEventListener("click", () => {
+      try {
+        downloadPrintableCharacterPdf(buildGeneratedCharacter(this.draft));
+        callbacks.notify("Der druckbare Heldenbogen wurde als PDF erstellt.", "success");
+      } catch (error) {
+        callbacks.notify(error instanceof Error ? error.message : "Das PDF konnte nicht erstellt werden.", "error");
+      }
+    });
     document.querySelector("#generator-create")?.addEventListener("click", () => {
       try {
         const sheet = buildGeneratedCharacter(this.draft);

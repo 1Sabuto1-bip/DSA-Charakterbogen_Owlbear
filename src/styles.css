@@ -1038,6 +1038,11 @@ label:focus-within {
 .generator-validation ul { margin: .35rem 0 0; padding-left: 1.1rem; }
 .generator-validation--error { color: #762a23; background: #f6d8d2; border: 1px solid #d99b91; }
 .generator-validation--warning { color: #6b4217; background: #fff2cf; border: 1px solid #e0be75; }
+.generator-print-preview { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .75rem; align-items: center; margin-top: .8rem; padding: .8rem .9rem; color: var(--forest); background: linear-gradient(135deg, rgba(36,89,75,.11), rgba(180,139,62,.1)); border: 1px solid rgba(36,89,75,.3); border-radius: 10px; }
+.generator-print-preview__mark { width: 2.6rem; height: 3.25rem; display: grid; place-items: center; color: #fff; background: var(--forest); border-radius: 3px 3px 8px 3px; box-shadow: inset 0 -4px 0 rgba(180,139,62,.55); font-family: Georgia, serif; font-size: .62rem; font-weight: 900; letter-spacing: .04em; }
+.generator-print-preview strong, .generator-print-preview span { display: block; }
+.generator-print-preview strong { margin-bottom: .18rem; font-family: Georgia, serif; font-size: .78rem; }
+.generator-print-preview span { color: var(--muted); font-size: .58rem; line-height: 1.5; }
 .generator-footer { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: .9rem clamp(1rem, 4vw, 2.2rem); background: #e9dfc7; border-top: 1px solid var(--line); }
 .generator-footer > div { display: flex; gap: .5rem; }
 .biography-special-abilities { margin-top: 0.8rem; }
