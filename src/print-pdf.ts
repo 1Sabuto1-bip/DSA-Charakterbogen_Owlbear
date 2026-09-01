@@ -383,7 +383,7 @@ class PdfDocument {
     });
     objects[catalogId - 1] = `<< /Type /Catalog /Pages ${pagesId} 0 R >>`;
     objects[pagesId - 1] = `<< /Type /Pages /Kids [${pageIds.map((id) => `${id} 0 R`).join(" ")}] /Count ${this.pages.length} /MediaBox [0 0 ${fmt(PAGE_WIDTH)} ${fmt(PAGE_HEIGHT)}] >>`;
-    const infoId = addObject(`<< /Title ${pdfLiteral(title)} /Author ${pdfLiteral("Aventurischer Heldenbogen")} /Creator ${pdfLiteral("Regelwerksgenerator 0.20.0")} >>`);
+    const infoId = addObject(`<< /Title ${pdfLiteral(title)} /Author ${pdfLiteral("Aventurischer Heldenbogen")} /Creator ${pdfLiteral("Regelwerksgenerator 0.22.0")} >>`);
 
     let output = `%PDF-1.4\n%${String.fromCharCode(226, 227, 207, 211)}\n`;
     const offsets = [0];
@@ -652,29 +652,70 @@ const inventoryEntries = (data: PrintableCharacterData): PrintableEquipmentEntry
   ...data.equipment.shield,
   ...data.equipment.armor,
   ...data.equipment.helmet,
-].sort((a, b) => a.name.localeCompare(b.name, "de"));
+].filter((item) => data.equipmentZones.backpackItemIds.includes(item.id))
+  .sort((a, b) => a.name.localeCompare(b.name, "de"));
+
+const drawEquipmentPlacement = (page: PdfCanvas, data: PrintableCharacterData): number => {
+  sectionTitle(page, PAGE_LEFT, 80, CONTENT_WIDTH, "Getragene Ausrüstung und Rucksack");
+  const bodyWidth = 330;
+  const bagX = PAGE_LEFT + bodyWidth + 10;
+  const bagWidth = CONTENT_WIDTH - bodyWidth - 10;
+  const cellWidth = bodyWidth / 2;
+  const cellHeight = 43;
+  data.equipmentZones.entries.forEach((entry, index) => {
+    const column = index % 2;
+    const row = Math.floor(index / 2);
+    const x = PAGE_LEFT + column * cellWidth;
+    const top = 98 + row * cellHeight;
+    page.fillRect(x, top, cellWidth, cellHeight, index % 2 ? COLORS.paper : COLORS.paperDeep);
+    page.strokeRect(x, top, cellWidth, cellHeight, COLORS.line, .45);
+    page.text(entry.slot.label, x + 7, top + 6, { font: "gentiumBold", size: 7.1, fill: COLORS.forest, width: 65 });
+    page.text(entry.item?.name ?? "nicht belegt", x + 7, top + 20, { font: "gentium", size: 6.2, fill: entry.item ? COLORS.ink : COLORS.muted, width: cellWidth - 52 });
+    page.text(entry.slot.id === "footwear" ? "ohne RS" : `${entry.slot.protectionLabel} ${entry.protection}`, x + cellWidth - 48, top + 15, { font: "gentiumBold", size: 6.1, fill: entry.slot.id === "footwear" ? COLORS.muted : COLORS.gold, align: "right", width: 41 });
+  });
+  page.fillRect(bagX, 98, bagWidth, cellHeight * 3, COLORS.forest);
+  page.strokeRect(bagX, 98, bagWidth, cellHeight * 3, COLORS.gold, .8);
+  page.text("Rucksack", bagX + 8, 105, { font: "andalus", size: 12, fill: COLORS.goldLight, width: bagWidth - 16 });
+  const backpack = inventoryEntries(data);
+  page.text(`${backpack.reduce((sum, item) => sum + item.amount, 0)} Gegenstände`, bagX + 8, 121, { font: "gentiumItalic", size: 5.7, fill: COLORS.white, width: bagWidth - 16 });
+  backpack.slice(0, 8).forEach((item, index) => {
+    page.text(`${item.amount > 1 ? `${item.amount}x ` : ""}${item.name}`, bagX + 8, 137 + index * 10.5, { font: "gentium", size: 5.5, fill: COLORS.white, width: bagWidth - 55 });
+    page.text(`${(item.weight * item.amount).toLocaleString("de-DE", { maximumFractionDigits: 2 })} St`, bagX + bagWidth - 45, 137 + index * 10.5, { font: "gentium", size: 5.2, fill: COLORS.goldLight, align: "right", width: 37 });
+  });
+  if (backpack.length > 8) page.text(`+ ${backpack.length - 8} weitere Positionen`, bagX + 8, 223, { font: "gentiumItalic", size: 5.2, fill: COLORS.goldLight, width: bagWidth - 16 });
+
+  const summaryTop = 234;
+  const summaryWidths = [88, 70, 76, 153, 128];
+  const summaryValues = [
+    ["Belastungswert", String(data.equipmentZones.protectionScore)],
+    ["Rüstungs-BE", String(data.equipmentZones.encumbrance)],
+    ["GS / INI", data.equipmentZones.movementPenalty ? `-${data.equipmentZones.movementPenalty} / -${data.equipmentZones.initiativePenalty}` : "- / -"],
+    ["Traglast", `${data.carrying.countedWeight.toLocaleString("de-DE", { maximumFractionDigits: 2 })} / ${data.carrying.capacity.toLocaleString("de-DE", { maximumFractionDigits: 2 })} Stein`],
+    ["Geld", `${data.purse.d} D · ${data.purse.s} S · ${data.purse.h} H · ${data.purse.k} K`],
+  ];
+  let summaryX = PAGE_LEFT;
+  summaryValues.forEach(([label, value], index) => {
+    const width = summaryWidths[index];
+    page.fillRect(summaryX, summaryTop, width, 39, index < 3 ? COLORS.forestLight : COLORS.goldLight);
+    page.strokeRect(summaryX, summaryTop, width, 39, COLORS.line, .4);
+    page.text(label, summaryX + 6, summaryTop + 6, { font: "gentiumBold", size: 5.2, fill: COLORS.muted, width: width - 12 });
+    page.text(value, summaryX + 6, summaryTop + 18, { font: "gentiumBold", size: index < 3 ? 9 : 7.2, fill: COLORS.forest, width: width - 12 });
+    summaryX += width;
+  });
+  page.text("Kein addierter Gesamt-RS: Bei Treffern gilt der RS der getroffenen Zone. Der Beinwert gilt für jedes Bein; Schuhwerk zählt nicht zum RS.", PAGE_LEFT, 278, { font: "gentiumItalic", size: 5.4, fill: COLORS.muted, width: CONTENT_WIDTH });
+  return 292;
+};
 
 const drawInventoryPages = (document: PdfDocument, data: PrintableCharacterData): void => {
   const entries = inventoryEntries(data);
   const chunks: PrintableEquipmentEntry[][] = [];
-  for (let index = 0; index < Math.max(1, entries.length); index += 32) chunks.push(entries.slice(index, index + 32));
+  chunks.push(entries.slice(0, 25));
+  for (let index = 25; index < entries.length; index += 32) chunks.push(entries.slice(index, index + 32));
   chunks.forEach((chunk, chunkIndex) => {
     const page = document.addPage(chunks.length > 1 ? `Ausrüstung ${chunkIndex + 1}/${chunks.length}` : "Ausrüstung");
     drawPageChrome(page, data.identity.name, chunks.length > 1 ? `Ausrüstung ${chunkIndex + 1}/${chunks.length}` : "Ausrüstung");
-    if (chunkIndex === 0) {
-      sectionTitle(page, PAGE_LEFT, 80, 310, "Tragkraft und Belastung");
-      const carrying = data.carrying;
-      page.fillRect(PAGE_LEFT, 97, 310, 57, COLORS.forestLight);
-      page.text(`${carrying.countedWeight.toLocaleString("de-DE", { maximumFractionDigits: 2 })} / ${carrying.capacity.toLocaleString("de-DE", { maximumFractionDigits: 2 })} Stein`, PAGE_LEFT + 8, 107, { font: "gentiumBold", size: 14, fill: COLORS.forest, width: 180 });
-      page.text(`Inventar ${carrying.inventoryWeight.toLocaleString("de-DE", { maximumFractionDigits: 2 })} · Rüstung abgezogen ${carrying.ignoredArmorWeight.toLocaleString("de-DE", { maximumFractionDigits: 2 })} · Belastung ${carrying.encumbrance}`, PAGE_LEFT + 8, 130, { font: "gentium", size: 6.1, fill: COLORS.ink, width: 294 });
-      sectionTitle(page, PAGE_LEFT + 320, 80, CONTENT_WIDTH - 320, "Geldbeutel");
-      const coinWidth = (CONTENT_WIDTH - 320) / 4;
-      [["D", data.purse.d], ["S", data.purse.s], ["H", data.purse.h], ["K", data.purse.k]].forEach(([label, value], index) => {
-        field(page, PAGE_LEFT + 320 + index * coinWidth, 97, coinWidth, label, value, 57);
-      });
-    }
-    const tableTop = chunkIndex === 0 ? 168 : 82;
-    sectionTitle(page, PAGE_LEFT, tableTop, CONTENT_WIDTH, "Inventar");
+    const tableTop = chunkIndex === 0 ? drawEquipmentPlacement(page, data) : 82;
+    sectionTitle(page, PAGE_LEFT, tableTop, CONTENT_WIDTH, chunkIndex === 0 ? "Rucksack und weiteres Inventar" : "Weiteres Inventar");
     const rows = chunk.map((item) => [
       item.name,
       itemType(item),
@@ -683,7 +724,8 @@ const drawInventoryPages = (document: PdfDocument, data: PrintableCharacterData)
       item.equipped ? "ja" : "nein",
       (item.price * item.amount).toLocaleString("de-DE", { maximumFractionDigits: 2 }),
     ]);
-    const blankRows = chunkIndex === chunks.length - 1 ? Math.max(0, 28 - rows.length) : 0;
+    const blankTarget = chunkIndex === 0 ? 25 : 32;
+    const blankRows = chunkIndex === chunks.length - 1 ? Math.max(0, blankTarget - rows.length) : 0;
     drawTable(page, PAGE_LEFT, tableTop + 17, [217, 82, 42, 61, 50, 63], ["Gegenstand", "Art", "Anz.", "Gewicht", "getragen", "Wert S"], rows, { rowHeight: 18, headerHeight: 19, fontSize: 6.5, blankRows, alignments: ["left", "left", "center", "right", "center", "right"] });
   });
 };
@@ -729,7 +771,7 @@ const drawKarmaPage = (document: PdfDocument, data: PrintableCharacterData): voi
 const addFooters = (document: PdfDocument): void => {
   const total = document.pages.length;
   document.pages.forEach((page, index) => {
-    page.text("Regelwerksgenerator 0.20.0", 200, 804, { font: "gentiumItalic", size: 5.3, fill: COLORS.line, width: 195, align: "center" });
+    page.text("Regelwerksgenerator 0.22.0", 200, 804, { font: "gentiumItalic", size: 5.3, fill: COLORS.line, width: 195, align: "center" });
     page.text(`Seite ${index + 1} / ${total}`, 455, 804, { font: "gentiumItalic", size: 5.5, fill: COLORS.muted, width: 80, align: "right" });
   });
 };

@@ -4,6 +4,7 @@ import { calculateCarryingOverview, calculateConditionOverview, CONDITION_DEFINI
 import { DARKAID_MAGIC_BY_ID, DARKAID_MAGIC_BY_SOURCE_ID } from "./darkaid-data";
 import { GRW_CHARACTER_DATA } from "./grw-character-data";
 import { getAttributeValues, isMagicallyGifted } from "./importer";
+import { calculateEquipmentZones } from "./equipment-zones";
 import { CANTRIPS } from "./magic-data";
 import { ALL_SPELL_BY_ID } from "./spell-catalog";
 import type {
@@ -14,7 +15,7 @@ import type {
   ImprovementCost,
 } from "./types";
 
-export const PRINTABLE_SHEET_SCHEMA_VERSION = 2 as const;
+export const PRINTABLE_SHEET_SCHEMA_VERSION = 3 as const;
 
 export interface PrintableValue {
   id: string;
@@ -101,6 +102,7 @@ export interface PrintableCharacterData {
   talents: PrintableTalent[];
   combatTechniques: PrintableCombatTechnique[];
   equipment: Record<CombatItemKind, PrintableEquipmentEntry[]>;
+  equipmentZones: ReturnType<typeof calculateEquipmentZones>;
   purse: Record<"d" | "s" | "h" | "k", string>;
   carrying: ReturnType<typeof calculateCarryingOverview>;
   conditions: {
@@ -233,11 +235,16 @@ export const buildPrintableCharacterData = (sheet: CharacterSheetState): Printab
   const attributes = getAttributeValues(sheet.hero);
   const conditionOverview = calculateConditionOverview(sheet);
   const carrying = calculateCarryingOverview(sheet);
+  const equipmentZones = calculateEquipmentZones(sheet.hero.belongings?.items ?? {}, sheet.runtime.equipmentSlots);
   const combat = calculateCombatOverview(
     sheet.hero,
     sheet.runtime.combat.primaryWeaponId,
     sheet.runtime.combat.initiativeModifier,
-    { attackDefensePenalty: conditionOverview.physicalPenalty, encumbranceLevel: conditionOverview.encumbrance },
+    {
+      attackDefensePenalty: conditionOverview.physicalPenalty,
+      encumbranceLevel: conditionOverview.encumbrance,
+      armorInitiativePenalty: conditionOverview.armorInitiativePenalty,
+    },
   );
   const species = getSpeciesValues(sheet);
   const totalAp = Math.max(0, Number(sheet.hero.ap?.total) || 0);
@@ -318,6 +325,7 @@ export const buildPrintableCharacterData = (sheet: CharacterSheetState): Printab
       }))
       .sort((a, b) => a.name.localeCompare(b.name, "de")),
     equipment,
+    equipmentZones,
     purse: { d: String(purse.d ?? "0"), s: String(purse.s ?? "0"), h: String(purse.h ?? "0"), k: String(purse.k ?? "0") },
     carrying,
     conditions: {

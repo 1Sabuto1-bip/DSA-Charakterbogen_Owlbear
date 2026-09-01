@@ -9,6 +9,7 @@ import {
   SPECIES_BY_ID,
   TALENTS,
   TALENT_BY_ID,
+  suggestInventoryGroup,
 } from "./data";
 import { CANTRIPS, SPELL_BY_ID } from "./magic-data";
 import { DARKAID_MAGIC_BY_ID, DARKAID_MAGIC_BY_SOURCE_ID } from "./darkaid-data";
@@ -22,7 +23,7 @@ import {
 import { COMPLETE_ADVANTAGES, COMPLETE_DISADVANTAGES } from "./biography-catalog";
 import { ensureHeroBiography, findBiographyEntry } from "./biography";
 import { CharacterGeneratorUI } from "./character-generator-ui";
-import { GRW_SPECIAL_ABILITIES } from "./character-generator";
+import { GENERATOR_SHOP_ITEMS, GRW_SPECIAL_ABILITIES } from "./character-generator";
 import { attachSpecialAbilityInfoListeners } from "./special-ability-info";
 import { renderInfoIcon } from "./ui-assets";
 import {
@@ -49,6 +50,13 @@ import {
   calculateConditionOverview,
   CONDITION_DEFINITIONS,
 } from "./conditions";
+import {
+  assignEquipmentToAvailableSlots,
+  calculateEquipmentZones,
+  EQUIPMENT_BODY_SLOT_DEFINITIONS,
+  equipmentSlotIsAvailable,
+  normalizeEquipmentSlots,
+} from "./equipment-zones";
 import { clearState, loadState, saveState } from "./storage";
 import {
   calculateCombatOverview,
@@ -62,6 +70,7 @@ import type {
   AttributeCode,
   BiographyTrait,
   CombatItemKind,
+  EquipmentBodySlot,
   ConditionId,
   ImprovementCost,
   GroupHeroSummary,
@@ -89,7 +98,7 @@ const root = document.querySelector<HTMLDivElement>("#app");
 if (!root) throw new Error("App container not found");
 
 const bridge = new OwlbearBridge();
-const APP_VERSION = "0.20.0";
+const APP_VERSION = "0.22.0";
 let state: CharacterSheetState | null = loadState();
 const generatorUI = new CharacterGeneratorUI();
 let generatorOpen = false;
@@ -101,6 +110,9 @@ let advancementSearch = "";
 let advancementSection: AdvancementSection = "attributes";
 let weaponCatalogSearch = "";
 let inventorySort: InventorySort = "category";
+let inventoryCatalogSearch = "";
+let inventoryCatalogCategory: "all" | "weapons" | "armor" | "helmets" | "equipment" = "all";
+let inventoryCatalogOpen = false;
 let rollDialog: RollDialogState | null = null;
 let groupMembers: GroupHeroSummary[] = [];
 let groupLoading = false;
@@ -908,6 +920,7 @@ const renderCombat = (sheet: CharacterSheetState): string => {
     {
       attackDefensePenalty: conditions.physicalPenalty,
       encumbranceLevel: conditions.encumbrance,
+      armorInitiativePenalty: conditions.armorInitiativePenalty,
     },
   );
   const query = normalizeSearch(weaponCatalogSearch);
@@ -1062,7 +1075,8 @@ const renderConditions = (sheet: CharacterSheetState): string => {
 };
 
 const renderInventory = (sheet: CharacterSheetState): string => {
-  const items = Object.entries(sheet.hero.belongings?.items ?? {})
+  const itemRecord = sheet.hero.belongings?.items ?? {};
+  const items = Object.entries(itemRecord)
     .map(([key, item]) => ({ key, item }));
   const categoryName = (item: OptolithItem): string => ITEM_GROUPS[item.gr ?? 0] ?? "Sonstiges";
   items.sort((a, b) => {
@@ -1077,13 +1091,38 @@ const renderInventory = (sheet: CharacterSheetState): string => {
   });
   const purse = sheet.hero.belongings?.purse ?? {};
   const carrying = calculateCarryingOverview(sheet);
+  const zoneSummary = calculateEquipmentZones(itemRecord, sheet.runtime.equipmentSlots);
+  const bodyZones = EQUIPMENT_BODY_SLOT_DEFINITIONS.map((definition) => {
+    const zone = zoneSummary.entries.find((entry) => entry.slot.id === definition.id)!;
+    const candidates = items.filter(({ key, item }) => equipmentSlotIsAvailable(
+      key,
+      item,
+      definition.id,
+      sheet.runtime.equipmentSlots,
+    ));
+    return `<label class="equipment-zone-card equipment-zone-card--${definition.id}">
+      <span>${escapeHtml(definition.label)}</span>
+      <select data-equipment-slot="${definition.id}" aria-label="Ausrüstung für ${escapeHtml(definition.label)}">
+        <option value="">${candidates.length ? "nicht belegt / im Rucksack" : "keine passende Ausrüstung"}</option>
+        ${candidates.map(({ key, item }) => `<option value="${escapeHtml(key)}" ${zone.itemId === key ? "selected" : ""}>${escapeHtml(item.name)}</option>`).join("")}
+      </select>
+      <strong>${definition.id === "footwear" ? "ohne RS" : `${escapeHtml(definition.protectionLabel)} ${zone.protection}`}</strong>
+    </label>`;
+  }).join("");
+  const backpackItems = items.filter(({ key }) => zoneSummary.backpackItemIds.includes(key));
+  const catalogQuery = normalizeSearch(inventoryCatalogSearch);
+  const catalogMatches = GENERATOR_SHOP_ITEMS.filter((entry) =>
+    (inventoryCatalogCategory === "all" || entry.category === inventoryCatalogCategory)
+    && (!catalogQuery || normalizeSearch(`${entry.item.name} ${entry.kindLabel} ${ITEM_GROUPS[entry.item.gr ?? 0] ?? ""}`).includes(catalogQuery)))
+    .slice(0, 24);
   let previousCategory = "";
   const itemRows = items.map(({ key, item }) => {
     const category = categoryName(item);
     const categoryRow = inventorySort === "category" && category !== previousCategory
-      ? `<tr class="inventory-category-row"><th colspan="5"><span>${escapeHtml(category)}</span><small>${items.filter((entry) => categoryName(entry.item) === category).length} Einträge</small></th></tr>`
+      ? `<tr class="inventory-category-row"><th colspan="6"><span>${escapeHtml(category)}</span><small>${items.filter((entry) => categoryName(entry.item) === category).length} Einträge</small></th></tr>`
       : "";
     previousCategory = category;
+    const wornAt = zoneSummary.entries.filter((entry) => entry.itemId === key).map((entry) => entry.slot.shortLabel);
     return `${categoryRow}<tr>
       <td class="inventory-item-cell">
         <input class="inventory-name-input" data-inventory-key="${escapeHtml(key)}" data-inventory-field="name" value="${escapeHtml(item.name)}" aria-label="Gegenstand" />
@@ -1095,6 +1134,7 @@ const renderInventory = (sheet: CharacterSheetState): string => {
       <td><input class="inventory-number-input" data-inventory-key="${escapeHtml(key)}" data-inventory-field="amount" type="number" min="0" step="1" value="${item.amount ?? 1}" aria-label="Anzahl" /></td>
       <td><input class="inventory-number-input" data-inventory-key="${escapeHtml(key)}" data-inventory-field="weight" type="number" min="0" step="0.01" value="${item.weight ?? 0}" aria-label="Gewicht in Stein" /></td>
       <td><input class="inventory-number-input" data-inventory-key="${escapeHtml(key)}" data-inventory-field="price" type="number" min="0" step="0.01" value="${item.price ?? 0}" aria-label="Wert" /></td>
+      <td><span class="inventory-location ${wornAt.length ? "inventory-location--worn" : ""}">${escapeHtml(wornAt.length ? wornAt.join(" + ") : "Rucksack")}</span></td>
       <td><button class="inventory-delete" data-delete-inventory="${escapeHtml(key)}" title="Gegenstand löschen" aria-label="${escapeHtml(item.name)} löschen">×</button></td>
     </tr>`;
   }).join("");
@@ -1114,6 +1154,35 @@ const renderInventory = (sheet: CharacterSheetState): string => {
           <button class="primary-button inventory-add" id="add-inventory-item">+ Gegenstand</button>
         </div>
       </div>
+      <section class="equipment-placement equipment-placement--sheet">
+        <div class="equipment-placement__heading"><div><p class="eyebrow">Trefferzonen</p><h3>Getragene Ausrüstung</h3><small>Wie im Charaktergenerator werden nur Gegenstände angeboten, die für das jeweilige Körperfeld bestimmt sind.</small></div><a href="https://dsa.ulisses-regelwiki.de/Fokus_TreffzonenRS.html" target="_blank" rel="noopener noreferrer">Regelwiki ↗</a></div>
+        <div class="equipment-placement__layout">
+          <div class="equipment-body-zones">${bodyZones}</div>
+          <aside class="equipment-backpack"><header><span>Rucksack</span><strong>${backpackItems.reduce((total, { item }) => total + Math.max(1, Number(item.amount) || 1), 0)} Gegenstände</strong></header><ul>${backpackItems.slice(0, 10).map(({ item }) => `<li><span>${(item.amount ?? 1) > 1 ? `${item.amount}× ` : ""}${escapeHtml(item.name)}</span><small>${formatNumber(Number(item.weight ?? 0) * Number(item.amount ?? 1))} Stein</small></li>`).join("") || "<li class=\"empty-state\">Der Rucksack ist leer.</li>"}</ul>${backpackItems.length > 10 ? `<small>+ ${backpackItems.length - 10} weitere Positionen</small>` : ""}</aside>
+        </div>
+        <div class="equipment-zone-result"><div><span>Belastungswert</span><strong>${zoneSummary.protectionScore}</strong><small>Kopf ×1 · Torso ×5 · Arme ×2 · Beine ×2 je Bein</small></div><div><span>Rüstungs-BE</span><strong>${zoneSummary.encumbrance}</strong><small>aus den Trefferzonen</small></div><div><span>Zusatzabzug</span><strong>${zoneSummary.movementPenalty ? `−${zoneSummary.movementPenalty}` : "–"}</strong><small>auf GS und INI</small></div><p>Kein addierter Gesamt-RS: Bei einem Treffer gilt der RS der getroffenen Zone. Der Beinwert gilt einzeln für jedes Bein.</p></div>
+      </section>
+      <details class="inventory-armory" id="inventory-armory" ${inventoryCatalogOpen || inventoryCatalogSearch ? "open" : ""}>
+        <summary><span>Rüstkammer öffnen</span><small>Gegenstände mit vollständigen Werten wie im Charaktergenerator übernehmen</small></summary>
+        <div class="inventory-armory__filters">
+          <label class="generator-search"><span>Gegenstand suchen</span><input id="inventory-catalog-search" type="search" value="${escapeHtml(inventoryCatalogSearch)}" placeholder="z. B. Armschiene, Kettenhemd, Stiefel …" /></label>
+          <label class="generator-field"><span>Bereich</span><select id="inventory-catalog-category">
+            <option value="all" ${inventoryCatalogCategory === "all" ? "selected" : ""}>Alles</option>
+            <option value="weapons" ${inventoryCatalogCategory === "weapons" ? "selected" : ""}>Waffen &amp; Schilde</option>
+            <option value="armor" ${inventoryCatalogCategory === "armor" ? "selected" : ""}>Rüstungen</option>
+            <option value="helmets" ${inventoryCatalogCategory === "helmets" ? "selected" : ""}>Helme</option>
+            <option value="equipment" ${inventoryCatalogCategory === "equipment" ? "selected" : ""}>Inventar</option>
+          </select></label>
+        </div>
+        <div class="inventory-armory__results">${catalogMatches.map((entry) => {
+          const catalogItem = { ...entry.item, itemKind: entry.itemKind } as OptolithItem;
+          const detail = entry.itemKind === "equipment"
+            ? `${entry.kindLabel} · ${formatNumber(Number(entry.item.weight ?? 0))} Stein · ${formatNumber(entry.item.price)} S`
+            : `${combatCatalogSummary(catalogItem)} · ${formatNumber(Number(entry.item.weight ?? 0))} Stein`;
+          return `<article class="generator-shop-result"><div><strong>${escapeHtml(entry.item.name)}</strong><small>${escapeHtml(detail)}</small></div><span>${formatNumber(entry.item.price)} S</span><div class="generator-shop-result__actions"><button data-add-inventory-template="${escapeHtml(entry.catalogId)}">Übernehmen</button>${renderCombatArmoryInfo(entry.catalogId, catalogItem)}</div></article>`;
+        }).join("") || `<div class="empty-state">Kein passender Gegenstand gefunden.</div>`}</div>
+        ${catalogMatches.length === 24 ? `<small class="generator-result-limit">Die ersten 24 Treffer werden angezeigt. Verfeinere die Suche für weitere Ergebnisse.</small>` : ""}
+      </details>
       <div class="purse" aria-label="Geldbörse">
         ${[
           ["d", "D", "Dukaten"],
@@ -1128,9 +1197,9 @@ const renderInventory = (sheet: CharacterSheetState): string => {
       </div>
       <div class="inventory-table-wrap">
         <table class="inventory-table">
-          <thead><tr><th>Gegenstand</th><th>Anzahl</th><th>Gewicht</th><th>Wert</th><th></th></tr></thead>
+          <thead><tr><th>Gegenstand</th><th>Anzahl</th><th>Gewicht</th><th>Wert</th><th>Ort</th><th></th></tr></thead>
           <tbody>
-            ${itemRows || '<tr><td colspan="5" class="empty-state">Noch keine Gegenstände vorhanden.</td></tr>'}
+            ${itemRows || '<tr><td colspan="6" class="empty-state">Noch keine Gegenstände vorhanden.</td></tr>'}
           </tbody>
         </table>
       </div>
@@ -2115,6 +2184,7 @@ const attachSheetListeners = (): void => {
       {
         attackDefensePenalty: conditionOverview.physicalPenalty,
         encumbranceLevel: conditionOverview.encumbrance,
+        armorInitiativePenalty: conditionOverview.armorInitiativePenalty,
       },
     );
     const value = document.querySelector<HTMLElement>(".combat-stat--initiative strong");
@@ -2135,6 +2205,7 @@ const attachSheetListeners = (): void => {
       {
         attackDefensePenalty: conditionOverview.physicalPenalty,
         encumbranceLevel: conditionOverview.encumbrance,
+        armorInitiativePenalty: conditionOverview.armorInitiativePenalty,
       },
     );
     state.runtime.combat.lastInitiativeRoll = rollInitiative(overview);
@@ -2384,6 +2455,65 @@ const attachSheetListeners = (): void => {
     render();
   });
 
+  document.querySelector<HTMLDetailsElement>("#inventory-armory")?.addEventListener("toggle", (event) => {
+    inventoryCatalogOpen = (event.currentTarget as HTMLDetailsElement).open;
+  });
+
+  const inventoryCatalogSearchInput = document.querySelector<HTMLInputElement>("#inventory-catalog-search");
+  inventoryCatalogSearchInput?.addEventListener("input", () => {
+    inventoryCatalogSearch = inventoryCatalogSearchInput.value;
+    inventoryCatalogOpen = true;
+    render();
+    const refreshed = document.querySelector<HTMLInputElement>("#inventory-catalog-search");
+    refreshed?.focus();
+    refreshed?.setSelectionRange(inventoryCatalogSearch.length, inventoryCatalogSearch.length);
+  });
+
+  document.querySelector<HTMLSelectElement>("#inventory-catalog-category")?.addEventListener("change", (event) => {
+    inventoryCatalogCategory = (event.target as HTMLSelectElement).value as typeof inventoryCatalogCategory;
+    inventoryCatalogOpen = true;
+    render();
+  });
+
+  document.querySelectorAll<HTMLButtonElement>("[data-add-inventory-template]").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (!state) return;
+      const catalogId = button.dataset.addInventoryTemplate;
+      const entry = GENERATOR_SHOP_ITEMS.find((candidate) => candidate.catalogId === catalogId);
+      if (!catalogId || !entry) return;
+      state.hero.belongings ??= {};
+      state.hero.belongings.items ??= {};
+      const id = `CATALOG_ITEM_${catalogId.replace(/[^a-z0-9]+/gi, "_").replace(/^_|_$/g, "")}`;
+      const existing = state.hero.belongings.items[id];
+      if (existing) existing.amount = Math.max(1, Number(existing.amount) || 1) + 1;
+      else {
+        const fallbackGroup = entry.itemKind === "armor" || entry.itemKind === "helmet" ? 4 : entry.itemKind === "ranged" ? 2 : entry.itemKind === "equipment" ? 7 : 1;
+        state.hero.belongings.items[id] = {
+          ...entry.item,
+          id,
+          name: entry.item.name,
+          amount: 1,
+          gr: entry.itemKind === "equipment"
+            ? suggestInventoryGroup(entry.item.name, Number(entry.item.gr ?? fallbackGroup))
+            : fallbackGroup,
+          itemKind: entry.itemKind,
+          equipped: false,
+          generatorCatalogId: catalogId,
+        } as OptolithItem;
+      }
+      state.runtime.equipmentSlots = assignEquipmentToAvailableSlots(
+        state.runtime.equipmentSlots,
+        id,
+        state.hero.belongings.items,
+      );
+      if (Object.values(state.runtime.equipmentSlots).includes(id)) state.hero.belongings.items[id].equipped = true;
+      inventoryCatalogOpen = true;
+      persist();
+      render();
+      showToast(`„${entry.item.name}“ wurde zur Ausrüstung hinzugefügt.`);
+    });
+  });
+
   document.querySelectorAll<HTMLInputElement | HTMLSelectElement>("[data-inventory-key][data-inventory-field]").forEach((input) => {
     input.addEventListener("change", () => {
       if (!state) return;
@@ -2395,6 +2525,27 @@ const attachSheetListeners = (): void => {
       else if (field === "gr") item.gr = Math.max(0, Math.round(asNumber(input.value, item.gr ?? 0)));
       else if (field === "amount") item.amount = Math.max(0, Math.round(asNumber(input.value, item.amount ?? 1)));
       else item[field] = Math.max(0, asNumber(input.value, item[field] ?? 0));
+      state.runtime.equipmentSlots = normalizeEquipmentSlots(state.runtime.equipmentSlots, state.hero.belongings?.items ?? {});
+      persist();
+      render();
+    });
+  });
+
+  document.querySelectorAll<HTMLSelectElement>("[data-equipment-slot]").forEach((select) => {
+    select.addEventListener("change", () => {
+      if (!state) return;
+      const slot = select.dataset.equipmentSlot as EquipmentBodySlot;
+      const previousItemId = state.runtime.equipmentSlots[slot];
+      if (select.value) {
+        state.runtime.equipmentSlots[slot] = select.value;
+        const item = state.hero.belongings?.items?.[select.value];
+        if (item) item.equipped = true;
+      } else delete state.runtime.equipmentSlots[slot];
+      state.runtime.equipmentSlots = normalizeEquipmentSlots(state.runtime.equipmentSlots, state.hero.belongings?.items ?? {});
+      if (previousItemId && !Object.values(state.runtime.equipmentSlots).includes(previousItemId)) {
+        const previousItem = state.hero.belongings?.items?.[previousItemId];
+        if (previousItem) previousItem.equipped = false;
+      }
       persist();
       render();
     });
@@ -2407,6 +2558,9 @@ const attachSheetListeners = (): void => {
       const item = key ? state.hero.belongings?.items?.[key] : undefined;
       if (!key || !item || !window.confirm(`„${item.name}“ aus dem Inventar löschen?`)) return;
       delete state.hero.belongings?.items?.[key];
+      for (const slot of EQUIPMENT_BODY_SLOT_DEFINITIONS) {
+        if (state.runtime.equipmentSlots[slot.id] === key) delete state.runtime.equipmentSlots[slot.id];
+      }
       if (state.runtime.combat.primaryWeaponId === key) {
         state.runtime.combat.primaryWeaponId = getDefaultPrimaryWeaponId(state.hero);
       }

@@ -27,6 +27,7 @@ export interface CombatOverview {
 export interface CombatConditionModifiers {
   attackDefensePenalty?: number;
   encumbranceLevel?: number;
+  armorInitiativePenalty?: number;
 }
 
 export const inferCombatItemKind = (item: OptolithItem): CombatItemKind => {
@@ -142,7 +143,8 @@ export const calculateCombatOverview = (
   const encumbranceLevel = conditionModifiers?.encumbranceLevel;
   const armorModifier = encumbranceLevel === undefined
     ? equippedArmorModifier(hero)
-    : -Math.max(0, Math.min(4, Math.round(encumbranceLevel))) + equippedArmorAdditionalInitiativePenalty(hero);
+    : -Math.max(0, Math.min(4, Math.round(encumbranceLevel)))
+      - Math.max(0, Math.round(conditionModifiers?.armorInitiativePenalty ?? Math.abs(equippedArmorAdditionalInitiativePenalty(hero))));
   const initiative = Math.max(0, initiativeBase + armorModifier + manualInitiativeModifier);
 
   return {

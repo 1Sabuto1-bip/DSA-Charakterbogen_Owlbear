@@ -14,6 +14,7 @@ import {
   createCarryingRuntimeState,
   createConditionRuntimeState,
 } from "./conditions";
+import { normalizeEquipmentSlots } from "./equipment-zones";
 import type {
   AttributeCode,
   CharacterSheetState,
@@ -106,6 +107,7 @@ export const createRuntimeState = (hero: OptolithHero): RuntimeState => ({
   notes: "",
   favoriteTalentIds: [],
   inventoryCategoriesMigrated: true,
+  equipmentSlots: {},
   conditions: createConditionRuntimeState(),
   carrying: createCarryingRuntimeState(),
   combat: {
@@ -294,6 +296,7 @@ const validateBackup = (value: Record<string, unknown>): CharacterSheetState | n
         : [],
       notes: typeof runtime.notes === "string" ? runtime.notes : "",
       inventoryCategoriesMigrated: true,
+      equipmentSlots: normalizeEquipmentSlots(runtime.equipmentSlots, hero.belongings?.items ?? {}),
       conditions: {
         ...fallback.conditions,
         ...(conditions ?? {}),

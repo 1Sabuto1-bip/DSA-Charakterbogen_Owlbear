@@ -3,6 +3,18 @@
 Ein eigenständig gestalteter, interaktiver DSA-5-Heldenbogen als Owlbear-Rodeo-Erweiterung.
 Der aktuelle Prototyp importiert Optolith-JSON-Dateien der Version 1.5.x und TDC-Helden aus The Dark Aid X.
 
+## Version 0.22.0 – zonengerechte Ausrüstung und gemeinsame Verwaltung
+
+Generator und fertiger Heldenbogen verwenden nun dieselbe zentrale Zuordnungslogik. In jedem Körperfeld erscheinen ausschließlich dafür vorgesehene Gegenstände: Helme am Kopf, Kettenhemden und andere Torso­rüstungen am Torso, Armzeug an den Armen, Beinschutz bei den Beinen sowie Stiefel und Schuhe beim Schuhwerk. Nicht tragbare Ausrüstung bleibt im Rucksack. Eine einzelne Armschiene kann nur einen Arm belegen; für beide Arme werden zwei Exemplare benötigt.
+
+Der digitale Inventarreiter besitzt außerdem eine eigene, durchsuchbare Rüstkammer wie der Charaktergenerator. Kataloggegenstände werden mit ihren vollständigen Werten übernommen und nach Möglichkeit automatisch der passenden freien Körperzone zugeordnet. Die Inventartabelle kennzeichnet jeden Eintrag als **Rucksack** oder mit seiner belegten Körperzone. Alte, unpassende Zuordnungen werden beim Laden automatisch gelöst und in den Rucksack zurückgelegt; auch die PDF-Darstellung verwendet die bereinigten Zuordnungen.
+
+## Version 0.21.0 – Trefferzonen-Ausrüstung und Rucksack
+
+Generator und digitaler Inventarreiter besitzen nun eine kompakte, zusammenhängende Körperzonen-Darstellung für **Kopf, Torso, linken Arm, rechten Arm, Beine und Schuhwerk**. Gekaufte beziehungsweise vorhandene Kleidung und Rüstung lassen sich den Feldern direkt zuordnen; alle nicht zugeordneten Gegenstände erscheinen automatisch im Rucksack. Der Rüstungsschutz wird ausdrücklich je Trefferzone angezeigt und nicht zu einem irreführenden Gesamt-RS addiert.
+
+Der Belastungswert folgt der Trefferzonenregel mit den Faktoren Kopf ×1, Torso ×5, jeder Arm ×2 und jedes Bein ×2. Da die Oberfläche beide Beine kompakt zusammenfasst, zählt deren gemeinsamer RS dort ×4. Aus dem Wert werden Rüstungs-BE sowie der gegebenenfalls zusätzliche Abzug auf GS und INI berechnet. Dieselbe Aufteilung erscheint auf der Ausrüstungsseite des direkt herunterladbaren PDF-Heldenbogens; Schuhwerk wird angezeigt, zählt aber nicht zum RS.
+
 ## Version 0.20.0 – eingebettete Originalschriften und bereinigte Ausrüstungspakete
 
 Der herunterladbare Heldenbogen verwendet jetzt die mitgelieferten Schriften **Andalus** und **Gentium Basic**. Andalus gestaltet Titel, Seitenüberschriften und den Heldennamen; Gentium Basic wird in regulärer, fetter und kursiver Form für Felder, Tabellen, Listen und Notizen eingesetzt. Alle vier TrueType-Dateien werden vollständig in das erzeugte PDF eingebettet. Dadurch bleibt das Schriftbild auch auf Geräten erhalten, auf denen die Schriften nicht installiert sind.
@@ -75,6 +87,13 @@ Auf der Startseite kann ein neuer Held nach dem DSA5-Grundregelwerk (dritte Aufl
 - Generatorentwurf mit **Neu beginnen** vollständig und nach Sicherheitsabfrage zurücksetzen
 - abschließende Rüstkammer mit mehr als 1.500 bepreisten Inventar-, Waffen-, Schild-, Helm- und Rüstungseinträgen
 - sechs kaufbare Ausrüstungspakete mit einzeln aufgelöstem Warenkorbinhalt; leere Pakete werden ausgeblendet
+- getragene Kleidung und Rüstung den sechs Körperfeldern Kopf, Torso, Arme, Beine und Schuhwerk zuordnen
+- Rucksack automatisch aus allen nicht am Körper zugeordneten Gegenständen bilden
+- Trefferzonen-RS, Belastungswert, Rüstungs-BE und zusätzlichen GS-/INI-Abzug in Generator, Digitalbogen und PDF anzeigen
+- Körperzonen-Auswahl auf tatsächlich passende Helme, Torso-, Arm-, Bein- und Fußausrüstung begrenzen
+- eine einzelne Armschiene höchstens einem Arm zuordnen
+- durchsuchbare Rüstkammer auch im fertigen digitalen Heldenbogen verwenden
+- Inventargegenstände im Heldenbogen eindeutig als getragen oder im Rucksack kennzeichnen
 - 16 Helme als eigener Bereich mit Kopf-RS und kompakten Regelwiki-Informationen
 - bildbasierte Info-Schaltflächen mit Werten, Quelle, Seite und Regelwiki-Link in Rüstkammer und Kampfmenü
 - Startkapital, Reich/Arm, Mengen, Ausgaben, Restgeld und Gesamtgewicht automatisch berechnen

@@ -7,11 +7,14 @@ import { createManualState, getAttributeValues } from "./importer";
 import { getDefaultPrimaryWeaponId } from "./combat";
 import { AVAILABLE_EQUIPMENT_PACKAGES, EQUIPMENT_PACKAGE_BY_ID, EQUIPMENT_PACKAGES } from "./equipment-package-data";
 import { ALL_SPELLS, normalizeMagicName } from "./spell-catalog";
+import { assignEquipmentToAvailableSlots, calculateEquipmentZones, normalizeEquipmentSlots } from "./equipment-zones";
 import type {
   AttributeCode,
   BiographyTrait,
   CharacterSheetState,
   CombatItemKind,
+  EquipmentBodySlot,
+  EquipmentBodySlots,
   ImprovementCost,
   ManualSpecies,
   OptolithItem,
@@ -80,6 +83,7 @@ export interface GeneratorDraft {
   magicallyGifted: boolean;
   spellIncreases: Record<string, number>;
   purchases: GeneratorPurchase[];
+  equipmentSlots: EquipmentBodySlots;
 }
 
 export interface GeneratorBalance {
@@ -281,6 +285,7 @@ export const createGeneratorDraft = (): GeneratorDraft => {
     magicallyGifted: false,
     spellIncreases: {},
     purchases: [],
+    equipmentSlots: {},
   };
   normalizeGeneratorDraft(draft);
   return draft;
@@ -401,6 +406,16 @@ export const normalizeGeneratorDraft = (draft: GeneratorDraft): void => {
     mergedPurchases.set(purchase.catalogId, Math.min(999, (mergedPurchases.get(purchase.catalogId) ?? 0) + amount));
   }
   draft.purchases = [...mergedPurchases].map(([catalogId, amount]) => ({ catalogId, amount }));
+  const purchasedItems = Object.fromEntries(draft.purchases.flatMap((purchase) => {
+    const entry = shopItemById[purchase.catalogId];
+    return entry ? [[purchase.catalogId, {
+      ...entry.item,
+      id: purchase.catalogId,
+      amount: purchase.amount,
+      itemKind: entry.itemKind,
+    } as OptolithItem]] : [];
+  }));
+  draft.equipmentSlots = normalizeEquipmentSlots(draft.equipmentSlots, purchasedItems);
   const experience = getGeneratorExperience(draft);
   const species = getGeneratorSpecies(draft);
   const race = getGeneratorRace(draft);
@@ -546,6 +561,25 @@ const purseFromSilver = (silver: number): Partial<Record<"d" | "s" | "h" | "k", 
 
 const generatorItemId = (catalogId: string): string => `GENERATOR_ITEM_${catalogId.replace(/[^a-z0-9]+/gi, "_").replace(/^_|_$/g, "")}`;
 
+const generatorOwnedItems = (draft: GeneratorDraft): Record<string, OptolithItem> => Object.fromEntries(
+  (draft.purchases ?? []).flatMap((purchase) => {
+    const entry = shopItemById[purchase.catalogId];
+    return entry ? [[purchase.catalogId, {
+      ...entry.item,
+      id: purchase.catalogId,
+      amount: purchase.amount,
+      itemKind: entry.itemKind,
+    } as OptolithItem]] : [];
+  }),
+);
+
+export const calculateGeneratorEquipmentZones = (draft: GeneratorDraft) =>
+  calculateEquipmentZones(generatorOwnedItems(draft), draft.equipmentSlots);
+
+export const assignGeneratorEquipmentSuggestion = (draft: GeneratorDraft, catalogId: string): void => {
+  draft.equipmentSlots = assignEquipmentToAvailableSlots(draft.equipmentSlots, catalogId, generatorOwnedItems(draft));
+};
+
 const buildPurchasedItems = (draft: GeneratorDraft): Record<string, OptolithItem> => Object.fromEntries(
   (draft.purchases ?? []).flatMap((purchase) => {
     const shopItem = shopItemById[purchase.catalogId];
@@ -562,7 +596,7 @@ const buildPurchasedItems = (draft: GeneratorDraft): Record<string, OptolithItem
       gr: group,
       amount: Math.max(1, Math.round(Number(purchase.amount) || 1)),
       itemKind: shopItem.itemKind,
-      equipped: false,
+      equipped: Object.values(draft.equipmentSlots ?? {}).includes(purchase.catalogId),
       generatorCatalogId: purchase.catalogId,
     } satisfies OptolithItem]];
   }),
@@ -851,7 +885,7 @@ export const buildGeneratedCharacter = (draft: GeneratorDraft): CharacterSheetSt
   const required = getRequiredProfessionComponents(draft);
   const magical = isGeneratorMagicallyGifted(draft);
   const sheet = createManualState(draft.name, { species: manualSpeciesFor(species.id), magical });
-  sheet.hero.clientVersion = "Regelwerksgenerator 0.20.0";
+  sheet.hero.clientVersion = "Regelwerksgenerator 0.22.0";
   sheet.hero.el = experience.id;
   sheet.hero.rv = race.id;
   sheet.hero.c = culture.id;
@@ -967,6 +1001,10 @@ export const buildGeneratedCharacter = (draft: GeneratorDraft): CharacterSheetSt
   sheet.hero.belongings ??= {};
   const shopping = calculateGeneratorShopping(draft);
   sheet.hero.belongings.items = buildPurchasedItems(draft);
+  sheet.runtime.equipmentSlots = Object.fromEntries(Object.entries(draft.equipmentSlots ?? {}).flatMap(([slot, catalogId]) => {
+    if (!catalogId || !shopItemById[catalogId]) return [];
+    return [[slot as EquipmentBodySlot, generatorItemId(catalogId)]];
+  }));
   sheet.hero.belongings.purse = purseFromSilver(shopping.remainingSilver);
   sheet.runtime.combat.primaryWeaponId = getDefaultPrimaryWeaponId(sheet.hero);
   sheet.originalData = {

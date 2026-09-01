@@ -11,6 +11,7 @@ import {
   AVAILABLE_EQUIPMENT_PACKAGES,
   EQUIPMENT_PACKAGES,
   addEquipmentPackageToDraft,
+  assignGeneratorEquipmentSuggestion,
   buildGeneratedCharacter,
   calculateGeneratorBalance,
   calculateGeneratorShopping,
@@ -65,6 +66,20 @@ describe("DSA5-Regelwerksgenerator", () => {
     expect(draft.talentIncreases).toEqual({});
     expect(draft.magicallyGifted).toBe(false);
     expect(draft.spellIncreases).toEqual({});
+    expect(draft.equipmentSlots).toEqual({});
+  });
+
+  it("übernimmt Körperzonen-Zuordnungen in den fertigen Heldenbogen", () => {
+    const draft = createGeneratorDraft();
+    draft.name = "Alrik";
+    draft.professionId = "barde";
+    const helmet = GENERATOR_SHOP_ITEMS.find((entry) => entry.itemKind === "helmet")!;
+    draft.purchases.push({ catalogId: helmet.catalogId, amount: 1 });
+    assignGeneratorEquipmentSuggestion(draft, helmet.catalogId);
+    normalizeGeneratorDraft(draft);
+    const sheet = buildGeneratedCharacter(draft);
+    expect(sheet.runtime.equipmentSlots.head).toContain("GENERATOR_ITEM_");
+    expect(sheet.hero.belongings?.items?.[sheet.runtime.equipmentSlots.head!]?.equipped).toBe(true);
   });
 
   it("zeigt und speichert Zaubersteigerungen nur bei magisch Begabten", () => {
@@ -304,7 +319,7 @@ describe("DSA5-Regelwerksgenerator", () => {
     draft.professionId = "barde";
     draft.purchases = [{ catalogId: "helmet:zwergenhelm", amount: 1 }];
     const printable = buildPrintableCharacterData(buildGeneratedCharacter(draft));
-    expect(printable.schemaVersion).toBe(2);
+    expect(printable.schemaVersion).toBe(3);
     expect(printable.equipment.helmet).toHaveLength(1);
     expect(printable.equipment.helmet[0]).toMatchObject({ name: "Zwergenhelm", kind: "helmet" });
     expect(printable.visualSlots).toEqual({});

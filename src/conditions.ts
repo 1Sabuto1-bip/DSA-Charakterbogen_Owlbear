@@ -1,4 +1,5 @@
 import { inferCombatItemKind } from "./combat";
+import { calculateEquipmentZones } from "./equipment-zones";
 import type {
   CarryingRuntimeState,
   CharacterSheetState,
@@ -140,6 +141,8 @@ export interface CarryingOverview {
   overload: number;
   cargoEncumbrance: number;
   armorEncumbrance: number;
+  armorMovementPenalty: number;
+  armorInitiativePenalty: number;
   manualEncumbrance: number;
   encumbranceReduction: number;
   encumbrance: number;
@@ -147,7 +150,9 @@ export interface CarryingOverview {
 }
 
 export const calculateCarryingOverview = (sheet: CharacterSheetState): CarryingOverview => {
-  const items = Object.values(sheet.hero.belongings?.items ?? {});
+  const itemRecord = sheet.hero.belongings?.items ?? {};
+  const items = Object.values(itemRecord);
+  const equipmentZones = calculateEquipmentZones(itemRecord, sheet.runtime.equipmentSlots);
   const inventoryWeight = items.reduce((sum, item) => sum + itemWeight(item.weight, item.amount), 0);
   const equippedWearables = items.filter((item) => {
     const kind = inferCombatItemKind(item);
@@ -166,7 +171,16 @@ export const calculateCarryingOverview = (sheet: CharacterSheetState): CarryingO
   const capacity = Math.max(0, baseCapacity + capacityModifier);
   const overload = Math.max(0, countedWeight - capacity);
   const cargoEncumbrance = clampStage(Math.floor(overload / 4));
-  const armorEncumbrance = clampStage(Math.max(0, ...equippedArmor.map((item) => Number(item.enc) || 0)));
+  const usesZoneArmor = equipmentZones.assignedItemIds.length > 0;
+  const armorEncumbrance = usesZoneArmor
+    ? clampStage(equipmentZones.encumbrance)
+    : clampStage(Math.max(0, ...equippedArmor.map((item) => Number(item.enc) || 0)));
+  const armorMovementPenalty = usesZoneArmor
+    ? equipmentZones.movementPenalty
+    : Math.max(0, ...equippedArmor.map((item) => Math.abs(Math.min(0, Number(item.movementPenalty) || 0))));
+  const armorInitiativePenalty = usesZoneArmor
+    ? equipmentZones.initiativePenalty
+    : Math.max(0, ...equippedArmor.map((item) => Math.abs(Math.min(0, Number(item.initiativePenalty) || 0))));
   const manualEncumbrance = clampStage(sheet.runtime.conditions.manualEncumbrance);
   const encumbranceReduction = clampStage(sheet.runtime.conditions.encumbranceReduction);
   const encumbrance = clampStage(
@@ -185,6 +199,8 @@ export const calculateCarryingOverview = (sheet: CharacterSheetState): CarryingO
     overload,
     cargoEncumbrance,
     armorEncumbrance,
+    armorMovementPenalty,
+    armorInitiativePenalty,
     manualEncumbrance,
     encumbranceReduction,
     encumbrance,
@@ -197,6 +213,8 @@ export interface ConditionOverview {
   encumbrance: number;
   generalPenalty: number;
   physicalPenalty: number;
+  armorInitiativePenalty: number;
+  armorMovementPenalty: number;
   totalLevels: number;
   incapacitated: boolean;
   potentiallyIncapacitated: boolean;
@@ -212,7 +230,8 @@ export const calculateConditionOverview = (sheet: CharacterSheetState): Conditio
       sheet.runtime.resources.lp.max,
     );
   }
-  const encumbrance = calculateCarryingOverview(sheet).encumbrance;
+  const carrying = calculateCarryingOverview(sheet);
+  const encumbrance = carrying.encumbrance;
   const generalPenalty = Math.min(
     5,
     levels.stun + levels.rapture + levels.fear + levels.pain + levels.confusion,
@@ -235,6 +254,8 @@ export const calculateConditionOverview = (sheet: CharacterSheetState): Conditio
     encumbrance,
     generalPenalty,
     physicalPenalty,
+    armorInitiativePenalty: carrying.armorInitiativePenalty,
+    armorMovementPenalty: carrying.armorMovementPenalty,
     totalLevels,
     incapacitated: hardIncapacity,
     potentiallyIncapacitated: hardIncapacity || painIncapacity,

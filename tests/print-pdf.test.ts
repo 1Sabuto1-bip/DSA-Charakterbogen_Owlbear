@@ -26,6 +26,9 @@ describe("druckbarer Heldenbogen", () => {
     expect(text).toContain("Talente");
     expect(text).toContain("Kampf");
     expect(text).toContain("AUSRÜSTUNG");
+    expect(text).toContain("Getragene Ausrüstung und Rucksack");
+    expect(text).toContain("Belastungswert");
+    expect(text).toContain("Kein addierter Gesamt-RS");
     expect(text).toContain("/BaseFont /Andalus");
     expect(text).toContain("/BaseFont /GentiumBasic");
     expect(text).toContain("/BaseFont /GentiumBasic-Bold");

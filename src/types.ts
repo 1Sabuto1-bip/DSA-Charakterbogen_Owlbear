@@ -14,6 +14,10 @@ export type ImprovementCost = "A" | "B" | "C" | "D" | "E";
 
 export type CombatItemKind = "melee" | "ranged" | "shield" | "armor" | "helmet" | "equipment";
 
+export type EquipmentBodySlot = "head" | "torso" | "leftArm" | "rightArm" | "legs" | "footwear";
+
+export type EquipmentBodySlots = Partial<Record<EquipmentBodySlot, string>>;
+
 export type ManualSpecies = "human" | "halfelf" | "elf" | "dwarf";
 
 export interface ManualHeroSettings {
@@ -145,6 +149,7 @@ export interface RuntimeState {
   linkedTokenName?: string;
   statusDisplayId?: string;
   inventoryCategoriesMigrated: boolean;
+  equipmentSlots: EquipmentBodySlots;
   conditions: ConditionRuntimeState;
   carrying: CarryingRuntimeState;
   combat: CombatRuntimeState;

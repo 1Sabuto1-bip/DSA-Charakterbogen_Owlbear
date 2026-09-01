@@ -1,10 +1,36 @@
-DSA-CHARAKTERBOGEN – UPDATE 0.20.0
+DSA-CHARAKTERBOGEN – UPDATE 0.22.0
 =================================
 
-Dieser Stand baut auf Version 0.19.0 auf, bettet die gewünschten Schriften in
-den PDF-Heldenbogen ein und entfernt leere Ausrüstungspakete endgültig.
+Dieser Stand baut auf Version 0.21.0 auf und vereinheitlicht die
+Ausrüstungsverwaltung in Generator und fertigem Heldenbogen.
 
-Neu in 0.20.0:
+Neu in 0.22.0:
+- in jeder Trefferzone nur noch dafür bestimmte Gegenstände auswählbar
+- Kettenhemden und andere allgemeine Rüstungen ausschließlich am Torso
+- Helme ausschließlich am Kopf, Armzeug ausschließlich an den Armen
+- Beinschutz ausschließlich bei den Beinen und Schuhe im Schuhfeld
+- nicht tragbare Ausrüstung bleibt automatisch im Rucksack
+- für beide Arme werden bei einzelnen Armschienen zwei Exemplare benötigt
+- dieselbe zentrale Zuordnungslogik in Generator, Digitalbogen und PDF
+- durchsuchbare Rüstkammer jetzt auch im fertigen digitalen Heldenbogen
+- vollständige Katalogwerte beim Übernehmen in bestehende Helden
+- Inventartabelle kennzeichnet Körperzone oder Rucksack
+- unpassende alte Zuordnungen werden automatisch in den Rucksack zurückgelegt
+- 85 erfolgreiche automatisierte Tests
+
+Bereits in 0.21.0:
+- sechs kompakte Körperfelder: Kopf, Torso, linker Arm, rechter Arm, Beine und Schuhwerk
+- Gegenstände im Generator und im digitalen Inventar direkt den Körperfeldern zuordnen
+- nicht zugeordnete Ausrüstung automatisch im Rucksack anzeigen
+- Rüstungsschutz je Trefferzone statt eines irreführenden addierten Gesamt-RS
+- Beine kompakt zusammengefasst; derselbe RS gilt für jedes Bein
+- Belastungswert nach Kopf ×1, Torso ×5, Arme ×2 und Beine ×2 je Bein
+- automatische Rüstungs-BE und zusätzlicher GS-/INI-Abzug
+- identische Körperzonen- und Rucksackdarstellung im PDF-Heldenbogen
+- vorhandene Sicherungen werden automatisch um leere Körperzonen ergänzt
+- 83 erfolgreiche automatisierte Tests
+
+Bereits in 0.20.0:
 - Andalus für Bogenkopf, Seitenüberschriften und Heldenname
 - Gentium Basic Regular für Fließtext, Tabellen und Listen
 - Gentium Basic Bold für Feldwerte und Hervorhebungen
@@ -158,12 +184,12 @@ Bereits enthalten:
 - Stufe und freie Ausprägung eines Vor- oder Nachteils können bearbeitet werden
 - Einträge können hinzugefügt und entfernt werden
 - vorhandene Owlbear-Sicherungen werden beim Laden automatisch ergänzt
-- sichtbare Versionsnummer 0.20.0 zur Cache-Kontrolle
+- sichtbare Versionsnummer 0.22.0 zur Cache-Kontrolle
 
 UPLOAD
 ------
 1. Diese ZIP-Datei auf dem Mac doppelt anklicken.
-2. Den entpackten Ordner "github-update-v0.20.0" öffnen.
+2. Den entpackten Ordner "github-update-v0.22.0" öffnen.
 3. Im GitHub-Repository auf "Add file" und "Upload files" klicken:
    https://github.com/1Sabuto1-bip/DSA-Charakterbogen_Owlbear
 4. ALLE Inhalte des geöffneten Ordners in das Upload-Fenster ziehen.
@@ -179,7 +205,7 @@ OWLBEAR
 -------
 Nach dem Upload Owlbear vollständig neu laden. Falls noch eine andere Version
 erscheint, die Erweiterung im Profil entfernen und neu installieren mit:
-https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/manifest.json?v=0200
+https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/manifest.json?v=0220
 
 BEDIENUNG
 ---------

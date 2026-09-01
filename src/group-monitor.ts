@@ -75,6 +75,7 @@ export const createTokenSheetSummary = (state: CharacterSheetState): TokenSheetS
     {
       attackDefensePenalty: conditions.physicalPenalty,
       encumbranceLevel: conditions.encumbrance,
+      armorInitiativePenalty: conditions.armorInitiativePenalty,
     },
   );
   return {

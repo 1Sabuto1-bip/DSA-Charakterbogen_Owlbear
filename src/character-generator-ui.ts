@@ -11,9 +11,11 @@ import {
   GENERATOR_SPELLS,
   AVAILABLE_EQUIPMENT_PACKAGES,
   addEquipmentPackageToDraft,
+  assignGeneratorEquipmentSuggestion,
   buildGeneratedCharacter,
   calculateGeneratorBalance,
   calculateGeneratorShopping,
+  calculateGeneratorEquipmentZones,
   createGeneratorDraft,
   generatorCantripName,
   generatorCombatChoiceName,
@@ -44,12 +46,13 @@ import {
   normalizeGeneratorDraft,
   validateGeneratorDraft,
 } from "./character-generator";
+import { EQUIPMENT_BODY_SLOT_DEFINITIONS, equipmentSlotIsAvailable } from "./equipment-zones";
 import { ATTRIBUTES, COMBAT_TECHNIQUES, ITEM_GROUPS, TALENTS } from "./data";
 import { improvementCostForTarget } from "./advancement";
 import { attachSpecialAbilityInfoListeners } from "./special-ability-info";
 import { renderInfoIcon } from "./ui-assets";
 import { downloadPrintableCharacterPdf } from "./print-pdf";
-import type { CharacterSheetState } from "./types";
+import type { CharacterSheetState, EquipmentBodySlot, OptolithItem } from "./types";
 import type { GeneratorDraft, GeneratorShopCategory, GeneratorShopItem, GeneratorSpecialAbilitySelection, GeneratorTraitKind, GeneratorTraitSelection } from "./character-generator";
 
 const STORAGE_KEY = "de.alexander-hoffmann.dsa5-sheet/generator-draft/v1";
@@ -89,6 +92,7 @@ const loadDraft = (): GeneratorDraft => {
       magicallyGifted: Boolean(parsed.magicallyGifted),
       spellIncreases: parsed.spellIncreases && typeof parsed.spellIncreases === "object" ? parsed.spellIncreases : {},
       purchases: Array.isArray(parsed.purchases) ? parsed.purchases : [],
+      equipmentSlots: parsed.equipmentSlots && typeof parsed.equipmentSlots === "object" ? parsed.equipmentSlots : {},
     } as GeneratorDraft;
     normalizeGeneratorDraft(draft);
     return draft;
@@ -467,6 +471,25 @@ export class CharacterGeneratorUI {
       .map((purchase) => ({ purchase, entry: getGeneratorShopItem(purchase.catalogId) }))
       .filter((value): value is { purchase: GeneratorDraft["purchases"][number]; entry: GeneratorShopItem } => Boolean(value.entry))
       .sort((a, b) => a.entry.item.name.localeCompare(b.entry.item.name, "de"));
+    const zoneSummary = calculateGeneratorEquipmentZones(this.draft);
+    const backpackEntries = purchases.filter(({ purchase }) => zoneSummary.backpackItemIds.includes(purchase.catalogId));
+    const bodyZones = EQUIPMENT_BODY_SLOT_DEFINITIONS.map((definition) => {
+      const zone = zoneSummary.entries.find((entry) => entry.slot.id === definition.id)!;
+      const candidates = purchases.filter(({ purchase, entry }) => equipmentSlotIsAvailable(
+        purchase.catalogId,
+        { ...entry.item, id: purchase.catalogId, amount: purchase.amount, itemKind: entry.itemKind } as OptolithItem,
+        definition.id,
+        this.draft.equipmentSlots,
+      ));
+      return `<label class="equipment-zone-card equipment-zone-card--${definition.id}">
+        <span>${escapeHtml(definition.label)}</span>
+        <select data-generator-equipment-slot="${definition.id}" aria-label="Ausrüstung für ${escapeHtml(definition.label)}">
+          <option value="">${candidates.length ? "nicht belegt / im Rucksack" : "keine passende Ausrüstung"}</option>
+          ${candidates.map(({ purchase, entry }) => `<option value="${escapeHtml(purchase.catalogId)}" ${zone.itemId === purchase.catalogId ? "selected" : ""}>${escapeHtml(entry.item.name)}</option>`).join("")}
+        </select>
+        <strong>${definition.id === "footwear" ? "ohne RS" : `${escapeHtml(definition.protectionLabel)} ${zone.protection}`}</strong>
+      </label>`;
+    }).join("");
     return `<section class="generator-page">
       <p class="eyebrow">Schritt 8</p><h2>Rüstkammer &amp; Ausrüstung</h2>
       <p class="generator-lead">Suche in der Rüstkammer nach Inventar, Waffen, Schilden, Helmen und Rüstungen. Über das Info-Symbol siehst du Werte, Quelle und Regelwiki-Verweise; gekaufte Gegenstände und das übrige Geld werden in den fertigen Heldenbogen übernommen.</p>
@@ -477,6 +500,14 @@ export class CharacterGeneratorUI {
         <div><span>Gewicht</span><strong>${formatWeight(shopping.totalWeight)}</strong></div>
       </div>
       <div class="generator-rule-note"><strong>Startkapital</strong><span>Standard sind 750 Silbertaler. Der Vorteil „Reich“ erhöht und der Nachteil „Arm“ senkt diesen Betrag automatisch um 250 Silbertaler je Stufe.</span></div>
+      <section class="equipment-placement equipment-placement--generator">
+        <div class="generator-section-heading"><div><h3>Getragene Ausrüstung &amp; Rucksack</h3><small>Jedes Feld bietet nur dafür geeignete Gegenstände an. Alles Übrige bleibt automatisch im Rucksack.</small></div><a href="https://dsa.ulisses-regelwiki.de/Fokus_TreffzonenRS.html" target="_blank" rel="noopener noreferrer">Trefferzonen-Regel ↗</a></div>
+        <div class="equipment-placement__layout">
+          <div class="equipment-body-zones">${bodyZones}</div>
+          <aside class="equipment-backpack"><header><span>Rucksack</span><strong>${backpackEntries.reduce((total, { purchase }) => total + purchase.amount, 0)} Gegenstände</strong></header><ul>${backpackEntries.slice(0, 9).map(({ purchase, entry }) => `<li><span>${purchase.amount > 1 ? `${purchase.amount}× ` : ""}${escapeHtml(entry.item.name)}</span><small>${formatWeight(Number(entry.item.weight ?? 0) * purchase.amount)}</small></li>`).join("") || "<li class=\"empty-state\">Der Rucksack ist leer.</li>"}</ul>${backpackEntries.length > 9 ? `<small>+ ${backpackEntries.length - 9} weitere Positionen</small>` : ""}</aside>
+        </div>
+        <div class="equipment-zone-result"><div><span>Belastungswert</span><strong>${zoneSummary.protectionScore}</strong><small>Kopf ×1 · Torso ×5 · Arme ×2 · Beine ×2 je Bein</small></div><div><span>Rüstungs-BE</span><strong>${zoneSummary.encumbrance}</strong><small>aus den zugeordneten Trefferzonen</small></div><div><span>Zusatzabzug</span><strong>${zoneSummary.movementPenalty ? `−${zoneSummary.movementPenalty}` : "–"}</strong><small>auf GS und INI</small></div><p>Der RS wird nicht addiert: Bei einem Treffer gilt ausschließlich der Wert der getroffenen Zone. „Beine“ zeigt denselben RS für jedes Bein.</p></div>
+      </section>
       <section class="generator-equipment-packages">
         <div class="generator-section-heading"><div><h3>Ausrüstungspakete</h3><small>Ein Klick legt alle enthaltenen Gegenstände einzeln in den Einkauf.</small></div><a href="https://dsa.ulisses-regelwiki.de/ruestkammer/ausruestungspakete.html" target="_blank" rel="noopener noreferrer">Regelwiki-Übersicht ↗</a></div>
         <div class="generator-equipment-package-grid">${AVAILABLE_EQUIPMENT_PACKAGES.map((definition) => {
@@ -855,6 +886,7 @@ export class CharacterGeneratorUI {
       const purchase = this.draft.purchases.find((item) => item.catalogId === catalogId);
       if (purchase) purchase.amount += 1;
       else this.draft.purchases.push({ catalogId, amount: 1 });
+      assignGeneratorEquipmentSuggestion(this.draft, catalogId);
       normalizeGeneratorDraft(this.draft);
       rerender();
     }));
@@ -865,6 +897,7 @@ export class CharacterGeneratorUI {
         return;
       }
       const definition = AVAILABLE_EQUIPMENT_PACKAGES.find((entry) => entry.id === packageId);
+      for (const item of definition?.items ?? []) assignGeneratorEquipmentSuggestion(this.draft, item.catalogId);
       callbacks.notify(`${definition?.name ?? "Ausrüstungspaket"} wurde vollständig zum Einkauf hinzugefügt.`, "success");
       rerender();
     }));
@@ -883,6 +916,13 @@ export class CharacterGeneratorUI {
     document.querySelectorAll<HTMLButtonElement>("[data-generator-remove-purchase]").forEach((button) => button.addEventListener("click", () => {
       const index = this.draft.purchases.findIndex((item) => item.catalogId === button.dataset.generatorRemovePurchase);
       if (index >= 0) this.draft.purchases.splice(index, 1);
+      rerender();
+    }));
+    document.querySelectorAll<HTMLSelectElement>("[data-generator-equipment-slot]").forEach((select) => select.addEventListener("change", () => {
+      const slot = select.dataset.generatorEquipmentSlot as EquipmentBodySlot;
+      if (select.value) this.draft.equipmentSlots[slot] = select.value;
+      else delete this.draft.equipmentSlots[slot];
+      normalizeGeneratorDraft(this.draft);
       rerender();
     }));
     const talentSearch = document.querySelector<HTMLInputElement>("#generator-talent-search");
