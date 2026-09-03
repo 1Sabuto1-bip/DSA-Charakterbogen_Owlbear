@@ -26,6 +26,7 @@ import { CharacterGeneratorUI } from "./character-generator-ui";
 import { GENERATOR_SHOP_ITEMS, GRW_SPECIAL_ABILITIES } from "./character-generator";
 import { attachSpecialAbilityInfoListeners } from "./special-ability-info";
 import { renderInfoIcon } from "./ui-assets";
+import { downloadPrintableCharacterPdf } from "./print-pdf";
 import {
   combatTechniqueMaximum,
   improvementCostForTarget,
@@ -98,7 +99,7 @@ const root = document.querySelector<HTMLDivElement>("#app");
 if (!root) throw new Error("App container not found");
 
 const bridge = new OwlbearBridge();
-const APP_VERSION = "0.22.0";
+const APP_VERSION = "0.23.0";
 let state: CharacterSheetState | null = loadState();
 const generatorUI = new CharacterGeneratorUI();
 let generatorOpen = false;
@@ -335,24 +336,24 @@ const renderImportScreen = (): string => `
   <main class="welcome-shell">
     <section class="welcome-card">
       <div class="sigil" aria-hidden="true">3W20</div>
-      <p class="eyebrow">Owlbear Rodeo · DSA 5</p>
+      <p class="eyebrow">DSA 5 · Digitaler Heldenbogen</p>
       <h1>Aventurischer<br />Heldenbogen</h1>
       <p class="welcome-copy">
-        Importiere einen Optolith-Helden als JSON oder einen DarkAid-Helden als TDC-Datei. Der Bogen bleibt in deinem Browser gespeichert
-        und kann anschließend mit einem Charaktertoken verbunden werden.
+        Erschaffe einen neuen Helden Schritt für Schritt, importiere einen bestehenden digitalen Helden
+        oder beginne mit einem leeren Bogen. Deine Daten bleiben in diesem Browser gespeichert.
       </p>
+      <section class="generator-start" aria-labelledby="generator-start-title">
+        <div class="generator-start__mark" aria-hidden="true">✦</div>
+        <div><strong id="generator-start-title">Neuen Helden nach Regeln erschaffen</strong><span>Schritt für Schritt mit AP-Konto, Spezies, Kultur, Profession, Fertigkeiten und Ausrüstung.</span></div>
+        <button class="primary-button" id="open-character-generator">Charaktergenerator öffnen</button>
+      </section>
+      <div class="welcome-divider"><span>oder importieren</span></div>
       <label class="drop-zone" id="drop-zone">
         <input id="hero-file" type="file" accept="application/json,.json,.tdc" hidden />
         <span class="drop-zone__icon" aria-hidden="true">⇧</span>
         <strong>JSON- oder TDC-Datei auswählen</strong>
         <span>oder hierher ziehen</span>
       </label>
-      <div class="welcome-divider"><span>oder</span></div>
-      <section class="generator-start" aria-labelledby="generator-start-title">
-        <div class="generator-start__mark" aria-hidden="true">✦</div>
-        <div><strong id="generator-start-title">Neuen Helden nach Regeln erschaffen</strong><span>Schritt für Schritt mit AP-Konto, Spezies, Kultur, Profession sowie allen Vor- und Nachteilen des Grundregelwerks.</span></div>
-        <button class="primary-button" id="open-character-generator">Charaktergenerator öffnen</button>
-      </section>
       <div class="welcome-divider"><span>oder ohne Regeln</span></div>
       <section class="manual-start" aria-labelledby="manual-start-title">
         <div>
@@ -1590,6 +1591,7 @@ const renderSheet = (sheet: CharacterSheetState): string => {
           <span>${escapeHtml(sourceName(sheet))}</span>
         </div>
         <div class="header-actions">
+          <button class="icon-button icon-button--pdf" id="download-character-pdf" title="Heldenbogen als PDF herunterladen" aria-label="Heldenbogen als PDF herunterladen">PDF</button>
           <label class="icon-button" title="Anderen Helden importieren">
             <input id="replace-hero-file" type="file" accept="application/json,.json,.tdc" hidden />
             ⇧
@@ -1720,6 +1722,16 @@ const attachSheetListeners = (): void => {
   if (!state) return;
   attachGroupMonitorListeners();
   attachSpecialAbilityInfoListeners();
+
+  document.querySelector("#download-character-pdf")?.addEventListener("click", () => {
+    if (!state) return;
+    try {
+      downloadPrintableCharacterPdf(state);
+      showToast("Der druckbare Heldenbogen wurde als PDF erstellt.");
+    } catch (error) {
+      showToast(error instanceof Error ? error.message : "Das PDF konnte nicht erstellt werden.", "error");
+    }
+  });
 
   document.querySelectorAll<HTMLButtonElement>("[data-tab]").forEach((button) => {
     button.addEventListener("click", () => {

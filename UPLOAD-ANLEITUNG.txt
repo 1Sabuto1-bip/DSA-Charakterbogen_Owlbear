@@ -1,10 +1,21 @@
-DSA-CHARAKTERBOGEN – UPDATE 0.22.0
+DSA-CHARAKTERBOGEN – UPDATE 0.23.0
 =================================
 
-Dieser Stand baut auf Version 0.21.0 auf und vereinheitlicht die
-Ausrüstungsverwaltung in Generator und fertigem Heldenbogen.
+Dieser Stand baut auf Version 0.22.0 auf und verbessert Generator,
+Startseite und PDF-Ausgabe.
 
-Neu in 0.22.0:
+Neu in 0.23.0:
+- Talent- und Zauberlisten behalten beim Steigern ihre Scrollposition
+- Rüstkammer und Warenkorb behalten beim Kaufen und Zuordnen ihre Scrollposition
+- bewusste Generator-Schrittwechsel beginnen weiterhin oben
+- Charaktergenerator steht auf der Startseite an erster Stelle
+- Import steht an zweiter Stelle, der leere Bogen an dritter Stelle
+- keine Owlbear-Rodeo-Bezeichnung mehr auf der Startseite
+- PDF-Download jetzt auch direkt aus dem fertigen digitalen Heldenbogen
+- derselbe vollständige A4-Bogen für generierte, importierte und manuelle Helden
+- 85 erfolgreiche automatisierte Tests
+
+Bereits in 0.22.0:
 - in jeder Trefferzone nur noch dafür bestimmte Gegenstände auswählbar
 - Kettenhemden und andere allgemeine Rüstungen ausschließlich am Torso
 - Helme ausschließlich am Kopf, Armzeug ausschließlich an den Armen
@@ -184,12 +195,12 @@ Bereits enthalten:
 - Stufe und freie Ausprägung eines Vor- oder Nachteils können bearbeitet werden
 - Einträge können hinzugefügt und entfernt werden
 - vorhandene Owlbear-Sicherungen werden beim Laden automatisch ergänzt
-- sichtbare Versionsnummer 0.22.0 zur Cache-Kontrolle
+- sichtbare Versionsnummer 0.23.0 zur Cache-Kontrolle
 
 UPLOAD
 ------
 1. Diese ZIP-Datei auf dem Mac doppelt anklicken.
-2. Den entpackten Ordner "github-update-v0.22.0" öffnen.
+2. Den entpackten Ordner "github-update-v0.23.0" öffnen.
 3. Im GitHub-Repository auf "Add file" und "Upload files" klicken:
    https://github.com/1Sabuto1-bip/DSA-Charakterbogen_Owlbear
 4. ALLE Inhalte des geöffneten Ordners in das Upload-Fenster ziehen.
@@ -205,7 +216,7 @@ OWLBEAR
 -------
 Nach dem Upload Owlbear vollständig neu laden. Falls noch eine andere Version
 erscheint, die Erweiterung im Profil entfernen und neu installieren mit:
-https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/manifest.json?v=0220
+https://1sabuto1-bip.github.io/DSA-Charakterbogen_Owlbear/manifest.json?v=0230
 
 BEDIENUNG
 ---------

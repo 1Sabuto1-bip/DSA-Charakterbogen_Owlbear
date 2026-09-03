@@ -383,7 +383,7 @@ class PdfDocument {
     });
     objects[catalogId - 1] = `<< /Type /Catalog /Pages ${pagesId} 0 R >>`;
     objects[pagesId - 1] = `<< /Type /Pages /Kids [${pageIds.map((id) => `${id} 0 R`).join(" ")}] /Count ${this.pages.length} /MediaBox [0 0 ${fmt(PAGE_WIDTH)} ${fmt(PAGE_HEIGHT)}] >>`;
-    const infoId = addObject(`<< /Title ${pdfLiteral(title)} /Author ${pdfLiteral("Aventurischer Heldenbogen")} /Creator ${pdfLiteral("Regelwerksgenerator 0.22.0")} >>`);
+    const infoId = addObject(`<< /Title ${pdfLiteral(title)} /Author ${pdfLiteral("Aventurischer Heldenbogen")} /Creator ${pdfLiteral("Regelwerksgenerator 0.23.0")} >>`);
 
     let output = `%PDF-1.4\n%${String.fromCharCode(226, 227, 207, 211)}\n`;
     const offsets = [0];
@@ -771,7 +771,7 @@ const drawKarmaPage = (document: PdfDocument, data: PrintableCharacterData): voi
 const addFooters = (document: PdfDocument): void => {
   const total = document.pages.length;
   document.pages.forEach((page, index) => {
-    page.text("Regelwerksgenerator 0.22.0", 200, 804, { font: "gentiumItalic", size: 5.3, fill: COLORS.line, width: 195, align: "center" });
+    page.text("Regelwerksgenerator 0.23.0", 200, 804, { font: "gentiumItalic", size: 5.3, fill: COLORS.line, width: 195, align: "center" });
     page.text(`Seite ${index + 1} / ${total}`, 455, 804, { font: "gentiumItalic", size: 5.5, fill: COLORS.muted, width: 80, align: "right" });
   });
 };

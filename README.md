@@ -3,6 +3,12 @@
 Ein eigenständig gestalteter, interaktiver DSA-5-Heldenbogen als Owlbear-Rodeo-Erweiterung.
 Der aktuelle Prototyp importiert Optolith-JSON-Dateien der Version 1.5.x und TDC-Helden aus The Dark Aid X.
 
+## Version 0.23.0 – stabile Listen, neuer Einstieg und PDF aus dem Heldenbogen
+
+Beim Steigern von Talenten und Zaubern sowie beim Kaufen und Zuordnen von Ausrüstung bleiben die Positionen der langen Listen jetzt erhalten. Änderungen bauen die Ansicht weiterhin sofort neu auf, springen aber nicht mehr zum ersten Eintrag. Nur ein bewusster Wechsel des Generatorschritts beginnt wieder oben.
+
+Auf der Startseite steht der Charaktergenerator nun an erster Stelle, gefolgt vom Import einer JSON- oder TDC-Datei und zuletzt dem leeren, frei ausfüllbaren Bogen. Die Startseite ist unabhängig formuliert und nennt Owlbear Rodeo dort nicht mehr. Im fertig angelegten oder importierten digitalen Heldenbogen kann über den neuen **PDF**-Knopf in der Kopfzeile jederzeit derselbe druckbare Heldenbogen erzeugt werden, der bislang nur am Ende des Generators verfügbar war.
+
 ## Version 0.22.0 – zonengerechte Ausrüstung und gemeinsame Verwaltung
 
 Generator und fertiger Heldenbogen verwenden nun dieselbe zentrale Zuordnungslogik. In jedem Körperfeld erscheinen ausschließlich dafür vorgesehene Gegenstände: Helme am Kopf, Kettenhemden und andere Torso­rüstungen am Torso, Armzeug an den Armen, Beinschutz bei den Beinen sowie Stiefel und Schuhe beim Schuhwerk. Nicht tragbare Ausrüstung bleibt im Rucksack. Eine einzelne Armschiene kann nur einen Arm belegen; für beide Arme werden zwei Exemplare benötigt.

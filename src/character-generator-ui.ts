@@ -130,6 +130,27 @@ export class CharacterGeneratorUI {
   talentSearch = "";
   spellSearch = "";
 
+  private captureScrollState(): { pageX: number; pageY: number; lists: Map<string, { left: number; top: number }> } {
+    const lists = new Map<string, { left: number; top: number }>();
+    document.querySelectorAll<HTMLElement>("[data-generator-scroll]").forEach((element) => {
+      const key = element.dataset.generatorScroll;
+      if (key) lists.set(key, { left: element.scrollLeft, top: element.scrollTop });
+    });
+    return { pageX: window.scrollX, pageY: window.scrollY, lists };
+  }
+
+  private restoreScrollState(scrollState: ReturnType<CharacterGeneratorUI["captureScrollState"]>): void {
+    window.scrollTo(scrollState.pageX, scrollState.pageY);
+    document.querySelectorAll<HTMLElement>("[data-generator-scroll]").forEach((element) => {
+      const key = element.dataset.generatorScroll;
+      const position = key ? scrollState.lists.get(key) : undefined;
+      if (position) {
+        element.scrollLeft = position.left;
+        element.scrollTop = position.top;
+      }
+    });
+  }
+
   reset(): void {
     this.draft = createGeneratorDraft();
     this.professionSearch = "";
@@ -541,7 +562,7 @@ export class CharacterGeneratorUI {
       <div class="generator-shop-layout">
         <div class="generator-shop-catalog">
           <h3>Katalog <small>${GENERATOR_SHOP_ITEMS.length} kaufbare Einträge</small></h3>
-          <div class="generator-shop-results">${filtered.map((entry) => {
+          <div class="generator-shop-results" data-generator-scroll="shop-results">${filtered.map((entry) => {
             const affordable = Math.round(entry.item.price * 100) <= Math.round(shopping.remainingSilver * 100);
             return `<article class="generator-shop-result">
               <div><strong>${escapeHtml(entry.item.name)}</strong><small>${escapeHtml(this.shopItemDetails(entry))}</small></div>
@@ -553,7 +574,7 @@ export class CharacterGeneratorUI {
         </div>
         <div class="generator-shopping-cart">
           <h3>Einkauf <small>${shopping.itemCount} Gegenstände</small></h3>
-          <div class="generator-cart-list">${purchases.map(({ purchase, entry }) => `<article class="generator-cart-item">
+          <div class="generator-cart-list" data-generator-scroll="shopping-cart">${purchases.map(({ purchase, entry }) => `<article class="generator-cart-item">
             <div><div class="generator-shop-result__title"><strong>${escapeHtml(entry.item.name)}</strong>${this.renderArmoryInfo(entry)}</div><small>${formatSilver(entry.item.price)} je Stück · ${formatSilver(entry.item.price * purchase.amount)}</small></div>
             <div class="generator-cart-amount"><button data-generator-purchase-adjust="${escapeHtml(entry.catalogId)}" data-delta="-1" title="Ein Stück entfernen">−</button><b>${purchase.amount}</b><button data-generator-purchase-adjust="${escapeHtml(entry.catalogId)}" data-delta="1" ${Math.round(entry.item.price * 100) <= Math.round(shopping.remainingSilver * 100) ? "" : "disabled"} title="Ein Stück hinzufügen">+</button></div>
             <button class="generator-cart-remove" data-generator-remove-purchase="${escapeHtml(entry.catalogId)}" title="Aus Einkauf entfernen">×</button>
@@ -581,7 +602,7 @@ export class CharacterGeneratorUI {
         <div><span>Maximum</span><strong>FW ${experience.skillmaximum}</strong></div>
       </div>
       <label class="generator-search generator-talent-search"><span>Talent suchen</span><input id="generator-talent-search" type="search" value="${escapeHtml(this.talentSearch)}" placeholder="z. B. Klettern, Wissen, MU …" /></label>
-      <div class="generator-talent-list">${filtered.map((talent) => {
+      <div class="generator-talent-list" data-generator-scroll="talents">${filtered.map((talent) => {
         const base = baseValues[talent.id] ?? 0;
         const value = getGeneratorTalentValue(this.draft, talent.id);
         const spent = generatorTalentCostFor(this.draft, talent.id);
@@ -619,7 +640,7 @@ export class CharacterGeneratorUI {
         <div><span>Maximum</span><strong>FW ${experience.skillmaximum}</strong></div>
       </div>
       <label class="generator-search generator-talent-search"><span>Zauber oder Ritual suchen</span><input id="generator-spell-search" type="search" value="${escapeHtml(this.spellSearch)}" placeholder="z. B. Axxeleratus, Balsam, Ritual …" /></label>
-      <div class="generator-talent-list">${visible.map((spell) => {
+      <div class="generator-talent-list" data-generator-scroll="spells">${visible.map((spell) => {
         const base = baseValues[spell.id] ?? 0;
         const manuallyActivated = Object.prototype.hasOwnProperty.call(this.draft.spellIncreases, spell.id);
         const selected = base > 0 || manuallyActivated;
@@ -703,7 +724,17 @@ export class CharacterGeneratorUI {
   }
 
   attach(callbacks: CharacterGeneratorCallbacks): void {
-    const rerender = (): void => { this.persist(); callbacks.refresh(); };
+    const rerender = (): void => {
+      const scrollState = this.captureScrollState();
+      this.persist();
+      callbacks.refresh();
+      this.restoreScrollState(scrollState);
+    };
+    const navigate = (): void => {
+      this.persist();
+      callbacks.refresh();
+      window.scrollTo(0, 0);
+    };
     document.querySelector("#generator-close")?.addEventListener("click", callbacks.cancel);
     document.querySelector("#generator-cancel")?.addEventListener("click", callbacks.cancel);
     document.querySelector("#generator-reset")?.addEventListener("click", () => {
@@ -714,9 +745,9 @@ export class CharacterGeneratorUI {
     });
     document.querySelectorAll<HTMLButtonElement>("[data-generator-step]").forEach((button) => button.addEventListener("click", () => {
       this.draft.step = Number(button.dataset.generatorStep ?? 0);
-      rerender();
+      navigate();
     }));
-    document.querySelector("#generator-previous")?.addEventListener("click", () => { this.draft.step = Math.max(0, this.draft.step - 1); rerender(); });
+    document.querySelector("#generator-previous")?.addEventListener("click", () => { this.draft.step = Math.max(0, this.draft.step - 1); navigate(); });
     document.querySelector("#generator-next")?.addEventListener("click", () => {
       if (this.draft.step === 0 && !this.draft.name.trim()) {
         callbacks.notify("Bitte gib deinem Helden zuerst einen Namen.", "error");
@@ -724,7 +755,7 @@ export class CharacterGeneratorUI {
         return;
       }
       this.draft.step = Math.min(GENERATOR_STEPS.length - 1, this.draft.step + 1);
-      rerender();
+      navigate();
     });
     const bindValue = (selector: string, handler: (value: string) => void, eventName = "change"): void => {
       document.querySelector<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(selector)?.addEventListener(eventName, (event) => {

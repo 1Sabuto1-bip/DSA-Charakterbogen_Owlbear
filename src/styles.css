@@ -243,6 +243,7 @@ label:focus-within {
 .hero-meta { display: flex; flex-direction: column; align-items: end; gap: 0.25rem; font-size: 0.72rem; color: #d8ddd5; }
 .hero-meta span:first-child { color: #f4df9d; font-weight: 800; }
 .header-actions { display: flex; gap: 0.4rem; }
+.icon-button--pdf { width: 3rem; border-radius: 1.2rem; font-size: .58rem; font-weight: 900; letter-spacing: .03em; }
 .icon-button {
   width: 2.35rem;
   height: 2.35rem;
